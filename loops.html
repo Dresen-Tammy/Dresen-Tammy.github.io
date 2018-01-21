@@ -236,7 +236,7 @@ bootstrap tutorial
     function getDogYearInput() {
         var age = parseInt(document.getElementById("ageInput").value);
         var name = document.getElementById("nameInput").value;
-        if (age === NaN || age === undefined || age === undefined) {
+        if (age === NaN || age === undefined || name === undefined) {
             document.getElementById("output3").innerHTML = "Error: Please enter an name and number.";
         } else {
             var years = dogYears(name, age);
