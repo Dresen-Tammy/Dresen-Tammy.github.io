@@ -42,13 +42,15 @@ bootstrap tutorial
         <p>Declare a new variable and then use the new keyword to create a new array with the number of array elements in parenthesis. In this case, the elements in the array will be undefined and need to be initialized or assigned values. </p>
         <div class="code">
           <code>var dogs = ["Fido", "Spot", "Fluffy", "Spike"];<br>
-            var cats = new array(5);<br>   
+            var cats = new array(3);<br>   
           </code>
         </div>
         <p>To access an element in an array, you use the variable name followed by the index of the element in brackets. Remember the first element in an array has an index of 0. You can add or replace certain elements in an array using the assignment operator. You can use a for loop to access all the elements in an array.</p>
         <div class="code">
           <code>dogs[0]; // The value is currently "Fido"<br>
-            cats[4] = "Felix" // This would go in the last spot of the cats array;<br>
+            cats[0] = "Felix"; // This would go in the first spot of the cats array;<br>
+            cats[1] = "Tom";<br>
+            cats[2] = "Garfield";
           </code>
         </div>  
 
@@ -64,11 +66,11 @@ bootstrap tutorial
         </div>
         <p>To access a value, you use the keyword associated with it. You can't use an index.  For instance john[3] will return as undefined.  Instead you would access a value in one of the two ways shown below. </p>
         <div class="code">
-        <code>john.phone;<br>
-          john['phone'];<br><br>
-          var info = john.firstName + " " + john["lastName"] + " is " + john.age + " years old.";
+          <code>john.phone;<br>
+            john['phone'];<br><br>
+            var info = john.firstName + " " + john["lastName"] + " is " + john.age + " years old.";
           </code>
-      </div>
+        </div>
         <div id="assoc" class="result"></div>
         <p>To access all of the values inside an associative array, you would use a for in loop. Read on to learn more about for in loops.</p>
       </section>
@@ -91,12 +93,12 @@ bootstrap tutorial
         <div id="result1" class="result"></div>
 
         <h3>for in loop</h3>
-        <p>The number of times a for in loop repeats is determined by the number of elements in an object. for in loops are useful when working with arrays or objects. The following for in loop will repeat 5 times because there are 5 elements in the array. It initializes each of the elements with the value 0.</p>
+        <p>The number of times a for in loop repeats is determined by the number of elements in an object. for in loops are useful when working with arrays or objects. The following for in loop will repeat 5 times because there are 5 elements in the associative array. For in loops can also be used to initialize all the elements of an object or array.</p>
         <div class="code">
-          <code>var output = "";<br>
+          <code>var output = "John-";<br>
             var n;<br>
-            for (n in dogs) {<br>
-            &nbsp;&nbsp;output += dogs[n] + ", ";<br>
+            for (n in john) {<br>
+            &nbsp;&nbsp;output += n + ": " + john[n];<br>
             }<br>
             document.getElementById("output").innerHTML = "for in result = " + output; 
           </code>
@@ -109,11 +111,13 @@ bootstrap tutorial
         <code>while(!valid)</code>
         <p>This will repeat as long as the boolean value of the variable valid is false.</p>
         <div class="code">
-          <code>var i = 10;<br>
+          <code>var j = 0;<br>
             var message = ""<br>
-            while(i < 20) {<br>
-            &nbsp;&nbsp;message += i + " ";<br>
-            &nbsp;&nbsp;i++;<br>
+            var cat = "";<br>
+            while(j < cats.length) {<br>
+            cat = cats[j];<br>
+            &nbsp;&nbsp;message += j + " ";<br>
+            &nbsp;&nbsp;j++;<br>
             }<br>
             document.getElementById("result2").innerHTML = "while loop result = "</code>
         </div>
@@ -121,14 +125,16 @@ bootstrap tutorial
 
 
         <h3>do while loop</h3>
-        <p>A do while loop is similar to a while loop, except it repeats once before checking to see if the condition is met. A do while loop should be used if the code needs to be executed at least once whether the condition is met or not. Here is an example of a do while loop.</p>
+        <p>A do while loop is similar to a while loop, except it repeats once before checking to see if the condition is met. A do while loop should be used if the code needs to be executed at least once whether the condition is met or not. Here is an example of a do while loop. Notice on the example, that the condition is not true. However, the result includes one dog because the loop executed once before checking the condition.</p>
         <div class="code">
-          <code>var i = 20;<br>
+          <code>var k = 3;<br>
             var message = "";<br>
+            var dog = "";<br>
             do {<br>
-            &nbsp;&nbsp;message += i + ", ";<br>
-            &nbsp;&nbsp;i++;<br>
-            } while(i > 30);<br>
+            var dog = dogs[k];<br>
+            &nbsp;&nbsp;message += dog + ", ";<br>
+            &nbsp;&nbsp;k++;<br>
+            } while(i < 3);<br>
             document.getElementById("result3").innerHTML = "do while loop result =" + message;</code>
         </div>
         <div id="result3" class="result"></div>
@@ -167,15 +173,15 @@ bootstrap tutorial
         <p>This code generates a random number and then returns a message based on that number. You can refresh the page to see it work with different numbers.</p>
         <div class="code">
           <code>var randomNumber = Math.floor(Math.random() * (100 - 1) + 1);<br>
-    if (randomNumber <= 25) {<br>
-        &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 1 and 25";<br>
-    } else if (randomNumber <= 50) {<br>
-        &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 25 and 50";<br>
-    } else if (randomNumber <= 75) {<br>
-        &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 50 and 75";<br>
-    } else {<br>
-        &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 75 and 100";<br>
-    }</code>
+            if (randomNumber <= 25) {<br>
+            &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 1 and 25";<br>
+            } else if (randomNumber <= 50) {<br>
+            &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 25 and 50";<br>
+            } else if (randomNumber <= 75) {<br>
+            &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 50 and 75";<br>
+            } else {<br>
+            &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 75 and 100";<br>
+            }</code>
         </div>
         <div id="condition3" class="result"></div>
         <h3>switch statements</h3>
@@ -183,31 +189,31 @@ bootstrap tutorial
         <p>A switch is structured differently than an if else if statement.  It starts with the keyword switch and a variable inside parenthesis followed by curly brackets.  Next there are a list of cases, with possible values followed by a colons, with  blocks of code to be executed; At the end of each block of code, you need to put the word break; to skip the rest of the switch. Finally, you can add an optional default, with a block of code to be executed if none of the options are correct.</p>
         <div class="code">
           <code>var text = "";<br>
-      switch (rainbow) {<br>
-        &nbsp;&nbsp;case "RED":<br> 
-          &nbsp;&nbsp;&nbsp;&nbsp;text = "red quote";<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-        &nbsp;&nbsp;case "ORANGE":<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;text = "orange quote";<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-        &nbsp;&nbsp;case "YELLOW":<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;text = "yellow quote";<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-        &nbsp;&nbsp;case "GREEN":<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;text = "green quote";<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-        &nbsp;&nbsp;case "BLUE":<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;text = "blue quote";<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-        &nbsp;&nbsp;case "INDIGO":<br> 
-          &nbsp;&nbsp;&nbsp;&nbsp;text = "indigo quote";<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-          &nbsp;&nbsp;case VIOLET: 
-          &nbsp;&nbsp;text = "violet quote";<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
-        &nbsp;&nbsp;default: <br>
-           &nbsp;&nbsp;&nbsp;&nbsp;text = "rainbow quote";<br>
-      } </code>
+            switch (rainbow) {<br>
+            &nbsp;&nbsp;case "RED":<br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;text = "red quote";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case "ORANGE":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;text = "orange quote";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case "YELLOW":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;text = "yellow quote";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case "GREEN":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;text = "green quote";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case "BLUE":<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;text = "blue quote";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case "INDIGO":<br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;text = "indigo quote";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;case VIOLET: 
+            &nbsp;&nbsp;text = "violet quote";<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+            &nbsp;&nbsp;default: <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;text = "rainbow quote";<br>
+            } </code>
         </div>
         <div class="result">
           <p>Enter a color of the rainbow to see the switch in action.</p>
@@ -259,16 +265,19 @@ bootstrap tutorial
   <script>
     // array
     var dogs = ["Fido", "Spot", "Fluffy", "Spike"];
-    var cats = new Array(5);
+    var cats = new Array(3);
+    cats[0] = "Felix"
+    cats[1] = "Tom";
+    cats[2] = "Garfield";
     // associative array
     var john = {firstName: "John", lastName: "Doe", age: "42", sex: "male", marStatus: "single"};
     var info = john.firstName + " " + john["lastName"] + " is " + john.age + " years old.";
     document.getElementById("assoc").innerHTML = info;
     // for in loop
-    var output = "";
+    var output = "<br>John-<br>";
     var n;
-    for (n in dogs) {
-        output += dogs[n] + ", ";
+    for (n in john) {
+        output += n + ": " + john[n] + "<br>";
     }
     document.getElementById("output").innerHTML = "for in output = " + output;
     // for loop
@@ -279,18 +288,24 @@ bootstrap tutorial
     }
     document.getElementById("result1").innerHTML = "for loop result = " + message;
     // while loop
+    var j = 0;
     message = "";
-    while (i < 20) {
-        message += i + ", ";
-        i++;
+    var cat = "";
+    while (j < cats.length) {
+        cat = cats[j];
+        message += cat + ", ";
+        j++;
     }
     document.getElementById("result2").innerHTML = "while loop result = " + message;
     // do while loop
+    var k = 3;
     message = "";
+    var dog = "";
     do {
-        message += i + ", ";
-        i++;
-    } while (i < 30);
+        dog = dogs[k];
+        message += dog + ", ";
+        k++;
+    } while (k < 3);
     document.getElementById("result3").innerHTML = "do while loop result = " + message;
     // if statement
     var color = 3;
@@ -317,34 +332,35 @@ bootstrap tutorial
     }
     // switch
     function rainbow() {
-      var rainbow = document.getElementById("colorInput").value;
-      rainbow = rainbow.toUpperCase();
-      var text = "";
-      switch (rainbow) {
-        case "RED": 
-          text = "I have a dream that one day on the red hills of Georgia, the sons fo former slaves and the sons of former slave owners will be able to sit together at the table of brotherhood.<br> -Martin Luther King Jr., www.brainyquote.com ";
-          break;
-        case "ORANGE":
-          text = "I like to peel it and share it friends. You can spread the love with an orange.<br> - Gina Rodriguez, www.brainyquote.com";
-          break;
-        case "YELLOW":
-          text = "The people who live in a golden age usually go around complaining how yellow everything looks.<br> - Randall Jarrell, www.brainyquote.com";
-          break;
-        case "GREEN":
-          text = "Life expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon.<br> - Doug Larson, www.brainyquote.com";
-          break;
-        case "BLUE":
-          text = "When I feel blue, I start breathing again.<br> -L. Frank Baum, www.brainyquote.com";
-          break;
-        case "INDIGO": 
-          text = "Hold on to your divine blush, your innate rosy magic, or end up brown. Once you're brown, you'll find out you're blue. As blue as indigo. And you know what that means. Indigo. Indigoing. Indigone.<br> - Tim Robbins, Jitterbug Perfume";
-          break;
-        case "VIOLET": 
-          text = "Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.<br> - Mark Twain, www.brainyquote.com";
-          break;
-        default: 
-           text = "Be thou the rainbow in the storms of life. The evening beam that smiles the clouds away, and tints tomorrow with prophetic ray.<br> -George Gordon Byron www.goodreads.com";
-      } document.getElementById("condition4").innerHTML = text;
+        var rainbow = document.getElementById("colorInput").value;
+        rainbow = rainbow.toUpperCase();
+        var text = "";
+        switch (rainbow) {
+            case "RED":
+                text = "I have a dream that one day on the red hills of Georgia, the sons fo former slaves and the sons of former slave owners will be able to sit together at the table of brotherhood.<br> -Martin Luther King Jr., www.brainyquote.com ";
+                break;
+            case "ORANGE":
+                text = "I like to peel it and share it friends. You can spread the love with an orange.<br> - Gina Rodriguez, www.brainyquote.com";
+                break;
+            case "YELLOW":
+                text = "The people who live in a golden age usually go around complaining how yellow everything looks.<br> - Randall Jarrell, www.brainyquote.com";
+                break;
+            case "GREEN":
+                text = "Life expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon.<br> - Doug Larson, www.brainyquote.com";
+                break;
+            case "BLUE":
+                text = "When I feel blue, I start breathing again.<br> -L. Frank Baum, www.brainyquote.com";
+                break;
+            case "INDIGO":
+                text = "Hold on to your divine blush, your innate rosy magic, or end up brown. Once you're brown, you'll find out you're blue. As blue as indigo. And you know what that means. Indigo. Indigoing. Indigone.<br> - Tim Robbins, Jitterbug Perfume";
+                break;
+            case "VIOLET":
+                text = "Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.<br> - Mark Twain, www.brainyquote.com";
+                break;
+            default:
+                text = "Be thou the rainbow in the storms of life. The evening beam that smiles the clouds away, and tints tomorrow with prophetic ray.<br> -George Gordon Byron www.goodreads.com";
+        }
+      document.getElementById("condition4").innerHTML = text;
     }
     // dog years function
     function dogYears(name, age) {
