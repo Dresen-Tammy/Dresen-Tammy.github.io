@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--
+bootstrap tutorial
+-->
+<html>
+  <head>
+    <title>Loops Conditional Statements Functions Variables Parameters Arrays Associative Arrays</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  </head>
+  <body>
+    <main>
+      <h1>JavaScript Basics</h1>
+      <p>Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</p>
+
+
+      <section>
+        <h2>Variables</h2>
+        <p>Variables are containers for values. The values can be numbers, strings, arrays function, booleans, etc. To use a variable, first you have to declare it using the keyword var. It is also a good idea to initialize it, or give it a starting value. This can be done in one statement or separately. </p> 
+        <div class="code">
+          <code>var i = "";<br>
+            var number;<br>
+            var number = 0;<br>
+            var valid = false;</code>
+        </div>
+        <p>The values inside variables can be changed by using the assignment operator (=) or by incrementing (number++). There is no need to use the keyword var again on a variable that has already been declared.</p>
+        <div class="code">
+          <code>i = "red";<br>
+            number-2;<br>
+            valid = true;</code>
+        </div>
+      </section>
+
+
+      <section>
+        <h2>Arrays</h2>
+        <p>Arrays are objects that allow you to store multiple values in one variable. They can be one dimensional and contain a simple list, or they can be multi-dimensional and contain a group of lists.</p>
+        <p>There are two ways to create an array.<p>
+        <p>Declare a new variable and then use the assignment operator to add a bracketed comma separated list.</p>
+        <p>Declare a new variable and then use the new keyword to create a new array with the number of array elements in parenthesis. In this case, the elements in the array will be undefined and need to be initialized or assigned values. </p>
+        <div class="code">
+          <code>var dogs = ["Fido", "Spot", "Fluffy", "Spike"];<br>
+            var cats = new array(5);<br>   
+          </code>
+        </div>
+        <p>To access an element in an array, you use the variable name followed by the index of the element in brackets. Remember the first element in an array has an index of 0. You can add or replace certain elements in an array using the assignment operator. You can use a for loop to access all the elements in an array.</p>
+        <div class="code">
+          <code>dogs[0]; // The value is currently "Fido"<br>
+            cats[4] = "Felix" // This would go in the last spot of the cats array;<br>
+          </code>
+        </div>  
+      </section>
+      <section>
+        <h2>Loops</h2>
+        <p>Loops are used to repeat a block of code.  If the same thing needs to happen in a program more than once, rather than typing the block of code over and over, a loop can be used to cycle through the code a certain number of times, or until a condition is met.</p>
+        <p>There are 4 kinds of loops:</p>
+        <h3>for loop</h3>
+        <p>for loops repeat until a condition is no longer true. They are useful when you know how many times a loop needs to be repeated. The following for loop will repeat 10 times, and will print a message that contains the numbers 0-9  </p>
+        <div class='code'>
+          <code>var message = ""<br>
+            for (var i = 0; i ¬t; 10; i++) {<br>
+            &nbsp;&nbsp;message += i + " "<br>
+            }<br>
+            document.getElementById("result1").innerHTML = "for loop result=" + message</code>
+        </div>
+        <div id="result1" class="result"></div>
+
+        <h3>for in loop</h3>
+        <p>The number of times a for in loop repeats is determined by the number of elements in an object. for in loops are useful when working with arrays or objects. The following for in loop will repeat 5 times because there are 5 elements in the array. It initializes each of the elements with the value 0.</p>
+        <div class="code">
+          <code>var output = "";<br>
+            var n;<br>
+            for (n in dogs) {<br>
+            &nbsp;&nbsp;output += dogs[n] + ", ";<br>
+            }<br>
+            document.getElementById("output").innerHTML = "for in result = " + output; 
+          </code>
+        </div>
+        <div id="output" class="result"></div>
+        <h3>while loop</h3>
+        <p>A while loop is good whether or not you know how many times the block of code needs to be repeated. It repeats the code until a certain condition is met. Here are some examples:</p>
+        <code>while(i ¬t; 10)</code>
+        <p>This will repeat the loop until the counter i reaches 10.</p>
+        <code>while(!valid)</code>
+        <p>This will repeat as long as the boolean value of the variable valid is false.</p>
+        <div class="code">
+          <code>var i = 10;<br>
+            var message = ""<br>
+            while(i ¬t; 20) {<br>
+            &nbsp;&nbsp;message += i + " ";<br>
+            &nbsp;&nbsp;i++;<br>
+            }<br>
+            document.getElementById("result2").innerHTML = "while loop result = "</code>
+        </div>
+        <div id="result2" class="result"></div>
+
+
+        <h3>do while loop</h3>
+        <p>A do while loop is similar to a while loop, except it repeats once before checking to see if the condition is met. A do while loop should be used if the code needs to be executed at least once whether the condition is met or not. Here is an example of a do while loop.</p>
+        <div class="code">
+          <code>var i = 20;<br>
+            var message = "";<br>
+            do {<br>
+            &nbsp;&nbsp;message += i + ", ";<br>
+            &nbsp;&nbsp;i++;<br>
+            } while(i > 30);<br>
+            document.getElementById("result3").innerHTML = "do while loop result =" + message;</code>
+        </div>
+        <div id="result3" class="result"></div>
+
+      </section>
+
+      <section>
+        <h2>Conditionals</h2>
+        <p>Conditional statements allow for decision making within a program. Certain blocks of code will be executed or skipped depending on certain conditions.  There are several different kinds of conditional statements. They include:</p>
+        <h3>if statements</h3>
+        <p>If statements should be used when there is only one condition that is either true or false.  If the condition is true, the block of code is executed. If it is false, the block is skipped.</p>
+        <div class="code">
+          var color = 3;<br>
+          <code>if (color ¬t; 5) {<br>
+            &nbsp;&nbsp;document.getElementById(output2).innerHTML = "The sky is blue."<br>
+            }</code>
+        </div>
+        <div id="output2" class="result"></div>
+        <h3>if else statements</h3>
+        <p></p>
+        <div class="code">
+          <code></code>
+        </div>
+        <h3>if else if statements</h3>
+        <p></p>
+        <div class="code">
+          <code></code>
+        </div>
+        <h3>switch statements</h3>
+        <p></p>
+        <div class="code">
+          <code></code>
+        </div>
+      </section>
+      <section>
+        <h2>Functions</h2>
+        <p>You may have noticed that the results of the loops are already displayed on the page. That is because the JavaScript code was executed as the page loaded.If you don't want the code to execute when the page is loaded, but wait until it is triggered by an event, it needs to be placed in a function.</p>
+        <p>A function is a block of reusable code that needs to be called for it to run. Information, or arguments, can be passed into the function, and a result can be returned to the place where the function was called. Functions can be typed once but used many times and return different results depending on the information or arguments passed in.</p>
+        <p>A function has two parts, the function signature, and the function body.</p>
+        <h3>Function Signature</h3>
+        <p>The function signature has the function keyword, a function name, and a list of comma separated parameters in parenthesis.</p>
+        <div class="code">
+          <code>function dogYears(name, age) {</code>
+        </div>
+        <h4>Parameters</h4>
+        <p>Parameters are a way to pass arguments into a function. Parameters are listed in the function signature inside parenthesis, and they tell the pieces of information needed to make the function run correctly.  When the function is called, an argument, or value, is provided for each parameter, and those values can be used inside the function.</p>
+        <h3>Function Body</h3>
+        <p>The function body has a group of statements that are executed when the function is called.  One of those statements can be a return statement, which will pass a value back to the place where the function was called.</p>
+        <div class="code">
+          <code>
+            function dogYears(name, age) {<br>
+            &nbsp;&nbsp;age = parseInt(age);<br>
+            &nbsp;&nbsp;if (age ¬t; 15) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dogYears = 0;<br>
+            &nbsp;&nbsp;} else if (age ¬t; 24) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dogYears = 1;<br>
+            &nbsp;&nbsp;} else {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;dogYears = ((age - 23) / 5) + 1;<br>
+            &nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;return dogYears;<br>
+            }
+          </code>
+        </div>
+        <p>In order for this function to run, it has to be called. In this case, it will be called when the button is clicked. Please enter your name and age.</p>
+        <div class="result">
+          <p>How old are you in dog years?</p>
+        Enter your name<input id="nameInput"><br>
+        Enter your age<input id="ageInput"><br>
+        <button type="button" onclick="getDogYearInput()">Calculate</button><br>
+        <div id="output3"></div>
+       </div>
+      </section>
+    </main>
+  </body>
+  <script>
+    // array
+    var dogs = ["Fido", "Spot", "Fluffy", "Spike"];
+    var cats = new Array(5);
+    // for in loop
+    var output = "";
+    var n;
+    for (n in dogs) {
+        output += dogs[n] + ", ";
+    }
+    document.getElementById("output").innerHTML = "for in output = " + output;
+    // for loop
+    var message = "";
+    for (var i = 0; i < 10; i++) {
+        message += i + ", ";
+
+    }
+    document.getElementById("result1").innerHTML = "for loop result = " + message;
+    // while loop
+    message = "";
+    while (i < 20) {
+        message += i + ", ";
+        i++;
+    }
+    document.getElementById("result2").innerHTML = "while loop result = " + message;
+    // do while loop
+    message = "";
+    do {
+        message += i + ", ";
+        i++;
+    } while (i < 30);
+    document.getElementById("result3").innerHTML = "do while loop result = " + message;
+    // if statement
+    var color = 3;
+    if (color < 5) {
+        document.getElementById("output2").innerHTML = "The sky is blue.";
+    }
+    // if else statement
+    var color = 7;
+    if (color < 5) {
+
+    }
+    // dog years function
+    function dogYears(name, age) {
+        if (age < 15) {
+            years = 0;
+        } else if (age < 24) {
+            years = 1;
+        } else {
+            years = Math.floor(((age - 23) / 5) + 1);
+        }
+        return years;
+    }
+    function getDogYearInput() {
+        var age = parseInt(document.getElementById("ageInput").value);
+        var name = document.getElementById("nameInput").value;
+        if (age === NaN || age === undefined || age === undefined) {
+            document.getElementById("output3").innerHTML = "Error: Please enter an name and number.";
+        } else {
+            var years = dogYears(name, age);
+            document.getElementById("output3").innerHTML = name + ", you are in the same stage of life as a  " + years + " year old dog.";
+        }
+    }
+    
+  </script>  
+</html>
