@@ -36,7 +36,7 @@ bootstrap tutorial
 
       <section>
         <h2>Arrays</h2>
-        <p>Arrays are objects that allow you to store multiple values in one variable. They can be one dimensional and contain a simple list, or they can be multi-dimensional and contain a group of lists.</p>
+        <p>Arrays allow you to store multiple values in one variable. They can be one dimensional and contain a simple list, or they can be multi-dimensional and contain a group of lists.</p>
         <p>There are two ways to create an array.<p>
         <p>Declare a new variable and then use the assignment operator to add a bracketed comma separated list.</p>
         <p>Declare a new variable and then use the new keyword to create a new array with the number of array elements in parenthesis. In this case, the elements in the array will be undefined and need to be initialized or assigned values. </p>
@@ -51,10 +51,30 @@ bootstrap tutorial
             cats[4] = "Felix" // This would go in the last spot of the cats array;<br>
           </code>
         </div>  
-        <h2>Associative Arrays</h2>
+
       </section>
-      
-      
+      <section>
+        <h2>Associative Arrays</h2>
+        <p>Associative Arrays are objects. They have similarities and differences to arrays. They are similar in that they allow you to store multiple values in one variable. They are different than arrays in several key ways. First, instead of having indexes, the elements in an associative array have key value pairs. This makes the way you create an associative array, and the way you access elements in it different than arrays.</p>
+        <p>To create an associative array, you declare the variable then use the assignment operator to add a list of key value pairs inside a curly bracketed list. </p>
+        <p>Key value pairs have two parts, the key and the value. The value is the information being stored in the array, and the key is a keyword that will be used to access the value. Here is an example.</p>
+        <div class="code">
+          <code>var john = {firstName: "John", lastName: "Doe", age: "42", sex: "male", marStatus: single};
+          </code>
+        </div>
+        <p>To access a value, you use the keyword associated with it. You can't use an index.  For instance john[3] will return as undefined.  Instead you would access a value in one of the two ways shown below. </p>
+        <div class="code">
+        <code>john.phone;<br>
+          john['phone'];<br><br>
+          var info = john.firstName + " " + john["lastName"] + " is " + john.age + " years old.";
+          </code>
+      </div>
+        <div id="assoc" class="result"></div>
+        <p>To access all of the values inside an associative array, you would use a for in loop. Read on to learn more about for in loops.</p>
+      </section>
+
+
+
       <section>
         <h2>Loops</h2>
         <p>Loops are used to repeat a block of code.  If the same thing needs to happen in a program more than once, rather than typing the block of code over and over, a loop can be used to cycle through the code a certain number of times, or until a condition is met.</p>
@@ -127,25 +147,78 @@ bootstrap tutorial
             }</code>
         </div>
         <div id="output2" class="result"></div>
+
+
         <h3>if else statements</h3>
-        <p></p>
+        <p>An if else statement should be used when you have one condition, with two different blocks of code to be executed depending on whether the condition is true or false. If the condition is true, run the first block of code and skip the second, else if it is false, skip the first block and run the second.</p>
         <div class="code">
-          <code></code>
+          <code>var number = 7;<br>
+            if (number < 5) {<br>
+            &nbsp;&nbsp;document.getElementById("condition2").innerHTML = "The number " + number + " is less than 5";<br>
+            } else {<br>
+            &nbsp;&nbsp;document.getElementById("condition2").innerHTML = "The number " + number + " is greater than 5";<br>
+            }</code>
         </div>
+        <div id="condition2" class="result"></div>
+
+
         <h3>if else if statements</h3>
-        <p></p>
+        <p>An if else statement is useful when there are several different conditions, each with different results. The first condition is checked, and if it is true, the first block of code is executed and the rest of the if else statement is skipped.  If the first is false, the first block of code is skipped and the second condition is checked. This is repeated until a condition is found to be true, and it's block of code is executed. Once a block of code is executed the rest of the if else is skipped. Even if later condition is true within the if else, it will be skipped. The final part of an if else statement is an else statement, without a condition. The final else block of code is executed if none of the conditions are true.</p> 
+        <p>This code generates a random number and then returns a message based on that number. You can refresh the page to see it work with different numbers.</p>
         <div class="code">
-          <code></code>
+          <code>var randomNumber = Math.floor(Math.random() * (100 - 1) + 1);<br>
+    if (randomNumber <= 25) {<br>
+        &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 1 and 25";<br>
+    } else if (randomNumber <= 50) {<br>
+        &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 25 and 50";<br>
+    } else if (randomNumber <= 75) {<br>
+        &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 50 and 75";<br>
+    } else {<br>
+        &nbsp;&nbsp;document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 75 and 100";<br>
+    }</code>
         </div>
+        <div id="condition3" class="result"></div>
         <h3>switch statements</h3>
-        <p></p>
+        <p>A switch statement is very helpful when there is one condition to be checked, but many different options of what that condition could be. It is similar to an if else if statement, but it takes less code to write, and it is easier to read and understand. For instance, if you had a list of options a user could enter, and a each option would produce a different result, a switch would be a good choice. </p>
+        <p>A switch is structured differently than an if else if statement.  It starts with the keyword switch and a variable inside parenthesis followed by curly brackets.  Next there are a list of cases, with possible values followed by a colons, with  blocks of code to be executed; At the end of each block of code, you need to put the word break; to skip the rest of the switch. Finally, you can add an optional default, with a block of code to be executed if none of the options are correct.</p>
         <div class="code">
-          <code></code>
+          <code>var text = "";<br>
+      switch (rainbow) {<br>
+        &nbsp;&nbsp;case "RED":<br> 
+          &nbsp;&nbsp;&nbsp;&nbsp;text = "red quote";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+        &nbsp;&nbsp;case "ORANGE":<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;text = "orange quote";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+        &nbsp;&nbsp;case "YELLOW":<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;text = "yellow quote";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+        &nbsp;&nbsp;case "GREEN":<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;text = "green quote";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+        &nbsp;&nbsp;case "BLUE":<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;text = "blue quote";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+        &nbsp;&nbsp;case "INDIGO":<br> 
+          &nbsp;&nbsp;&nbsp;&nbsp;text = "indigo quote";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+          &nbsp;&nbsp;case VIOLET: 
+          &nbsp;&nbsp;text = "violet quote";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+        &nbsp;&nbsp;default: <br>
+           &nbsp;&nbsp;&nbsp;&nbsp;text = "rainbow quote";<br>
+      } </code>
+        </div>
+        <div class="result">
+          <p>Enter a color of the rainbow to see the switch in action.</p>
+          Enter a color <input id="colorInput"><br>
+          <button type="button" onclick="rainbow()">Get Quote</button><br>
+          <div id="condition4"></div>
         </div>
       </section>
       <section>
         <h2>Functions</h2>
-        <p>You may have noticed that the results of the loops are already displayed on the page. That is because the JavaScript code was executed as the page loaded.If you don't want the code to execute when the page is loaded, but wait until it is triggered by an event, it needs to be placed in a function.</p>
+        <p>You may have noticed that the previous examples had the result already on the page, but the on the last example, you had to push a button to get the result. The previous examples had the JavaScript code was execute as the page loaded. The last example was different because I put the code inside a function. This makes it so the code doesn't run when the page is loaded, but waits until it is triggered by an event, such as a button click.</p>
         <p>A function is a block of reusable code that needs to be called for it to run. Information, or arguments, can be passed into the function, and a result can be returned to the place where the function was called. Functions can be typed once but used many times and return different results depending on the information or arguments passed in.</p>
         <p>A function has two parts, the function signature, and the function body.</p>
         <h3>Function Signature</h3>
@@ -175,11 +248,11 @@ bootstrap tutorial
         <p>In order for this function to run, it has to be called. In this case, it will be called when the button is clicked. Please enter your name and age.</p>
         <div class="result">
           <p>How old are you in dog years?</p>
-        Enter your name<input id="nameInput"><br>
-        Enter your age<input id="ageInput"><br>
-        <button type="button" onclick="getDogYearInput()">Calculate</button><br>
-        <div id="output3"></div>
-       </div>
+          Enter your name<input id="nameInput"><br>
+          Enter your age<input id="ageInput"><br>
+          <button type="button" onclick="getDogYearInput()">Calculate</button><br>
+          <div id="output3"></div>
+        </div>
       </section>
     </main>
   </body>
@@ -187,6 +260,10 @@ bootstrap tutorial
     // array
     var dogs = ["Fido", "Spot", "Fluffy", "Spike"];
     var cats = new Array(5);
+    // associative array
+    var john = {firstName: "John", lastName: "Doe", age: "42", sex: "male", marStatus: "single"};
+    var info = john.firstName + " " + john["lastName"] + " is " + john.age + " years old.";
+    document.getElementById("assoc").innerHTML = info;
     // for in loop
     var output = "";
     var n;
@@ -221,9 +298,53 @@ bootstrap tutorial
         document.getElementById("output2").innerHTML = "The sky is blue.";
     }
     // if else statement
-    var color = 7;
-    if (color < 5) {
-
+    var number = 7;
+    if (number < 5) {
+        document.getElementById("condition2").innerHTML = "The number " + number + " is less than 5";
+    } else {
+        document.getElementById("condition2").innerHTML = "The number " + number + " is greater than 5";
+    }
+    // if else if statement
+    var randomNumber = Math.floor(Math.random() * (100 - 1) + 1);
+    if (randomNumber <= 25) {
+        document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 1 and 25";
+    } else if (randomNumber <= 50) {
+        document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 25 and 50";
+    } else if (randomNumber <= 75) {
+        document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 50 and 75";
+    } else {
+        document.getElementById("condition3").innerHTML = "The number " + randomNumber + " is between 75 and 100";
+    }
+    // switch
+    function rainbow() {
+      var rainbow = document.getElementById("colorInput").value;
+      rainbow = rainbow.toUpperCase();
+      var text = "";
+      switch (rainbow) {
+        case "RED": 
+          text = "I have a dream that one day on the red hills of Georgia, the sons fo former slaves and the sons of former slave owners will be able to sit together at the table of brotherhood.<br> -Martin Luther King Jr., www.brainyquote.com ";
+          break;
+        case "ORANGE":
+          text = "I like to peel it and share it friends. You can spread the love with an orange.<br> - Gina Rodriguez, www.brainyquote.com";
+          break;
+        case "YELLOW":
+          text = "The people who live in a golden age usually go around complaining how yellow everything looks.<br> - Randall Jarrell, www.brainyquote.com";
+          break;
+        case "GREEN":
+          text = "Life expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon.<br> - Doug Larson, www.brainyquote.com";
+          break;
+        case "BLUE":
+          text = "When I feel blue, I start breathing again.<br> -L. Frank Baum, www.brainyquote.com";
+          break;
+        case "INDIGO": 
+          text = "Hold on to your divine blush, your innate rosy magic, or end up brown. Once you're brown, you'll find out you're blue. As blue as indigo. And you know what that means. Indigo. Indigoing. Indigone.<br> - Tim Robbins, Jitterbug Perfume";
+          break;
+        case "VIOLET": 
+          text = "Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.<br> - Mark Twain, www.brainyquote.com";
+          break;
+        default: 
+           text = "Be thou the rainbow in the storms of life. The evening beam that smiles the clouds away, and tints tomorrow with prophetic ray.<br> -George Gordon Byron www.goodreads.com";
+      } document.getElementById("condition4").innerHTML = text;
     }
     // dog years function
     function dogYears(name, age) {
@@ -239,13 +360,13 @@ bootstrap tutorial
     function getDogYearInput() {
         var age = parseInt(document.getElementById("ageInput").value);
         var name = document.getElementById("nameInput").value;
-        if (age === NaN || age === undefined || name === undefined) {
-            document.getElementById("output3").innerHTML = "Error: Please enter an name and number.";
+        if (!age || !name) {
+            document.getElementById("output3").innerHTML = "Error: Please enter a name and number.";
         } else {
             var years = dogYears(name, age);
             document.getElementById("output3").innerHTML = name + ", you are in the same stage of life as a  " + years + " year old dog.";
         }
     }
-    
+
   </script>  
 </html>
