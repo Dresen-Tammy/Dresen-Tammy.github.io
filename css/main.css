@@ -5,19 +5,116 @@ Stylesheet for CIT261 websit4e
 * {
     box-sizing: border-box;
     margin: 0;
-}  
+} 
+html {
+    background-color: lightsteelblue;
+}
 body {
     background-color: #f1f1f1;
+    width: 95%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+header {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    height: 50px;
+    background-color: #92afd1;
+    padding-left: 15px;
+}
+.logo {
+    float: left;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #f1f1f1;
+    margin-top: 15px;
+}
+/* nav */
+nav a{
+text-decoration: none;
+color: #f1f1f1;
+display: block;
+
+}
+nav ul {
+    list-style: none;
+    position: relative;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+nav {
+    float: right;
+}
+.top li {
+    float: left;
+    width: 80px;
+
+}
+.top li a {
+    display: block;
+    padding: 9px 10px;
+}
+.top li:hover > a {
+    color: black;
+}
+.top li:hover ul {
+    display: block;
+    backtround-color: buttonface;
+}
+.top li:active > a {
+    color: gray;
+}
+/* sub menu */
+.sub {
+    position: absolute;
+    z-index: 200;
+    width: 80px;
+    padding: 0;
+    display: none;
+    
+
+
+
+}
+.sub li {
+    
+    margin: 0;
+}
+.sub li a {
+    border-bottom: 1px solid lightsteelblue;
+    color: gray;
+    background-color: buttonface;
+    line-height: 1em;
+    
+}
+.sub li:hover a {
+    background-color: lightsteelblue;
+}
+footer {
+    background-color: #92afd1;
+    width: 100%;
+    max-width: 960px;
+    color: gray;
+    height: 50px;
+    margin: 0 auto;
+    padding: 8px 0 0 15px;
+        
 }
 main {
-    width: 960px;
-    margin: 100px auto;
+    max-width: 960px;
+    width: 95%;
+    margin: 50px auto;
+    padding: 0 10px;
     
 }
 h1 {
     font-family: sans-serif;
-    line-height: 1.5em;
+    line-height: 1.2em;
     margin-bottom: 30px;
+    font-size: 1.5em;
+    margin-top: -5px;
 }
 h2 {
     margin: 30px 0;
@@ -30,6 +127,16 @@ h3 {
 }
 li {
     line-height: 2em;
+}
+main a, main a:visited {
+    text-decoration: none;
+    color: black;
+}
+main a:hover {
+    color: #92afd1;
+}
+main a:active {
+    color: gray;
 }
 .code {
     background-color: gray;
