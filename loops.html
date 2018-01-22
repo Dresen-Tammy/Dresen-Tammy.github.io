@@ -135,7 +135,7 @@
             var cat = "";<br>
             while(j < cats.length) {<br>
             cat = cats[j];<br>
-            &nbsp;&nbsp;message += j + " ";<br>
+            &nbsp;&nbsp;message += cats + " ";<br>
             &nbsp;&nbsp;j++;<br>
             }<br>
             document.getElementById("result2").innerHTML = "while loop result = "</code>
@@ -188,7 +188,7 @@
 
 
         <h3>if else if statements</h3>
-        <p>An if else statement is useful when there are several different conditions, each with different results. The first condition is checked, and if it is true, the first block of code is executed and the rest of the if else statement is skipped.  If the first is false, the first block of code is skipped and the second condition is checked. This is repeated until a condition is found to be true, and it's block of code is executed. Once a block of code is executed the rest of the if else is skipped. Even if later condition is true within the if else, it will be skipped. The final part of an if else statement is an else statement, without a condition. The final else block of code is executed if none of the conditions are true.</p> 
+        <p>An if else statement is useful when there are several different conditions, each with different results. The first condition is checked, and if it is true, the first block of code is executed and the rest of the if else statement is skipped.  If the first is false, the first block of code is skipped and the second condition is checked. This is repeated until a condition is found to be true, and its block of code is executed. Once a block of code is executed the rest of the if else is skipped. Even if a later condition is true within the if else, it will be skipped. The final part of an if else statement is an else statement, without a condition. The final else block of code is executed if none of the conditions are true.</p> 
         <p>This code generates a random number and then returns a message based on that number. You can refresh the page to see it work with different numbers.</p>
         <div class="code">
           <code>var randomNumber = Math.floor(Math.random() * (100 - 1) + 1);<br>
@@ -205,7 +205,7 @@
         <div id="condition3" class="result"></div>
         <h3>switch statements</h3>
         <p>A switch statement is very helpful when there is one condition to be checked, but many different options of what that condition could be. It is similar to an if else if statement, but it takes less code to write, and it is easier to read and understand. For instance, if you had a list of options a user could enter, and a each option would produce a different result, a switch would be a good choice. </p>
-        <p>A switch is structured differently than an if else if statement.  It starts with the keyword switch and a variable inside parenthesis followed by curly brackets.  Next there are a list of cases, with possible values followed by a colons, with  blocks of code to be executed; At the end of each block of code, you need to put the word break; to skip the rest of the switch. Finally, you can add an optional default, with a block of code to be executed if none of the options are correct.</p>
+        <p>A switch is structured differently than an if else if statement.  It starts with the keyword switch and a variable inside parenthesis followed by curly brackets.  Next there are a list of cases, with possible values followed by a colons, with  blocks of code to be executed; At the end of each block of code, you need to put the word "break;" to skip the rest of the switch. Finally, you can add an optional default, with a block of code to be executed if none of the options are correct.</p>
         <div class="code">
           <code>var text = "";<br>
             switch (rainbow) {<br>
