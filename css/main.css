@@ -152,7 +152,8 @@ main a:active {
     padding: 10px;
 }
 p {
-    margin: 10px 0;
+    margin: 15px 0;
+    font-size: 1.1em;
 }
 section {
     border-top: 2px solid lightsteelblue;
