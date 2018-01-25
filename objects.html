@@ -35,7 +35,7 @@
     </header>
     <main>
       <h1>Topic 2: JavaScript Object Creation Functions, Inheritance, Properties, Methods, and Instantiation.</h1>
-      <div id="demo"></div>
+      
 
 
       <section>
@@ -111,10 +111,7 @@
             size: 7,<br>color: "blue",<br>quantity: 20};
           </code>
         </div>
-        <div class="result">
-          <div id="shoe2"></div>
-
-        </div>
+ 
         <h3>Constructor Function</h3>
         <p>Notice that shoe1 and shoe2 are both shoes, but they have different properties and methods. I can only use the display method on shoe1, not on shoe2. In order to have consistency across the same type of object, and to save a lot of typing, I can write a constructor function for a shoe type of object, and then use it to instantiate new shoe objects. The name of the function should be capitalized to differentiate it from normal objects. Notice that in the Shoe prototype has a default value for quantity.</p>
 
@@ -206,6 +203,7 @@
     // book2
     const book2 = {name: "Cinder", pages: 254, author: "Marissa Meyer"};
     
+
 // book3
     const book3 = {
         name: "The Hobbit",
@@ -221,7 +219,7 @@
       },
     };
     document.getElementById("book3result").innerHTML = "book3.sale: $" + book3.sale();
-    document.getElementById("demo").innerHTML = person.fullName();
+
 // shoe1
     const shoe1 = new Object(); // create the object
     shoe1.size = 5; // add the properties
