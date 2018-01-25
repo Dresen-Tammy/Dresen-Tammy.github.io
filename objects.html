@@ -144,15 +144,7 @@
 <div id="shoe4"></div>
         </div>
         <p>For shoe3, I added arguments for all 4 parameters, but for shoe4, I left the quantity out. Notice what happens when I use the display function for both shoe3 and shoe4. On shoe4, quantity has the default value of 0. Both shoe3 and shoe4 have the display method.</p>
-        <div class="code"> 
-          <code>
-            document.write(shoe3.display());<br>
-            document.write(shoe4.display());</code>
-        </div>
 
-        <div class="result">
-
-        </div>
         <h3>Object.create()</h3>
         <p>Object.create() is another way to create multiple objects of the same type, but it doesn't involve using a constructor function. Instead, you create a prototype. The prototype is an object with properties and methods. Objects that are created using the prototype will inherit the properties and methods of the prototype. Here I have created a Book prototype. </p>
         <div class="code">
@@ -213,14 +205,7 @@
     document.getElementById("book1result").innerHTML = "book1.message: " + book1.message();
     // book2
     const book2 = {name: "Cinder", pages: 254, author: "Marissa Meyer"};
-    var person = {
-        firstName: "John",
-        lastName: "Doe",
-        id: 5566,
-        fullName: function () {
-            return this.firstName + " " + this.lastName;
-        }
-    };
+    
 // book3
     const book3 = {
         name: "The Hobbit",
