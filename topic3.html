@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  </head>
+  <body>
+
+    <header>
+      <p class="logo">Tammy Dresen CIT261</p>
+
+      <nav>
+        <ul id="menu" class="top">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Topics</a>
+            <ul class="sub">
+              <li><a href="topic1.html">Topic 1</a></li>
+              <li><a href="topic1.html">Topic 2</a></li>
+              <li><a href="topic3.html">Topic 3</a></li>
+              <li><a href="topic4.html">Topic 4</a></li>
+              <li><a href="topic5.html">Topic 5</a></li>
+              <li><a href="topic6.html">Topic 6</a></li>
+              <li><a href="topic7.html">Topic 7</a></li>
+              <li><a href="topic8.html">Topic 8</a></li>
+              <li><a href="topic9.html">Topic 9</a></li>
+              <li><a href="topic10.html">Topic 10</a></li>
+              <li><a href="topic11.html">Topic 11</a></li>
+              <li><a href="topic12.html">Topic 12</a></li>
+              <li><a href="topic13.html">Topic 13</a></li>
+            </ul></li>
+        </ul></nav>
+    </header>
+    <main>
+      <h1>Topic 3: JSON Parse, Stringify</h1>
+      
+
+
+      <section>
+        <h2>JSON</h2>
+        <p>JSON is a JavaScript data-storage format that can be used to exchange information between web services. In JSON notation, an object is formatted as a string. When written in JSON, property keys need to be in double quotes.Values can include strings in double quotes, numbers, booleans, null, arrays and objects. Methods are not allowed. </p>
+        <p>Here is an object that I will change to JSON string representation</p>
+        
+        
+        <h3>JSON Stringify</h3>
+        <p>The JSON stringify method will take a JavaScript object and turn it into a JSON string. Notice that the string doesn't have the message method in it. Because functions are not allowed, JSON.stringify skips over it.</p> 
+        <div class="code">
+          <code>// Javascript Object<br>
+            let pizza = {<br>
+    name: "Pizza",<br>
+    foodGroup: "junk food",<br> 
+    yummy :true,<br>
+    calories: 650,<br>
+    toppings : ["Peperoni","Sausage","Cheese","Olives","Mushrooms"],<br>
+    message: function() {return "Yummy in my tummy!";}<br>
+    
+    };<br><br>
+    // stringify object
+JSON.stringify(pizza);<br>
+        </code>
+        </div>
+        <div id='pizza' class='result'></div>
+<h3>JSON Parse</h3>
+        <p>The JSON parse method does the opposite of stringify. It will take a JSON string and turn it into a JavaScript Object. I have run the resulting object through a for in loop to display it's key-value pairs.</p> 
+        <div class="code">
+          <code>JSON string<br>
+            let milkshake = '{"name":"Pizza","foodGroup":"junkfood","yummy":true,"calories":650,"toppings":["Peperoni","Sausage","Cheese","Olives","Mushrooms"]}<br><br>// parse string'<br>
+            JSON.parse(milkshake);<br>
+        </code>
+        </div>
+        <div id='milkshake' class='result'></div>
+
+<h3>reviver perameter</h3>
+        <p>JSON.parse has an optional parameter called reviver. It allows you to add a function to check each of the parameters and possibly change the as they are parsed. You can add a function to change a date to UTC format, change a particular value, etc. You would need to add an if else statement to handle the other values that you don't want to change. If a value is null or undefined, it will be deleted.</p> 
+        <p>Here is a object to be changed to a JSON string, and the code and the JSON.parse with a reviver parameter. Below you can see the results of the parse.</p>
+        <div class="code">
+          <code>// object to be stringified</br>
+            const numbers = {1: "1", 2: "2", 3: "3", 4: "4", 5: "5"};<br><br>
+
+            // parse with reviver<br>
+            let message = "";<br>
+          
+            const numbersReviver = JSON.parse(numbersString, function(key, value) {<br>
+
+            if (key > 0 && key < 6) {<br>
+            return value * 5; <br>
+            } else { return value;<br>
+    }});<br>
+        </code>
+        </div>
+        <div class="result">
+          <div id="numbersReviver"></div>
+        </div>
+      </section>
+
+
+    </main>
+    <footer>
+      <p>Copyright &copy; 2018 Tammy Dresen</p>
+    </footer>
+  </body>
+  <script src="js/topic3.js"></script>
+</html>
