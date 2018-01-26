@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  </head>
+  <body>
+
+    <header>
+      <p class="logo">Tammy Dresen CIT261</p>
+
+      <nav>
+        <ul id="menu" class="top">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Topics</a>
+            <ul class="sub">
+              <li><a href="topic1.html">Topic 1</a></li>
+              <li><a href="topic1.html">Topic 2</a></li>
+              <li><a href="topic3.html">Topic 3</a></li>
+              <li><a href="topic4.html">Topic 4</a></li>
+              <li><a href="topic5.html">Topic 5</a></li>
+              <li><a href="topic6.html">Topic 6</a></li>
+              <li><a href="topic7.html">Topic 7</a></li>
+              <li><a href="topic8.html">Topic 8</a></li>
+              <li><a href="topic9.html">Topic 9</a></li>
+              <li><a href="topic10.html">Topic 10</a></li>
+              <li><a href="topic11.html">Topic 11</a></li>
+              <li><a href="topic12.html">Topic 12</a></li>
+              <li><a href="topic13.html">Topic 13</a></li>
+            </ul></li>
+        </ul></nav>
+    </header>
+    <main>
+      <h1>Topic 2: JavaScript Object Creation Functions, Inheritance, Properties, Methods, and Instantiation.</h1>
+      
+
+
+      <section>
+        <h2>Objects</h2>
+        <p>Objects are a huge part of JavaScript. Object are containers for variables. The names of these variables are called keys, and are used to access the value inside the variable. The variables in an object are called properties. Here is a simple object.</p>
+        <div class="code">
+          <code>const book1 = new Object();  //create object with new keyword.</code>
+        </div>
+        <h3>Properties</h3>
+        <p>Properties define an object. If the object is a chair, the properties could be color, size, weight, type, etc. We can add properties to the book1 object. We can also add properties when we create an object.</p> 
+        <div class="code">
+          <code>// adding properties to existing object<br>
+            book1.title = "Ender's Game"; // property of book1<br>
+            book1.pages = 394; // "pages" is the key, "394" is the value<br>
+            book1.author = "Orson Scott Card";<br>
+            <br>
+            // adding properties at the creation of an object
+            const book2 = {name: "Cinder", pages: 254, author: "Marissa Meyer"};</code>
+        </div>
+
+        <h3>Methods</h3>
+        <p>Methods are properties in an object that store functions. These functions can be used to manipulate the object. Here is another object with properties and methods.</p>
+        <div class="code">
+          <code>
+            // add method to existing object<br>
+            book1.message = function() {return this.author + " is a great author."};<br>
+            // add method at creation of object<br> 
+            const book3 = {<br><br>
+            &nbsp;&nbsp;name: "The Hobbit",<br>
+            &nbsp;&nbsp;pages: 546,<br>
+            &nbsp;&nbsp;author: "JRR Tolkien",<br>
+            &nbsp;&nbsp;price: 12.99,<br>
+            &nbsp;&nbsp;display: function() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;return this.name + "by " + this.author;},<br> 
+            &nbsp;&nbsp;sale() { return this.price * .8;},<br>
+
+            };<br>
+            <br>
+            // call message function in book1 object<br>
+            document.getElementById("book1result").innerHTML = "book1.message: " + book1.message();<br>
+            // call sale function in book3 object<br>
+            document.getElementById("book3result").innerHTML = "book3.sale: " + book3.display();
+          </code>
+        </div>
+        <div class="result">
+          <div id="book1result"></div>
+          <div id="book3result"></div>
+        </div>
+
+      </section>
+      <section>
+        <h2>Creating Objects</h2>
+        <p>There are several ways to create objects. I have demonstrated 2 ways. The object shoe1 was created using the Object constructor, and shoe2 used object initialization. </p> 
+        <h3>Keyword New and Object Constructor</h3>
+        <p>One way to create an object is to use the keyword new and an object constructor. This will create an empty object, and you will have to go back and add properties afterward.</p>
+        <div class="code">
+          <code>const shoe1 = new Object();  // create the object<br>
+            shoe1.size = 5;  // add the properties<br>
+            shoe1.color = "black";<br>
+            shoe1.type = "dress shoes";<br>
+            shoe1.display = function() {<br>
+            &nbsp;&nbsp;return "This shoe is available in " + this.color + ", this.size;}<br>
+            };</code>
+        </div>
+        <div class="result">
+          <div id="shoe1"></div>
+
+        </div>
+        <h3>Object Literal</h3>
+        <p>Another way to create an object is declare and initialize the object in the same step. Simply declare a new variable and assign a comma separated list of key-value pairs inside curly brackets.</p>
+        <div class="code">
+          <code>const shoe2 = {<br>
+            size: 7,<br>color: "blue",<br>quantity: 20};
+          </code>
+        </div>
+ 
+        <h3>Constructor Function</h3>
+        <p>Notice that shoe1 and shoe2 are both shoes, but they have different properties and methods. I can only use the display method on shoe1, not on shoe2. In order to have consistency across the same type of object, and to save a lot of typing, I can write a constructor function for a shoe type of object, and then use it to instantiate new shoe objects. The name of the function should be capitalized to differentiate it from normal objects. Notice that in the Shoe prototype has a default value for quantity.</p>
+
+        <div class="code">
+          <code>const Shoe = function(size, color, type, quantity = 0){ // create Shoe prototype<br>
+            &nbsp;&nbsp;this.size = size;<br>
+            &nbsp;&nbsp;this.color = color;<br>
+            &nbsp;&nbsp;this.type = type;<br>
+            &nbsp;&nbsp;this.quantity = quantity;<br>
+            &nbsp;&nbsp;this.display = function() { <br>
+            &nbsp;&nbsp&nbsp;&nbsp;return "I have " + this.quantity + " " + this.color + " " + this.type + ".";};<br>
+
+            }</code>
+        </div>
+        <h3>Instantiation</h3>
+        <p>With the shoe constructor function, it is now possible to instantiate or create new Shoe objects. To do this, declare a new variable, call the shoe constructor function, and add arguments for the new shoe. </p>
+        <div class="code">
+          <code>
+            const shoe3 = new Shoe(10.5, "pink", "ballet slippers", 4);<br>
+            const shoe4 = new Shoe(5, "green", "sneakers", 2);<br>
+          </code>
+          
+        </div>
+
+        <div class="result">
+          <div id="shoe3"></div>
+<div id="shoe4"></div>
+        </div>
+        <p>For shoe3, I added arguments for all 4 parameters, but for shoe4, I left the quantity out. Notice what happens when I use the display function for both shoe3 and shoe4. On shoe4, quantity has the default value of 0. Both shoe3 and shoe4 have the display method.</p>
+
+        <h3>Object.create()</h3>
+        <p>Object.create() is another way to create multiple objects of the same type, but it doesn't involve using a constructor function. Instead, you create a prototype. The prototype is an object with properties and methods. Objects that are created using the prototype will inherit the properties and methods of the prototype. Here I have created a Book prototype. </p>
+        <div class="code">
+          <code>
+            const Book = {<br>
+            name: "name",<br>
+            author: "author",<br>
+            pages: 0,<br>
+            rating: 3,<br>
+            read() {return "Read a book";},<br>
+            display() {return this.name + ", by " + this.author + " is " + this.pages + " pages long.";}<br>
+    };
+          </code>
+        </div>
+        
+        <div class="result">
+          <div id="Book"></div>
+        </div>
+        <p>Once the Book prototype is created, I can use it to create objects of the Book type. Declare a variable and then use the assignment operator and Object.create(Book); The name of the prototype goes inside the parenthesis. Then assign values to the properties for the new object. If you don't assign a value for one of the properties, the new object will inherit the value from the prototype.</p>
+          <div class="code">
+            <code>const book5 = Object.create(Book);<br>
+              book5.name = "The Hunger Games";<br>
+              book5.author = "Suzanne Collins";<br>
+              book5.rating = 5;<br>
+    document.getElementById("book5").innerHTML = "book5.display(): " + book5.display();
+</code>
+        </div>
+<div class="result">
+<div id="book5"></div>
+        </div>
+        <p>Notice that the value for pages is 0. This value is inherited from the prototype.</p>
+      
+      </section> 
+      
+      <section>
+        <h2>Inheritance</h2>
+        <p>Now is a good time to talk aobut inheritance. Javascript is a prototyping language. That means that every object inherits properties from its prototype, kind of like its parent object. Each object has a hidden property that defines where it inherits from, and then that object in turn inherits from another object, and so on until it reaches the top of the chain. The top object inherits from null.</p>
+        <p> Let's look at book5. book5 inherits from Book, which inherits from Object.prototype, which inherits from null.  Arrays inherit from Array.prototype, which inherits from Object.prototype, which inherits from null.  Functions inherit from Function.prototype, which inherits from Object.prototype, which inherits from null.</p>
+        <p>What does that mean? Well, in the case of book5, it inherits all the properties of the Book prototype and the Object.prototype. That doesn't mean it contains those properties, but it can access them. Above, I wrote a call for the book5.display() function. But book5 doesn't have the display function. The Javascript engine will look in book5, and when it doesn't find it, it will look in book5's prototype, Book.  It will find it there, and will use it, but the "this" in the method will refer to book5.  Similarly, when the engine didn't find a pages property in book5, it used the value of 0 from Book. </p>
+
+      </section>
+
+
+    </main>
+    <footer>
+      <p>Copyright &copy; 2018 Tammy Dresen</p>
+    </footer>
+  </body>
+  <script src="js/topic2.js"></script>
+</html>
