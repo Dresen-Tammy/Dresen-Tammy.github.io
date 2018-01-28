@@ -93,10 +93,11 @@ function amPm(date) {
         amPm = "AM";
         hour -= 12;
     }
+    let zero = "";
     let minutes = date.getMinutes();
     if (minutes < 10) {
-        minutes = "0" + minutes;
+        zero = "0";
     }
-    const time = hour + ":" + minutes + " " + amPm;
+    const time = hour + ":" + zero + minutes + " " + amPm;
     return time;
 }
