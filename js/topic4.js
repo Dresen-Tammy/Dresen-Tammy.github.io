@@ -94,6 +94,9 @@ function amPm(date) {
         hour -= 12;
     }
     let minutes = date.getMinutes();
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
     const time = hour + ":" + minutes + " " + amPm;
     return time;
 }
