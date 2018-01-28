@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/topic4.js"></script>
 
   </head>
   <body>
@@ -34,36 +35,71 @@
         </ul></nav>
     </header>
     <main>
-      
-
-<button id="btnJSONPerson">JSON Serialization</button>
-<button id="btnJSONDeserialize">JSON deserialization</button>
-<div id="result"></div>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
-<script>
-    $("document").ready(function () {
-        $("#btnJSONPerson").click(function () {
-            var person = {
-                FirstName: "John",
-                HairColor: "Codew"
-            };
-            //DESERIALIZE DATA USING THE STRINGIFY METHOD
-            var jsonPerson = JSON.stringify(person);
-            $("#result").text(jsonPerson);
-        });
-        $("#btnJSONDeserialize").click(function () {
-            var req = new XMLHttpRequest();
-            req.open("GET", "MyJsonData.json", true);
+      <h1>Topic 4. Using XMLHTTPRequest to Consume a JSON Web Service</h1>
+      <section>
+        <h2>XMLHTTPRequest</h2>
+        <p>An XMLHTTPRequest provides a way to update part of a webpage without having to reload the whole page. The XMLHTTPRequest object calls a webservice, and when the response is ready, it can be used to update the webpage. </p>
+        <p>XMLHTTPRequests can run synchronously or asynchronously. If it runs synchronously, functions on the webpage will wait until response has been received before continuing. If asynchronous, the request will run in the background, so the rest of the webpage can continue to function. Once the response has been fully received, the onreadystatechange function will run.</p>
+        <h3>Consuming a JSON Web Service</h3>
+        <p>There are web services, or Application Program Intefaces (API) that provide information for use in websites and apps. The information is obtained using an XMLHTTPRequest. The information is requested using a URL that has the address of the API, as well as parameters that specify what information is desired. Some API's are free, and some require payment. The information is received in JSON format and needs to be parsed using JSON.parse.</p>
+        <h3>Format</h3>
+        <h4>Synchronous</h4>
+        <p>Let's look at a simple synchronous XMLHTTPRequest. First create a new XMLHTTPRequest object, initialize the request using .open(), send the request, and add a block for code of what to do with the response..</p>
+        <div class="code">
+          <code><br>
+            let xhr = new XMLHttpRequest();<br> 
+            xhr.open("GET", url, false);<br>
+            xhr.send();<br>
+            // block of code to use response.
             
+        </code>
+        </div>
+        <p>In the open function, there are 2 required arguments and 3 optional arguments. The first argument is either "GET" if requesting information or "POST" if sending information. The second argument is a URL for the server you are communicating with. The third argument is either  false for a synchronous request or true for asynchronous. If not suppied, the third argument will default to true. The fourth and fifth, not pictured here, are username and password. Some APIs require membership and payment for their service, so a username and password are required.</p>
+        <h4>Asynchronous</h4>
+        <p>Now let's look at an asynchronous XMLHTTPRequest. There are a couple of differences. After creating the new XMLHTTPRequest object, add an onreadystatechange function with the block of code to be executed after the response is received. Then add the open and send functions.</p>
+        <div class="code">
+          <code><br>
+            let xhr = new XMLHttpRequest();<br>
+            xhr.onreadystatechange = function () {<br>
+            if (this.readyState == 4 && this.status == 200) {<br>
+            //block of code to use response<br> 
+            }};<br>
+            xhr.open("GET", url, true);<br>
+            xhr.send();<br>
+              
+        </code>
+        </div>
+        <p>The block of code is inside the onreadystate change function. This means it won't be executed until the response is received. Inside the function is an if statement to make sure the response has been fully downloaded and it is valid. Only then is the block executed.</p>
+        <p>On the open function, notice that the third parameter is true for asynchronous XMLHTTPRequests.</p>
+        <h4>Code block</h4>
+        <p>The block of code in the examples above should contain instructions to process the response once it is received. The response will be in JSON format, so it will be a string. Use JSON.parse() to convert the string back into an object or array. Then the different properties can be accessed in the same way you would access any property from an object or array.</p>
+        <div class="code">
+          <code><br>
+            let response = JSON.parse(xhr.responseText);<br>
+            let lat = response.geocoding_results.RESULTS[0].COORDINATES.latitude;<br>
+    let long = response.geocoding_results.RESULTS[0].COORDINATES.longitude;<br>
+              
+        </code>
+        </div>
+        <p>Below is a simple program to find out sunrise and sunset times for a particular day and location. Two XMLHTTPRequests are used. The first is synchronous. It sends a zipcode and receives latitude and longitude coordinates from geocode.farm. The second is asynchronous, and sends the latitude and longitude coordinates, along with a date, and receives sunrise and sunset times from sunrise-sunset.org. Then the response is converted with JSON.parse, and the sunrise and sunset times are converted from UTC time to the local timezone of the user's browser.</p>
+      </section>
+      
+      <section>
+        <h3>Time to Ride</h3>
+        <p>Do you have enough time to get that bike ride in before or after work? Find out sunrise and sunset times for any day in any location in the USA. Enter the date and zip code below.</p>
+        <p>The time zone will be set to your local time. If the zipcode is in a different time zone, you will need to convert the time.</p>
+        <div id="sunrise"></div>
+        <div id="coord"></div><br>
+        <label for="zip">Enter Zipcode</label><input id="zip" value="91945"><br>
+        <label for="day">Enter date</label><input id="day" value="01/30/2018" >
+        <button id='btndate' onclick="sunset()">Get Sunset</button><br><br>
+        <p>Information provided by geocode.farm and sunrise-sunset.org.</p>
+
+      </section>
 
 
-        req.send(null);
-            //DESERIALIZE OBJECT USING THE PARSE METHOD
-            var jsonPerson = JSON.parse(req.responseText);
-        });
-    
-    });
-</script>
+
+
 
 
     </main>
