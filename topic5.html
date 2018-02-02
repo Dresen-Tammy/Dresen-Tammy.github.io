@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Local Storage API, Storing and Retrieving Simple Data, Arrays, Associative Arrays, and Objects</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+
+  </head>
+  <body>
+
+    <header>
+      <p class="logo">Tammy Dresen CIT261</p>
+
+      <nav>
+        <ul id="menu" class="top">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Topics</a>
+            <ul class="sub">
+              <li><a href="topic1.html">Topic 1</a></li>
+              <li><a href="topic1.html">Topic 2</a></li>
+              <li><a href="topic3.html">Topic 3</a></li>
+              <li><a href="topic4.html">Topic 4</a></li>
+              <li><a href="topic5.html">Topic 5</a></li>
+              <li><a href="topic6.html">Topic 6</a></li>
+              <li><a href="topic7.html">Topic 7</a></li>
+              <li><a href="topic8.html">Topic 8</a></li>
+              <li><a href="topic9.html">Topic 9</a></li>
+              <li><a href="topic10.html">Topic 10</a></li>
+              <li><a href="topic11.html">Topic 11</a></li>
+              <li><a href="topic12.html">Topic 12</a></li>
+              <li><a href="topic13.html">Topic 13</a></li>
+            </ul></li>
+        </ul></nav>
+    </header>
+    <main>
+      <h1>Topic 5. Local Storage API, Storing and Retrieving Simple Data, Arrays, Associative Arrays, and Objects</h1>
+      <section>
+        <h2>Local Storage</h2>
+        <p>Local storage is a way to store information on the user's computer. When a user visits your website, you can store the state of their session. When the user returns to your website, that state is remembered, and reloaded. Any preferences the user has set will stay set, which is good for the user experience.</p>
+        <h3>What to store</h3>
+        <p>Local storage can hold strings in key-value pairs. If you want to store something beyond a string, use JSON.stringify to convert it before storing. Using JSON, you can store strings, numbers, objects, arrays, etc. Don't store sensitive data like passwords, account numbers, or personal information.</p>
+      </section>
+      <section>
+        <h3>How to Use Local Storage</h3>
+        <p>Accessing and storing data in local storage is quite simple. Just use the getter and setter methods for localStorage.</p>
+        <div class="code">
+          <code>
+            // set an item in local storage<br>
+            localStorage.setItem('key','value');<br>
+            <br>
+            // retrieve an item from local storage<br>
+            localStorage.getItem('key');<br>
+            <br>
+            // delete an item from local storage<br>
+            localStorage.removeItem('key');<br><br><br>
+          </code>
+        </div>
+        <p>Here are are a few examples of storing and retrieving data from local storage.</p>
+        <div class="code"><code>
+            // string<br>
+            // save string to local storage.<br>
+            localStorage.setItem('name', "Tammy"); <br><br>
+            // save key-value pair to local storage.<br>
+            localStorage.setItem('name2', "Crush")<br>
+            let colors = ['blue','orange','teal','black'];<br>
+            localStorage.setItem('colors', JSON.stringify(colors));<br><br>
+            // save associative array to local storage<br>
+            let sizes = {small: "48 cm", medium: "51 cm", large: "54 cm"};<br>
+            localStorage.setItem('sizes', JSON.stringify(sizes));<br><br>
+            // get string from local storage<br>
+            const myName = localStorage.getItem('name');<br><br>
+            // get key-value pair from local storage<br>
+            const bikeName = localStorage.getItem('name2');<br><br>
+            // get array from local storage<br>
+            const rainbow = JSON.parse(localStorage.getItem('colors'));<br><br>
+            // get associative array from local storage<br>
+            const size = JSON.parse(localStorage.getItem('sizes'));<br><br>
+            // set object to local storage<br>
+            let bike = {name: bikeName, color: rainbow[2], owner: myName, size: size['medium'], brand: "Specialized", };<br>
+            localStorage.setItem('bike', JSON.stringify(bike));<br><br>
+            // get object from local storage<br>
+            let myBike = localStorage.getItem(JSON.parse('bike'));<br><br>
+          </code>
+        </div>
+        <p>Here is the contents of the object myBike after getting it from local Storage. Notice that many of the elements in the object were also retrieved from local storage.</p>
+        <div class="result" id="name"></div>
+      </section>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2018 Tammy Dresen</p>
+    </footer>
+  </body>
+  <script src="js/topic5.js"></script>
+</html>
