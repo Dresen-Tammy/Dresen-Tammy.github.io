@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  </head>
+  <body>
+
+    <header>
+      <p class="logo">Tammy Dresen CIT261</p>
+
+      <nav>
+        <ul id="menu" class="top">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Topics</a>
+            <ul class="sub">
+              <li><a href="topic1.html">Topic 1</a></li>
+              <li><a href="topic1.html">Topic 2</a></li>
+              <li><a href="topic3.html">Topic 3</a></li>
+              <li><a href="topic4.html">Topic 4</a></li>
+              <li><a href="topic5.html">Topic 5</a></li>
+              <li><a href="topic6.html">Topic 6</a></li>
+              <li><a href="topic7.html">Topic 7</a></li>
+              <li><a href="topic8.html">Topic 8</a></li>
+              <li><a href="topic9.html">Topic 9</a></li>
+              <li><a href="topic10.html">Topic 10</a></li>
+              <li><a href="topic11.html">Topic 11</a></li>
+              <li><a href="topic12.html">Topic 12</a></li>
+              <li><a href="topic13.html">Topic 13</a></li>
+            </ul></li>
+        </ul></nav>
+    </header>
+    <main>
+      <h1>Topic 6. DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</h1>
+      <section>
+        <h2>DOM Manipulation</h2>
+        <p></p>
+        <h3>What is the DOM</h3>
+        <p>The DOM or Document Object Model is a model of the webpage that is loaded into the browser. Each of the elements on the page is an object in the DOM.  The top level element of the dom is the document or the html element. Everything inside the html tags is a part of the document. The head and body are also objects and are children of the html. This pattern continues down through the rest of the document. </p>
+        <p>As objects, each element in the DOM has properties and methods. Using a scripting language such as JavaScript, the these elements can be manipulated. Elements can be added or removed, and their contents and attributes can be added and changed.</p>
+      </section>
+      <section>
+        <h2>Selecting Elements</h2>
+        <p >To change an element in the DOM, first it needs to be selected. There are several ways to select elements including getElementById(), getElementsByTagName(), getElementsByClassName(), querySelectorAll(), and .collection.</p>
+        <h3 class="lower">.getElementsById()</h3>
+        <p>.getElementById() is the simplest way to select an element. To use this method, the element to be selected needs to have an id. Then that id can be inserted between the parenthesis to return that item. The example below will select the div with an id="output" and save it in the variable output.</p>
+        <div class="code">
+          <code>&lt;div id="select"&gt;&lt;&#47;div&gt;<br>
+            <br>
+            // in script tags<br>
+            let select = document.getElementById('select');<br>
+            select.innerHTML = "Inserted info goes here;
+            <br>
+
+          </code>
+        </div>
+        <div id="select" class="result"></div>
+        <h3>.getElementsByTagName()</h3>
+        <p>.getElementsByTagName() will return an HTMLCollection of all the tags with that name. An HTMLCollection is similar to an array, in that you select an element with an index number, or loop through it with a for loop, however you can't use methods like pop() or push() on it. To use this method, add a tag name to the parenthesis. Then select the element from the HTMLCollection. The example below will underline the third h3 on the page.</p>
+        <div class="code">
+          <code>var headings = document.getElementsByTagName('h3');
+            <br>
+            //select the third h3 on the page.<br>
+            headings[2].style.textDecoration = "underline"; <br>   
+          </code>
+        </div>
+        <h3 class='blue'>.getElementsByClassName()</h3>
+        <p class='added'></p>
+        <p class='added'>.getElementsByClassName() will select all elements that have the specified class name and return an HTMLCollection. To use this method, the element you want to select needs to have that class name. The example below will add a paragraph above this one, and bold this paragraph.</p>
+        <div class='code'>
+          <code>
+            let added = document.getElementsByClassName('added');<br>
+            // will add content to first element and bold the second.<br>
+            added[0].innerHTML = "Content added here.";<br>
+            added[1].style.fontWeight = 700;<br>
+          </code>
+        </div>
+        <h3>.querySelectorAll()</h3>
+        <div>
+          <p class="blue">.querySelectorAll() will select all of the elements with the specified id, class, type, attribute, attribute value, etc, and return the results in a NodeList.  A node list is similar to an HTMLCollection, except it is a list of nodes instead of a list of elements. The desired element can then be selected with an index number. This is the most versitile option for selecting elements from the dom. Here are some examples.</p>
+          <p></p>
+        </div>
+        <div class="code">
+          <code>// select all p elements where the parent is a div.
+            let w = document.querySelectorAll("div > p");<br>
+
+
+            <br>
+            // select multiple types of elements, (all headings)<br>
+            let x = document.querySelectorAll('h1, h2, h3, h4, h5, h6');<br>
+            // select element with index number or for loop<br>
+            for (let i = 0; i < x.length; i++) {<br>
+            x[i].style.color = "blue";
+            <br><br>
+            // select by class name<br>
+            let y = document.querySelectorAll('.blue');<br>
+            y[1].style.backgroundColor = "yellow";<br><br>
+            // select type of element, (title of document)<br>
+
+            let z = document.querySelectorAll('title');<br><br>
+            w[1].innerHTML = "Document title: " + z[0]innerHTML;<br>
+            <br>
+
+
+          </code>
+        </div>
+        <button style="button" onclick="changes()">See Changes</button>
+        <h3>HTML Object Collection</h3>
+        <p>This method directly selects the type of element that is stated and returns them to in an HTMLCollection. Or if there is only one, such as the head, body, title, etc, you can directly manipulate it.</p>
+        <div class="code">
+          <code>
+            // select the body
+            document.body.style.backgroundColor = "#fde6ea"
+
+          </code>
+        </div>
+        <button style="button" onclick="changeColor()">Change Color</button>
+      </section> 
+      <section>
+        <h2>Using Selection to make changes to the DOM</h2>
+        <p>I have demonstrated several ways of manipulating the dom already, by changing the contents of the innerHTML and changing CSS style properties. Here are some other changes that can be made to the DOM.</p>
+        <h3>Add New Element to Dom</h3>
+        <p>Adding a new element to the DOM takes place in several steps. First create a new element, then create a text node. Append the text node to the element, then append the element to a parent element in the DOM. </p>
+        <h3>createElement()</h3>
+        <p>Use createElement to create a new element and add content to it.</p>
+        <div class="code">
+          <code>let newPar = createElement('p');<br>
+            newPar.innerHTML = "2. This paragraph is appended to the end of parentDiv.";
+
+          </code>
+        </div>
+        <h3>appendChild()</h3>
+        <p>Now use appendChild to add the new element to a parent element in the DOM. See the results below the insertBefore() section.</p>
+        <div class="code">
+          <code>document.getElementById('parentDiv').appendChild('newPar');
+
+          </code>
+        </div>
+        <h3>insertBefore()</h3>
+        <p>As an alternate to using appendChild, insertBefore can be used to insert a new element before an existing element.  In order to do this, you need to know identify the parent div, and then insert it before a child of the div. </p>
+
+        <p>insertBefore() takes 2 paramenters, the new element to be inserted, and the child element that it will be inserted before. The syntax is parentElement.insertBefore(newElement, childElement);</p>
+        <div class="code">
+          <code>// create and fill new p<br>
+            let secondP = document.createElement('p');
+            <br>secondP.innerHTML = "3. This paragraph is inserted before the first child of parentDiv.";
+            // identify the parent div.
+            let parentDiv = document.getElementById('parentDiv');<br>
+            // insert new p before first child of parent div
+            <br>parentDiv.insertBefore('secondP', parentDiv.childNodes[0]);
+          </code>
+        </div>
+        <div class="result" id='parentDiv'>
+
+          <p>1. This is the original paragraph of parentDiv.</p>
+
+        </div>
+        <p>Notice that appendNode() inserted the paragraph as the last element of the div, and insertBefore() added the paragraph before the specified element in the div.</p>
+      </section>
+      <section>
+        <h3>removeChild()</h3>
+        <p>Remove child can be used to remove an element from the DOM. In order to remove an element, first identify the parent element of the element to be removed.</p>
+        <div class="code">
+          <code>// identify parent
+            <br>let parent = document.getElementById('parent');
+            <br>// identify child
+            <br>let child = parent.querySelectorAll('p');
+            <br>// remove child
+            <br>parent.removeChild(child[2]);
+          </code>
+        </div>
+        <p>If you don't know the parent node, you can use parentNode in place of finding the parent node.</p>
+        <div class="code">
+          <code>// identify child
+            <br>let p2 = document.getElementById('p2');
+            <br>// remove child
+            <br>p2.parentNode.removeChild(p2);
+          </code>
+        </div>
+        
+        <div class="result" id="parent">
+          <p id='p1'>paragraph 1</p>
+          <p id="p2">paragraph 2</p>
+          <p>paragraph 3</p>
+          <p>paragraph 4</p>
+        </div>
+        <button style="button" onclick="removeP()">Remove third p</button>
+        <button style="button" onclick="removeP2()">Remove p2</button>
+        <h3>replaceChild</h3>
+        <p>Using replaceChild, an existing element can be replaced with a new one. Again, you need to identify the parent element, the child element to be replaced, and you need to create a new element </p>
+            <div class="code">
+              <code>
+                let p1 = document.getElementById('p1');<br>
+                let p5 = document.createElement('p');<br>
+                p5.innerHtml = "paragraph 5";<br>
+                p1.parentNode.replaceChild(p1, p5);<br>
+          </code>
+              </div>
+              <p>Look at the results above to see that p5 replaces p1 when button is clicked.</p>
+              <button style='button' onclick="replaceFirstP()">Replace P1</button>
+            
+      </section>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2018 Tammy Dresen</p>
+    </footer>
+  </body>
+  <script src="js/topic6.js"></script>
+</html>
