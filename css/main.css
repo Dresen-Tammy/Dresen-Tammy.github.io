@@ -70,7 +70,7 @@ nav {
 .sub {
     position: absolute;
     z-index: 200;
-    width: 80px;
+    width: 85px;
     padding: 0;
     display: none;
     
@@ -121,10 +121,11 @@ h2 {
 
 }
 h3 {
-    text-transform: uppercase;
+    
     margin: 15px 0;
-    font-size: 18px;
+    font-size: 20px;
 }
+
 li {
     line-height: 2em;
 }
@@ -160,7 +161,12 @@ section {
     margin-bottom: 40px;
 }
 button {
-    margin: 10px 0;
+    margin: 10px 10px;
+    background-color: white;
+}
+label { 
+    width: 100px;
+    display: inline-block;
 }
 /*
 To change this license header, choose License Headers in Project Properties.
