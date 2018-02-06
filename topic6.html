@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <title>Topic 6. DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc. and Topic 7. Manipulating CSS Class Properties Using JavaScript</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -34,32 +34,50 @@
         </ul></nav>
     </header>
     <main>
-      <h1>Topic 6. DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</h1>
+      <h1>Topic 6. DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.<br><br>
+      Topic 7. Manipulating CSS Class Properties Using JavaScript</h1>
       <section>
         <h2>DOM Manipulation</h2>
         <p></p>
         <h3>What is the DOM</h3>
         <p>The DOM or Document Object Model is a model of the webpage that is loaded into the browser. Each of the elements on the page is an object in the DOM.  The top level element of the dom is the document or the html element. Everything inside the html tags is a part of the document. The head and body are also objects and are children of the html. This pattern continues down through the rest of the document. </p>
-        <p>As objects, each element in the DOM has properties and methods. Using a scripting language such as JavaScript, the these elements can be manipulated. Elements can be added or removed, and their contents and attributes can be added and changed.</p>
+        <h2>Manipulating HTML Elements</h2>
+        <p>As objects, each element in the DOM has properties and methods. Using a scripting language such as JavaScript, the these elements can be manipulated. Elements can be added or removed, and their contents and attributes can be added and changed. </p>
+        <p>One of the most common ways of manipulating HTML elements is to change the text inside an element. This is done with .innerHTML and the assignment operator.  Throughout the next section there are examples using .innerHTML. </p>
+        <p>Here is the syntax for .innerHTML</p>
+        <div class="code">
+          <code>element.innerHTML = "New content";
+
+          </code>
+        </div>
+      
+      <h2>Manipulating CSS Class Properties</h2>
+      <p>In addition to being able to manipulate the HTML of a page, it is also possible to manipulate the CSS of the page. Style properties can be changed and added.   Throughout the next section there are examples of adding and changing CSS attributes. </p>
+      <p>The syntax for for changing a CSS style is shown below. Notice that the style property is written in camelCase rather than hyphenated.</p>
+        <div class="code">
+          <code>element.style.styleProperty = "value";
+
+          </code>
+        </div>
       </section>
       <section>
         <h2>Selecting Elements</h2>
         <p >To change an element in the DOM, first it needs to be selected. There are several ways to select elements including getElementById(), getElementsByTagName(), getElementsByClassName(), querySelectorAll(), and .collection.</p>
         <h3 class="lower">.getElementsById()</h3>
-        <p>.getElementById() is the simplest way to select an element. To use this method, the element to be selected needs to have an id. Then that id can be inserted between the parenthesis to return that item. The example below will select the div with an id="output" and save it in the variable output.</p>
+        <p>.getElementById() is the simplest way to select an element. To use this method, the element to be selected needs to have an id. Then that id can be inserted between the parenthesis to return that item. The example below will select the div with an id="output" and save it in the variable select. Then content is added with .innerHTML.</p>
         <div class="code">
           <code>&lt;div id="select"&gt;&lt;&#47;div&gt;<br>
             <br>
             // in script tags<br>
             let select = document.getElementById('select');<br>
-            select.innerHTML = "Inserted info goes here;
+            select.innerHTML = "Inserted text goes here;
             <br>
 
           </code>
         </div>
         <div id="select" class="result"></div>
         <h3>.getElementsByTagName()</h3>
-        <p>.getElementsByTagName() will return an HTMLCollection of all the tags with that name. An HTMLCollection is similar to an array, in that you select an element with an index number, or loop through it with a for loop, however you can't use methods like pop() or push() on it. To use this method, add a tag name to the parenthesis. Then select the element from the HTMLCollection. The example below will underline the third h3 on the page.</p>
+        <p>.getElementsByTagName() will return an HTMLCollection of all the tags of that type. An HTMLCollection is similar to an array, in that you select an element with an index number, use a for loop, and use the length property to find out how many elements it has. However you can't use methods like pop(), push(), or join() on it. To use getElementsByTagName(), add a tag in the parenthesis. Then select the element from the HTMLCollection. The example below underlines the third h3 on the page.</p>
         <div class="code">
           <code>var headings = document.getElementsByTagName('h3');
             <br>
@@ -67,40 +85,45 @@
             headings[2].style.textDecoration = "underline"; <br>   
           </code>
         </div>
-        <h3 class='blue'>.getElementsByClassName()</h3>
-        <p class='added'></p>
-        <p class='added'>.getElementsByClassName() will select all elements that have the specified class name and return an HTMLCollection. To use this method, the element you want to select needs to have that class name. The example below will add a paragraph above this one, and bold this paragraph.</p>
+        <h3 class='yellow'>.getElementsByClassName()</h3>
+        
+        <p class='added'>.getElementsByClassName() will select all elements that have the specified class name and return an HTMLCollection. To use this method, the element you want to select needs to have that class name. The example below will bold this paragraph, and add content to the paragraph below.</p>
+        <p class='added'>Paragraph 2: </p>
         <div class='code'>
           <code>
             let added = document.getElementsByClassName('added');<br>
             // will add content to first element and bold the second.<br>
-            added[0].innerHTML = "Content added here.";<br>
-            added[1].style.fontWeight = 700;<br>
+            added[1].innerHTML += "Content added here.";<br>
+            added[0].style.fontWeight = 700;<br>
+            
           </code>
         </div>
         <h3>.querySelectorAll()</h3>
         <div>
-          <p class="blue">.querySelectorAll() will select all of the elements with the specified id, class, type, attribute, attribute value, etc, and return the results in a NodeList.  A node list is similar to an HTMLCollection, except it is a list of nodes instead of a list of elements. The desired element can then be selected with an index number. This is the most versitile option for selecting elements from the dom. Here are some examples.</p>
+          <p class="yellow">.querySelectorAll() will select all of the elements with the specified id, class, type, attribute, attribute value, etc, and return the results in a NodeList.  A node list is similar to an HTMLCollection, except it is a list of nodes instead of a list of elements. The desired element can then be selected with an index number. This is the most versitile option for selecting elements from the DOM. Here are some examples.</p>
           <p></p>
         </div>
         <div class="code">
-          <code>// select all p elements where the parent is a div.
+          <code>// select all p elements where the parent is a div.<br>
             let w = document.querySelectorAll("div > p");<br>
 
 
-            <br>
+            <br><br>
             // select multiple types of elements, (all headings)<br>
-            let x = document.querySelectorAll('h1, h2, h3, h4, h5, h6');<br>
-            // select element with index number or for loop<br>
+            let x = document.querySelectorAll('h1, h2, h3, h4, h5, h6');<br><br>
+            
+            // change all headings blue using a for loop.<br>
             for (let i = 0; i < x.length; i++) {<br>
             x[i].style.color = "blue";
-            <br><br>
+            <br><br><br>
             // select by class name<br>
-            let y = document.querySelectorAll('.blue');<br>
-            y[1].style.backgroundColor = "yellow";<br><br>
+            let y = document.querySelectorAll('.yellow');<br><br>
+            // change the second element with class name of yellow to yellow.<br>
+            y[1].style.backgroundColor = "yellow";<br><br><br>
             // select type of element, (title of document)<br>
 
             let z = document.querySelectorAll('title');<br><br>
+            // Add document title to div w selected above.<br>
             w[1].innerHTML = "Document title: " + z[0]innerHTML;<br>
             <br>
 
@@ -112,16 +135,17 @@
         <p>This method directly selects the type of element that is stated and returns them to in an HTMLCollection. Or if there is only one, such as the head, body, title, etc, you can directly manipulate it.</p>
         <div class="code">
           <code>
-            // select the body
+            // select the body<br>
             document.body.style.backgroundColor = "#fde6ea"
 
           </code>
         </div>
         <button style="button" onclick="changeColor()">Change Color</button>
+        <p>You can refresh the page to reset original CSS properties.</p>
       </section> 
       <section>
         <h2>Using Selection to make changes to the DOM</h2>
-        <p>I have demonstrated several ways of manipulating the dom already, by changing the contents of the innerHTML and changing CSS style properties. Here are some other changes that can be made to the DOM.</p>
+        <p>I have demonstrated several ways of manipulating the DOM already, by changing the contents of the innerHTML and changing CSS style properties. Here are some other changes that can be made to the DOM.</p>
         <h3>Add New Element to Dom</h3>
         <p>Adding a new element to the DOM takes place in several steps. First create a new element, then create a text node. Append the text node to the element, then append the element to a parent element in the DOM. </p>
         <h3>createElement()</h3>
@@ -161,8 +185,12 @@
         <p>Notice that appendNode() inserted the paragraph as the last element of the div, and insertBefore() added the paragraph before the specified element in the div.</p>
       </section>
       <section>
+        <h3>Remove Element From Dom</h3>
+        <p>To remove an element from the DOM, you need to be able to identify the element to be removed as well as its parent element.</p>
         <h3>removeChild()</h3>
-        <p>Remove child can be used to remove an element from the DOM. In order to remove an element, first identify the parent element of the element to be removed.</p>
+        <p>Remove child can be used to remove an element from the DOM. In order to remove an element, first identify the parent element of the element to be removed. Then identify the child element to be removed.</p>
+        <p>Then use the syntax parentElement.removeChild(childElement);</p>
+        <p>The example removes the 3rd child of the div below.</p>
         <div class="code">
           <code>// identify parent
             <br>let parent = document.getElementById('parent');
@@ -172,7 +200,10 @@
             <br>parent.removeChild(child[2]);
           </code>
         </div>
+        <h3>.parentNode</h3>
         <p>If you don't know the parent node, you can use parentNode in place of finding the parent node.</p>
+        <p>The syntax is childElement.parentNode.removeChild(childElement);</p>
+        <p>The examples removes the element with an id of p2. Notice that the order in which  you click the buttons, will determine which element the "Remove third p" removes.</p>
         <div class="code">
           <code>// identify child
             <br>let p2 = document.getElementById('p2');
@@ -189,17 +220,19 @@
         </div>
         <button style="button" onclick="removeP()">Remove third p</button>
         <button style="button" onclick="removeP2()">Remove p2</button>
+        <h3>Replace Existing Element</h3>
+        <p>You can replace an existing element with a new element using replaceChild.  </p>
         <h3>replaceChild</h3>
-        <p>Using replaceChild, an existing element can be replaced with a new one. Again, you need to identify the parent element, the child element to be replaced, and you need to create a new element </p>
+        <p>Using replaceChild, an existing element can be replaced with a new one. To use replaceChild, you need to identify the parent element, the child element to be replaced, and you need to create a new element </p>
             <div class="code">
               <code>
                 let p1 = document.getElementById('p1');<br>
                 let p5 = document.createElement('p');<br>
-                p5.innerHtml = "paragraph 5";<br>
+                p5.innerHtml = "PARAGRAPH 5";<br>
                 p1.parentNode.replaceChild(p1, p5);<br>
           </code>
               </div>
-              <p>Look at the results above to see that p5 replaces p1 when button is clicked.</p>
+              <p>Look at the 4 paragraphs in the previous section to see that p5 replaces p1 when button is clicked.</p>
               <button style='button' onclick="replaceFirstP()">Replace P1</button>
             
       </section>

@@ -7,15 +7,15 @@
 
 // select all p elements where the parent is a div.
     let select = document.getElementById('select');
-    select.innerHTML = "Inserted info goes here";
+    select.innerHTML = "Inserted text goes here";
     //select the third h3 on the page.
     let headings = document.getElementsByTagName('h3');
     headings[2].style.textDecoration = "underline";
     // will select the first item with that class name.
     let added = document.getElementsByClassName('added');
 
-    added[0].innerHTML = "Content added here.";
-    added[1].style.fontWeight = 700;
+    added[1].innerHTML += "Content added here.";
+    added[0].style.fontWeight = 700;
     // add new paragraph to div.
     let newPar = document.createElement('p');
     newPar.innerHTML = "2. This paragraph is appended to the end of parentDiv.";
@@ -36,7 +36,7 @@
             x[i].style.color = "blue";
         }
         // select by class name
-        let y = document.querySelectorAll('.blue');
+        let y = document.querySelectorAll('.yellow');
         y[1].style.backgroundColor = "yellow";
         // select type of element, (title of document)
         let z = document.querySelectorAll('title');
@@ -65,6 +65,6 @@
       let parents = p1.parentNode;
       let p5 = document.createElement('p');
       p5.id = "p5";
-      p5.innerHTML = "paragraph 5";
+      p5.innerHTML = "PARAGRAPH 5";
       parents.replaceChild(p5, p1);
     }
