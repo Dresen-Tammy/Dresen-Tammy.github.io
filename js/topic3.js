@@ -21,7 +21,7 @@ pizza = JSON.stringify(pizza);
 document.getElementById('pizza').innerHTML = pizza;
 
 // json string
-let milkshake = '{"name":"Milkshake","foodGroup":"dessert","yummy":true,"calories":800,"toppings":["Butterfinger","Oreos","Snickers"]}';
+let milkshake = '{"name":"Pizza","foodGroup":"junk food","yummy":true,"calories":650,"toppings":["Peperoni","Sausage","Cheese","Olives","Mushrooms"]}';
 // parse string
 
 milkshake = JSON.parse(milkshake);

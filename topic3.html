@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JSON parse and stringify</title>
+    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -53,11 +53,11 @@
     yummy :true,<br>
     calories: 650,<br>
     toppings : ["Peperoni","Sausage","Cheese","Olives","Mushrooms"],<br>
-    message: function() {return "Yummy in my tummy!";};<br>
+    message: function() {return "Yummy in my tummy!";}<br>
     
     };<br><br>
-    // stringify object<br>
-JSON.stringify(pizza);
+    // stringify object
+JSON.stringify(pizza);<br>
         </code>
         </div>
         <div id='pizza' class='result'></div>
@@ -65,7 +65,7 @@ JSON.stringify(pizza);
         <p>The JSON parse method does the opposite of stringify. It will take a JSON string and turn it into a JavaScript Object. I have run the resulting object through a for in loop to display it's key-value pairs.</p> 
         <div class="code">
           <code>JSON string<br>
-            let milkshake = '{"name":"Milkshake","foodGroup":"dessert","yummy":true,"calories":800,"toppings":["Butterfinger","Oreos","Snickers"]}<br><br>// parse string'<br>
+            let milkshake = '{"name":"Pizza","foodGroup":"junkfood","yummy":true,"calories":650,"toppings":["Peperoni","Sausage","Cheese","Olives","Mushrooms"]}<br><br>// parse string'<br>
             JSON.parse(milkshake);<br>
         </code>
         </div>
