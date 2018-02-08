@@ -1,85 +1,134 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
   <head>
-    <title>TODO supply a title</title>
+    <title>Loops Conditional Statements Functions Variables Parameters Arrays Associative Arrays</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
   </head>
   <body>
+    <header>
+      <p class="logo">Tammy Dresen CIT261</p>
+      
+      <nav>
+        <ul id="menu" class="top">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Topics</a>
+            <ul class="sub">
+              <li><a href="topic1.html">Topic 1</a></li>
+              <li><a href="topic2.html">Topic 2</a></li>
+              <li><a href="topic3.html">Topic 3</a></li>
+              <li><a href="topic4.html">Topic 4</a></li>
+              <li><a href="topic5.html">Topic 5</a></li>
+              <li><a href="topic6.html">Topic 6-7</a></li>
+              <li><a href="topic8.html">Topic 8</a></li>
+              <li><a href="topic9.html">Topic 9</a></li>
+              <li><a href="topic10.html">Topic 10</a></li>
+              <li><a href="topic11.html">Topic 11</a></li>
+              <li><a href="topic12.html">Topic 12</a></li>
+              <li><a href="topic13.html">Topic 13</a></li>
+            </ul></li>
+        </ul></nav>
+    </header>
+    <main>
     <h1>Using Local Storage</h1>
-    <p>Hi <span id="nameOutput5"></span>! Welcome to my color website!</p>
-    <div id="colors"></div>
-    Enter your name<input id="nameInput5" value="Name"><br>
-    Enter a color from the rainbow<input id="colorInput5" value="Enter color from rainbow">
-    <button id="nameButton" value="Enter" onclick="saveInfo()"></button>
+    <section>
+      <p>Hi <span id="nameOutput5"></span>! Welcome to my color website!</p><br><br>
+    <div id="colors"></div><br><br><br>
+    Enter your name <input id="nameInput5" value="" ><br>
+    Enter a color from the rainbow <input id="colorInput5" value="" >
+    <button id="nameButton" value="Enter" onclick="saveInfo()">ENTER</button>
+    <button id="resetButton" onclick="reset()">Remove Color Choice</button>
     <p>Once you have submitted information, refresh page to see that settings are retained.</p>
-  </body>
+    </section>
+    </main>
+
+    </body>
   <script>
-    name();
+    nameChoice();
     colors();
+     
     function saveInfo() {
       // get and save name and color to localStorage
-      let name = document.getElementById('nameInput5');
-      let color = document.getElementById('colorInput5');
-      if (name !== NULL || color !== NULL) {
+      let name = document.getElementById('nameInput5').value;
+      let color = document.getElementById('colorInput5').value;
+      if (name !== undefined || color !== undefined) {
         localStorage.setItem('name', name);
-        localStorage.getItem('color', color);
+        localStorage.setItem('color', color);
+        nameChoice();
+        colors();
+        
       }
     }
     // If name is saved in local storage, get and display it.
-    function name() {
+    function nameChoice() {
     let nameOutput = "";
     if (localStorage.getItem('name')) {
       nameOutput = localStorage.getItem('name');
+      document.getElementById('nameInput5').value = nameOutput;
     }
+    document.getElementById('nameOutput5').innerHTML = nameOutput;
   }
     // If color is saved in local storage, get it and use switch to alter page.
-  function colors() {  
-    const html = document.html;
-    const colorDiv = document.getElementById('colors');
-  
-  document.getElementById('nameOutput5').innerHTML = nameOutput;
+  function colors() { 
+    // get html element
+     const html = document.getElementsByTagName('html')[0];
+    // declare output variable
     let colorOutput = "";
+    // get color choice from localStorage
     let colorChoice = localStorage.getItem('color');
-    switch (colorChoice.toUpperCase) { 
-      case RED:
-        html.style.backgroundColor = 'red';
-        colorDiv.innerHTML = "I have a dream that one day on the red hills of Georgia, the sons of former slaves and the sons of former slave owners will be able to sit together at the table of brotherhood.<br> -Martin Luther King Jr., www.brainyquote.com ";
+    // if colorchoice has been set
+    if (colorChoice) {
+      document.getElementById('colorInput5').value = colorChoice;
+      colorChoice = colorChoice.toUpperCase();
+      
+    switch (colorChoice) { 
+      case "RED":
+        html.style.backgroundColor = 'firebrick';
+        colorOutput = "I have a dream that one day on the red hills of Georgia, the sons of former slaves and the sons of former slave owners will be able to sit together at the table of brotherhood.<br> -Martin Luther King Jr., www.brainyquote.com ";
                 break;
       case "ORANGE":
-                html.style.backgroundColor = 'orange';
-        colorDiv.innerHTML = "I like to peel it and share it with friends. You can spread the love with an orange.<br> - Gina Rodriguez, www.brainyquote.com";
+                html.style.backgroundColor = 'lightsalmon';
+        colorOutput = "I like to peel it and share it with friends. You can spread the love with an orange.<br> - Gina Rodriguez, www.brainyquote.com";
                 break;
             case "YELLOW":
-                html.style.backgroundColor = 'yellow';
-        colorDiv.innerHTML = "The people who live in a golden age usually go around complaining how yellow everything looks.<br> - Randall Jarrell, www.brainyquote.com";
+                html.style.backgroundColor = 'lemonchiffon';
+        colorOutput = "The people who live in a golden age usually go around complaining how yellow everything looks.<br> - Randall Jarrell, www.brainyquote.com";
                 break;
             case "GREEN":
-                html.style.backgroundColor = 'green';
-        colorDiv.innerHTML = "Life expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon.<br> - Doug Larson, www.brainyquote.com";
+                html.style.backgroundColor = 'darkseagreen';
+        colorOutput = "Life expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon.<br> - Doug Larson, www.brainyquote.com";
                 break;
             case "BLUE":
-                html.style.backgroundColor = 'blue';
-        colorDiv.innerHTML = "When I feel blue, I start breathing again.<br> -L. Frank Baum, www.brainyquote.com";
+                html.style.backgroundColor = 'dodgerblue';
+        colorOutput = "When I feel blue, I start breathing again.<br> -L. Frank Baum, www.brainyquote.com";
                 break;
             case "INDIGO":
                 html.style.backgroundColor = 'indigo';
-        colorDiv.innerHTML = "Hold on to your divine blush, your innate rosy magic, or end up brown. Once you're brown, you'll find out you're blue. As blue as indigo. And you know what that means. Indigo. Indigoing. Indigone.<br> - Tim Robbins, Jitterbug Perfume";
+        colorOutput = "Hold on to your divine blush, your innate rosy magic, or end up brown. Once you're brown, you'll find out you're blue. As blue as indigo. And you know what that means. Indigo. Indigoing. Indigone.<br> - Tim Robbins, Jitterbug Perfume";
                 break;
             case "VIOLET":
                 html.style.backgroundColor = 'violet';
-        colorDiv.innerHTML = "Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.<br> - Mark Twain, www.brainyquote.com";
+        colorOutput = "Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.<br> - Mark Twain, www.brainyquote.com";
                 break;
             default:
                 html.style.backgroundColor = 'lightsteelblue';
-        colorDiv.innerHTML = "Be thou the rainbow in the storms of life. The evening beam that smiles the clouds away, and tints tomorrow with prophetic ray.<br> -George Gordon Byron www.goodreads.com";
+        colorOutput = "Be thou the rainbow in the storms of life. The evening beam that smiles the clouds away, and tints tomorrow with prophetic ray.<br> -George Gordon Byron www.goodreads.com";
         }
+        
     }
-  
+    document.getElementById('colors').innerHTML = colorOutput;
+  }
+  function reset() {
+    localStorage.removeItem('name');
+    localStorage.removeItem('color');
+    const html = document.getElementsByTagName('html')[0];
+    html.style.backgroundColor = "lightsteelblue";
+    document.getElementById('colorInput5').value = "";
+    document.getElementById('nameInput5').value = "";
+    nameChoice();
+    colors();
+    
+  }
   </script>
 </html>
