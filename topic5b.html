@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <h1>Using Local Storage</h1>
+    <p>Hi <span id="nameOutput5"></span>! Welcome to my color website!</p>
+    <div id="colors"></div>
+    Enter your name<input id="nameInput5" value="Name"><br>
+    Enter a color from the rainbow<input id="colorInput5" value="Enter color from rainbow">
+    <button id="nameButton" value="Enter" onclick="saveInfo()"></button>
+    <p>Once you have submitted information, refresh page to see that settings are retained.</p>
+  </body>
+  <script>
+    name();
+    colors();
+    function saveInfo() {
+      // get and save name and color to localStorage
+      let name = document.getElementById('nameInput5');
+      let color = document.getElementById('colorInput5');
+      if (name !== NULL || color !== NULL) {
+        localStorage.setItem('name', name);
+        localStorage.getItem('color', color);
+      }
+    }
+    // If name is saved in local storage, get and display it.
+    function name() {
+    let nameOutput = "";
+    if (localStorage.getItem('name')) {
+      nameOutput = localStorage.getItem('name');
+    }
+  }
+    // If color is saved in local storage, get it and use switch to alter page.
+  function colors() {  
+    const html = document.html;
+    const colorDiv = document.getElementById('colors');
+  
+  document.getElementById('nameOutput5').innerHTML = nameOutput;
+    let colorOutput = "";
+    let colorChoice = localStorage.getItem('color');
+    switch (colorChoice.toUpperCase) { 
+      case RED:
+        html.style.backgroundColor = 'red';
+        colorDiv.innerHTML = "I have a dream that one day on the red hills of Georgia, the sons of former slaves and the sons of former slave owners will be able to sit together at the table of brotherhood.<br> -Martin Luther King Jr., www.brainyquote.com ";
+                break;
+      case "ORANGE":
+                html.style.backgroundColor = 'orange';
+        colorDiv.innerHTML = "I like to peel it and share it with friends. You can spread the love with an orange.<br> - Gina Rodriguez, www.brainyquote.com";
+                break;
+            case "YELLOW":
+                html.style.backgroundColor = 'yellow';
+        colorDiv.innerHTML = "The people who live in a golden age usually go around complaining how yellow everything looks.<br> - Randall Jarrell, www.brainyquote.com";
+                break;
+            case "GREEN":
+                html.style.backgroundColor = 'green';
+        colorDiv.innerHTML = "Life expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon.<br> - Doug Larson, www.brainyquote.com";
+                break;
+            case "BLUE":
+                html.style.backgroundColor = 'blue';
+        colorDiv.innerHTML = "When I feel blue, I start breathing again.<br> -L. Frank Baum, www.brainyquote.com";
+                break;
+            case "INDIGO":
+                html.style.backgroundColor = 'indigo';
+        colorDiv.innerHTML = "Hold on to your divine blush, your innate rosy magic, or end up brown. Once you're brown, you'll find out you're blue. As blue as indigo. And you know what that means. Indigo. Indigoing. Indigone.<br> - Tim Robbins, Jitterbug Perfume";
+                break;
+            case "VIOLET":
+                html.style.backgroundColor = 'violet';
+        colorDiv.innerHTML = "Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.<br> - Mark Twain, www.brainyquote.com";
+                break;
+            default:
+                html.style.backgroundColor = 'lightsteelblue';
+        colorDiv.innerHTML = "Be thou the rainbow in the storms of life. The evening beam that smiles the clouds away, and tints tomorrow with prophetic ray.<br> -George Gordon Byron www.goodreads.com";
+        }
+    }
+  
+  </script>
+</html>
