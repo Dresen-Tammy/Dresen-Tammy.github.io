@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <title>Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -34,6 +34,68 @@
     </header>
     <main>
       <h1>Topic 8: Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript</h1>
+    
+    <section>
+    <h2>CSS Transitions</h2>
+    <p>CSS properties can be changed to make a website more understandable or interactive. For instance, when a button is hovered over, a change of background color will indicate that it is clickable. The change from one property to the other is instantaneous, which can be jarring or confusing depending on the change. Transitions make changes gradual, which is more pleasing to the eye and easier to understand.</p>
+    <p>Here is an example of a css shape without a transition. Notice how abrupt the change is.</p>
+    <div class="box">
+    <div id="move"></div>
+    </div>
+    <p>Adding a transition will make the change more gradual. Add the transition to the CSS styling rules for the element. You need to specify the property to transition, and the duration.  You can transition multiple properties by using a comma separated list. </p>
+    <div class="code">
+      <code>
+        transition: width 2s, transform 2s, background-color: 1s 2s, border-radius 3s ease-in; 
+    </code>
+    </div>
+    
+    <p>Additional values that can be added are a transition timing function, and a transition-delay.</p> 
+      <ul><li>A transition timing function specifies how the transition will run. For instance, ease-in will start out slow and then speed up, while ease-out will start fast and slow toward the end. I used an ease-in value for border-radius.</li>
+      <li>Timing delay specifies how many seconds to wait before the transition starts. I used a timing-delay on the background-color.</li></ul>
+    <p>Here is the same shape with the added transition. The change is much more 
+      gradual. I added a long transition time to exaggerate the effect. On a website,
+      the transition would likely be only .5 to 1 seconds.</p>
+    
+      <div id="move2"></div>
+      </section>
+    <h2>CSS Animations</h2>
+    <p>CSS animations are similar to translations in that they control a change in CSS properties, but animations are more complex. They use @keyframes, or timing functions, to control the change over the duration of the change. To create an animation, first write the keyframe, and then call it with the animation property.</p>
+    <div class="code">
+      <code>
+        @keyframes mover {<br>
+        &nbsp;&nbsp;0% {width: 100px; background-color: steelblue; border-radius: 5px;
+        }<br>
+        &nbsp;&nbsp;25% {width: 75px; border-radius: 50%; transform: translateX(25px);
+        }<br>
+        &nbsp;&nbsp;50% {width: 150px;
+        background-color: darkGray;
+        border-radious: 25%;
+        }<br>
+        &nbsp;&nbsp;75% {width: 50px;
+        border-radius: 10px;
+        }<br>
+        &nbsp;&nbsp;100% {width: 100px;
+        height: 75px;
+        background-color: steelblue;
+        border-radius: 5px;
+      </code>
+    </div>
+    <p>To write a @keyframe, first use the keyword @keyframes and give it a name. Then, inside curly braces, create a list of percentages where things will happen in the animation. For instance, 0% is the start of the transition, 50% is halfway through the animation, and 100% is the end of the animation. Then after each percentage, inside curly braces, write the css styling rules that you want to take effect. </p>
+    <p>Next, in the styling rules for the element, add an animation property. The animation property requires 2 values, the @keyframe name and the duration of the animation in seconds. </p>
+    <div class="code">
+      <code>
+        animation: mover 5s; 
+    </code>
+    </div>
+    <p>Additional values that can be added are animation-timing-function and animation delay (same as on transitions), animation-direction, animation-iteration-count, animation-fill-mode, and animation-play-state.</p>
+    <ul><li>animation-direction can be set to normal, reverse, alternate, etc. and determines what direction the keyframe will run, 0% to 100% or 100% to 0%.</li>
+    <li>animation-iteration-count tells how many times to repeat the animation. from one to infinite.</li>
+    <li>animation-fill-mode will set whether the animation will determine the appearance of the element before and after the animation. The default is none, which will revert back to the original appearance once the animation is done. If you want it to retain the changes, set it to forwards.</li>
+    <li>animation-play-state will determine if the animation is running or paused.</li></ul>
+    <p>Here is the same rectangle, with an animation that plays on hover.</p>
+    <div id="move3"></div>
+    <h3>Triggering with JavaScript</h3>
+    <p>Transitions and animations can be applied on hover or active. Animations can be set to play all the time or a certain number of times after the page loads, but this has its limitations. Hover doesn't work on mobile, and what if you want the transition or animation to occur in response to the user scrolling down the page, or clicking an icon. To do this, you need to use JavaScript to trigger it.</p>
     </main>
     <footer>
       <p>Copyright &copy; 2018 Tammy Dresen</p>

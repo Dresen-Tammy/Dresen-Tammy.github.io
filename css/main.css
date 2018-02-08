@@ -1,11 +1,12 @@
 /*
-Stylesheet for CIT261 websit4e
+Stylesheet for CIT261 website
 */
-
+/********** Reset *************/
 * {
     box-sizing: border-box;
     margin: 0;
 } 
+/********* Page Sections *******/
 html {
     background-color: lightsteelblue;
 }
@@ -15,6 +16,8 @@ body {
     max-width: 960px;
     margin: 0 auto;
 }
+
+/********* Header ************/
 header {
     max-width: 960px;
     width: 100%;
@@ -30,7 +33,7 @@ header {
     color: #f1f1f1;
     margin-top: 15px;
 }
-/* nav */
+/********** nav *************/
 nav a{
 text-decoration: none;
 color: #f1f1f1;
@@ -66,17 +69,13 @@ nav {
 .top li:active > a {
     color: gray;
 }
-/* sub menu */
+/*********** sub menu **********/
 .sub {
     position: absolute;
     z-index: 200;
     width: 85px;
     padding: 0;
     display: none;
-    
-
-
-
 }
 .sub li {
     
@@ -92,6 +91,12 @@ nav {
 .sub li:hover a {
     background-color: lightsteelblue;
 }
+li {
+    line-height: 2em;
+}
+
+
+/******** Footer *************/
 footer {
     background-color: #92afd1;
     width: 100%;
@@ -102,13 +107,19 @@ footer {
     padding: 8px 0 0 15px;
         
 }
+
+
+
+/******** Main ***********/
 main {
     max-width: 960px;
     width: 95%;
     margin: 50px auto;
-    padding: 0 10px;
+    padding: 0 15px;
     
 }
+
+/******** Headings and Text **********/
 h1 {
     font-family: sans-serif;
     line-height: 1.2em;
@@ -125,10 +136,11 @@ h3 {
     margin: 15px 0;
     font-size: 20px;
 }
-
-li {
-    line-height: 2em;
+p {
+    margin: 15px 15px;
+    font-size: 1.1em;
 }
+/******** Main links *********/
 main a, main a:visited {
     text-decoration: none;
     color: black;
@@ -139,6 +151,14 @@ main a:hover {
 main a:active {
     color: gray;
 }
+
+/******** All Pages ********/
+section {
+    border-top: 2px solid lightsteelblue;
+    margin-bottom: 40px;
+    
+}
+
 .code {
     background-color: gray;
     color: #ffffff;
@@ -152,14 +172,6 @@ main a:active {
     color: black;
     padding: 10px;
 }
-p {
-    margin: 15px 0;
-    font-size: 1.1em;
-}
-section {
-    border-top: 2px solid lightsteelblue;
-    margin-bottom: 40px;
-}
 button {
     margin: 10px 10px;
     background-color: white;
@@ -168,13 +180,69 @@ label {
     width: 100px;
     display: inline-block;
 }
+
+/*********** Topic 8 ***********/
+#move, #move2 {
+    width: 100px;
+    height: 75px;
+    background-color: steelblue;
+    border-radius: 5px;
+     
+}
+#move:hover, #move2:hover {
+    width: 75px;
+    transform: translateX(10px);
+    background-color: darkgray;
+    border-radius: 50%;
+}
+#move2 {
+    transition: width 2s, transform 2s, background-color 1s 2s, border-radius 3s ease-in;
+}
+#move3 {
+    width: 100px;
+    height: 75px;
+    background-color: steelblue;
+    border-radius: 5px;
+    
+}
+#move3:hover {
+    animation: mover 5s;
+}
+/********** keyframes **********/
+@keyframes mover {
+    0% {
+        width: 100px;
+        background-color: steelblue;
+        border-radius: 5px;
+    }
+    25% {
+        width: 75px;
+        border-radius: 50%;
+        transform: translateX(25px);
+    }
+    50% {
+        width: 150px;
+        background-color: darkGray;
+        border-radious: 25%;
+    }
+    75% {
+        width: 50px;
+        border-radius: 10px;
+    }
+    100% {
+        width: 100px;
+        height: 75px;
+        background-color: steelblue;
+        border-radius: 5px;
+    }
+}
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Jan 19, 2018, 5:15:26 PM
+    Created on : Feb 7, 2018, 12:33:54 PM
     Author     : Dresen_HP
 */
 
