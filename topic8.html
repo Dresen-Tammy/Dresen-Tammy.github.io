@@ -60,6 +60,8 @@
       </section>
     <h2>CSS Animations</h2>
     <p>CSS animations are similar to translations in that they control a change in CSS properties, but animations are more complex. They use @keyframes, or timing functions, to control the change over the duration of the change. To create an animation, first write the keyframe, and then call it with the animation property.</p>
+    <p>Here is the same rectangle, with an animation that plays on hover.</p>
+    <div id="move3"></div>
     <div class="code">
       <code>
         @keyframes mover {<br>
@@ -92,8 +94,7 @@
     <li>animation-iteration-count tells how many times to repeat the animation. from one to infinite.</li>
     <li>animation-fill-mode will set whether the animation will determine the appearance of the element before and after the animation. The default is none, which will revert back to the original appearance once the animation is done. If you want it to retain the changes, set it to forwards.</li>
     <li>animation-play-state will determine if the animation is running or paused.</li></ul>
-    <p>Here is the same rectangle, with an animation that plays on hover.</p>
-    <div id="move3"></div>
+    
     <h3>Triggering with JavaScript</h3>
     <p>Transitions and animations can be applied on hover or active. Animations can be set to play all the time or a certain number of times after the page loads, but this has its limitations. Hover doesn't work on mobile, and what if you want the transition or animation to occur in response to the user scrolling down the page, or clicking an icon. To do this, you need to use JavaScript to trigger it.</p>
     </main>
