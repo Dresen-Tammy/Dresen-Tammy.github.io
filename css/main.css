@@ -180,7 +180,23 @@ label {
     width: 100px;
     display: inline-block;
 }
+/*********** Topic 7 ***********/
 
+.underlined {
+    text-decoration: underline;
+}
+.bolded {
+    font-weight: 700;
+}
+.colorChange {
+    background-color: #fde6ea;
+}
+.colorBlue {
+    color: blue;
+}
+.colorYellow {
+    background-color: yellow;
+}
 /*********** Topic 8 ***********/
 #move, #move2 {
     width: 100px;

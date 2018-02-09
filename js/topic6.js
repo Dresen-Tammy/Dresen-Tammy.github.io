@@ -15,7 +15,7 @@
     let added = document.getElementsByClassName('added');
 
     added[1].innerHTML += "Content added here.";
-    added[0].style.fontWeight = 700;
+    added[0].classList.add('bolder');
     // add new paragraph to div.
     let newPar = document.createElement('p');
     newPar.innerHTML = "2. This paragraph is appended to the end of parentDiv.";
@@ -33,11 +33,11 @@
         let x = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
         // select element with index number or for loop
         for (let i = 0; i < x.length; i++) {
-            x[i].style.color = "blue";
+            x[i].classList.add('colorBlue');
         }
         // select by class name
         let y = document.querySelectorAll('.yellow');
-        y[1].style.backgroundColor = "yellow";
+        y[1].classList.add('colorYellow');
         // select type of element, (title of document)
         let z = document.querySelectorAll('title');
         w[1].innerHTML = "Document Title: " + z[0].innerHTML;
@@ -45,7 +45,7 @@
     }
     function changeColor() {
         // change background color of body when button is clicked.
-        document.body.style.backgroundColor = "#fde6ea";
+        document.body.classList.add('colorChange');
     }
     function removeP() {
         // remove paragraph from parent div.

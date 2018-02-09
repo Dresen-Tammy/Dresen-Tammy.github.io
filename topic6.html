@@ -58,6 +58,12 @@
 
           </code>
         </div>
+      <p>This works, but it is not the best solution. It adds an inline CSS style to the page instead of keeping the CSS separate from the HTML. A better approach is to add a class name to the element that refers to a styling rule in the CSS document for the page.</p>
+      <div class="code">
+          <code>element.classList.add('className');
+
+          </code>
+        </div>
       </section>
       <section>
         <h2>Selecting Elements</h2>
@@ -93,7 +99,7 @@
             let added = document.getElementsByClassName('added');<br>
             // will add content to first element and bold the second.<br>
             added[1].innerHTML += "Content added here.";<br>
-            added[0].style.fontWeight = 700;<br>
+            added[0].classList.add('bolder');<br>
             
           </code>
         </div>
@@ -113,12 +119,12 @@
             
             // change all headings blue using a for loop.<br>
             for (let i = 0; i < x.length; i++) {<br>
-            x[i].style.color = "blue";
+            x[i].classList.add('colorBlue');
             <br><br><br>
             // select by class name<br>
             let y = document.querySelectorAll('.yellow');<br><br>
             // change the second element with class name of yellow to yellow.<br>
-            y[1].style.backgroundColor = "yellow";<br><br><br>
+            y[1].classList.add("colorYellow");<br><br><br>
             // select type of element, (title of document)<br>
 
             let z = document.querySelectorAll('title');<br><br>
@@ -135,7 +141,7 @@
         <div class="code">
           <code>
             // select the body<br>
-            document.body.style.backgroundColor = "#fde6ea"
+            document.body.classList.add("colorChange");
 
           </code>
         </div>
@@ -169,9 +175,9 @@
         <div class="code">
           <code>// create and fill new p<br>
             let secondP = document.createElement('p');
-            <br>secondP.innerHTML = "3. This paragraph is inserted before the first child of parentDiv.";
-            // identify the parent div.
-            let parentDiv = document.getElementById('parentDiv');<br>
+            <br>secondP.innerHTML = "3. This paragraph is inserted before the first child of parentDiv.";<br><br>
+            // identify the parent div.<br>
+            let parentDiv = document.getElementById('parentDiv');<br><br>
             // insert new p before first child of parent div
             <br>parentDiv.insertBefore('secondP', parentDiv.childNodes[0]);
           </code>
