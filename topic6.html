@@ -208,7 +208,7 @@
         <h3>.parentNode</h3>
         <p>If you don't know the parent node, you can use parentNode in place of finding the parent node.</p>
         <p>The syntax is childElement.parentNode.removeChild(childElement);</p>
-        <p>The examples removes the element with an id of p2. Notice that the order in which  you click the buttons, will determine which element the "Remove third p" removes.</p>
+        <p>The examples removes the element with an id of p2. Notice that the order in which  you click the buttons, will determine which element the "Remove third p" removes. However the remove p2 button always removes the paragraph with the id of p2. Selecting an element using getElementById is more precise and predictable than using querySelectAll()[index].</p>
         <div class="code">
           <code>// identify child
             <br>let p2 = document.getElementById('p2');
