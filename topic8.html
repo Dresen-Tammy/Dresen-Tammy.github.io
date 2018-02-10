@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
   </head>
   <body>
 
@@ -60,7 +59,7 @@
       </section>
     <h2>CSS Animations</h2>
     <p>CSS animations are similar to translations in that they control a change in CSS properties, but animations are more complex. They use @keyframes, or timing functions, to control the change over the duration of the change. To create an animation, first write the keyframe, and then call it with the animation property.</p>
-    <p>Here is the same rectangle, with an animation that plays on hover.</p>
+    <p>Here is the same rectangle, with an animation that plays on hover. The animation has a lot going on. In an app or webpage, animations are usually much more subtle.</p>
     <div id="move3"></div>
     <div class="code">
       <code>
@@ -96,10 +95,15 @@
     <li>animation-play-state will determine if the animation is running or paused.</li></ul>
     
     <h3>Triggering with JavaScript</h3>
-    <p>Transitions and animations can be applied on hover or active. Animations can be set to play all the time or a certain number of times after the page loads, but this has its limitations. Hover doesn't work on mobile, and what if you want the transition or animation to occur in response to the user scrolling down the page, or clicking an icon. To do this, you need to use JavaScript to trigger it.</p>
+    <p>CSS Transitions and animations can be applied on pseudo classes like hover or active. Animations can be set to play all the time or a certain number of times after the page loads, but if you want to have more control over when a transition or animation happens, JavaScript is needed.</p>
+    <p>With JavaScript, transitions and animations can be set to play or pause in response to an event that happens on the page.  One example is on the click of a button.</p>
+    <h3>onclick()</h3>
+    <div id='move4' class="move4">Content</div>
+    <button type='button' onclick="mover2()">Transition</button>
     </main>
     <footer>
       <p>Copyright &copy; 2018 Tammy Dresen</p>
     </footer>
   </body>
+  <script src="js/topic6.js"></script>
 </html>

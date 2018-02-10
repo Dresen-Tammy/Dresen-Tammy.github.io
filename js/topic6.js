@@ -68,3 +68,11 @@
       p5.innerHTML = "PARAGRAPH 5";
       parents.replaceChild(p5, p1);
     }
+    function mover2() {
+       var moveDiv = document.getElementById('move4');
+    if (moveDiv.classlist.contains('moveIt')) {
+      moveDiv.classlist.remove('moveIt'); }
+      else {   
+    moveDiv.classList.add('moveIt');
+      }  
+    }
