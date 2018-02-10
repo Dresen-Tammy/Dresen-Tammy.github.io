@@ -35,9 +35,9 @@ header {
 }
 /********** nav *************/
 nav a{
-text-decoration: none;
-color: #f1f1f1;
-display: block;
+    text-decoration: none;
+    color: #f1f1f1;
+    display: block;
 
 }
 nav ul {
@@ -78,7 +78,7 @@ nav {
     display: none;
 }
 .sub li {
-    
+
     margin: 0;
 }
 .sub li a {
@@ -86,7 +86,7 @@ nav {
     color: gray;
     background-color: buttonface;
     line-height: 1em;
-    
+
 }
 .sub li:hover a {
     background-color: lightsteelblue;
@@ -105,7 +105,7 @@ footer {
     height: 50px;
     margin: 0 auto;
     padding: 8px 0 0 15px;
-        
+
 }
 
 
@@ -116,7 +116,7 @@ main {
     width: 95%;
     margin: 50px auto;
     padding: 0 15px;
-    
+
 }
 
 /******** Headings and Text **********/
@@ -132,7 +132,7 @@ h2 {
 
 }
 h3 {
-    
+
     margin: 15px 0;
     font-size: 20px;
 }
@@ -156,7 +156,7 @@ main a:active {
 section {
     border-top: 2px solid lightsteelblue;
     margin-bottom: 40px;
-    
+
 }
 
 .code {
@@ -165,7 +165,7 @@ section {
     padding: 10px;
     margin: 10px 0;
     font-size: 1.2em;
-    
+
 }
 .result {
     background-color: lightgray;
@@ -198,12 +198,15 @@ label {
     background-color: yellow;
 }
 /*********** Topic 8 ***********/
+.abs {
+    position: relative;
+}
 #move, #move2 {
     width: 100px;
     height: 75px;
     background-color: steelblue;
     border-radius: 5px;
-     
+
 }
 #move:hover, #move2:hover {
     width: 75px;
@@ -219,10 +222,115 @@ label {
     height: 75px;
     background-color: steelblue;
     border-radius: 5px;
-    
+
+
 }
 #move3:hover {
-    animation: mover 5s;
+    width: 100px;
+    height: 75px;
+    background-color: steelblue;
+    border-radius: 5px; 
+    animation: mover 5s ;
+}
+
+.move4 {
+    background-color: lightsteelblue;
+    color: lightsteelblue;
+    display: block;
+    padding: 10px;
+    position: absolute;
+    transition: transform 1s, color 1s, visibility 1s ease-in;
+    transform: translateX(-190px);
+    width: 150px;   
+}
+.btnMove {
+    position: absolute;
+    right: -110px;
+    top: 0px;
+
+}
+/* move4 when open*/
+
+
+.menuIcon {
+
+    height: 40px;
+    position: relative;
+    padding: 10px;
+    transform: translate(0px, 0px);
+    transition: transform .2s ease-in;
+    width: 40px;
+    z-index: 200;
+}
+.menuIcon:hover {
+    background-color: lightsteelblue;
+}
+.menuIcon span {
+    background-color: steelblue;
+    display: block;
+    height: 1.5px;
+    position: relative;
+    width: 20px;
+}
+.menuIcon span::before {
+    background-color: steelblue;
+    content: "";
+    height: 1.5px;
+    position: absolute;
+    transform: translateY(7px);
+    width: 20px;
+
+}
+.menuIcon span::after {
+    background-color: steelblue;
+    content: "";
+    height: 1.5px;
+    position: absolute;
+    transform: translateY(14px);
+    width: 20px;
+}
+.moveIt {
+    transform: translateX(0px);
+    color: black;
+    visibility: visible;
+}
+.move5 {
+    background-color: lightsteelblue;
+    color: rgba(255, 255, 255, 0);
+    display: block;
+    padding: 10px;
+    position: absolute;
+    transition: transform 1s, color 1s, visibility 1s ease-in;
+    transform: translateX(-190px);
+    width: 150px;
+    height: 20px;
+}
+.moveIt2 {
+    animation: mover2 1s linear normal 1 forwards;
+}
+
+.moveIt3 {
+    animation: mover3 1s linear normal 1 forwards;
+}
+.iconOpen span {
+
+    transform: rotate(45deg) translate(7px,7px);
+
+
+}
+.iconOpen span::before {
+    transform: rotate(-90deg);
+}
+.iconOpen span::after {
+    opacity: 0;
+}
+.result2 {
+    background-color: lightgray;
+    color: black;
+    height: 40px;
+    z-index: 100;
+    position: relative;
+
 }
 /********** keyframes **********/
 @keyframes mover {
@@ -234,16 +342,18 @@ label {
     25% {
         width: 75px;
         border-radius: 50%;
-        transform: translateX(25px);
+        transform: translateX(20px);
     }
     50% {
         width: 150px;
         background-color: darkGray;
         border-radious: 25%;
+        transform: translateX(0px);
     }
     75% {
         width: 50px;
         border-radius: 10px;
+        transform: translateX(35px);
     }
     100% {
         width: 100px;
@@ -251,7 +361,84 @@ label {
         background-color: steelblue;
         border-radius: 5px;
     }
+}   @keyframes mover2 {
+    0% {
+        background-color: lightsteelblue;
+        display: block;
+        overflow: hidden;
+        color: rgba(255, 255, 255, 0);
+        padding: 10px;
+        position: absolute;
+        transition: transform 1s, color 1s, visibility 1s ease-in;
+        transform: translateX(-190px);
+        width: 150px;
+        height: 20px;
+    }
+    25% {
+        transform: translateX(0px);
+        height: 20px;
+        background-color: lightsteelblue;
+
+    }
+    50% {
+        height: 100px;
+        background-color: lightsteelblue;
+
+
+    }
+    75% {
+        background-color: steelblue;
+        color: rgba(255, 255, 255, 0);
+
+    }
+    100% {
+        transform: translateX(0px);
+        background-color: steelblue;
+        color: rgba(255, 255, 255, 1.0);
+        overflow: visible;
+        height: 100px;
+    }
 }
+@keyframes mover3 {
+    0% {
+        transform: translateX(0px);
+        background-color: steelblue;
+        color: rgba(255, 255, 255, 1.0);
+        overflow: visible;
+        height: 100px;
+    }
+    25% {
+        background-color: steelblue;
+        color: rgba(255, 255, 255, 0);
+
+    }
+    50% {
+        height: 100px;
+        background-color: lightsteelblue;
+
+
+    }
+    75% {
+        
+        transform: translateX(0px);
+        height: 20px;
+        background-color: lightsteelblue;
+    }
+    100% {
+        
+        background-color: lightsteelblue;
+        display: block;
+        overflow: hidden;
+        color: rgba(255, 255, 255, 0);
+        padding: 10px;
+        position: absolute;
+        transition: transform 1s, color 1s, visibility 1s ease-in;
+        transform: translateX(-190px);
+        width: 150px;
+        height: 20px;
+    }
+}
+
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
