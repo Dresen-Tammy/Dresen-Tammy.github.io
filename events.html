@@ -16,13 +16,38 @@ background-color: red;
 }
 .track {
   position: relative;
+  width: 480px;
+  height: 55px;
+  overflow: hidden;
+  display: block;
 }
-#box2 {
-  color: steelblue;
-  padding: 10px;
+.box {
   left: 0;
   top: 0;
+
+}
+#box2 {
+  width: 100px;
+  height: 50px;
+  font-size: 2em;
+  border: 1px solid orange;
+  box-sizing: border-box;
+  background: lightyellow;
   position: absolute;
+  padding-top: 10px;
+  box-shadow: 0 0 5px grey;
+  text-align: center;
+  line-height: 1;
+}
+.track:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: black;
+  position: absolute;
+  top: 49%;
+  z-index: -1;
 }
 </style>
 <script>
@@ -54,7 +79,7 @@ background-color: red;
 </head>
 <body>
   <div id="track" class='track'>
-<div id='box2'>Drag</div>
+<div id='box2' class='box'>Drag</div>
 </div>
 <!--<p id='click'>Click On Me</p>
 <p id='dblclick'>Double Click On Me</p>
