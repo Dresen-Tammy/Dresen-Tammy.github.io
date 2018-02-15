@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <title>Topic 9: Standard JavaScript Events Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and Transition Events</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -33,10 +33,202 @@
         </ul></nav>
     </header>
     <main>
-      <h1>Topic 9: Standard JavaScript Events Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and Transition Events</h1>
+      <h1>Topic 9: Standard JavaScript Events Including those for Mobile Devices and Animation and Transition Events</h1>
+
+      <section>
+        <h2>JavaScript Events</h2>
+        <p>JavaScript Events make it possible for a user to interact with a webpage. Event listeners watch for certain actions to occur, such as a click, touch, mouse movement, etc., and when that event occurs, the listener calls a function that responds to the action.</p>
+        <h3>load</h3>
+        <p>For example, when the webpage loaded, an event listener caused an alert box to open. The event was 'load', which fires when the webpage is fully loaded. Here is the code that created the event listener.</p>
+        <div class="code">
+          <code>
+            addEventListener('load', function() {<br>
+            alert('This alert was called by a load event listener');<br>
+            });
+
+          </code>
+        </div>
+      </section>
+      <section>
+        <h3>Adding Events</h3>
+        <p>There are two ways to add events, as an attribute of an element in the HTML, or with an addEventListener function in the Javascript. </p>
+
+        <p>When adding an attribute to the HTML, put 'on' in front of the event type and put the function call inside the quotation marks. This is a simple way to add an event listener, but the drawback is you can only add one per element.</p>
+        <div class="code">
+          <code>
+            // attribute of HTML tag<br>
+            &lt;div onclick='functionName()' &gt;Click me&lt;/div&gt;
+          </code>
+        </div>
+        <p>When adding a function to the javascript file, you will need to get the element first using getElementById() or similar method. Alternatately, you can omit the element name if you want the event listener to be attached to the whole page, meaning it will fire any time that event happens anywhere on the page.</p>
+        <p>Add the addEventListener() function, and inside the parenthesis, list the event type in quotes, and the function name. Notice there are no parenthesis after the function name.  The benefit to adding an event listener this way is that you can add multiple event listeners to the same element, for instance to deal with both touch and mouse events.</p>
+        <div class="code"> 
+          <code>
+            // javascript function<br>
+            elementName.addEventListener('click', functionName);<br><br>
+            &nbsp;&nbsp;function functionName() { elementName.innerHTML ='You clicked on me';}
+          </code>
+        </div>
+        <p>Alternately, you could replace the function name with an anonymous function.  The drawback of an anonymous function is that you can't remove the event listener or call it from another place.</p>
+        <div class="code"> 
+          <code>
+            elementName.addEventListener('click', function() {<br> 
+            &nbsp;&nbsp;elementName.innerHTML ='You clicked on me';<br>
+            });
+          </code>
+        </div>
+
+        
+      </section>
+      <section>
+        <h2>Mouse Events</h2>
+        <p>Some events are triggered with the mouse</p>
+        <section>
+        <h3>click</h3>
+        <p>Click is an often used and versitile event listener. The event is fired when a mouse is clicked, the enter button is pushed, or on a touch screen, if the screen is touched. Click is often used with a button, but it can be used with any element, including the whole page. </p>
+        <p  class='colorBlue' id='clickMe'>Click on this paragraph to see the click event listener in action.</p>
+        </section>
+        <section>
+        <h3>dblclick</h3>
+        
+        <p>The doubleclick event fires when the mouse is double-clicked. It isn't a good idea to use a click and a double-click on the same element, because the click event will fire along with the double-click. Here is an example that uses a dblclick event listener.</p>
+        <div class="code"> 
+          <code>
+            dbl.addEventListener('dblclick', rainbow);
+
+          </code>
+        </div>
+        <div id='dbl'>
+        <div id='bow' class='bow'></div>
+        <p>DOUBLE CLICK HERE</p>
+        </div>
+        </section>
+        <section>
+        <h3>mousedown and mouseup</h3>
+        <p>When the user clicks the mouse. It causes 3 events, mousedown, then mouseup, then click.</p>
+        <h3>mousedown</h3>
+          <p>Mousedown fires when the mouse button is depressed. It happens before the click event. This mousedown event changes the source of the image.</p>
+          <h3>mouseup</h3>
+          <p>Mouseup fires when the mouse button is released. It also happens before the click event. This mouseup event changes the source of the image back to the original.</p>
+          <p>Press your mouse button on the kitten to see an example of mousedown and mouseup.</p>
+        <img src='kitten.jpg' class='kitten' id='kitten'>
+        <p>Images purchased from www.thinkstockphoto.com</p>
+        </section>
+        <section>
+        <h3>mouseover and mouseout</h3>
+        <div id='mouse'>
+        <p class='mouse'>Pass your mouse over this element.</p>
+        <div id='secret' class='secret'>
+          <p>This div appears on mouseover, but disappears on mouseout.</p>
+          <h3>mouseover</h3>
+        <p>The mouseover event happens when the mouse pointer passes over the element. This mouseover event adds a class to the div that changes the display property to block.</p>
+        <h3>mouseout</h3>
+        <p>The mouseout event when the pointer moves away from the element. This mouseout event removes the class from the div and the display property reverts to none.</p>
+        </div>
+        </div>
+        
+        
+      </section>
+      </section>
+      
+      
+      
+      <section>
+        <h2>Keyboard Events</h2>
+        <p>Some events are triggered with the keyboard.</p>
+        <section>
+        
+        <h3>click</h3>
+        <p>Click events can be triggered by the enter key on the keyboard. This only works with buttons, inputs, or anchor tags. To make use the enter key, the focus must be on the element to be clicked. </p>
+        <p>Click the tab key until the button below is in focus (turns blue), then click the enter key to get the time. (You can also click with mouse, or finger on a touch screen.)</p>
+        <div id='timeNow' class='result'></div>
+        <button onclick="time()" class='time'>Get the time</button>
+        </section>
+      
+      
+      
+      <section>
+        <h3>keydown, keypress, keyup</h3>
+        <p>When the user clicks a key on the keyboard, it causes 3 events, first keydown, then keypress, and finally when the key is released, keyup.</p>
+        <h3>keydown</h3>
+        <p>When a user presses a key, the keydown event happens. If the key is held down, the event happens repeatedly until the key is released.</p>
+        
+        <h3>keypress</h3>
+        <p>The keypress event happens when the user presses a key, after keydown, but before keyup. Keypress only works for character keys, enter, and delete. It doesn't work on keys like tab or control.</p>
+        <h3>keyup</h3>
+        <p>The keyup happens when the key is released. </p>
+        <p>Press any key to see an example of keydown, keypress, and keyup. Keydown will change the background color. Keypress will display what key you pressed, and keyup will change the background-color of the result box below. Notice that if you hold the key down, it will repeatedly fire the keydown and keypress, but the keyup only happens when you release the key. Also notice that keypress will not fire when you push keys like shift, control, tab, etc., but keydown and keyup will.</p>
+        <div class="result" id='keysection'>
+          <p id='keystroke'>Results: You pressed </p>
+        </div>
+      </section>
+      </section>
+      <section>
+        <h2>Touch Events</h2>
+        <p>Some events are triggered by touch when using a touch screen. Since many devices don't have touch screens, it is important to add events that can be triggered with the mouse or keyboard in addition to any touch events.</p>
+        <section>
+          <h3>click</h3>
+          <p>Click events work for touch as well as mouse and keyboard. With touch, the click event is delayed 300ms, which allows the user to do other things, such as zoom or scoll before the click event takes place. </p>
+          </section>
+        <section>
+        <h3>touchstart</h3>
+        <p>The touchstart event happens when the user touches the screen inside an element, creating a touchpoint.</p>
+        <h3>touchmove</h3>
+        <p>The touchmove event happens when the user moves the touchpoint across the screen.</p>
+        <h3>touchend</h3>
+        <p>The touchend event happens when the user removes the touchpoint from the screen.</p>
+        <div id='touches'>
+        <p class='touches'>Touch this element.</p>
+        <div id='secret2' class='secret'>
+          <p>This element shows on touchstart, but disappears on touchend.</p>
+        </div>
+        </div>
+        
+          
+        
+        </section>
+        
+        
+        <section>
+        <h3>touchenter</h3>
+        <p>The touchenter event happens when the user is moving a finger across the screen and moves over an element.</p>
+        <h3>touchleave</h3>
+        <p>The touchleave event happens when the user continues moving across the screen and moves away from the element.</p>
+        </section>
+        <section>
+          <h3>touchcancel</h3>
+        <p>The touchcancel event occurs when the touch is interrupted. This can happen if the finger exits the window of the webpage or if too many fingers touch the screen.</p>
+      </section>
+      <section>
+        <h3>Other Events</h3>
+        <h4>load</h4>
+        <p></p>
+        <h4>scroll</h4>
+        <p></p>
+        <h4>focus</h4>
+        <p></p>
+        <h4>submit</h4>
+        <p></p>
+      </section>
+      <section>
+        <h2>Animation and Transition Events</h2>
+        <h3>Other Events</h3>
+
+        <p></p>
+        <h3>animationend</h3>
+        <p></p>
+        <h3>animationiteration</h3>
+        <p></p>
+        <h3>animationstart</h3>
+        <p></p>
+        <h3>transitionend</h3>
+        <p></p>
+      </section>
     </main>
-    <footer>
+    <footer >
       <p>Copyright &copy; 2018 Tammy Dresen</p>
     </footer>
   </body>
+  <script src='js/topic9.js'>
+  </script>
 </html>

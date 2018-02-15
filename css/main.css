@@ -439,13 +439,65 @@ label {
     }
 }
 
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Feb 7, 2018, 12:33:54 PM
-    Author     : Dresen_HP
-*/
+/************ Topic 9 *****************/
+.bow {
+    background-color: red;
+    color: white;
+    display: block;
+    width: 180px;
+    height: 90px;
+    border-top-left-radius: 180px;
+    border-top-right-radius: 180px;
+    margin-top: 15px;
+    margin-left: 15px;
+    position: relative;
+}
+.bow::after {
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 45px;
+    background-color: #f1f1f1;
+    transform: translate(45px, 45px);
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+}
+.rainbow {
+    animation: rainbow .5s linear 5 forwards;
+}
+@keyframes rainbow {
+    0% { background-color: red;}
+    15% { background-color: orange;}
+    30% { background-color: yellow;}
+    45% { background-color: green;}
+    60% { background-color: blue;}
+    75% { background-color: indigo;}
+    90% { background-color: purple;}
+    100% { background-color: purple;}
+}
+.secret {
+    display: none;
+    background-color: steelblue;
+    color: #f1f1f1;
+    padding: 10px;
+    
+}
 
+.reveal {
+    display: block; 
+}
+.mouse, .touches {
+    background-color: lightsteelblue;
+    margin: 0;
+    padding: 10px;
+}
+.time:focus, .time:hover {
+   background-color: lightsteelblue;
+   
+}
+.colorSteel {
+    background-color: steelblue;
+}
+.colorLightSteel {
+    background-color: lightsteelblue;
+}
