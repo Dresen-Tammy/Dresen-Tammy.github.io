@@ -51,36 +51,43 @@ background-color: red;
 }
 </style>
 <script>
-  window.addEventListener('load', function() {
+ 
+window.addEventListener('load', function(){
+ 
     var box2 = document.getElementById('box2'),
-    boxleft,// left position of moving box
-    startx,// starting x coordinate of touch point
+    boxleft, // left position of moving box
+    startx, // starting x coordinate of touch point
     dist = 0, // distance traveled by touch point
-    touchobj = null; // Touch object jolder
-    
-    box2.addEventListener('touchstart', function(e) {
-        touchobj = e.changeTouches[0]; // reference first touch point
-        boxleft = parseInt(box2.style.left);  // get left position of box
-        startx = parseInt(touchobj.clientX);// get x coord of touch point
-        e.preventDefault(); // prevent default click behavior
-    }, false);
-    
-    box2.addEventListener('touchmove', function(e) {
-        touchobj = e.changedTouches[0]; // refernce first touch point for this event
-        var dist = parseInt(touchobj.clientX) - startx; // calculates dist traveled by touch point
+    touchobj = null // Touch object holder
+ 
+    box2.addEventListener('touchstart', function(e){
+        touchobj = e.changedTouches[0] // reference first touch point
+        boxleft = parseInt(box2.style.left) // get left position of box
+        startx = parseInt(touchobj.clientX) // get x coord of touch point
+        e.preventDefault() // prevent default click behavior
+    }, false)
+ 
+    box2.addEventListener('touchmove', function(e){
+        touchobj = e.changedTouches[0] // reference first touch point for this event
+        var dist = parseInt(touchobj.clientX) - startx // calculate dist traveled by touch point
         // move box according to starting pos plus dist
         // with lower limit 0 and upper limit 380 so it doesn't move outside track:
-        box2.style.left = ( (boxleft + dist > 380) ? 380 : (boxleft + dist < 0) ? 0 : boxleft + dist) + 'px';
-        e.preventDefault();
-    }, false);
-    
-}, false);
-  </script>
-</head>
+        box2.style.left = ( (boxleft + dist > 380)? 380 : (boxleft + dist < 0)? 0 : boxleft + dist ) + 'px'
+        e.preventDefault()
+    }, false)
+ 
+}, false)
+ 
+</script>
+ </head>
+
+ 
+
 <body>
-  <div id="track" class='track'>
-<div id='box2' class='box'>Drag</div>
+  <div id="track" class="track">
+<div id="box2" style="left:0; top:0">Drag Me</div>
 </div>
+
 <!--<p id='click'>Click On Me</p>
 <p id='dblclick'>Double Click On Me</p>
 <p id='mouse'>Hover On Me</p>
