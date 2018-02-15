@@ -100,6 +100,7 @@ touches.addEventListener('touchend', up2);
 const secret2 = document.getElementById('secret2');
 function down2() {
     secret2.classList.add('reveal');
+    secret2.preventDefault();
 }
 function up2() {
     secret2.classList.remove('reveal');
