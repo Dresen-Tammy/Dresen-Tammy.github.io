@@ -166,6 +166,7 @@
       <section>
         <h2>Touch Events</h2>
         <p>Some events are triggered by touch when using a touch screen. Since many devices don't have touch screens, it is important to add events that can be triggered with the mouse or keyboard in addition to any touch events.</p>
+      </section>
         <section>
           <h3>click</h3>
           <p>Click events work for touch as well as mouse and keyboard. With touch, the click event is delayed 300ms, which allows the user to do other things, such as zoom or scoll before the click event takes place. </p>
@@ -181,10 +182,14 @@
         <p class='touches'>Touch this element.</p>
         <div id='secret2' class='secret'>
           <p>This element shows on touchstart, but disappears on touchend.</p>
+          <p>It also shows on mouseover for non-touch devices</p>
         </div>
         </div>
+        </section>
+      <section id="dragArea" >
+        <img id="dragBox" class="result" src="kitten.jpg">
         
-          
+      </section>
         
         </section>
         
@@ -200,29 +205,35 @@
         <p>The touchcancel event occurs when the touch is interrupted. This can happen if the finger exits the window of the webpage or if too many fingers touch the screen.</p>
       </section>
       <section>
-        <h3>Other Events</h3>
-        <h4>load</h4>
-        <p></p>
-        <h4>scroll</h4>
-        <p></p>
-        <h4>focus</h4>
-        <p></p>
-        <h4>submit</h4>
-        <p></p>
-      </section>
-      <section>
         <h2>Animation and Transition Events</h2>
-        <h3>Other Events</h3>
-
-        <p></p>
-        <h3>animationend</h3>
-        <p></p>
-        <h3>animationiteration</h3>
-        <p></p>
+        <p>There are several events that can be used with animations and transitions. They include animationstart, animationiteration, animationend, and transitionend.</p>
         <h3>animationstart</h3>
-        <p></p>
-        <h3>transitionend</h3>
-        <p></p>
+        <p>The animationstart event happens when an animation starts to play for the first time. </p>
+        <h3>animationiteration</h3>
+        <p>The animation iteration event happens when the animation starts to play every time except for the first time.</p>
+        <h3>animationend</h3>
+        <p>The animationend event happens when the last iteration of the animation completes.</p>
+        
+        <p>To take a look at all three of these events, let's revisit the rainbow from above. You may have noticed that if you tried to run the animation on the rainbow a second time, it didn't play. You had to click it a third time to get it to rerun the animation. The reason is that the class to run the animation had already been added, so it needed to be removed before it would run again.</p>
+        <p>To fix that, you can add an animationend event listener than will remove the class once the animation ends. Here is the code.</p>
+        <div class="code">
+          <code>
+            dbl.addEventListener('animationend', animationReset);<br>
+            function animationReset(e) {<br>
+            bow.classList.remove('rainbow');<br>
+            }<br>
+          </code>
+        </div>
+        <p>An animationend event listener is added which calls a reset function. In the reset function, the rainbow class is removed.</p>
+        <div id='dbl2'>
+        <div id='bow2' class='bow'></div>
+        <p class='double'>DOUBLE CLICK HERE</p>
+        <div id='cloud1' class='cloud cloud1'></div>
+        <div id='cloud2' class='cloud cloud2'></div>
+        <div id='cloud3' class='cloud cloud3'></div>
+        
+        </div><br><br>
+        <p>I also added an animationstart event which adds the first cloud, an animationiteration event that adds the other clouds at the beginning of each iteration, and I added to the animationend to remove the clouds when the animation finished.</p>
       </section>
     </main>
     <footer >
