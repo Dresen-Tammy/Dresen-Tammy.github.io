@@ -156,6 +156,9 @@ dragArea.addEventListener('touchend', function(e) {
 dragBox.addEventListener('touchenter', function(e) {
     dragBox.src = 'catinhat.jpg';
 });
-dragBox.addEventListener('touchleave'), function(e) {
+dragBox.addEventListener('touchleave', function(e) {
     dragBox.src = 'kitten.jpg';
-};
+});
+dragArea.addEventListener('touchcancel', function(e) {
+    dragBox.src = 'kitten.jpg';
+});

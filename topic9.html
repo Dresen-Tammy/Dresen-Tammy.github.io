@@ -165,28 +165,54 @@
       </section>
       <section>
         <h2>Touch Events</h2>
-        <p>Some events are triggered by touch when using a touch screen. Since many devices don't have touch screens, it is important to add events that can be triggered with the mouse or keyboard in addition to any touch events.</p>
-      </section>
-        <section>
-          <h3>click</h3>
-          <p>Click events work for touch as well as mouse and keyboard. With touch, the click event is delayed 300ms, which allows the user to do other things, such as zoom or scoll before the click event takes place. </p>
-          </section>
-        <section>
-        <h3>touchstart</h3>
-        <p>The touchstart event happens when the user touches the screen inside an element, creating a touchpoint.</p>
-        <h3>touchmove</h3>
-        <p>The touchmove event happens when the user moves the touchpoint across the screen.</p>
-        <h3>touchend</h3>
-        <p>The touchend event happens when the user removes the touchpoint from the screen.</p>
-        <div id='touches'>
+        <p>Some events are triggered by touch when using a touch screen. Since many devices don't have touch screens, it is smart to add events that can be triggered with the mouse or keyboard in addition to any touch events.</p>
+         <div id='touches'>
         <p class='touches'>Touch this element.</p>
         <div id='secret2' class='secret'>
           <p>This element shows on touchstart, but disappears on touchend.</p>
           <p>It also shows on mouseover for non-touch devices</p>
         </div>
         </div>
+      </section>
+        <section>
+          <h3>click</h3>
+          <p>Click events work for touch as well as mouse and keyboard. With touch, the click event is delayed 300ms, which allows the user to do other things, such as zoom or scoll before the click event takes place. </p>
+         
+        <h3>touchstart</h3>
+        <p>The touchstart event happens when the user touches the screen inside an element, creating a touchpoint.</p>
+        <h3>touchmove</h3>
+        <p>The touchmove event happens when the user moves the touchpoint across the screen.</p>
+        <h3>touchend</h3>
+        <p>The touchend event happens when the user removes the touchpoint from the screen.</p>
+        
         </section>
       <section id="dragArea" >
+        <p>Here is an example that uses touch events to change the source of the image. Touch anywhere within this section, but outside the image, then try moving your finger around and pass it over the image. Here is the code. It uses touchstart, touchmove, touchend, touchenter, touchleave, and touchcancel.</p>
+        <div class="code">
+          <code>
+            var dragArea = document.getElementById('dragArea');<br>
+var dragBox = document.getElementById('dragBox');<br><br>
+dragArea.addEventListener('touchstart', function(e) {<br>
+    dragBox.src = 'lion.jpg';<br>
+});<br><br>
+dragArea.addEventListener('touchmove', function(e) {<br>
+    dragBox.src = 'kittencrouch.jpg';<br>
+});<br><br>
+dragArea.addEventListener('touchend', function(e) {<br>
+    dragBox.src = 'kitten.jpg';<br>
+});<br><br>
+dragBox.addEventListener('touchenter', function(e) {<br>
+    dragBox.src = 'catinhat.jpg';<br>
+});<br><br>
+dragBox.addEventListener('touchleave', function(e) {<br>
+    dragBox.src = 'kitten.jpg';<br>
+    });<br>
+    dragArea.addEventListener('touchcancel', function(e) {<br>
+    dragBox.src = 'kitten.jpg';<br>
+    });<br>
+
+          </code>
+        </div>
         <img id="dragBox" class="result" src="kitten.jpg">
         
       </section>
