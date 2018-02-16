@@ -191,29 +191,7 @@
       <section id="dragArea" >
         <p>Here is an example that uses touch events to change the source of the image. Touch anywhere within this section, but outside the image, then try moving your finger around and pass it over the image. Here is the code. It uses touchstart, touchmove, touchend, touchenter, touchleave, and touchcancel.</p>
         <div class="code">
-          <code>
-            var dragArea = document.getElementById('dragArea');<br>
-var dragBox = document.getElementById('dragBox');<br><br>
-dragArea.addEventListener('touchstart', function(e) {<br>
-    dragBox.src = 'lion.jpg';<br>
-});<br><br>
-dragArea.addEventListener('touchmove', function(e) {<br>
-    dragBox.src = 'kittencrouch.jpg';<br>
-});<br><br>
-dragArea.addEventListener('touchend', function(e) {<br>
-    dragBox.src = 'kitten.jpg';<br>
-});<br><br>
-dragBox.addEventListener('touchenter', function(e) {<br>
-    dragBox.src = 'catinhat.jpg';<br>
-});<br><br>
-dragBox.addEventListener('touchleave', function(e) {<br>
-    dragBox.src = 'kitten.jpg';<br>
-    });<br>
-    dragArea.addEventListener('touchcancel', function(e) {<br>
-    dragBox.src = 'kitten.jpg';<br>
-    });<br>
 
-          </code>
         </div>
         <img id="dragBox" class="result" src="kitten.jpg">
         
@@ -245,12 +223,7 @@ dragBox.addEventListener('touchleave', function(e) {<br>
         <p>To take a look at all three of these events, let's revisit the rainbow from above. You may have noticed that if you tried to run the animation on the rainbow a second time, it didn't play. You had to click it a third time to get it to rerun the animation. The reason is that the class to run the animation had already been added, so it needed to be removed before it would run again.</p>
         <p>To fix that, you can add an animationend event listener than will remove the class once the animation ends. Here is the code.</p>
         <div class="code">
-          <code>
-            dbl.addEventListener('animationend', animationReset);<br>
-            function animationReset(e) {<br>
-            bow.classList.remove('rainbow');<br>
-            }<br>
-          </code>
+
         </div>
         <p>An animationend event listener is added which calls a reset function. In the reset function, the rainbow class is removed.</p>
         <div id='dbl2'>
