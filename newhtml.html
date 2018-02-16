@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style>
+      #dragSection {
+        width: 100%;
+        height: 200px;
+      }
+      #drag {
+        margin: 0 auto;
+        position: relative;
+        width: 100px;
+        height: 50px;
+        top: 30%;
+        background: steelblue;
+        border-radius: 10px;
+        curser: move;
+      }
+      span {
+        position: relative;
+        padding: 22px;
+        top: 10px;
+        color: white;
+        font-size: 1.6em;
+      }
+    </style>
+  </head>
+  <body>
+
+    <header>
+      <p class="logo">Tammy Dresen CIT261</p>
+
+      <nav>
+        <ul id="menu" class="top">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">Topics</a>
+            <ul class="sub">
+              <li><a href="topic1.html">Topic 1</a></li>
+              <li><a href="topic2.html">Topic 2</a></li>
+              <li><a href="topic3.html">Topic 3</a></li>
+              <li><a href="topic4.html">Topic 4</a></li>
+              <li><a href="topic5.html">Topic 5</a></li>
+              <li><a href="topic6.html">Topic 6-7</a></li>
+              <li><a href="topic8.html">Topic 8</a></li>
+              <li><a href="topic9.html">Topic 9</a></li>
+              <li><a href="topic10.html">Topic 10</a></li>
+              <li><a href="topic11.html">Topic 11</a></li>
+              <li><a href="topic12.html">Topic 12</a></li>
+              <li><a href="topic13.html">Topic 13</a></li>
+            </ul></li>
+        </ul></nav>
+    </header>
+    <main>
+      <h1>Topic 10: HTML5 Tags - Video, Audio, and Canvas</h1>
+      <section id='dragSection'>
+        <div id='drag'>
+          <span id='y'>Drag</span>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2018 Tammy Dresen</p>
+    </footer>
+  </body>
+  <script>
+    onload = adding;
+    
+    // define variables
+    var section = document.getElementById('dragSection');
+    var drag = document.getElementById('drag');
+    var section_t = document.getElementById('dragSection');
+    var drag_t = document.getElementById('drag');
+    var cs = drag.style;
+    var height = drag.offsetHeight;
+    var width = drag.offsetWidth;
+    var text = document.getElementById('y');
+    
+    // add listeners
+    function adding() {
+      drag.addEventListener('mousedown', hold, false);
+      section.addEventListener('mouseup', release, false);
+      drag_t.addEventListener('touchstart', hold, false);
+      section_t.addEventListener('touchend', release, false);
+    }
+    
+    // on hold function
+    function hold() {
+      drag.addEventListener('mousemove', move, true);
+      section.addEventListener('mousemove', move, true);
+    
+    drag_t.addEventListener('touchmove', tmove, true);
+    section_t.addEventListener('touchmove', tmove, true);
+    }
+    // on release function
+    function release() {
+      drag.removeEventListener('mousemove', move, true);
+      drag_t.removeEventListener('touchmove', move, true);
+      section.removeEventListener('mousemove', move, true);
+      section_t.removeEventListener('touchmove', move, true);
+    
+    text.innerHTML = 'Drag';
+    text.style.top = '';
+    }
+    
+    // on mousemove function
+    function move(event) {
+      var evy = event.clientY;
+      var evx = event.clientX;
+      
+      cs.position = 'absolute';
+      cs.top = evy + 'px';
+      cs.left = evx + 'px';
+      cs.transform = 'translateX(' + -width/2 + 'px) translateY(' + -height/2 + 'px)';
+      
+      
+    }
+    // on touchmove function
+    function tmove(touch) {
+      var evy = touch.touches[0].clientY;
+      var evx = touch.touches[0].clientX;
+      cs.position = 'absolute';
+      cs.top = evy + 'px';
+      cs.left = evx + 'px';
+      cs.transform = 'translateX(' + -width/2 + 'px) translateY(' + -height/2 + 'px)';
+    }
+    cs.position = '';
+    </script>
+</html>
