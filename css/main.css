@@ -442,6 +442,7 @@ label {
 /************ Topic 9 *****************/
 .bow {
     background-color: red;
+    background: linear-gradient(red, orange, yellow, green, blue, indigo, purple);
     color: white;
     display: block;
     width: 180px;
@@ -463,17 +464,25 @@ label {
     border-top-right-radius: 45px;
 }
 .rainbow {
-    animation: rainbow .5s linear 5 forwards;
+    animation: rainbow 2s 3 forwards;
 }
 @keyframes rainbow {
-    0% { background-color: red;}
-    15% { background-color: orange;}
-    30% { background-color: yellow;}
-    45% { background-color: green;}
-    60% { background-color: blue;}
-    75% { background-color: indigo;}
-    90% { background-color: purple;}
-    100% { background-color: purple;}
+    0% { background-color: red;
+         background: linear-gradient(red, orange, yellow, green, blue, indigo, purple);}
+    15% { background-color: orange;
+          background: linear-gradient(orange, yellow, green, blue, indigo, purple, red);}
+    30% { background-color: yellow;
+    background: linear-gradient(yellow, green, blue, indigo, purple, red, orange);}
+    45% { background-color: green;
+    background: linear-gradient(green, blue, indigo, purple, red, orange, yellow);}
+    60% { background-color: blue;
+    background: linear-gradient(blue, indigo, purple, red, orange, yellow, green);}
+    75% { background-color: indigo;
+    background: linear-gradient(indigo, purple, red, orange, yellow, green, blue);}
+    90% { background-color: orange;
+    background: linear-gradient(purple, red, orange,  yellow, green, blue, indigo);}
+    100% { background-color: purple;
+    background: linear-gradient(red, orange, yellow, green, blue, indigo, purple);}
 }
 .secret {
     display: none;
@@ -500,4 +509,57 @@ label {
 }
 .colorLightSteel {
     background-color: lightsteelblue;
+}
+.cloud {
+    width: 100px;
+    height: 35px;
+    border-radius: 25px;
+    background-color: lightgray;
+    position: absolute; 
+    z-index: 10;
+    box-shadow: 1px 1px 2px gray; 
+}
+.cloud::before {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    content: '';
+    position: absolute;
+    transform: translate(15px, -20px);
+    background-color: lightgray;
+}
+.cloud::after {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    content: '';
+    position: absolute;
+    transform: translate(40px, -30px);
+    background-color: lightgray;
+}
+.cloud1 {
+    transform: translate(-15px, 0px);
+    visibility: hidden;
+}
+.cloud2 {
+    transform: translate(55px, 10px); 
+    visibility: hidden; 
+}
+.cloud3 {
+    transform: translate(120px, 0px);
+    visibility: hidden;
+}
+.dbl2 {
+    position: relative;
+}
+.double {
+    position: absolute;
+    transform: translateY(-8px);
+
+}
+.cloudy {
+    visibility: visible;
+}
+#dragBox  {
+
 }
