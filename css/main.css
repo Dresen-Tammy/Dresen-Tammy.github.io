@@ -168,6 +168,8 @@ section {
     oveflow: hidden;
 
 }
+code {
+    overflow: hidden;
 .result {
     background-color: lightgray;
     color: black;
