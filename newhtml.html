@@ -7,25 +7,33 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <style>
       #dragSection {
-        width: 100%;
-        height: 200px;
+          width: 100%;
+          height: 200px;
       }
       #drag {
-        margin: 0 auto;
-        position: relative;
-        width: 100px;
-        height: 50px;
-        top: 30%;
-        background: steelblue;
-        border-radius: 10px;
-        curser: move;
+          margin: 0 auto;
+          position: relative;
+          width: 100px;
+          height: 50px;
+          top: 30%;
+          background: steelblue;
+          border-radius: 10px;
+          curser: move;
       }
       span {
-        position: relative;
-        padding: 22px;
-        top: 10px;
-        color: white;
-        font-size: 1.6em;
+          position: relative;
+          padding: 22px;
+          top: 10px;
+          color: white;
+          font-size: 1.6em;
+      }
+      .droptarget {
+          float: left; 
+          width: 150px; 
+          height: 150px;
+          margin: 15px;
+          padding: 10px;
+          border: 1px solid #aaaaaa;
       }
     </style>
   </head>
@@ -61,6 +69,24 @@
           <span id='y'>Drag</span>
         </div>
       </section>
+      <section id='dragSection'>
+        <p>Drag the p element back and forth between the two rectangles:</p>
+
+
+        <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+          <p ondragstart="dragStart(event)" draggable="true" id="dragtarget">Drag me!</p>
+          <p ondragstart="dragStart(event)" draggable="true" id="dragtarget2">Number 2</p>
+          <p ondragstart="dragStart(event)" draggable="true" id="dragtarget3">Number 3</p>
+          <p ondragstart="dragStart(event)" draggable="true" id="dragtarget4">Number 4</p>
+
+        </div>
+
+
+
+        <div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <p ondragstart="dragStart(event)" draggable="true" id="dragtarget5">Number 5</p></div>
+      </section>
     </main>
     <footer>
       <p>Copyright &copy; 2018 Tammy Dresen</p>
@@ -68,65 +94,98 @@
   </body>
   <script>
     onload = adding;
-    
+
     // define variables
+    // total moveable area for mouse and touch.
     var section = document.getElementById('dragSection');
-    var drag = document.getElementById('drag');
     var section_t = document.getElementById('dragSection');
+    // div to be dragged
+    var drag = document.getElementById('drag');
     var drag_t = document.getElementById('drag');
+    // style property of drag div to add transform.
     var cs = drag.style;
+    // height of drag element including padding/borders
     var height = drag.offsetHeight;
+    // width of drag element including padding/borders
     var width = drag.offsetWidth;
-    var text = document.getElementById('y');
-    
+
+
+
     // add listeners
     function adding() {
-      drag.addEventListener('mousedown', hold, false);
-      section.addEventListener('mouseup', release, false);
-      drag_t.addEventListener('touchstart', hold, false);
-      section_t.addEventListener('touchend', release, false);
+        // pick up div element on mousedown/touchstart calls hold function
+        drag.addEventListener('mousedown', hold, false);
+        drag_t.addEventListener('touchstart', hold, false);
+        // drop div on mouseup/touchend  calls release function ?
+        drag.addEventListener('mouseup', release, false);
+        drag_t.addEventListener('touchend', release, false);
+        //section.addEventListener('mouseup', release, false);
+        //section_t.addEventListener('touchend', release, false);
     }
-    
+
     // on hold function
     function hold() {
-      drag.addEventListener('mousemove', move, true);
-      section.addEventListener('mousemove', move, true);
-    
-    drag_t.addEventListener('touchmove', tmove, true);
-    section_t.addEventListener('touchmove', tmove, true);
+        // while holding item adds mousemove event listener and calls move. Makes move possible.
+        drag.addEventListener('mousemove', move, true);
+        //section.addEventListener('mousemove', move, true);
+
+        drag_t.addEventListener('touchmove', tmove, true);
+        //section_t.addEventListener('touchmove', tmove, true);
     }
     // on release function
     function release() {
-      drag.removeEventListener('mousemove', move, true);
-      drag_t.removeEventListener('touchmove', move, true);
-      section.removeEventListener('mousemove', move, true);
-      section_t.removeEventListener('touchmove', move, true);
-    
-    text.innerHTML = 'Drag';
-    text.style.top = '';
+        // when mouseup/touchup happens, removes the mousemove event listener and calls move.
+        drag.removeEventListener('mousemove', move, true);
+        drag_t.removeEventListener('touchmove', move, true);
+        //section.removeEventListener('mousemove', move, true);
+        //section_t.removeEventListener('touchmove', move, true);
+
     }
-    
+
     // on mousemove function
+    // when mouse down and then mousemove happens, gets x and y
     function move(event) {
-      var evy = event.clientY;
-      var evx = event.clientX;
-      
-      cs.position = 'absolute';
-      cs.top = evy + 'px';
-      cs.left = evx + 'px';
-      cs.transform = 'translateX(' + -width/2 + 'px) translateY(' + -height/2 + 'px)';
-      
-      
+        // gets coordinates of where event occured (movement).
+        //clientX and clientY are coordinates in window.
+        var evy = event.clientY;
+        var evx = event.clientX;
+        // changes style of drag div to be positionable
+        cs.position = 'absolute';
+        //sets top and left in element style, taking into account size of div.
+        cs.top = evy - width / 2 + 'px';
+        cs.left = evx - height / 2 + 'px';
+        // sets translate but takes into account size of div.
+        //cs.transform = 'translateX(' + -width/2 + 'px) translateY(' + -height/2 + 'px)';
+
+
     }
     // on touchmove function
     function tmove(touch) {
-      var evy = touch.touches[0].clientY;
-      var evx = touch.touches[0].clientX;
-      cs.position = 'absolute';
-      cs.top = evy + 'px';
-      cs.left = evx + 'px';
-      cs.transform = 'translateX(' + -width/2 + 'px) translateY(' + -height/2 + 'px)';
+        var evy = touch.touches[0].clientY;
+        var evx = touch.touches[0].clientX;
+        cs.position = 'absolute';
+        cs.top = evy - width / 2 + 'px';
+        cs.left = evx - width / 2 + 'px';
+        //cs.transform = 'translateX(' + -width/2 + 'px) translateY(' + -height/2 + 'px)';
     }
-    cs.position = '';
-    </script>
+    //cs.position = '';
+    
+    
+    // on p dragtarget. When drag starts, key value pair saved as text: id.
+function dragStart(event) {
+    event.dataTransfer.setData("Text", event.target.id);
+}
+
+// on div droptarget. When p is dragged over this element, default is prevented.
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+// on div droptarget. when p is dropped over this element, default prevented, and appendChild is used to add element with text: id into div.
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+}
+  </script>
 </html>
