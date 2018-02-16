@@ -145,7 +145,15 @@ function addClouds2(e) {
 var dragArea = document.getElementById('dragArea');
 var dragBox = document.getElementById('dragBox');
 dragArea.addEventListener('touchstart', function(e) {
-    dragBox.src = 'lion.jpg';
+     return dragBox.src = 'lion.jpg';
+     dragArea.preventDefault();
+     dragBox.preventDefault();
+     document.body.height = '100%';
+     document.body.width = '100%';
+     document.body.scroll = 'no';
+     document.body.overflow = 'hidden';
+     
+    
 });
 dragArea.addEventListener('touchmove', function(e) {
     dragBox.src = 'kittencrouch.jpg';

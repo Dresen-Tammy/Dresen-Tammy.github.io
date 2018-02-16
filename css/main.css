@@ -561,5 +561,6 @@ label {
     visibility: visible;
 }
 #dragBox  {
-
+    max-width: 300px;
+    
 }
