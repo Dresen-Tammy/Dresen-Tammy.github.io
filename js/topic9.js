@@ -71,19 +71,19 @@ function time() {
 
 // add keydown event
 addEventListener('keydown', steelback);
-const html = document.getElementsByTagName('html')[0];
+const html = document .getElementsByTagName('html')[0];
 function steelback() {
 html.classList.toggle('colorSteel');
 }
 // add keyup event
 addEventListener('keyup', bluecolor);
-const keysec = document.getElementById('keysection');
+const keysec = document .getElementById('keysection');
 function bluecolor() {
-    keysec.classList.toggle('colorLightSteel');
+    keysec.classList .toggle('colorLightSteel');
 }
 
 // add keypress event
-let keys = document.getElementById('keystroke');
+let keys = document .getElementById('keystroke');
 
 addEventListener('keypress', keystrokes);
 function keystrokes(event) {
@@ -144,14 +144,15 @@ function addClouds2(e) {
 // add touch events
 var dragArea = document.getElementById('dragArea');
 var dragBox = document.getElementById('dragBox');
+var wrapper = document.getElementById('wrapper');
 dragArea.addEventListener('touchstart', function(e) {
      return dragBox.src = 'lion.jpg';
      dragArea.preventDefault();
      dragBox.preventDefault();
-     document.body.height = '100%';
-     document.body.width = '100%';
-     document.body.scroll = 'no';
-     document.body.overflow = 'hidden';
+     wrapper.height = '100%';
+     wrapper.body.width = '100%';
+     wrapper.body.scroll = 'no';
+     wrapper.body.overflow = 'hidden';
      
     
 });
