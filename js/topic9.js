@@ -100,9 +100,9 @@ touches.addEventListener('touchstart', down2);
 touches.addEventListener('mouseout', up2);
 touches.addEventListener('touchend', up2);
 const secret2 = document.getElementById('secret2');
-function down2() {
+function down2(e) {
     secret2.classList.add('reveal');
-    secret2.preventDefault();
+    e.preventDefault();
 }
 function up2() {
     secret2.classList.remove('reveal');
@@ -147,8 +147,7 @@ var dragBox = document.getElementById('dragBox');
 var wrapper = document.getElementById('wrapper');
 dragArea.addEventListener('touchstart', function(e) {
      return dragBox.src = 'lion.jpg';
-     dragArea.preventDefault();
-     dragBox.preventDefault();
+     e.preventDefault();
      wrapper.height = '100%';
      wrapper.body.width = '100%';
      wrapper.body.scroll = 'no';
