@@ -165,11 +165,9 @@ section {
     padding: 10px;
     margin: 10px 0;
     font-size: 1.2em;
-    oveflow: hidden;
+    overflow-x: hidden;
 
 }
-code {
-    overflow: hidden;
 .result {
     background-color: lightgray;
     color: black;
