@@ -155,18 +155,23 @@ dragArea.addEventListener('touchstart', function(e) {
      
     
 });
-dragArea.addEventListener('touchmove', function(e) {
+dragBox.addEventListener('touchmove', function(e) {
     dragBox.src = 'kittencrouch.jpg';
+ e.preventDefault();
 });
-dragArea.addEventListener('touchend', function(e) {
+dragBox.addEventListener('touchend', function(e) {
     dragBox.src = 'kitten.jpg';
+  e.preventDefault();
 });
 dragBox.addEventListener('touchenter', function(e) {
     dragBox.src = 'catinhat.jpg';
+  e.preventDefault();
 });
 dragBox.addEventListener('touchleave', function(e) {
     dragBox.src = 'kitten.jpg';
+  e.preventDefault();
 });
 dragArea.addEventListener('touchcancel', function(e) {
     dragBox.src = 'kitten.jpg';
+  e.preventDefault();
 });
