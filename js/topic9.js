@@ -163,14 +163,6 @@ dragBox.addEventListener('touchend', function(e) {
     dragBox.src = 'kitten.jpg';
   e.preventDefault();
 });
-dragBox.addEventListener('touchenter', function(e) {
-    dragBox.src = 'catinhat.jpg';
-  e.preventDefault();
-});
-dragBox.addEventListener('touchleave', function(e) {
-    dragBox.src = 'kitten.jpg';
-  e.preventDefault();
-});
 dragArea.addEventListener('touchcancel', function(e) {
     dragBox.src = 'kitten.jpg';
   e.preventDefault();
