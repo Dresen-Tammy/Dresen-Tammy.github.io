@@ -562,8 +562,31 @@ label {
     visibility: visible;
 }
 #dragBox  {
-    width: 100%
     max-width: 300px;
     
-    
+}
+/********* Topic 10 ********/
+#myCanvas {
+    border: solid 1px #92afd1;
+}
+.video {
+    margin: 0 auto;
+    max-width: 750px;
+}
+video {
+    width: 265px;
+    height: 150px;
+
+}
+@media (min-width: 500px) {
+    video {
+        width: 450px;
+        height: 254px;     
+    }
+}
+@media (min-width: 800px) {
+    video {
+        width: 750px;
+        height: 423px;
+    }
 }

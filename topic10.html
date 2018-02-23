@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <title>HTML5 Tags - Video, Audio, and Canvas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -34,9 +34,113 @@
     </header>
     <main>
       <h1>Topic 10: HTML5 Tags - Video, Audio, and Canvas</h1>
+      <section>
+        <h2>Video Tag</h2>
+        <p>The video tag makes it easy to embed videos into a website. HTML5 video includes an opening and closing video tag, with one or more source tags to provide alternate video file formats.</p>
+        <div class="code">
+          <code>
+            &lt;video width="300" height="200" controls&gt;<br>
+            &nbsp;&nbsp;&lt;source src="video.mp4" type="video/mp4"&gt;<br>
+            &nbsp;&nbsp;&lt;source src="video.ogg" type="video/ogg"&gt;<br>
+            &nbsp;&nbsp;Your browser does not support the video tag.<br>
+            &lt;/video&gt;
+          </code>
+        </div>
+      
+      <p>Supported video formats include mp4, webm, and ogg. Providing multiple formats make it more likely to have a video format that is supported by the user's browser. The first recognized format is used.</p>
+      <p>The opening tag can have several attributes. </p>
+      <ul>
+        <li>Providing height/width attributes keep the webpage from flickering as the video loads.</li> 
+        <li>controls will cause controls like pause, play, etc to show in the video window.</li>
+        <li>autoplay will automatically play the movie on load. This is usually not a good idea as it may annoy users.</li>
+        <li>loop will make the video repeat automatically.</li>
+        <li>poster="image.jpg" will display the image in the link until the video plays.</li>
+        <li>An optional src attribute can be used in the opening tag to provide the video url instead of in a &lt;source&gt; tag.</li>
+        <li>There are many other attributes that can be added to a video tag.</li>
+      </ul>
+      <p>An optional &lt;track&gt; element can be added as a child of a video element which can have subtitles, captions, descriptions, etc. in it which will appear in the video. The track element must be a .vtt file, and should have a kind attribute specifying how the text track should be used.</p><br>
+      <p>Enjoy a video of my son's choir singing about King Louis XVI of France.</p>
+      
+      <div class="video">
+      <video id='vid' controls poster="kingLouis.jpg">
+        <source id='sourceVid' src='VIDEO0068-0.mp4' type='video/mp4'>
+        Your browser does not support the video tag.
+      </video>
+      </div>
+      <h3>Video Events</h3>
+      <p>The HTML5 Video and Audio tags have a wide range of events that can be listened for and used to trigger JavaScript functions. Here are a few Audio/Video Events.</p> 
+      <ul>
+        <li>ended - Fires when the current file has ended.</li>
+        <li>canplaythrough - Fires when the file can be played to the end without buffering.</li>
+        <li>play - Fires when the playback starts at the beginning or after being paused.</li>
+        <li>pause - Fires when the playback is paused.</li>
+        <li>loadstart - Fires when the browser starts looking for the file.</li>
+      </ul>
+      <p>In the previous video, an 'ended' event listener reloads the video once it it has ended, which makes the poster image appear again.</p>
+      </section>
+      <section>
+        <h2>Audio Tag</h2>
+        <p>The audio tag plays embedded audio files and is similar to the video tag, except that the supported file formats are mp3, wav, and ogg. The opening audio tag can have attributes similar to the video tag, such as conntrols, autoplay, loop, muted, volume, etc. It can have child elements of one or more source tags.</p>
+        <div class="code">
+          <code>
+            &lt;audio controls&gt;<br>
+            &nbsp;&nbsp;&lt;source src="audio.mp3" type="audio/mp3"&gt;<br>
+            &nbsp;&nbsp;&lt;source src="video.ogg" type="audio/ogg"&gt;<br>
+            &nbsp;&nbsp;Your browser does not support the audio tag.<br>
+            &lt;/audio&gt;
+          </code>
+        </div>
+        <p>Here is an audio file of Master the Tempest is Raging. This is my favorite arrangement, but it is just a practice recording. Forgive the mistakes.</p>
+        <audio controls>
+          <source src="tempest.mp3">
+          <source src="tempest.wav">
+          Your browser does not support the audio tag.
+        </audio>
+      </section>
+      <section>
+        <h2>Canvas tag</h2>
+        <p>The canvas tag is a container for graphics. Javascript can be used with the canvas tag to enable drawing on a webpage, displaying graphics, animating objects, etc.</p>
+        <h3>Define tag in HTML</h3>
+        <div class="code">
+          <code>
+            &lt;canvas id="myCanvas" width="300" height="300"&gt;<br>
+            
+            &nbsp;&nbsp;Your browser does not support the canvas tag.<br>
+            &lt;/canvas&gt;
+          </code>
+        </div>
+        <p>The id is necessary to access the canvas through JavaScript. Width and height can also be used to define the size of the canvas. Once the canvas is defined in the HTML, use JavaScript to draw lines, shapes, and text, display and animate images, etc. You should also add a text default for browsers that don't support the canvas tag.</p>
+        <h3>Draw with JavaScript</h3>
+        <p>In order to use the canvas, JavaScript is needed. First, select the canvas element using getElementById().</p>
+        <p>Next define a rendering context using getContext(2d).  (Other contexts, such as 3d are available.)</p>
+        <p>Then define what you want to draw in the canvas element. Define the fill color or pattern with fillStyle, make a rectangle with fillRect(), a circle with arc(), text with fillText(), or draw a line with lineTo().  Finally, to draw the shape or line add stroke(), and to fill the shape add fill(). Here is an example. of the code to make a circle.</p>
+        <div class="code">
+          <code>
+            function draw2() { <br>
+   var ctx = myCanvas.getContext('2d'); <br>
+   ctx.fillStyle = 'rgba(100, 99, 200, 0.5)';<br>
+   ctx.beginPath();<br>
+   ctx.arc(95,110,40,0,2*Math.PI);<br>
+   ctx.stroke();<br>
+   ctx.fill();<br>
+}
+          </code>
+        </div>
+        <h3>Example</h3>
+        <canvas id='myCanvas' width='300' height='300'>
+          Canvas tag not supported
+        </canvas><br>
+        <button onclick="draw()">Rectangle</button>
+        <button onclick="draw2()">Circle</button>
+        <button onclick="draw3()">Rainbow</button>
+        <button onclick="draw4()">ZigZag</button>
+        <button onclick="draw5()">Text</button>
+      </section>
+      
     </main>
     <footer>
       <p>Copyright &copy; 2018 Tammy Dresen</p>
     </footer>
   </body>
+  <script src="js/topic10.js"></script>
 </html>
