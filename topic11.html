@@ -7,36 +7,142 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
   </head>
-  <body>
+  <body id="body11">
+    <div id='wrapper'>
 
-    <header>
-      <p class="logo">Tammy Dresen CIT261</p>
+      <header class="head11">
+        <p class="logo">Tammy Dresen CIT261</p>
 
-      <nav>
-        <ul id="menu" class="top">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">Topics</a>
-            <ul class="sub">
-              <li><a href="topic1.html">Topic 1</a></li>
-              <li><a href="topic2.html">Topic 2</a></li>
-              <li><a href="topic3.html">Topic 3</a></li>
-              <li><a href="topic4.html">Topic 4</a></li>
-              <li><a href="topic5.html">Topic 5</a></li>
-              <li><a href="topic6.html">Topic 6-7</a></li>
-              <li><a href="topic8.html">Topic 8</a></li>
-              <li><a href="topic9.html">Topic 9</a></li>
-              <li><a href="topic10.html">Topic 10</a></li>
-              <li><a href="topic11.html">Topic 11</a></li>
-              <li><a href="topic12.html">Topic 12</a></li>
-              <li><a href="topic13.html">Topic 13</a></li>
-            </ul></li>
-        </ul></nav>
-    </header>
-    <main>
-      <h1>Topic 11: Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries (Thought Library)</h1>
-    </main>
-    <footer>
-      <p>Copyright &copy; 2018 Tammy Dresen</p>
-    </footer>
+        <nav>
+          <ul id="menu" class="top">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Topics</a>
+              <ul class="sub">
+                <li><a href="topic1.html">Topic 1</a></li>
+                <li><a href="topic2.html">Topic 2</a></li>
+                <li><a href="topic3.html">Topic 3</a></li>
+                <li><a href="topic4.html">Topic 4</a></li>
+                <li><a href="topic5.html">Topic 5</a></li>
+                <li><a href="topic6.html">Topic 6-7</a></li>
+                <li><a href="topic8.html">Topic 8</a></li>
+                <li><a href="topic9.html">Topic 9</a></li>
+                <li><a href="topic10.html">Topic 10</a></li>
+                <li><a href="topic11.html">Topic 11</a></li>
+                <li><a href="topic12.html">Topic 12</a></li>
+                <li><a href="topic13.html">Topic 13</a></li>
+              </ul></li>
+          </ul></nav>
+
+
+
+      </header>
+      <div id="subhead" class="subhead">
+        <h1>Topic 11: Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries</h1>
+        <div class="examples">
+        <ul>
+          <li onclick="change('i1')">Idea 1</li>
+          <li onclick="change('i2')">Idea 2</li>
+          <li onclick="change('i3')">Idea 3</li>
+        </ul>
+      </div>
+      </div>
+      <main id="main11" class="main11">
+        <div class="rest">
+          <h2 >CSS3 Transitions Thought Library</h2>
+          <section id='sec1'>
+            <h3 id="i1" class="i1">Idea 1</h3>
+            <h4>Dynamic Header</h4>
+            <p>I added transitions to the header to make it disappear When you scroll down the page, and reappear when you scroll up. In this example, a scroll event listener is added to the window. When the top of the page is scrolled 50px above the window, the top two sections of the header disappear, and the bottom of the header becomes fixed at the top of the window. A transition of .5 seconds is added to most of the changes to make them flow smoothly. However there is one change, on the width of the subhead and lower menu that do not have a transition, to make them happen instantly and go unnoticed.</p>
+
+
+          </section>
+
+          <section id='i2' class="i2">
+            <h3 >Idea 2</h3>
+            <h4>Slideshow</h4><br>
+
+            <div class='slideshow'>
+              <div class='slides'>
+                <img src='images/map.jpg'>
+                <div class='text'>Honduras</div> 
+              </div>
+
+                
+                  <div class='slides'>
+                    <img src='images/cheke.jpg'>
+                    <div class='text'>Okie&nbsp;Dokie&nbsp;Artichokie</div> 
+                  </div>
+                  
+
+                  <div class='slides'>
+                    <img src='images/jungle.jpg'>
+                    <div class='text'>Jungle</div> 
+                  </div>
+
+                  <div class='slides'>
+                    <img src='images/noPlumbing.jpg'>
+                    <div class='text'>No&nbsp;Running&nbsp;Water</div> 
+                  </div>
+
+                  <div class='slides'>
+                    <img src='images/stairs.jpg'>
+                    <div class='text'>Country&nbsp;Path</div> 
+                  </div>
+
+              <a class="prev" id='prev' onclick="nextSlide(-1)">&#10094;</a>
+              <a class='next' id='next' onclick="nextSlide(1)">&#10095;</a>
+                </div>
+              </div>
+              <div class='dots'>
+                <span class="dot active" ></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>   
+              </div>
+              <p>Enjoy a slideshow of my son's mission photos. He is currently serving in Comayaguela, Honduras.</p>
+              <p>There are several transitions in the slideshow. There is a .5 second transition on hover for the arrows and the dots. The slide change is triggered by a click event, and there is a transition on the opacity and scale. Finally the text overlay has a transition with a .5 second delay so it changes after the other transitions have taken place.   </p>
+          </section>
+          <section id='i3' class="i3">
+            <h3>Idea 3</h3>
+            <h4>Accordian Section</h4>
+            <p>This accordian section uses transitions to change from a closed to an open state. When you click on each heading in the section, the height and color of a hidden div change to reveal the information about that heading. A 1-second transition with an ease-in timing function is applied so the change starts slowly and then speeds up. The arrow next to the heading rotates to indicate whether the div is open or closed. A 1 second transition is applied to the rotation. </p>
+            <div id='demo'></div>
+            <div id='open1' class="open" >
+              <h4>Point 1 <span>&#9662;</span></h4>
+            <div class='collapse'>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+              </div>
+            <div id='open2' class="open" >
+              <h4>Point 2 <span>&#9662;</span></h4>
+            <div class='collapse'>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+              </div>
+            <div id='open3' class="open" >
+              <h4>Point 3 <span>&#9662;</span></h4>
+            <div class='collapse'>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+              </div>
+            <div id='open4' class="open" >
+              <h4>Point 4 <span>&#9662;</span></h4>
+            <div class='collapse'>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+              </div>
+          </section>
+          <section>
+            <p>Transitions are a great way to help your website look more professional and polished. They can help users better navigate your webpage by helping them understand what items are interactive, and where elements are moving to. Transitions make changes on the website less jarring and more pleasant. Transitions can be subtle or bold. Just be careful with using to many or too complicated transitions. They should aid the usability of the site, not hinder it.</p>
+          </section>
+      </main>
+
+
+      <footer>
+        <p>Copyright &copy; 2018 Tammy Dresen</p>
+      </footer>
+    </div>
   </body>
+  <script src="js/topic11.js"></script>
 </html>

@@ -24,7 +24,7 @@ header {
     margin: 0 auto;
     height: 50px;
     background-color: #92afd1;
-    padding-left: 15px;
+
 }
 .logo {
     float: left;
@@ -32,6 +32,8 @@ header {
     font-weight: bold;
     color: #f1f1f1;
     margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 0;
 }
 /********** nav *************/
 nav a{
@@ -64,7 +66,7 @@ nav {
 }
 .top li:hover ul {
     display: block;
-    backtround-color: buttonface;
+    background-color: buttonface;
 }
 .top li:active > a {
     color: gray;
@@ -202,23 +204,23 @@ label {
 .abs {
     position: relative;
 }
-#move, #move2 {
+.move, .move2 {
     width: 100px;
     height: 75px;
     background-color: steelblue;
     border-radius: 5px;
 
 }
-#move:hover, #move2:hover {
+.move:hover, .move2:hover {
     width: 75px;
     transform: translateX(10px);
     background-color: darkgray;
     border-radius: 50%;
 }
-#move2 {
+.move2 {
     transition: width 2s, transform 2s, background-color 1s 2s, border-radius 3s ease-in;
 }
-#move3 {
+.move3 {
     width: 100px;
     height: 75px;
     background-color: steelblue;
@@ -226,7 +228,7 @@ label {
 
 
 }
-#move3:hover {
+.move3:hover {
     width: 100px;
     height: 75px;
     background-color: steelblue;
@@ -247,7 +249,7 @@ label {
 .btnMove {
     position: absolute;
     right: -110px;
-    top: 0px;
+    top: 0;
 
 }
 /* move4 when open*/
@@ -297,6 +299,7 @@ label {
 }
 .move5 {
     background-color: lightsteelblue;
+    color: rgb(255, 255, 255);
     color: rgba(255, 255, 255, 0);
     display: block;
     padding: 10px;
@@ -348,7 +351,7 @@ label {
     50% {
         width: 150px;
         background-color: darkGray;
-        border-radious: 25%;
+        border-radius: 25%;
         transform: translateX(0px);
     }
     75% {
@@ -367,7 +370,8 @@ label {
         background-color: lightsteelblue;
         display: block;
         overflow: hidden;
-        color: rgba(255, 255, 255, 0);
+        color: transparent;
+
         padding: 10px;
         position: absolute;
         transition: transform 1s, color 1s, visibility 1s ease-in;
@@ -389,13 +393,15 @@ label {
     }
     75% {
         background-color: steelblue;
-        color: rgba(255, 255, 255, 0);
+        color: transparent;
+
 
     }
     100% {
         transform: translateX(0px);
         background-color: steelblue;
-        color: rgba(255, 255, 255, 1.0);
+        color: rgb(255, 255, 255);
+
         overflow: visible;
         height: 100px;
     }
@@ -404,14 +410,13 @@ label {
     0% {
         transform: translateX(0px);
         background-color: steelblue;
-        color: rgba(255, 255, 255, 1.0);
+        color: white;
         overflow: visible;
         height: 100px;
     }
     25% {
         background-color: steelblue;
-        color: rgba(255, 255, 255, 0);
-
+        color: transparent;
     }
     50% {
         height: 100px;
@@ -430,7 +435,7 @@ label {
         background-color: lightsteelblue;
         display: block;
         overflow: hidden;
-        color: rgba(255, 255, 255, 0);
+        color: transparent;
         padding: 10px;
         position: absolute;
         transition: transform 1s, color 1s, visibility 1s ease-in;
@@ -561,12 +566,12 @@ label {
 .cloudy {
     visibility: visible;
 }
-#dragBox  {
+.dragBox  {
     max-width: 300px;
     
 }
 /********* Topic 10 ********/
-#myCanvas {
+.myCanvas {
     border: solid 1px #92afd1;
 }
 .video {
@@ -589,4 +594,202 @@ video {
         width: 750px;
         height: 423px;
     }
+}
+
+
+/***********Topic 11 **********/
+
+/*  Transition for header */
+body {
+    position: relative;
+}
+.wrapper {
+    width: 95%;
+    position: relative;
+}
+.examples li {
+    display: inline-block;
+    font-size: 1.2em;
+}
+
+.subhead {
+
+    width: 100%;
+    position: relative;
+    padding: 25px 0 80px 0;
+    top: 0px;
+    height: 190px;
+    transition: position .5s, padding .5s, height .5s;
+    background-color: #ccdcea; 
+    overflow: hidden;
+    max-width: 960px;
+    margin: 0 auto;
+    z-index: 100;
+}
+.snap .subhead {
+    position: fixed;
+    padding-bottom: 0;
+    height: 50px;
+    max-width: 960px;
+    width: 95%;
+}
+
+.examples {
+    list-style: none;
+    background-color: #92afd1;
+    position: absolute;
+    height: 50px;
+    top: 140px;
+    bottom: 0;
+    padding-left: 0;
+    width: 100%;
+    transition: top .5s, bottom .5s, position .5s;   
+}
+.snap .examples {
+    position: fixed;
+    top: 0;
+    width: 95%;
+    max-width: 960px;
+}
+.main11 {
+    transition: padding-top .5s;
+}
+
+.snap .main11 {
+    padding-top: 40px;    
+}
+
+.subhead h1 {
+    margin:  15px 15px 0 15px;
+    transition: all .2s;
+    
+}
+@media (max-width: 500px) {
+    .subhead h1 {
+        font-size: 20px;
+    }
+}
+.head11 {
+    margin-bottom: 0;
+}
+.examples li {
+    text-decoration: none;
+    color: #f1f1f1;
+    display: inline-block;
+    padding: 6px 15px;
+    transition: all .2s;
+}
+.examples li:hover {
+    background-color: lightsteelblue;
+    color: steelblue;
+}
+.examples li:active {
+    color: #f1f1f1;
+}
+   
+.i1, .i2, .i3 {
+    padding-top: 50px;
+}
+/* slideshow */
+.slideshow {
+    height: 330px;
+    max-width: 500px;
+    margin:10px auto 0 auto;
+    position: relative;
+}
+.slides {
+    position: absolute;
+    transform: scale(0);
+    transition: transform .5s ease-in-out, display .5s ease-in-out;
+}
+.activeImg {
+    transform: scale(1);
+    display: block;
+}
+.prev, .next {
+    color: steelblue;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px;
+    position: absolute;
+    top: 130px;
+    width: auto;
+    transition: color .5s;
+}
+.next {
+    right: 0;
+}
+.prev:hover, .next:hover {
+    color: white;
+}
+.text {
+    background-color: steelblue;
+    bottom: 50px;
+    color: transparent;
+    font-size: 15px;
+    opacity: 0;
+    overflow: hidden;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    width: 0px;
+    transition: width .5s .5s, color .5s .5s, opacity .5s .5s;
+    
+}
+.slides img {
+    width: 100%;
+}
+.activeImg .text {
+    color: white;
+    opacity: .9;
+    width: 35%;
+}
+.dots {
+    text-align: center;
+    margin-top: -15px;
+
+}
+.dot {
+    background-color: lightsteelblue;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    height: 15px;
+    transition: background-color .6s ease;
+    width: 15px;
+    margin: 0 5px;
+}
+.active, .dot:hover {
+    background-color: steelblue;
+}
+/* accordian section */
+.open .collapse {
+    height: 0;
+    overflow: hidden;
+    transition: all ease-in 1s;
+    background-color: #f1f1f1;
+    color: #f1f1f1;
+    padding: 0 15px;
+    margin: 0;
+}
+.open span {
+    display: inline-block;
+    transform: rotate(0deg);
+    transition: transform .5s ease;
+}
+.open h4 {
+    background-color: lightsteelblue;
+    padding: 15px;
+    display: block;
+    border-top: solid 2px #f1f1f1;
+}
+.expand .collapse {
+    height: 170px;
+    padding: 15px 15px;
+    background-color: steelblue;
+}
+.expand span {
+    transform: rotate(-180deg);
 }
