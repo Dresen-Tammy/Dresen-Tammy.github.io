@@ -227,10 +227,73 @@
           </div>
         </div>
         </section>
+          
         <section>
-          <h3>Slide Show</h3>
-          <div class="container3">
-            <img class="slide" src="images/cheke.jpg" alt="Colloquial Saying">
+          <h3>Slideshow</h3><br>
+
+            <div class='slideshow'>
+              <div class='slides' id="sl1">
+                <img src='images/map.jpg'>
+                <div class='text2'>Honduras</div> 
+              </div>
+
+                
+                  <div class='slides' id="sl2">
+                    <img src='images/cheke.jpg'>
+                    <div class='text2'>Okie&nbsp;Dokie&nbsp;Artichokie</div> 
+                  </div>
+                  
+
+                  <div class='slides' id="sl3">
+                    <img src='images/jungle.jpg'>
+                    <div class='text2'>Jungle</div> 
+                  </div>
+
+                  <div class='slides' id="sl4">
+                    <img src='images/noPlumbing.jpg'>
+                    <div class='text2'>No&nbsp;Running&nbsp;Water</div> 
+                  </div>
+
+                  <div class='slides' id="sl5">
+                    <img src='images/stairs.jpg'>
+                    <div class='text2'>Country&nbsp;Path</div> 
+                  </div>
+              <a class="prev" id='prev' onclick="nextSlide(-1)">&#10094;</a>
+              <a class='next' id='next' onclick="nextSlide(1)">&#10095;</a>
+                </div>
+
+              <div class='dots2'>
+                <span class="dot active" ></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>   
+              </div>
+
+          <p>Here is the same slideshow from topic 11, but I have used some new transforms to add interest to the slide change.</p>
+          <div class="code">
+            <code>
+              .slideshow {perspective: 1000px;}<br><br>
+              .slide {<br>
+              transform-style: preserve-3d;<br> 
+              transform: rotateX(0deg) scale(0);<br>
+              }<br><br>
+              .activeImg2 {<br>
+              transform: rotateX(1440deg) scale(1);<br>
+              }<br><br>
+              .text2 {<br>
+              transform: rotateX(-180deg);<br>
+              color: transparent;<br>
+              transition: all 1s 1s cubic-bezier(.75,-0.5,0,1.75);<br>
+              }<br><br>
+              .activeImg2 .text2 {<br>
+              transform: rotateX(0deg);<br>
+              color: white;<br>
+              }
+              
+              
+              
+            </code>
           </div>
         </section>
       </section>

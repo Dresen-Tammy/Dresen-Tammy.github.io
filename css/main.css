@@ -697,6 +697,7 @@ body {
     max-width: 500px;
     margin:10px auto 0 auto;
     position: relative;
+    overflow: hidden;
 }
 .slides {
     position: absolute;
@@ -717,6 +718,7 @@ body {
     top: 130px;
     width: auto;
     transition: color .5s;
+    z-index: 100;
 }
 .next {
     right: 0;
@@ -741,6 +743,7 @@ body {
 }
 .slides img {
     width: 100%;
+    perspective: 1000px;
 }
 .activeImg .text {
     color: white;
@@ -762,7 +765,7 @@ body {
     width: 15px;
     margin: 0 5px;
 }
-.active, .dot:hover {
+.active {
     background-color: steelblue;
 }
 /* accordian section */
@@ -794,7 +797,8 @@ body {
 .expand span {
     transform: rotate(-180deg);
 }
-/*   Topic 12 */
+/*********   Topic 12 *********/
+
 .container {
     width: 100%;
     height: 200px;
@@ -864,6 +868,7 @@ body {
     position: absolute;
     text-align: center;
     padding: 10px 0;
+    transition: all 1s ease-in-out;
 }
 .trans1 {
     transform: translate(300px, 100px);
@@ -995,6 +1000,7 @@ body {
 .flipIt .question {
     z-index: 200;
     transform: rotateX(180deg);
+    
 }
 .flipIt .answer {
     transform: rotateX(0deg);
@@ -1023,14 +1029,56 @@ body {
     margin: 10px auto;
     border: solid 2px lightsteelblue;
     overflow: hidden;
+    perspective: 1000px;
 }
 .slide {
     width: 100%;
-    height: 100%;
+    display: none;
+    transform-style: preserve-3d;
+}
+.show {
     display: block;
-    margin-left: 100%;
-    background-image: url(images/cheke.jpg);
-    overflow: hidden;
-    background-position: center top;
-    background-size: cover;
+}
+.activeImg2 {
+    animation: wild 1s linear;
+    animation-fill-mode: both;
+    animation-direction:  alternate;
+    transition: z-index 0.1s;
+    
+
+}
+.z {
+    z-index: 100;
+}
+.dots2 {
+    text-align: center;
+    margin-top: 5px;
+
+}
+.text2 {
+    z-index: 200;
+    position: absolute;
+    left: 20px;
+    top: 0;
+    color: transparent;
+    transform: rotateX(-180deg);
+    font-size: 40px;
+    padding: 5px;
+    transition: all 1s 1s cubic-bezier(.75,-0.5,0,1.75);
+    
+}
+.activeImg2 .text2 {
+    transform: rotateX(0deg);
+    color: white;
+
+    
+    
+}
+@keyframes wild {
+    0% {transform: scale(0) rotate(0deg);}
+    25% {transform: scale(.25) rotate(360deg);}
+    50% {transform: scale(.50) rotate(720deg);}
+    75% {transform: scale(.75) rotate(1080deg);}
+    100% {transform: scale(1) rotate(1440deg);}
+
 }
