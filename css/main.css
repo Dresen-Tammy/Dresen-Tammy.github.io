@@ -1022,13 +1022,14 @@ body {
     height: 400px;
     margin: 10px auto;
     border: solid 2px lightsteelblue;
+    overflow: hidden;
 }
 .slide {
     width: 100%;
     height: 100%;
     display: block;
     margin-left: 100%;
-    background-image: url("images/cheke.jpg");
+    background-image: url(images/cheke.jpg);
     overflow: hidden;
     background-position: center top;
     background-size: cover;
