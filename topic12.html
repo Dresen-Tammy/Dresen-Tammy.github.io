@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <title>Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -34,9 +34,210 @@
     </header>
     <main>
       <h1>Topic 12: Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)</h1>
+      <section>
+        <h2>CSS3 Transforms</h2>
+        <p>Transform is an attribute in CSS3 that can be used to transform an HTML element. There are several different ways to transform the object including scale(), translate(), rotate(), skew(), and matrix(). This changes the appearance of the element when viewed in a browser. The tranforms can be triggered with JavaScript.</p>
+        
+        <div class="code">
+          <code>
+            .className {<br>
+            &nbsp;&nbsp;transform: scale(x,y);<br>
+            }
+          </code>
+        </div>
+        <h3>3d transforms</h3>
+        <p>Each kind of transform can be done in 3 different directions, x, y, and z. X transforms manipulate the element along the x-axis or a horizontal line in the center of the element. Y transforms manipulate along the y-axis or a vertical line. Z transforms along the z-axis, or a line going from the screen to the user.</p>
+        <p>The z-axis creates 3d effects which can only be seen if you add a couple of attributes.</p>
+        <ul><li>Add perspective: 1000px; to the parent element. This sets the depth between the screen and user. (You can use a different measurement than 1000px and it will change the depth.)</li>
+          <li>Add transform-style: preserve-3d; to the element being transformed. This maintains the shape of the element during the transform.</li></ul>
+        <div class="code">
+          <code>
+            .parentClassName {<br>
+            &nbsp;&nbsp;perspective: 1000px;<br>
+            }<br><br>
+            .className {<br>
+            &nbsp;&nbsp;transform: scale3d(5,2,6);<br>
+            &nbsp;&nbsp;transform-style: preserve-3d;<br>
+            }
+          </code>
+        </div>
+      </section>
+      <section>
+        <h3>Scale</h3>
+        <p>scale() affects the size of an object. The object can be made smaller by entering a decimal number into the parenthesis, or larger by adding a number greater than 1. If one value is entered, the element will be scaled proportionally. If 2 values are entered, the first (x) affects the width of the element and the second (y) affects the height. A third value can be entered (z) and it will affect the depth of a 3D object. In order to get the 3D effects to show, add a perspective attribute to the parent element. For instance, on all of my examples, the parent divs have perspective: 1000px;  </p>
+        <div class="code">
+          <code>
+            transform: scale(5);    // scale equally<br><br>
+
+            transform: scaleX(2);   // scale horizontally<br><br>
+
+            transform: scaleY(.8);  // scale vertically<br><br>
+
+            transform: scaleZ(3);   // scale depth<br><br>
+
+            transform: scale(3,1.5);  // scale 2D<br><br>
+
+            transform: scale3d(2,1,5);  // scale 3D
+
+          </code>
+        </div>
+        <p> Click on the shapes to see different examples of scale</p>
+        <div class="container">
+          <div class="scaleObject" id="scaleObject">scaleY(5)</div>
+          <div class="scaleObject2" id="scaleObject2">scale(.5)</div>
+          <div class="scaleObject3" id="scaleObject3">scale(2,.5)</div>
+        </div>
+      </section>
+      <section>
+        <h3>Translate</h3>
+        <p>translate() moves an element from its original position. There are several different ways to use translate including translate(5px), translate(5px, 40px), translateX(-30px), translateY(50px), translateZ(20px), and translate3d(5px, 4px, 3px). The X, Y, Z, and 3d are similar to the scale. Negative numbers move the opposite way, on x it moves to the right, and on y it moves up.</p>
+        <div class="code">
+          <code>
+
+            transform: translateX(2px);   // move horizontally<br><br>
+
+            transform: translateY(-10px);  // move vertically<br><br>
+
+            transform: translateZ(30px);   // move depth<br><br>
+
+            transform: translate(40px, 50px);  // move both directions<br><br>
+
+            transform: translate3d(20px,10px,5px);  // move 3D
+
+          </code>
+        </div>
+        <p> Click on the shapes to see different examples of translate. Notice that children also are translated. Also, notice that translateZ brings the element closer or farther from the user, which makes it appear larger or smaller.</p>
+        <div class="container">
+
+          <div class="transObject t1" id="transObject1" onclick="trans1()">translate</div>
+          <div class="transObject t2" id="transObject2" onclick="trans2()">translateY</div>
+          <div class="transObject t3" id="transObject3" onclick="trans3()">translate3d</div>
+          <div class="transObject t4" id="transObject4" onclick="trans4()">translateZ</div>
+
+        </div>
+      </section>
+      <section>
+        <h3>Rotate</h3>
+        <p>Rotate is similar to translate, except it rotates the object. There are several options for rotate.</p>
+        <div class="code">
+             <code>
+        rotate(50deg)   //rotates the shape clockwise.<br><br>
+          rotateX(30deg) //Tilts the left edge toward and right edge away from the user.<br><br>
+          rotateY(40deg)   //tilts the top edge toward and bottom edge away from the user.<br><br>
+          rotateZ(180deg)   //rotates clockwise.<br><br>
+          rotate3d(30deg, 40deg, 50deg)   //rotates on the x, y, and z axis at the same time. <br></br>
+             </code>
+          </div>
+        <p>Notice that measurements can be written in degrees (deg), radians (rad), percentages (50%) or fraction of a turn (0.3turn). Negative numbers rotate the opposite direction. Here is the code for the rotateZ animation below.</p>
+        <div class='code'>
+          <code>
+            @keyframes rotate3 {<br>
+            0% {transform: rotateZ(0);}<br>
+            25% {transform: rotateZ(90deg);}<br>
+            50% {transform: rotateZ(180deg);}<br>
+            75% {transform: rotateZ(270deg);}<br>
+            100% {transform: rotateZ(360deg);}<br>
+            }
+          </code>
+        </div>
+        <div class="container">
+          <div class="transObject r1">rotateX</div>
+          <div class="transObject r2">rotateY</div>
+          <div class="transObject r3">rotateZ</div>
+        </div>
+      </section>
+      <section>
+        <h3>Skew</h3>
+
+
+        <p>Skew distorts the shape, for instance, making a square appear to be a parallelogram. Skew has 3 different options, skew(x,y) which changes both the x and y axis at once, skewX(50deg) which skews along the x-axis, and skewY(30deg) which skews along the y axis. Skew measurements are entered in degrees.</p>
+        <div class="code">
+          <code>
+            transform: skew(30deg, 10deg);<br>
+            transform: skewX(-30deg);<br>
+            transform: skewY(10deg);<br>
+          </code>
+        </div>
+        <div class="container">
+          <div class="transObject s1" id='skw1' onclick='skew1()'>skew</div>
+          <div class="transObject s2" id='skw2' onclick='skew2()'>skewX</div>
+          <div class="transObject s3" id='skw3' onclick='skew3()'>skewY</div>
+
+        </div>
+        </section>
+      <section>
+        <h3>Multiple Transforms On One Element</h3>
+        <p>There are two ways to perform multiple transforms on the same element. You can use multiple values in the transform attribute or you can use matrix.</p>
+        <h3>Multiple Values</h3>
+        <p>To add multiple transforms, in CSS, inside the transform attribute, add a list of transforms to be performed.</p>
+        <div class="code">
+          <code>
+            transform: rotateZ(180deg) translateX(30px) scale(2, .75);
+          </code>
+        </div>
+        <div class="container">
+          <div class="transObject m1" id='matrix2' onclick='mx2()'>rotateZ<br>translateX<br>scale</div>
+        </div>
+        <h3>Matrix</h3>
+        <p>Matrix is a combination of all of the other transforms. The syntax is:</p>
+        <div class="code">
+          <code>
+            transform: matrix(scale, skewY, skewX, scaleY, translateX, translateY);<br><br>
+             transform: matrix(1, 3, 3, 2, 100, 50);  // example
+          </code>
+        </div>
+        <div class="container">
+          <div class="transObject m1" id='matrix1' onclick='mx1()'>matrix</div>
+        </div>
+      </section>
+      <section>
+        <h2>Thought Library</h2>
+        <section>
+        <h3>Flash Cards</h3>
+        <p>These flashcards use transform: rotateX() to flip the cards vertically. The flip is triggered by mouseover and mouseout events.</p>
+        <h4>Transformation Flashcards</h4>
+        <p>Move your mouse over the card to see the answer. If you got it right, click the card to mark correct. Otherwise, move your mouse away from the card and try again.</p>
+        <div class="container2">
+          <div class="card">
+            <div class='question'>
+              <p>What would you use to turn an element upside down, without reversing the text?</p>
+            </div>
+            <div class='answer'>
+              <p>transform: rotateZ(180deg);<br><br>
+                or<br><br>
+                transform: rotate(.5turn);
+            </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class='question'>
+              <p>What would you use to move an element to the left 300 pixels and down 50 pixels?</p>
+            </div>
+            <div class='answer'>
+              <p>transform: translate(-300px, 50px);</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class='question'>
+              <p>What would you use to make an element twice as big and rotate it to the right 10 degrees? </p>
+            </div>
+            <div class='answer'>
+              <p>transform: scale(2) rotate(10deg);</p>
+            </div>
+          </div>
+        </div>
+        </section>
+        <section>
+          <h3>Slide Show</h3>
+          <div class="container3">
+            <img class="slide" src="images/cheke.jpg" alt="Colloquial Saying">
+          </div>
+        </section>
+      </section>
     </main>
     <footer>
       <p>Copyright &copy; 2018 Tammy Dresen</p>
     </footer>
   </body>
+  <script src="js/topic12.js"></script>
 </html>
