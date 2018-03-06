@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html class="html13">
   <head>
-    <title>Object Creation Functions, Inheritance, Properties, Methods, Instantiation</title>
+    <title>Designing, Defining, and Triggering CSS3 Animations without Custom Libraries</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
   </head>
-  <body>
+  <body class='body13'>
+  
+  
 
     <header>
       <p class="logo">Tammy Dresen CIT261</p>
@@ -32,11 +34,65 @@
             </ul></li>
         </ul></nav>
     </header>
-    <main>
+    
+    <main class="main13">
+      <div class="popcan" id="popcan">
+        <div class="popback">
+          
+        </div>
+      <div class="popup">
+            <h3>Information</h3>
+            <p>This is a paragraph about the information displayed on the modal popup.</p>
+            
+          </div>
+      </div>
       <h1>Topic 13: Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)</h1>
-    </main>
-    <footer>
+    
+    <section>
+    <h2>Animations</h2>
+    <p>Since animations were covered before, I will simply create a few real-world examples for this page.  You can learn more about animations on my <a href="topic9.html">Topic 9</a> page.</p>
+    </section>
+    <section>
+    <h3>Modal Pop Up</h3>
+    <p>To display new information on the page you can use a modal. This modal will pop up in front of the other information. When it is clicked again it is dismissed.</p>
+    <button type='button' onclick='openPopup()'>Open Modal</button>
+    </section>
+      <section>
+        <h3>Slide In</h3>
+        <div class='leftSlide' id="l1">
+          <h4>Slide from Right</h4>
+          <p>Another way to animate a web page is to have sections slide in from the side as you scroll down the page. This adds visual interest and highlights sections that are important.</p>
+        </div>
+        <div class='leftSlide' id="l2">
+          <h4>How it's done</h4>
+          <p>Scroll and resize event listeners are added to the window element. When the window is scrolled or resized, a function is called that checks to see if the element is visible in the window. If it is, a class is added to make the animation happen on the sliding element. When the page is scrolled up, and the element goes below the bottom of the window, that class is removed, and a different class is added to trigger another animation, and the element slides back out.</p>
+        </div>
+        <div class='leftSlide' id="l3">
+          <h4>Visible in window</h4>
+          <p>To check if the element is visible in the window, several measurements are needed.</p>
+          <ul>
+            <li>const height = window.innerHeight; The height of the window.</li>
+            <li>const top = window.scrollY; The top of the window.</li>
+            <li>const bottom = height + top; The bottom of the window.</li>
+            <li>const eHeight = elem.offsetHeight; The height of the element.</li>
+            <li>const eTop = elem.getBoundingClientRect().top + top; The top of the element.</li>
+            <li>const eBottom = eHeight + eTop; The bottom of the element</li>
+          </ul>
+          <p>To see if the element is visible in the window, compare the different measurements. If (eTop <= bottom && eBottom >= top) the element is visible in the window.</p>
+        </div>
+      </section>
+      <section>
+        <h3>Button Animations</h3>
+        <p>Animations on buttons can aid users in understanding your webpage. Having some kind of animation or transition on hover and active helps a user to know something is clickable.</p>      <div class='icons'>
+          <a href='#'><img src='images/facebook.png' class="icon facebook" id='facebook'></a>
+        <a href='#'><img src='images/instagram.png' class="icon instagram" id='instagram'></a>
+        <a href='#'><img src='images/twitter.png' class="icon twitter" id='twitter'></a>
+      </div>
+      </section>
+      </main>
+    <footer class="footer13">
       <p>Copyright &copy; 2018 Tammy Dresen</p>
     </footer>
   </body>
+  <script src="js/topic13.js"></script>
 </html>

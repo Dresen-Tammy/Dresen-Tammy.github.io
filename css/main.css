@@ -236,7 +236,6 @@ label {
     border-radius: 5px; 
     animation: mover 5s ;
 }
-
 .move4 {
     background-color: lightsteelblue;
     color: lightsteelblue;
@@ -254,8 +253,6 @@ label {
 
 }
 /* move4 when open*/
-
-
 .menuIcon {
 
     height: 40px;
@@ -313,7 +310,6 @@ label {
 .moveIt2 {
     animation: mover2 1s linear normal 1 forwards;
 }
-
 .moveIt3 {
     animation: mover3 1s linear normal 1 forwards;
 }
@@ -612,7 +608,6 @@ body {
     display: inline-block;
     font-size: 1.2em;
 }
-
 .subhead {
 
     width: 100%;
@@ -634,7 +629,6 @@ body {
     max-width: 960px;
     width: 95%;
 }
-
 .examples {
     list-style: none;
     background-color: #92afd1;
@@ -655,11 +649,9 @@ body {
 .main11 {
     transition: padding-top .5s;
 }
-
 .snap .main11 {
     padding-top: 40px;    
 }
-
 .subhead h1 {
     margin:  15px 15px 0 15px;
     transition: all .2s;
@@ -687,7 +679,6 @@ body {
 .examples li:active {
     color: #f1f1f1;
 }
-
 .i1, .i2, .i3 {
     padding-top: 50px;
 }
@@ -833,6 +824,7 @@ body {
     z-index: 1;
 
 }
+
 .bigger {
     transform: scale(.5);
 }
@@ -840,11 +832,11 @@ body {
     transform: scale(2, .5);
 
 }
-
 .taller {
     transform: scaleY(5);
 
 }
+
 .t1 {
     left: 25px;
     top: 50px;
@@ -861,6 +853,7 @@ body {
     left: 295px;
     top: 50px;
 }
+
 .transObject {
     width: 80px;
     height: 80px;
@@ -883,6 +876,7 @@ body {
     transform: translateZ(-500px);
 
 }
+
 .r1, .r2, .r3 {
     width: 100px;
     height: 100px;
@@ -930,6 +924,7 @@ body {
 .skew3 {
     transform: skewY(10deg);
 }
+
 .matrix2 {
     transform:  translateX(30px) scale(2, .75) rotate(180deg);
 }
@@ -958,6 +953,8 @@ body {
     75% {transform: rotateZ(270deg);}
     100% {transform: rotateZ(360deg);}
 }
+
+/* flash cards */
 .container2 {
     display: flex;
     flex-direction: row;
@@ -997,10 +994,10 @@ body {
     transform: rotateX(-180deg);
     transition: all .5s;
 }
+
 .flipIt .question {
     z-index: 200;
-    transform: rotateX(180deg);
-    
+    transform: rotateX(180deg); 
 }
 .flipIt .answer {
     transform: rotateX(0deg);
@@ -1047,6 +1044,7 @@ body {
     
 
 }
+/* z-index on slide change */
 .z {
     z-index: 100;
 }
@@ -1082,3 +1080,156 @@ body {
     100% {transform: scale(1) rotate(1440deg);}
 
 }
+/**************** topic 13 *****************/
+.body13 {
+    position: relative;
+    padding-bottom: 100px;
+}
+.html13 {
+    height: 100%;
+}
+.footer13 {
+    position: absolute;
+    bottom: -50px;
+}
+.popcan {
+    transform: scale(0);
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 960px;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.openPop {
+    animation: openUp 1s both;
+}
+.closePop {
+    animation: closeUp 1.5s both;
+}
+.popback {
+    background-color: lightsteelblue;
+    opacity: .8;
+    height: 100%;
+    width: 100vw;
+    
+
+    
+}
+.popup {
+    background-color: white;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    margin-top: 100px;
+    text-align: center;
+    top: 400px;
+
+  
+
+    
+}
+.openPop .popup {
+    animation: openPopup 1.5s both;
+}
+.closePop .popup {
+    animation: closePopup .5s both;
+}
+
+@keyframes openUp {
+    0% {transform: scale(.03, 0);}
+    50% {transform: scale(.03, 1);}
+    100% {transform: scale(1, 1);}
+}
+@keyframes closeUp {
+    0% {transform: scale(1, 1);}
+    25% {transform: scale(1, 1);}
+    75% {transform: scale(.03, 1);}
+    100% {transform: scale(0, 0);}
+}
+@keyframes openPopup {
+    0% {opacity: 0; transform: translateY(-50%) scale(0);}
+    75% {opacity: 1; transform: translateY(-50%) scale(0);}
+    100% {opacity: 1; transform: translateY(-50%) scale(1);}
+}
+@keyframes closePopup {
+    0% {opacity: 1; transform: translateY(-50%) scale(1);}
+    100% {opacity: 1; transform: translateY(-50%) scale(0);}
+
+
+}
+.leftSlide {
+    width: 90%;
+    background-color:  steelblue;
+    margin: 10px auto;
+    padding: 10px;
+    color: #f1f1f1;
+    transform: translate(300px, 0);
+    opacity: 0; 
+}
+.inView {
+    animation: lSlide 1.5s forwards;
+}
+.outView {
+    animation: backSlide 1.5s;
+}
+@keyframes backSlide {
+    from {opacity: 1; transform: translate(0, 0);}
+    to {opacity: 0; transform: translate(100px, 0);}
+    
+}
+
+@keyframes lSlide {
+    0% {transform: translate(100px, 0); opacity: 0;}
+    25% {transform: translate(0,0);}
+    50% {background-color: lightsteelblue; transform: translate(0,0); opacity: 1;}
+    100% {background-color: steelblue; transform: translate(0,0); opacity: 1;}
+    
+}
+.icons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+.icon {
+    margin: 10px;
+}
+.facebook:hover {
+    animation: rotate2 1s linear infinite;
+}
+.icon:active {
+    opacity: .5;
+}
+.instagram:hover {
+    animation: beats 1s infinite;
+    
+}
+.twitter:hover {
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes beats {
+    0% {transform: scale(1);}
+    25% {transform: scale(.75);}
+    50% {transform: scale(1);}
+    75% {transform: scale(1.25);}
+    100% {transform: scale(1);}
+}
+@keyframes bounce {
+    0% {transform: translateY(0);}
+    20% {transform: translateY(0) scale(1,1);}
+    40% {transform: translateY(-30px) scale(1, 1);}
+    50% {transform: translateY(0) scale(1, .9);}
+    60% {transform: translateY(-12px);}
+    80% {transform: translateY(0px) scale(1, 1);}
+    100% {transform: translateY(0px);}
+}
+ 
