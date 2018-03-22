@@ -1,0 +1,38 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 21, 2018, 2:40:51 PM
+    Author     : Dresen_HP
+*/
+
+$primary-color: steelblue;
+$secondary-color: lightsteelblue;
+$light-color: #f1f1f1;
+$dark-color: #2a4e6c;
+$accent-color: lightgoldenrodyellow;
+$dark-accent-color: khaki;
+$gradient1: radial-gradient(circle at bottom, rgba(254,255,255,0.8) 5%, rgba(236,255,0,1) 10%, rgba(253,50,41,1) 25%, rgba(243,0,0, .7) 40%, rgba(176,196,222,0.3) 80%);
+$num-columns: 12;
+$one-column: 100% / $num-columns;
+
+// fonts
+$primary-font: sans-serif;
+$secondary-font: serif;
+// mixins
+// adds font, color and type for typography section
+@mixin text($font-family, $color, $font-size: 1rem) {
+    font-family: $font-family;
+    color: $color;
+    font-size: $font-size;
+}
+
+// grid for responsive
+@mixin grid($offset, $columns, $grow: 0, $shrink: 0) {
+    $percent: $columns * $one-column;
+    $margin-left: $offset * $one-column;
+    margin-left: $margin-left;
+    flex: $grow $shrink $percent; 
+}

@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 21, 2018, 2:38:39 PM
+    Author     : Dresen_HP
+*/
+
+h1 {
+    @include text($primary-font, $light-color, 1.5rem);
+    text-align: left;
+    @include grid(1,9);
+    line-height: 2.6rem;
+}
+
+h2 {
+    @include text($secondary-font, $dark-color, .8rem);
+    margin-top: 1vh;
+}
+
+p {
+    display: block;
+    margin-bottom: 1em;
+    @include grid(1,10);
+    @include text($primary-font, $dark-color, .8rem); 
+}
+

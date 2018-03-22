@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+Time To Ride Cycling App
+-->
+<html>
+  <head>
+    <title>Seek the Sun Cycling App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+  </head>
+  <body>
+    <header>
+      
+      <h1>Race the Sun</h1>
+      
+      <div class="settings">
+        <div></div>
+      </div>
+    </header>
+    <div class="popcan" id="popcan">
+      <div class="popback" id="popback"> 
+        </div>
+        <div class="popup">
+          <p>Enter the zip-code where you will ride.<span>*</span> </p>
+          <input class="zipcode" id="zipcode"><br>
+          <button class="zipbutton" id="zipbutton" onclick="enterZip()">Plan a ride</button>
+            <p class="explain"><span>*</span> Used to access sunrise/ sunset times and cycling routes.</p>
+            
+        </div>
+      </div>
+    <main>
+      <div class="sunrise"></div>
+      <div class="button" onclick="openPopupRide()">
+      <div class="button1"></div>
+      <h2>Plan Your Ride</h2>
+    </div>
+    
+    <div class="button"> 
+      <div class="button1"></div>
+      <h2>Find A Route</h2>
+    </div>
+    
+    <div class="button">
+      <div class="button1"></div>
+      <h2>Load Your Bike</h2>
+    </div>
+    
+    
+    </main>
+    <footer>
+      
+    </footer>
+  </body>
+  <script src="js/app.js"></script>
+</html>
