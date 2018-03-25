@@ -21,22 +21,27 @@ and open the template in the editor.
 html {
     overflow: hidden;
     background-color: $secondary-color;
+    position: relative;
+    height: 100%;
+}
+body, main {
+    position: relative;
+    height: 100%;
 }
 
-/* Typography */
-
-@import 'partials/typography';
-
+@import 'partials/popup';
 
 /* flexbox grid. Sets background color and grid*/
-html {
-   position: relative;
-   height: 100%;
+
+
+section {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    width: 100%;
 }
-main {
-    @include grid(0, 12);
-}
-header, main, footer, h1, body {
+
+header, footer, h1, .buttonBox {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
@@ -67,7 +72,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5vh;
+    margin-top: 10vh;
 }
 
 .button1 {
@@ -104,11 +109,85 @@ footer {
    position: absolute;
    width: 100%;
    height: 100%;
-   top:20%;
+   top:0;
    bottom: 0px;
    z-index: -1;
    background: $gradient1;
 }
+/* Typography */
 
+@import 'partials/typography';
 /* popup */
-@import 'partials/popup';
+
+
+/* plan section */
+.homeHeader {
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    transition: z-index .3s;
+      
+}
+.headerHide {
+    z-index: 0;
+    transition: z-index .3s 1.5s;
+}
+.plan {
+    @include grid(0,12);
+    transform: translateY(-100%);
+    background-color: $light-color;
+    transition: .5s  ease-in-out;
+    
+}
+.openPlan {
+    transform: translateY(0);
+    transition: .5s 1s ease-in-out;
+}
+.textBox {
+    @include grid(1,9);
+    margin-top: 5vh;
+}
+.plan h1 {
+    @include grid(0,9);
+    padding-left: 3px;
+}
+.iconHolder {
+    @include grid(0,1);
+    align-content: center;
+}
+
+.menuIcon {
+    height: 40px;
+    position: relative;
+    padding: 10px; 
+    transition: background-color .2s ease-in;
+    width: 40px;
+    z-index: 200;
+
+    
+    
+}
+.menuIcon:hover {
+    background-color: $med-color;
+}
+.menuIcon span {
+    align-content: center;
+    background-color: $light-color;
+    display: block;
+    height: 1.5px;
+    position: relative;
+    transform: rotate(45deg) translate(4px, 8px);
+    width: 20px;
+    overflow: visible;
+}
+.menuIcon span::before {
+    background-color: $light-color;
+    content: "";
+    height: 1.5px;
+    position: absolute;
+    transform: rotate(-90deg);
+    width: 20px;
+
+}
+
+

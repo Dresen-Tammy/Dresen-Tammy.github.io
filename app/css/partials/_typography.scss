@@ -19,11 +19,16 @@ h2 {
     @include text($secondary-font, $dark-color, .8rem);
     margin-top: 1vh;
 }
+h3 {
+    @include text($secondary-font, $dark-color, 1.2rem);
+    margin-top: 1vh;
+    margin-bottom: .5vh;
+
+}
 
 p {
     display: block;
-    margin-bottom: 1em;
-    @include grid(1,10);
+
     @include text($primary-font, $dark-color, .8rem); 
 }
 

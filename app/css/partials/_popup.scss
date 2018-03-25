@@ -8,7 +8,6 @@ User enters zipcode and average speed.
     display: flex;
     justify-content: center;
     left: 0;
-    max-width: 960px;
     position: absolute;
     right: 0;
     top: 0;
@@ -32,13 +31,15 @@ User enters zipcode and average speed.
 }
 .popup {
     background-color: $accent-color;
-    height: 200px;
     margin-top: 100px;
     padding: 10px;
     position: absolute;
     text-align: left;
-    top: 15vh;
-    width: 200px;
+    top: 30vh;
+    width: 250px;
+    box-shadow: 2px 2px 4px $med-color;
+    max-height: 85%;
+    overflow-y: scroll;
     & p {
         margin-left: 0;
         
@@ -47,11 +48,23 @@ User enters zipcode and average speed.
         margin-top: 30px;
     }
     
+    
+}
+.question, .question2 {
+        padding: 2px 8px;
+        background-color: $secondary-color;
+        color: $dark-color;
+        margin-left: 5px;
+        box-shadow: 3px 2px 2px $dark-accent-color;
+        float: right;
+}
+.question2 {
+    margin-top: 10px;
 }
 .zipbutton {
     padding: 5px;
     border-radius: 10px;
-    width: 52%;
+    width: 65%;
     margin-top: 15px;
 }
 .openPop .popup {
@@ -70,14 +83,61 @@ User enters zipcode and average speed.
 .zipcode {
     box-shadow: 3px 2px 2px $dark-accent-color;
     border: none;
-    font-size: 1rem;
-    width: 52%;
+    font-size: .8rem;
+    width: 65%;
     color: $dark-color;
+    margin-bottom: 10px;
     &:focus {
         border: solid 2px $dark-accent-color;
         
     }
     
+}
+ul {
+    margin-top: 3px;
+}
+li {
+    margin-bottom: 7px;
+}
+
+.sunbutton {
+    width: 35px;
+    height: 30px;
+    padding: 2px;
+    border-radius: 5px;
+    box-shadow: 3px 2px 2px $dark-accent-color;
+    background-color: $light-color;
+    display: inline-block;
+    transform: translateY(5px);
+    margin-top: -15px;
+    margin-left: 5px;
+}
+.advice, .advice2 {
+    position: absolute;
+    background-color: white;
+    transform: translateX(150px);
+    
+    right: 0;
+    padding: 0 10px 10px 10px;
+    font-size: .6rem;
+    transition: 1s ease-in;
+    box-shadow: -3px 2px 2px $xdark-accent-color;
+}
+.advice {
+    top: 367px;
+}
+.advice2 {
+    transform: translateX(250px);
+    top: 160px;
+    z-index: 100;
+    width: 80%
+}
+.show {
+    transform: translateX(0);
+    transition: 1s ease-out;
+}
+.warning {
+    border: solid 2px $alert-color;
 }
 
 /*keyframes */

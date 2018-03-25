@@ -10,10 +10,13 @@ and open the template in the editor.
 
 $primary-color: steelblue;
 $secondary-color: lightsteelblue;
+$med-color: #92afd1;
 $light-color: #f1f1f1;
 $dark-color: #2a4e6c;
 $accent-color: lightgoldenrodyellow;
 $dark-accent-color: khaki;
+$xdark-accent-color: darkkhaki;
+$alert-color: indianred;
 $gradient1: radial-gradient(circle at bottom, rgba(254,255,255,0.8) 5%, rgba(236,255,0,1) 10%, rgba(253,50,41,1) 25%, rgba(243,0,0, .7) 40%, rgba(176,196,222,0.3) 80%);
 $num-columns: 12;
 $one-column: 100% / $num-columns;
