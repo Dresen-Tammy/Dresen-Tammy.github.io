@@ -74,6 +74,9 @@ function createZipSelect(parent) {
 function closeZipToMap() {
     // get user entered zipcode info
     let zipInfo = getZip();
+    if (zipInfo == "" || zipInfo == "ZERO_RESULTS" || zipInfo == undefined) {
+        return;
+    }
     // get map
     let lat = zipInfo[0].lat;
     let lng = zipInfo[0].lng;
@@ -126,10 +129,19 @@ function getZip() {
                 // if it is there, return that info;
                 if (zip == addZip) {
                     zipInfo = zipList[i];
+                    if (zipInfo == "ZERO_RESULTS" || zipInfo == '') {
+                        document.getElementById('zipAlert').classList.toggle('alert');
+                        return;
+                    } else {
                     return zipInfo
+                    }
                     // if not there, run XMLHttpRequest for new info and return
                 } else {
                     let newZipInfo = newLocation(addZip);
+                    if (newZipInfo = "ZERO_RESULTS" || zipInfo == '') {
+                        document.getElementById('zipAlert').classList.toggle('alert');
+                        return;
+                    }
                     // return new zip info
                     return newZipInfo;
                 }
@@ -159,7 +171,7 @@ function getZip() {
 function newLocation(zip) {
 // get zipcode and format it in url
 
-    const url = "https://maps.googleapis.com/maps/api/geocode/json?address="
+    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=&components=postal_code:"
             + zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
     // create new XMLHttpRequest object
     let xhr = new XMLHttpRequest();
@@ -167,6 +179,9 @@ function newLocation(zip) {
     xhr.open("GET", url, false);
     xhr.send();
     let response = JSON.parse(xhr.responseText);
+    if (response.status == "ZERO_RESULTS") {
+        return response.status;
+    }
     const lat = response.results[0].geometry.location.lat;
     const lng = response.results[0].geometry.location.lng;
     const city = response.results[0].address_components[1].long_name;
