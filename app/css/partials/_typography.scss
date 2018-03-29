@@ -31,4 +31,8 @@ p {
 
     @include text($primary-font, $dark-color, .8rem); 
 }
+.alert {
+    color: $alert-color;
+    font-weight: bold;
+}
 

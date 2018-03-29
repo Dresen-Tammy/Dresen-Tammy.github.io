@@ -163,6 +163,9 @@ li {
 .warning {
   border: solid 2px indianred; }
 
+.zipAlert {
+  color: transparent; }
+
 /*keyframes */
 @keyframes openUp {
   0% {
@@ -304,10 +307,14 @@ p {
   color: #2a4e6c;
   font-size: 0.8rem; }
 
+.alert {
+  color: indianred;
+  font-weight: bold; }
+
 /* popup */
 /* plan section */
 .homeHeader {
-  z-index: 1000;
+  /*z-index: 1000;*/
   position: absolute;
   width: 100%;
   transition: z-index .3s; }
@@ -323,8 +330,15 @@ p {
   background-color: #f1f1f1;
   transition: .5s  ease-in-out; }
 
+.route {
+  margin-left: 0%;
+  flex: 0 0 100%;
+  background-color: #f1f1f1;
+  transform: translateX(-100%);
+  transition: .5s  ease-in-out; }
+
 .openPlan {
-  transform: translateY(0);
+  transform: translate(0);
   transition: .5s 1s ease-in-out; }
 
 .textBox {
@@ -332,7 +346,7 @@ p {
   flex: 0 0 75%;
   margin-top: 5vh; }
 
-.plan h1 {
+.plan h1, .route h1 {
   margin-left: 0%;
   flex: 0 0 75%;
   padding-left: 3px; }
@@ -370,5 +384,16 @@ p {
   position: absolute;
   transform: rotate(-90deg);
   width: 20px; }
+
+.map {
+  height: 65%;
+  width: 95%;
+  margin: auto; }
+
+.route .zipbutton {
+  margin-left: 3%; }
+
+.location {
+  margin-left: 3%; }
 
 /*# sourceMappingURL=app.css.map */

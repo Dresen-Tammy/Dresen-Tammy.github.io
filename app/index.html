@@ -26,115 +26,155 @@ X13. Animations
 -->
 <html lang="en-us">
   <head>
-    <title>Seek the Sun Cycling App</title>
+    <title>Race the Sun Cycling App</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/app.css">
   </head>
+  
+  
+  
+  
   <body>
-
+<!-------Popup for planning ride------------>
     <div class="popcan" id="popcan">
       <div class="popback" id="popback"> 
       </div>
-      <div class="popup">
-        <h2>Ride Logistics (required)</h2>
-        
-        <p>Zipcode of ride start.* </p>
+      <div class="popup" id="popup">
+        <div id="logistics">
+          <h2>Ride Logistics (required)</h2>
 
-        <input class="zipcode" id="zipcode" required><br>
-        <p>Date of ride</p>
-        <input id="dateInput" class="zipcode" type="date">
-        
+          <p>Zipcode of ride start.* </p>
+
+          <input class="zipcode" id="zipcode" type='number' value='92028' required><br>
+          <p>Date of ride</p>
+          <input id="dateInput" class="zipcode" type="date" value='2018-03-23' required>
+        </div>
         <hr>
-        
-        <span class="question2" id="question2" onclick="advice2()">?</span>
-        <div class="advice2" id="advice2">
-          <h2>Enter 3 fields</h2>
-          <ul><li>Enter START TIME, END TIME, SPEED to see how many miles you can go in the time available.</li>
-            <li>Enter START TIME, DISTANCE, SPEED to see when you will be done.</li>
-            <li>Enter DISTANCE, END TIME, SPEED time to see when you need to start.</li>
-            <li>Enter START TIME, END TIME, DISTANCE to see how fast you need to ride.</li>
-            <li>To start at sunrise, or end at sunset, click the SUNRISE or SUNSET icons.</li>
-            <li>** If all 4 fields are filled, SPEED will be ignored. **</ul>
+        <div id="duration">
+          <span class="question2" id="question2" onclick="advice2()">?</span>
+          <div class="advice2" id="advice2">
+            <h2>Enter 3 fields</h2>
+            <ul><li>Enter START TIME, END TIME, SPEED to see how far you can go in the time available.</li>
+              <li>Enter START TIME, DISTANCE, SPEED to see when you will end.</li>
+              <li>Enter DISTANCE, END TIME, SPEED time to see when you should start.</li>
+              <li>Enter START TIME, END TIME, DISTANCE to see how fast you should ride.</li>
+              <li>To start at sunrise, or end at sunset, click the SUNRISE or SUNSET icons.</li>
+              <li>** If all 4 fields are filled, SPEED will be ignored. **</ul>
+          </div>
+          <h2>Ride Duration</h2>
+
+          <p>Enter 3 of the 4 fields.<br>The 4th will be calculated.</p><br>
+
+
+          <p>START TIME</p> 
+          <input class="zipcode" id="start" type="time" value="17:00" min="00:01" max="23:59">
+          <div class="sunbutton" onclick="fillSunrise()"><img src="sunrise.png" alt="" class="sunIcon" ></div>
+          <br>
+          <p>END TIME</p> <input class="zipcode" id="end" type="time" min="00:01" max="23:59">
+          <div class="sunbutton" onclick="fillSunset()"><img src="sunset.png" alt="" class="sunIcon"></div>
+          <br>
+          <p>DISTANCE in miles</p> <input class="zipcode" id="miles" type="number"><br>
+          <p>Average SPEED in MPH.</p>
+          <input class="zipcode" id="average" type="number" min="0" value="10" required>
+          <span class="question" id="question2" onclick="advice()">?</span>
+          <div class="advice" id="advice">
+            <h2>Average MPH</h2>
+            <ul><li>Casual = 10</li>
+              <li>Fast = 15</li>
+              <li>Racing = 20</li></ul>
+          </div>
         </div>
-        <h2>Ride Duration</h2>
-        
-        <p>Enter 3 of the 4 fields.<br>The 4th will be calculated.</p><br>
-        
-          
-        <p>START TIME</p> 
-        <input class="zipcode" id="start" type="time" value="17:00" min="00:01" max="23:59">
-        <div class="sunbutton" onclick="fillSunrise()"><img src="sunrise.png" alt="" class="sunIcon" ></div>
-        <br>
-        <p>END TIME</p> <input class="zipcode" id="end" type="time" min="00:01" max="23:59">
-        <div class="sunbutton" onclick="fillSunrise()"><img src="sunset.png" alt="" class="sunIcon"></div>
-        <br>
-        <p>DISTANCE in miles</p> <input class="zipcode" id="miles" type="number"><br>
-        <p>Average SPEED in MPH.</p>
-        <input class="zipcode" id="average" type="number" min="0" value="10" required>
-        <span class="question" id="question2" onclick="advice()">?</span>
-        <div class="advice" id="advice">
-          <h2>Average MPH</h2>
-          <ul><li>Casual = 10</li>
-            <li>Fast = 15</li>
-            <li>Racing = 20</li></ul>
-        </div>
-        
-        
+
+
         <p class="explain"><span>*</span> Used to access sunrise/ sunset times and cycling routes.</p>
         <button class="zipbutton" id="zipbutton">Plan a ride</button>
 
       </div>
     </div>
+
+
+
+<!-------Popup for getting routes------------>
+    <div class="popcan" id="popcan2">
+      <div class="popback" id="popback2"> 
+      </div>
+      <div class="popup" id="popup2">
+        <p id='zipAlert' class='zipAlert'>Choose or enter a zipcode.</p>
+        <form><h2>Choose Zip Code</h2>
+          
+          <div class='zipParent' id='zipParent'>
+             
+          </div>
+        <h2>Or Enter New Zip Code</h2>
+        <input class='zipcode' id='addZip' type='number'>
+        <br><button type="button" class='zipbutton' onclick='closeZipToMap()'>Select</button>
+        </form>
+      </div>
+    </div>
+
+
+
+
     <main>
+<!-----------Header------------>
       <header class="homeHeader" id="homeHeader">
 
-          <h1>Race the Sun</h1>
+        <h1>Race the Sun</h1>
 
-          <div class="settings">
-            <div></div>
-          </div>
-        </header>
+        <div class="settings">
+          <div></div>
+        </div>
+      </header>
+
+<!------------Home Page------------>
       <section class="home" id="home">
-        
+
         <div class="sunrise"></div>
         <div class="buttonBox">
-        <div class="button" onclick="checkLocalStorage()">
-          <div class="button1"></div>
-          <h2>Plan Your Ride</h2>
-        </div>
+          
+          <div class="button" onclick="openPopup()">
+            <div class="button1"></div>
+            <h2>Plan Your Ride</h2>
+          </div>
 
-        <div class="button"> 
-          <div class="button1"></div>
-          <h2>Find A Route</h2>
-        </div>
+          <div class="button"> 
+            <div class="button1" onclick='openZipPopUp()'></div>
+            <h2>Find A Route</h2>
+          </div>
 
-        <div class="button">
-          <div class="button1"></div>
-          <h2>Load Your Bike</h2>
-        </div>
+          <div class="button">
+            <div class="button1"></div>
+            <h2>Load Your Bike</h2>
+          </div>
+          
         </div>
       </section>
-      <section class="plan" id="plan">
+
+
+<!------------Plan Page------------>
+      <section class="plan " id="plan">
         <header>
           <div class="iconHolder">
-          <div id='menuIcon' class="menuIcon" onclick="closePlan()">
-            <span></span>
-          </div>
+            <div id='menuIcon' class="menuIcon" onclick="closePlan()">
+              <span></span>
+            </div>
           </div>
           <h1>Plan a Ride</h1>
-             
+
           <div class="settings">
             <div></div>
           </div>
         </header>
-          <div class="textBox">
-            <div class="tile" id="tile">
+        
+        
+        <div class="textBox">
+          <div class="tile" id="tile">
             <div class="data" id="rideDate">Ride Date:</div>
             <div class="data" id="rideLocation">RideLocation:</div>
-          <div class="data" id="sunriseTime"></div>
-          
-            </div>
+            <div class="data" id="sunriseTime"></div>
+
+          </div>
           <h3>Figure start, end or mileage.</h3>
           <p>Enter 2 of the following 3 values.</p>
           <p>The app will figure out the 3rd.</p><br>
@@ -143,12 +183,35 @@ X13. Animations
           Miles Planned: <input class="planInput" id="mileage"><br>
           <button>Calculate</button>
           <button class="button" onclick=""></button>
-          </div>
+        </div>
       </section>
+
+
+<!------------Route Page------------>
+<section class="route" id="route">
+  <header>
+    <div class="iconHolder">
+      <div id='menuIcon2' class="menuIcon" onclick="closeRoute()">
+        <span></span>
+      </div>
+    </div>
+    <h1>Find a Route</h1>
+
+    <div class="settings">
+      <div></div>
+    </div>
+  </header>
+  <h3 id='location' class='location'></h3>
+  <div class='map' id='map'></div>
+  <button class='zipbutton' onclick='openZipPopUp()'>New Location</button>
+  
+</section>
     </main>
     <footer>
 
     </footer>
   </body>
   <script src="js/app.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOcfaT9_IfCo-WbcL3AnD0_JhNWgcPGjM">
+    </script>
 </html>

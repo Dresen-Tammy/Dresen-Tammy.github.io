@@ -139,7 +139,9 @@ li {
 .warning {
     border: solid 2px $alert-color;
 }
-
+.zipAlert {
+    color: transparent;
+}
 /*keyframes */
 @keyframes openUp {
     0% {transform: scale(.03, 0);}

@@ -122,7 +122,7 @@ footer {
 
 /* plan section */
 .homeHeader {
-    z-index: 1000;
+    /*z-index: 1000;*/
     position: absolute;
     width: 100%;
     transition: z-index .3s;
@@ -139,15 +139,21 @@ footer {
     transition: .5s  ease-in-out;
     
 }
+.route {
+    @include grid(0,12);
+    background-color: $light-color;
+    transform: translateX(-100%);
+    transition: .5s  ease-in-out;
+}
 .openPlan {
-    transform: translateY(0);
+    transform: translate(0);
     transition: .5s 1s ease-in-out;
 }
 .textBox {
     @include grid(1,9);
     margin-top: 5vh;
 }
-.plan h1 {
+.plan h1, .route h1 {
     @include grid(0,9);
     padding-left: 3px;
 }
@@ -189,5 +195,15 @@ footer {
     width: 20px;
 
 }
+.map {
+   height: 65%; 
+   width: 95%;
+   margin: auto;
+}
+.route .zipbutton {
+    margin-left: 3%
+}
 
-
+.location {
+    margin-left: 3%;
+}
