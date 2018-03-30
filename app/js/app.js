@@ -7,6 +7,7 @@
  ********************************/
 
 addEventListener('load', setup);
+
 function setup() {
     //add event listener to close popup for zipcode.
     const popback = document.getElementById('popback');
@@ -43,9 +44,9 @@ function openZipPopUp() {
 // adds zipcode select list to either popup
 function createZipSelect(parent) {
     if (document.getElementById('zipSelect')) {
-        const child = document.getElementById('zipSelect');
+    const child = document.getElementById('zipSelect');
         child.parentNode.removeChild(child);
-    }
+        }
     let select = document.createElement('select');
     select.id = 'zipSelect';
     select.classList.add('zipcode');
@@ -78,23 +79,25 @@ function closeZipToMap() {
         return;
     }
     // get map
-    let lat = zipInfo[0].lat;
-    let lng = zipInfo[0].lng;
-    let city = zipInfo[0].city;
+    let lat = zipInfo.lat;
+    let lng = zipInfo.lng;
+    let city = zipInfo.city;
     document.getElementById('location').innerHTML = city;
-    initMap(lat, lng);
+    initMap();
     // close zip popup
     closeZipPopUp();
     // display route info
+    displayRoute();
 }
 
-function initMap(mylat, mylng) {
+function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: {lat: mylat, lng: mylng}
+        zoom: 10,
+        center: {lat: 43.8231, lng: 111.7924}
+        
     });
-    var bikeLayer = new google.maps.BicyclingLayer();
-    bikeLayer.setMap(map);
+    //var bikeLayer = new google.maps.BicyclingLayer();
+    //bikeLayer.setMap(map);
 }
 
 
@@ -107,60 +110,61 @@ function closeZipPopUp() {
         popcan2.classList.remove('openPop');
     }
 }
+function displayRoute() {
+    let plan = document.getElementById('route');
+        plan.classList.toggle('openPlan');
+}
+
 // get zipcode entered by user on zip popup
-function getZip() {
-// get inputs for zipcode
+function getZip() { 
+    // get inputs for zipcode from user
     const zipSelect = document.getElementById('zipSelect').value;
     const addZip = document.getElementById('addZip').value;
     let zipInfo = "";
-    // check to see if inputs are filled in.
-    if (zipSelect == '' && addZip == '') {
-// if both inputs blank, add alert.
+    
+    if (zipSelect == '' && addZip == '') {//1. if inputs not filled in.
+        // if both inputs blank, add alert, return to zip popup.
         document.getElementById('zipAlert').classList.toggle('alert');
         return;
-    } else if (addZip != "") {
-//if ziplist is set up in local storage, get from local storage
-        if (localStorage['zipList']) {
+    } else if (addZip != "") {// 2. if addZip filled in
+        
+        if (localStorage['zipList']) { // 2a. if local storage has zipList
             const zipList = JSON.parse(localStorage.getItem('zipList'));
             let i;
             // check to see if zip is already in local storage
-            for (i in zipList) {
+            for (i in zipList) { // loop through local storage
                 let zip = zipList[i].zip;
-                // if it is there, return that info;
-                if (zip == addZip) {
+                
+                if (zip == addZip) {// 2a.1 If match in local storage
                     zipInfo = zipList[i];
-                    if (zipInfo == "ZERO_RESULTS" || zipInfo == '') {
-                        document.getElementById('zipAlert').classList.toggle('alert');
-                        return;
-                    } else {
-                    return zipInfo
-                    }
-                    // if not there, run XMLHttpRequest for new info and return
-                } else {
-                    let newZipInfo = newLocation(addZip);
-                    if (newZipInfo = "ZERO_RESULTS" || zipInfo == '') {
-                        document.getElementById('zipAlert').classList.toggle('alert');
-                        return;
-                    }
-                    // return new zip info
-                    return newZipInfo;
+                    return zipInfo;
                 }
             }
-// if zipList not set up in local storage, get new zipcode info and return
-        } else {
-            let newZipInfo = newLocation(addZip);
-            return newZipInfo;
+            // if no match found in forloop, get new zip info
+            zipInfo = newLocation(addZip);
+            if (zipInfo == "ZERO_RESULTS" || zipInfo == '') {//2a.2 if error with get zip ir if zip invalid 
+                document.getElementById('zipAlert').classList.toggle('alert');
+                return zipInfo;
+            } else {
+                // return new zip info when no error occured.
+                return zipInfo;
+            }
+        
+        
+        } else {// 2b. if localStorage doesn't have ziplist 
+        let zipInfo = newLocation(addZip);
+        return zipInfo;
         }
 
-// if zipcode chosen from dropdown list, get zipList from local storage and return
-    } else {
+    // if zipcode chosen from dropdown list, get zipList from local storage and return
+    } else { //3.  zip from select list chosen
         const zipList = JSON.parse(localStorage.getItem('zipList'));
         let i;
-        let zipInfo = [];
+        let zipInfo;;
         for (i in zipList) {
             let zipcode = zipList[i].zip;
             if (zipcode == zipSelect) {
-                zipInfo.push(zipList[i]);
+                zipInfo = {lat: zipList[i].lat, lng: zipList[i].lng, city: zipList[i].city, state: zipList[i].state, zip: zipList[i].zip};
                 return zipInfo;
             }
         }
@@ -171,41 +175,41 @@ function getZip() {
 function newLocation(zip) {
 // get zipcode and format it in url
 
-    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=&components=postal_code:"
-            + zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
-    // create new XMLHttpRequest object
-    let xhr = new XMLHttpRequest();
-    // prepare and send request
-    xhr.open("GET", url, false);
-    xhr.send();
-    let response = JSON.parse(xhr.responseText);
-    if (response.status == "ZERO_RESULTS") {
-        return response.status;
-    }
-    const lat = response.results[0].geometry.location.lat;
-    const lng = response.results[0].geometry.location.lng;
-    const city = response.results[0].address_components[1].long_name;
-    const state = response.results[0].address_components[2].short_name;
-    const zipCont = {'lat': lat, 'lng': lng, 'city': city, 'state': state, 'zip': zip};
-    let zipList;
-    if (localStorage['zipList']) {
-        zipList = JSON.parse(localStorage.getItem('zipList'));
-        zipList.push(zipCont);
-    } else {
-        zipList = [zipCont];
-    }
-    localStorage.setItem('zipList', JSON.stringify(zipList));
-    return zipList;
+const url = "https://maps.googleapis.com/maps/api/geocode/json?address=&components=postal_code:"
+        + zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
+        // create new XMLHttpRequest object
+        let xhr = new XMLHttpRequest();
+        // prepare and send request
+        xhr.open("GET", url, false);
+        xhr.send();
+        let response = JSON.parse(xhr.responseText);
+        if (response.status == "ZERO_RESULTS") {
+return response.status;
+        }
+const lat = response.results[0].geometry.location.lat;
+        const lng = response.results[0].geometry.location.lng;
+        const city = response.results[0].address_components[1].long_name;
+        const state = response.results[0].address_components[2].short_name;
+        const zipInfo = {'lat': lat, 'lng': lng, 'city': city, 'state': state, 'zip': zip};
+        let zipList;
+        if (localStorage['zipList']) {
+zipList = JSON.parse(localStorage.getItem('zipList'));
+        zipList.push(zipInfo);
+        } else {
+zipList = [zipInfo];
+        }
+localStorage.setItem('zipList', JSON.stringify(zipList));
+        return zipInfo;
 }
 
 
 
 function closeRoute() {
 
-    let plan = document.getElementById('route');
-    plan.classList.toggle('openPlan');
-    let header = document.getElementById('homeHeader');
-    header.classList.toggle('headerHide');
+let plan = document.getElementById('route');
+        plan.classList.toggle('openPlan');
+        let header = document.getElementById('homeHeader');
+        header.classList.toggle('headerHide');
 }
 
 /*********************************
@@ -341,89 +345,89 @@ function closeRoute() {
 
 // get today's date and change it to correct format for html5 date.
 function getDate() {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth();
-    const yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = '0' + dd;
-    }
-    if (mm < 10) {
-        mm = '0' + mm;
-    }
-    today = yyyy + '-' + mm + '-' + dd;
-    return today;
+let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth();
+        const yyyy = today.getFullYear();
+        if (dd < 10) {
+dd = '0' + dd;
+        }
+if (mm < 10) {
+mm = '0' + mm;
+        }
+today = yyyy + '-' + mm + '-' + dd;
+        return today;
 }
 
 // actually opens the popup
 function openPopup() {
 // display popup
-    const popcan = document.getElementById('popcan');
-    popcan.classList.add('openPop');
-    if (popcan.classList.contains('closePop')) {
-        popcan.classList.remove('closePop');
-    }
+const popcan = document.getElementById('popcan');
+        popcan.classList.add('openPop');
+        if (popcan.classList.contains('closePop')) {
+popcan.classList.remove('closePop');
+        }
 }
 
 // when sunrise button is clicked fillSunrise()
 function fillSunrise() {
-    let valid = checkZipDate();
-    if (valid) {
-        let sunTimes = sunset();
+let valid = checkZipDate();
+        if (valid) {
+let sunTimes = sunset();
         let sunrise = document.getElementById('start');
         sunrise.value = sunTimes[0];
         //document.getElementById('startInput').value = sunrise;        
-    }
+        }
 
 }
 
 
 function checkZipDate() {
-    const zip = document.getElementById('zipcode').value;
-    const rideDate = document.getElementById('dateInput').value;
-    if (rideDate == "" || zip == "") {
-        if (document.getElementById('sunAlert')) {
-            document.getElementById('sunAlert').innerHTML = "Please enter valid zipcode and date";
+const zip = document.getElementById('zipcode').value;
+        const rideDate = document.getElementById('dateInput').value;
+        if (rideDate == "" || zip == "") {
+if (document.getElementById('sunAlert')) {
+document.getElementById('sunAlert').innerHTML = "Please enter valid zipcode and date";
         } else {
-            let newPar = document.createElement('p');
-            const textnode = document.createTextNode("Valid zipcode and Date are required");
-            newPar.appendChild(textnode);
-            newPar.classList.add('alert');
-            newPar.id = 'sunAlert';
-            document.getElementById('logistics').appendChild(newPar);
-            return false;
+let newPar = document.createElement('p');
+        const textnode = document.createTextNode("Valid zipcode and Date are required");
+        newPar.appendChild(textnode);
+        newPar.classList.add('alert');
+        newPar.id = 'sunAlert';
+        document.getElementById('logistics').appendChild(newPar);
+        return false;
         }
-    } else {
-        if (document.getElementById('sunAlert')) {
-            const sunAlert = document.getElementById('sunAlert');
-            sunAlert.parentNode.removeChild(sunAlert);
+} else {
+if (document.getElementById('sunAlert')) {
+const sunAlert = document.getElementById('sunAlert');
+        sunAlert.parentNode.removeChild(sunAlert);
         }
-        return true;
-    }
+return true;
+        }
 }
 // when Plan a Ride button is clicked, 
 // validates values,stores to localstorage, opens the plan feature.
 function closePopToPlan() {
 // Initialize variables
-    let zipInput = "";
-    let dateInput = "";
-    let startInput = "";
-    let endInput = "";
-    let distanceInput = "";
-    let speedInput = "";
-    // get values by id from popup and validate
-    //validate zipcode
-    zip = document.getElementById('zipcode');
-    if (!/(^\d{5}$)/.test(zip.value)) {
-        zip.classList.add('warning');
-    } else {
+let zipInput = "";
+        let dateInput = "";
+        let startInput = "";
+        let endInput = "";
+        let distanceInput = "";
+        let speedInput = "";
+        // get values by id from popup and validate
+        //validate zipcode
+        zip = document.getElementById('zipcode');
+        if (!/(^\d{5}$)/.test(zip.value)) {
+zip.classList.add('warning');
+        } else {
 // remove warning border around zipcode
-        if (zip.classList.contains('warning')) {
-            zip.classList.remove('warning');
-            zipInput = zip;
+if (zip.classList.contains('warning')) {
+zip.classList.remove('warning');
+        zipInput = zip;
         }
 // since only valid date is possible, 
-        dateInput = document.getElementById('dateInput');
+dateInput = document.getElementById('dateInput');
         // sinc
         startInput = document.getElementById('start');
         endInput = document.getElementById('end');
@@ -454,44 +458,44 @@ function closePopToPlan() {
          button.removeEventListener('click', closePopToPlan); 
          openPlan();*/
 
-    }
+        }
 }
 // actually closes the popup
 function closePopup() {
-    const popcan = document.getElementById('popcan');
-    popcan.classList.add('closePop');
-    const advice = document.getElementById('advice');
-    if (advice.classList.contains('show')) {
-        advice.classList.remove('show');
-    }
-    if (popcan.classList.contains('openPop')) {
-        popcan.classList.remove('openPop');
-    }
+const popcan = document.getElementById('popcan');
+        popcan.classList.add('closePop');
+        const advice = document.getElementById('advice');
+        if (advice.classList.contains('show')) {
+advice.classList.remove('show');
+        }
+if (popcan.classList.contains('openPop')) {
+popcan.classList.remove('openPop');
+        }
 }
 // toggle average speed advice
 function advice() {
-    const advice = document.getElementById('advice');
-    advice.classList.toggle('show');
+const advice = document.getElementById('advice');
+        advice.classList.toggle('show');
 }
 function advice2() {
-    const advice = document.getElementById('advice2');
-    advice.classList.toggle('show');
+const advice = document.getElementById('advice2');
+        advice.classList.toggle('show');
 }
 
 /*********************************
  * Planning section
  ********************************/
 function openPlan() {
-    sunset();
-    document.getElementById('rideDate').innerHTML += localStorage.getItem('rideDate');
-    let response = JSON.parse(localStorage.getItem('location'));
-    let city = response.results[0].address_components[1].long_name;
-    let state = response.results[0].address_components[2].short_name;
-    document.getElementById('rideLocation').innerHTML += city + ", " + state;
-    const plan = document.getElementById('plan');
-    plan.classList.toggle('openPlan');
-    let header = document.getElementById('homeHeader');
-    header.classList.toggle('headerHide');
+sunset();
+        document.getElementById('rideDate').innerHTML += localStorage.getItem('rideDate');
+        let response = JSON.parse(localStorage.getItem('location'));
+        let city = response.results[0].address_components[1].long_name;
+        let state = response.results[0].address_components[2].short_name;
+        document.getElementById('rideLocation').innerHTML += city + ", " + state;
+        const plan = document.getElementById('plan');
+        plan.classList.toggle('openPlan');
+        let header = document.getElementById('homeHeader');
+        header.classList.toggle('headerHide');
 }
 
 /* XMLHttpRequest */
@@ -499,20 +503,20 @@ function openPlan() {
 function getLocation(zip) {
 // get zipcode and format it in url
 
-    const url = "https://maps.googleapis.com/maps/api/geocode/json?address="
-            + zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
-    // create new XMLHttpRequest object
-    let xhr = new XMLHttpRequest();
-    // prepare and send request
-    xhr.open("GET", url, false);
-    xhr.send();
-    // parse response
-    localStorage.setItem('location', xhr.responseText);
-    let response = JSON.parse(xhr.responseText);
-    let lat = response.results[0].geometry.location.lat;
-    let lng = response.results[0].geometry.location.lng;
-    const latLong = "lat=" + lat + "&lng=" + lng;
-    return latLong;
+const url = "https://maps.googleapis.com/maps/api/geocode/json?address="
+        + zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
+        // create new XMLHttpRequest object
+        let xhr = new XMLHttpRequest();
+        // prepare and send request
+        xhr.open("GET", url, false);
+        xhr.send();
+        // parse response
+        localStorage.setItem('location', xhr.responseText);
+        let response = JSON.parse(xhr.responseText);
+        let lat = response.results[0].geometry.location.lat;
+        let lng = response.results[0].geometry.location.lng;
+        const latLong = "lat=" + lat + "&lng=" + lng;
+        return latLong;
 }
 
 
@@ -523,105 +527,105 @@ function sunset() {
 
 // get user input and check to make sure it isn't undefined
 //let rideDate = localStorage.getItem('rideDate');
-    let rideDate = document.getElementById('dateInput').value;
-    const zip = document.getElementById('zipcode').value;
-    //if (rideDate == undefined || zip == undefined) {
-    //openPopUp();
-    //} else {
+let rideDate = document.getElementById('dateInput').value;
+        const zip = document.getElementById('zipcode').value;
+        //if (rideDate == undefined || zip == undefined) {
+        //openPopUp();
+        //} else {
 
-    // call function to get lat and long coordinates from zipcode.
-    const lonLat = getLocation(zip);
-    // concat URL for request
-    const url = "https://api.sunrise-sunset.org/json?" + lonLat + "&date=" + rideDate;
-    // create new xmlhttpRequest object
-    let xhr = new XMLHttpRequest();
-    /* onreadystatechange function for asynchronous load will run when  
-     *response is complete 
-     */
+        // call function to get lat and long coordinates from zipcode.
+        const lonLat = getLocation(zip);
+        // concat URL for request
+        const url = "https://api.sunrise-sunset.org/json?" + lonLat + "&date=" + rideDate;
+        // create new xmlhttpRequest object
+        let xhr = new XMLHttpRequest();
+        /* onreadystatechange function for asynchronous load will run when  
+         *response is complete 
+         */
 
-    /*xhr.onreadystatechange = function () {
-     if (this.readyState == 4 && this.status == 200) {
-     // parse response and get sunrise and sunset times from it
-     let response = JSON.parse(xhr.responseText);
-     
-     let sunrise = response.results.sunrise;
-     let sunset = response.results.sunset;
-     return response;
-     /* learned how to change from UTC to current user's browser time here: 
-     * https://stackoverflow.com/questions/6525538/convert-utc-date-time-to-local-date-time*/
+        /*xhr.onreadystatechange = function () {
+         if (this.readyState == 4 && this.status == 200) {
+         // parse response and get sunrise and sunset times from it
+         let response = JSON.parse(xhr.responseText);
+         
+         let sunrise = response.results.sunrise;
+         let sunset = response.results.sunset;
+         return response;
+         /* learned how to change from UTC to current user's browser time here: 
+         * https://stackoverflow.com/questions/6525538/convert-utc-date-time-to-local-date-time*/
 
-    /* change utc time to local time. Use amPm function to convert
-     * from military time.
-     */
-    /*sunrise = rideDate + " " + sunrise + " UTC";
-     sunrise = new Date(sunrise);
-     sunrise = amPm(sunrise);
-     sunset = rideDate + " " + sunset + " UTC";
-     sunset = new Date(sunset);
-     sunset = amPm(sunset);
-     // create message with sunrise and sunset times
-     let message = "";
-     message += "Sunrise:" + sunrise + "<br>"
-     + "Sunset: " + sunset;
-     // display message in div
-     alert(message);
-     }
-     };*/
-    /* prepare and send xmlhttpRequest. Once response is loaded, 
-     * onreadystatechange function above will run.
-     */
+        /* change utc time to local time. Use amPm function to convert
+         * from military time.
+         */
+        /*sunrise = rideDate + " " + sunrise + " UTC";
+         sunrise = new Date(sunrise);
+         sunrise = amPm(sunrise);
+         sunset = rideDate + " " + sunset + " UTC";
+         sunset = new Date(sunset);
+         sunset = amPm(sunset);
+         // create message with sunrise and sunset times
+         let message = "";
+         message += "Sunrise:" + sunrise + "<br>"
+         + "Sunset: " + sunset;
+         // display message in div
+         alert(message);
+         }
+         };*/
+        /* prepare and send xmlhttpRequest. Once response is loaded, 
+         * onreadystatechange function above will run.
+         */
 
-    xhr.open("GET", url, false);
-    xhr.send();
-    let response = JSON.parse(xhr.responseText);
-    let sunrise = response.results.sunrise;
-    let sunset = response.results.sunset;
-    /* learned how to change from UTC to current user's browser time here: 
-     * https://stackoverflow.com/questions/6525538/convert-utc-date-time-to-local-date-time*/
+        xhr.open("GET", url, false);
+        xhr.send();
+        let response = JSON.parse(xhr.responseText);
+        let sunrise = response.results.sunrise;
+        let sunset = response.results.sunset;
+        /* learned how to change from UTC to current user's browser time here: 
+         * https://stackoverflow.com/questions/6525538/convert-utc-date-time-to-local-date-time*/
 
-    /* change utc time to local time. Use amPm function to convert
-     * from military time.
-     */
-    sunrise = rideDate + " " + sunrise + " UTC";
-    sunrise = new Date(sunrise);
-    sunrise = amPm(sunrise);
-    sunset = rideDate + " " + sunset + " UTC";
-    sunset = new Date(sunset);
-    sunset = amPm(sunset);
-    const sunTimes = [sunrise, sunset];
-    return sunTimes;
+        /* change utc time to local time. Use amPm function to convert
+         * from military time.
+         */
+        sunrise = rideDate + " " + sunrise + " UTC";
+        sunrise = new Date(sunrise);
+        sunrise = amPm(sunrise);
+        sunset = rideDate + " " + sunset + " UTC";
+        sunset = new Date(sunset);
+        sunset = amPm(sunset);
+        const sunTimes = [sunrise, sunset];
+        return sunTimes;
 }
 
 
 
 // change military time to normal time with AM or PM.
 function amPm(date) {
-    let hour = date.getHours();
-    let amPm;
-    if (hour < 12) {
-        amPm = "AM";
-    } else if (hour == 12) {
-        amPm = "PM";
-    } else if (hour < 24) {
-        amPm = "PM";
+let hour = date.getHours();
+        let amPm;
+        if (hour < 12) {
+amPm = "AM";
+        } else if (hour == 12) {
+amPm = "PM";
+        } else if (hour < 24) {
+amPm = "PM";
         hour -= 12;
-    } else {
-        amPm = "AM";
+        } else {
+amPm = "AM";
         hour -= 12;
-    }
-    let zero = "";
-    let minutes = date.getMinutes();
-    if (minutes < 10) {
-        zero = "0";
-    }
-    const time = hour + ":" + zero + minutes + " " + amPm;
-    return time;
+        }
+let zero = "";
+        let minutes = date.getMinutes();
+        if (minutes < 10) {
+zero = "0";
+        }
+const time = hour + ":" + zero + minutes + " " + amPm;
+        return time;
 }
 
 function closePlan() {
 
-    let plan = document.getElementById('plan');
-    plan.classList.toggle('openPlan');
-    let header = document.getElementById('homeHeader');
-    header.classList.toggle('headerHide');
+let plan = document.getElementById('plan');
+        plan.classList.toggle('openPlan');
+        let header = document.getElementById('homeHeader');
+        header.classList.toggle('headerHide');
 }

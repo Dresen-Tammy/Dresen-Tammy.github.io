@@ -386,9 +386,10 @@ p {
   width: 20px; }
 
 .map {
-  height: 65%;
+  height: 60%;
   width: 95%;
-  margin: auto; }
+  margin: auto;
+  background-color: grey; }
 
 .route .zipbutton {
   margin-left: 3%; }

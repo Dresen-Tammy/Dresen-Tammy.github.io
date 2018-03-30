@@ -100,13 +100,14 @@ X13. Animations
       <div class="popback" id="popback2"> 
       </div>
       <div class="popup" id="popup2">
-        <p id='zipAlert' class='zipAlert'>Choose or enter a zipcode.</p>
+        <p id='zipAlert' class='zipAlert'>Choose or enter a valid zipcode.</p>
         <form><h2>Choose Zip Code</h2>
           
           <div class='zipParent' id='zipParent'>
-             
+            
           </div>
-        <h2>Or Enter New Zip Code</h2>
+          <h2>OR</h2>
+        <h2>Enter New Zip Code</h2>
         <input class='zipcode' id='addZip' type='number'>
         <br><button type="button" class='zipbutton' onclick='closeZipToMap()'>Select</button>
         </form>
@@ -188,7 +189,7 @@ X13. Animations
 
 
 <!------------Route Page------------>
-<section class="route" id="route">
+<section class="route openPlan" id="route">
   <header>
     <div class="iconHolder">
       <div id='menuIcon2' class="menuIcon" onclick="closeRoute()">
@@ -210,8 +211,12 @@ X13. Animations
     <footer>
 
     </footer>
+<script src="js/app.js"></script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOcfaT9_IfCo-WbcL3AnD0_JhNWgcPGjM&callback=initMap">
+</script>
+
   </body>
-  <script src="js/app.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOcfaT9_IfCo-WbcL3AnD0_JhNWgcPGjM">
-    </script>
+  
+  
 </html>
