@@ -14,6 +14,7 @@ function setup() {
     popback.addEventListener('click', closePopup);
     const popback2 = document.getElementById('popback2');
     popback2.addEventListener('click', closeZipPopUp);
+    
 }
 /*********************************
  * get routes
@@ -83,17 +84,17 @@ function closeZipToMap() {
     let lng = zipInfo.lng;
     let city = zipInfo.city;
     document.getElementById('location').innerHTML = city;
-    initMap();
+    initMap(lat, lng);
     // close zip popup
     closeZipPopUp();
     // display route info
     displayRoute();
 }
 
-function initMap() {
+function initMap(mylat = 43.8231, mylong = 111.7924) {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
-        center: {lat: 43.8231, lng: 111.7924}
+        center: {lat: mylat, lng: mylong}
         
     });
     //var bikeLayer = new google.maps.BicyclingLayer();
