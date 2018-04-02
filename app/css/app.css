@@ -66,11 +66,10 @@ User enters zipcode and average speed.
 
 .popup {
   background-color: lightgoldenrodyellow;
-  margin-top: 100px;
   padding: 10px;
   position: absolute;
   text-align: left;
-  top: 30vh;
+  top: 40px;
   width: 250px;
   box-shadow: 2px 2px 4px #92afd1;
   max-height: 85%;
@@ -86,7 +85,8 @@ User enters zipcode and average speed.
   color: #2a4e6c;
   margin-left: 5px;
   box-shadow: 3px 2px 2px khaki;
-  float: right; }
+  float: right;
+  border-radius: 5px; }
 
 .question2 {
   margin-top: 10px; }
@@ -96,6 +96,19 @@ User enters zipcode and average speed.
   border-radius: 10px;
   width: 65%;
   margin-top: 15px; }
+
+.zipbutton3 {
+  padding: 3px 5px;
+  border-radius: 5px;
+  width: 65%;
+  margin-bottom: 15px;
+  background-color: #f1f1f1;
+  border: none;
+  box-shadow: 3px 2px 2px khaki;
+  text-align: left; }
+
+.or {
+  margin: -5px 0 5px 30px; }
 
 .openPop .popup {
   animation: openPopup 1s both; }
@@ -148,11 +161,13 @@ li {
   box-shadow: -3px 2px 2px darkkhaki; }
 
 .advice {
-  top: 367px; }
+  top: 170px;
+  right: 0; }
 
 .advice2 {
-  transform: translateX(250px);
-  top: 160px;
+  transform: translateX(360px);
+  top: 248px;
+  right: 0px;
   z-index: 100;
   width: 80%; }
 
@@ -165,6 +180,44 @@ li {
 
 .zipAlert {
   color: transparent; }
+
+.zipbox {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px 2px;
+  background-color: #fdfde9; }
+
+.closeZipBox {
+  height: 20px; }
+
+.open {
+  background-color: lightgoldenrodyellow;
+  border-bottom: solid khaki 1px; }
+
+.open h2 {
+  padding: 5px; }
+
+.open .back {
+  font-size: 1em;
+  color: #2a4e6c;
+  padding: 5px;
+  background-color: lightsteelblue;
+  border-radius: 5px;
+  margin-left: 70px;
+  box-shadow: 3px 2px 2px khaki; }
+
+.hide {
+  visibility: hidden; }
+
+.open .arrow {
+  color: steelblue;
+  transform: rotate(90deg); }
+
+.expand .collapse {
+  height: 0; }
+
+.rotateArrow {
+  transform: rotate(90deg); }
 
 /*keyframes */
 @keyframes openUp {
@@ -186,20 +239,20 @@ li {
 @keyframes openPopup {
   0% {
     opacity: 0;
-    transform: translateY(-50%) scale(0); }
+    transform: scale(0); }
   75% {
     opacity: 1;
-    transform: translateY(-50%) scale(0); }
+    transform: scale(0); }
   100% {
     opacity: 1;
-    transform: translateY(-50%) scale(1); } }
+    transform: scale(1); } }
 @keyframes closePopup {
   0% {
     opacity: 1;
-    transform: translateY(-50%) scale(1); }
+    transform: scale(1); }
   100% {
     opacity: 1;
-    transform: translateY(-50%) scale(0); } }
+    transform: scale(0); } }
 /* flexbox grid. Sets background color and grid*/
 section {
   position: absolute;
@@ -326,7 +379,7 @@ p {
 .plan {
   margin-left: 0%;
   flex: 0 0 100%;
-  transform: translateY(-100%);
+  transform: translateX(100%);
   background-color: #f1f1f1;
   transition: .5s  ease-in-out; }
 
@@ -385,6 +438,15 @@ p {
   transform: rotate(-90deg);
   width: 20px; }
 
+.mi2 {
+  float: right; }
+
+.mi2 span {
+  background-color: steelblue; }
+
+.mi2 span::before {
+  background-color: steelblue; }
+
 .map {
   height: 60%;
   width: 95%;
@@ -396,5 +458,18 @@ p {
 
 .location {
   margin-left: 3%; }
+
+.popup3 {
+  background-color: #f1f1f1;
+  padding: 10px;
+  top: 100px;
+  position: absolute;
+  text-align: left;
+  width: 250px;
+  box-shadow: 2px 2px 4px #92afd1;
+  transition: transform .5s; }
+
+.shrink {
+  transform: rotateX(90deg); }
 
 /*# sourceMappingURL=app.css.map */

@@ -8,13 +8,13 @@
 
 addEventListener('load', setup);
 
+
 function setup() {
     //add event listener to close popup for zipcode.
     const popback = document.getElementById('popback');
-    popback.addEventListener('click', closePopup);
+    popback.addEventListener('click', closePlanPopup);
     const popback2 = document.getElementById('popback2');
-    popback2.addEventListener('click', closeZipPopUp);
-    
+    popback2.addEventListener('click', closeRoutePopUp);
 }
 /*********************************
  * get routes
@@ -27,7 +27,7 @@ function setup() {
 
 
 
-function openZipPopUp() {
+function openRoutePopUp() {
     // get list of zips from localStorage and create select list for zipPopUp
     const parent = document.getElementById('zipParent');
     createZipSelect(parent);
@@ -70,9 +70,103 @@ function createZipSelect(parent) {
     parent.appendChild(select);
 }
 
+// if validated info is invalid
+function alertError(alert) {
+    if (alert.classList.contains('alert')) {
+        alert.innnerHTML = 'Make sure zipcode is valid';
+        return;
+    } else {
+        alert.classList.add('alert');
+        return;
+    }
+}
+function alertError2(alert, message) {
+    alert.innerHTML = message;
+    return;
+    
+}
+
+function closeRoutePopupToRoute() {
+    // get inputs for zipcode from user
+    const zipSelect = document.getElementById('zipSelect').value;
+    let addZip = document.getElementById('newZip').value;
+    const alert = document.getElementById('zipAlert');
+    let zipInfo;
+    if (zipSelect == '' && addZip == '') {
+        alertError(alert);
+        return;
+    } else if (addZip != "") {
+        zipInfo = checkLocalStorage(addZip);
+        
+    } else {
+        zipInfo = newLocation(zipSelect);
+    }
+    if (zipInfo == "ZERO_RESULTS" || zipInfo == '') {
+        alertError(alert);
+        return
+    } else {
+        let lat = zipInfo.lat
+        let lng = zipInfo.lng;
+        let city = zipInfo.city;
+        document.getElementById('location').innerHTML = city;
+        initMap(lat, lng);
+        // close zip popup
+        closeRoutePopUp();
+        // display route info
+        displayRoute();
+    }
+}
+function checkLocalStorage(zipcode) {
+    let zipList = JSON.parse(localStorage.getItem('zipList'));
+    let i;
+    let zip; 
+    let zipInfo;
+        // check to see if zip is already in local storage
+        for (i in zipList) { // loop through local storage
+            zip = zipList[i].zip;
+            if (zip == zipcode) {
+                zipInfo = zipList[i];
+                return zipInfo;
+            } 
+        }
+        zipInfo = newLocation(zipcode);
+        return zipInfo;
+
+}
 
 
-// when button clicked on zip popup, get zip info, get map, close popup, 
+
+
+
+
+function newLocation(zip) {
+    // get zipcode and format it in url
+    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=&components=postal_code:"
+        + zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
+    // create new XMLHttpRequest object
+    let xhr = new XMLHttpRequest();
+    // prepare and send request
+    xhr.open("GET", url, false);
+    xhr.send();
+    let response = JSON.parse(xhr.responseText);
+    if (response.status == "ZERO_RESULTS") {
+        return response.status;
+    }
+    const lat = response.results[0].geometry.location.lat;
+    const lng = response.results[0].geometry.location.lng;
+    const city = response.results[0].address_components[1].long_name;
+    const state = response.results[0].address_components[2].short_name;
+    const zipInfo = {'lat': lat, 'lng': lng, 'city': city, 'state': state, 'zip': zip};
+    let zipList;
+    if (localStorage['zipList']) {
+        zipList = JSON.parse(localStorage.getItem('zipList'));
+        zipList.push(zipInfo);
+    } else {
+        zipList = [zipInfo];
+    }
+    localStorage.setItem('zipList', JSON.stringify(zipList));
+    return zipInfo;
+}
 function closeZipToMap() {
     // get user entered zipcode info
     let zipInfo = getZip();
@@ -86,7 +180,7 @@ function closeZipToMap() {
     document.getElementById('location').innerHTML = city;
     initMap(lat, lng);
     // close zip popup
-    closeZipPopUp();
+    closeRoutePopUp();
     // display route info
     displayRoute();
 }
@@ -101,9 +195,59 @@ function initMap(mylat = 43.8231, mylong = 111.7924) {
     //bikeLayer.setMap(map);
 }
 
+function accordianNext() {
+    const date = document.getElementById('dateInput').value;
+    const zip = document.getElementById('zipSelect').value;
+    const datealert = document.getElementById('zipAlert4');
+    const zipalert = document.getElementById('zipAlert5');
+    if (date == "" || date == undefined) {
+        alertError(datealert);
+        return;  
+    }
+    if (zip == '') {
+        alertError(zipalert);
+        return;
+    }
+    const zipInfo = checkLocalStorage(zip);
+    const lat = zipInfo.lat;
+    const lng = zipInfo.lng;
+    sunset(date,lat,lng);
+    document.getElementById('back').classList.toggle('hide');
+    document.getElementById('next').classList.toggle('hide');
+    const sections = document.getElementsByClassName('open');
+    
+    
+    for (let i = 0; i < sections.length; i++) {
+        sections[i].classList.toggle('expand');
+    }
+}
+function accordianBack() {
+    document.getElementById('back').classList.toggle('hide');
+    document.getElementById('next').classList.toggle('hide');
+    const sections = document.getElementsByClassName('open');
+    
+    
+    for (let i = 0; i < sections.length; i++) {
+        sections[i].classList.toggle('expand');
+    }
+}
 
+function fillSunrise() {
+    if (localStorage['sunInfo']) {
+        let sunInfo = JSON.parse(localStorage.getItem('sunInfo'));
+        let sunrise = sunInfo[0];
+        document.getElementById('start').value = sunrise;
+    }
+} 
+function fillSunset() {
+    if (localStorage['sunInfo']) {
+        let sunInfo = JSON.parse(localStorage.getItem('sunInfo'));
+        let sunset = sunInfo[1];
+        document.getElementById('end').value = sunset;
+    } 
+}
 // closes zip popup open.
-function closeZipPopUp() {
+function closeRoutePopUp() {
     // close zip popup
     const popcan = document.getElementById('popcan2');
     popcan.classList.add('closePop');
@@ -111,16 +255,16 @@ function closeZipPopUp() {
         popcan2.classList.remove('openPop');
     }
 }
-function displayRoute() {
+function openRoute() {
     let plan = document.getElementById('route');
         plan.classList.toggle('openPlan');
 }
 
 // get zipcode entered by user on zip popup
-function getZip() { 
+/*function getZip() { 
     // get inputs for zipcode from user
     const zipSelect = document.getElementById('zipSelect').value;
-    const addZip = document.getElementById('addZip').value;
+    let addZip = document.getElementById('newZip').value;
     let zipInfo = "";
     
     if (zipSelect == '' && addZip == '') {//1. if inputs not filled in.
@@ -170,7 +314,7 @@ function getZip() {
             }
         }
     }
-}
+}*/
 
 
 function newLocation(zip) {
@@ -202,6 +346,7 @@ zipList = [zipInfo];
 localStorage.setItem('zipList', JSON.stringify(zipList));
         return zipInfo;
 }
+
 
 
 
@@ -361,7 +506,10 @@ today = yyyy + '-' + mm + '-' + dd;
 }
 
 // actually opens the popup
-function openPopup() {
+function openPlanPopup() {
+   // create select list
+   const parent = document.getElementById('zipParent2');
+    createZipSelect(parent);
 // display popup
 const popcan = document.getElementById('popcan');
         popcan.classList.add('openPop');
@@ -370,18 +518,111 @@ popcan.classList.remove('closePop');
         }
 }
 
-// when sunrise button is clicked fillSunrise()
-function fillSunrise() {
-let valid = checkZipDate();
-        if (valid) {
-let sunTimes = sunset();
-        let sunrise = document.getElementById('start');
-        sunrise.value = sunTimes[0];
-        //document.getElementById('startInput').value = sunrise;        
-        }
 
+function openPlanZipPopup() {
+    const popup = document.getElementById('popup3');
+    popup.classList.remove('shrink');
+}
+function closePlanZipPopup() {
+    const popup = document.getElementById('popup3');
+    popup.classList.add('shrink');
+}
+function addNewZipToPlan() { 
+    //// validate entry, check localStorage, getNewZip, Save to localStorage, 
+    ////closePopup, Select in plan popup 
+    
+// get user entered zipcode info
+    const zip = document.getElementById('addZip').value;
+    const alert = document.getElementById('zipAlert3');
+    let zipInfo;
+    if (zip == "" || zip == undefined) {
+        alert(alert);
+        return
+    } else {
+        zipInfo = addZip(zip);
+        if (zipInfo == "" || zipInfo == "ZERO_RESULTS" || zipInfo == undefined) {
+            alert(alert);
+            return  
+        } else {
+            const parent = document.getElementById('zipParent2');
+            createZipSelect(parent);
+            closePlanZipPopup();
+            return;
+        }
+        
+    }
 }
 
+function addNewZip() {
+// get user entered zipcode info
+    const zip = document.getElementById('addZip').value;
+    const alert = document.getElementById('zipAlert3');
+    let zipInfo;
+    if (zip == "" || zip == undefined) {
+        if (alert.classList.contains('alert')) {
+            alert.innnerHTML = 'Make sure zipcode is valid';
+            return;
+        } else {
+            alert.classList.add('alert');
+            return;
+        }
+    } else {
+        zipInfo = addZip(zip);
+        if (zipInfo == "" || zipInfo == "ZERO_RESULTS" || zipInfo == undefined) {
+            if (alert.classList.contains('alert')) {
+                alert.innnerHTML = 'Make sure zipcode is valid';
+                return;
+            } else {
+                alert.classList.add('alert');
+                return;
+            }
+        } else {
+            const parent = document.getElementById('zipParent2');
+            createZipSelect(parent);
+            document.getElementById('zipSelect').value = zipInfo.zip;
+            document.getElementById('popup3').classList.add('shrink');
+            if (alert.classList.contains('alert')) {
+                alert.classList.remove('alert');
+                return;
+            }
+        
+        }
+    }
+}
+
+function addZip(addZip) {
+    if (localStorage['zipList']) { // 2a. if local storage has zipList
+            const zipList = JSON.parse(localStorage.getItem('zipList'));
+            let i;
+            // check to see if zip is already in local storage
+            for (i in zipList) { // loop through local storage
+                let zip = zipList[i].zip;
+                
+                if (zip == addZip) {// 2a.1 If match in local storage
+                    zipInfo = zipList[i];
+                    return zipInfo;
+                }
+            }
+            // if no match found in forloop, get new zip info
+            zipInfo = newLocation(addZip);
+            if (zipInfo == "ZERO_RESULTS" || zipInfo == '') {//2a.2 if error with get zip ir if zip invalid 
+                document.getElementById('zipAlert').classList.toggle('alert');
+                return zipInfo;
+            } else {
+                // return new zip info when no error occured.
+                zipList.push(zipInfo);
+                localStorage.setItem(zipList, JSON.stringify(zipList));
+                return zipInfo;
+            }
+        
+        
+        } else {// 2b. if localStorage doesn't have ziplist 
+        let zipInfo = newLocation(addZip);
+        zipList = {lat: zipInfo.lat, lng: zipInfo.lng, city: zipInfo.city, state: zipInfo.state, zip: zipInfo.zip};
+        localStorage.setItem(zipList, zipList);        
+        return zipInfo;
+        }
+}
 
 function checkZipDate() {
 const zip = document.getElementById('zipcode').value;
@@ -407,7 +648,88 @@ return true;
         }
 }
 // when Plan a Ride button is clicked, 
-// validates values,stores to localstorage, opens the plan feature.
+// validates values and decides which function to perform
+function planRide () {
+    const start = document.getElementById('start').value;
+    const end = document.getElementById('end').value;
+    const miles = document.getElementById('miles').value;
+    const alert = document.getElementById('timeAlert');
+    alert.innerHTML = "";
+    let choice;
+    let message;
+    if ((start == "" && end == "" && miles == "") 
+            || (start == "" && end == "") || (start == "" && miles == "")
+            ||(end == "" && miles == "")) {
+        message = "Fill in 2 text fields. Click question mark for help.";
+            alertError2(alert, message);
+    } else if (miles === '0' || miles < 0) {
+        message = 'Distance must be greater than 1.';
+        alertError2(alert, message);
+    } else if (start == "") {
+        choice = start;
+        calcRide(choice)
+    } else if (end == "") {
+        choice = end;
+        calcRide(choice)
+    } else if (start > end){
+        message = "End time must be after Start time.";
+        alertError2(alert, message);
+    } else if (miles == "") {
+        choice = "miles";
+        calcRide(choice)
+    } else { 
+        message = "Leave 1 field blank. Click question mark for help.";
+            alertError2(alert, message);
+    }
+}
+
+function calcRide(choice) {
+    const date = document.getElementById('dateInput').value;
+    const zip = document.getElementById('zipSelect').value;
+    const start = document.getElementById('start').value;
+    const end = document.getElementById('end').value;
+    const distance = document.getElementById('miles').value;
+    const speed = document.getElementById('average').value;
+    // get city info from localStorage
+    const zipInfo = checkLocalStorage(zip);
+    const city = zipInfo.city;
+    const sunInfo = JSON.parse(localStorage.getItem("sunInfo"));
+    const sunrise = sunInfo[3];
+    const sunset = sunInfo[4];
+    // calculate based on choice
+    if (choice == "start") {
+        start = end - (distance/speed)
+    } else if (choice == "end") {
+        end = start + (distance/speed)
+    } else {
+        distance = calcDistance(start, end, speed);
+    }
+    // put all info into plan page
+    document.getElementById('planDate').innerHTML = date;
+    document.getElementById('planCity').innerHTML = city;
+    document.getElementById('planStart').innerHTML = start;
+    document.getElementById('planEnd').innerHTML = end;
+    document.getElementById('planDistance').innerHTML = distance;
+    document.getElementById('planSpeed').innerHTML = speed;
+    document.getElementById('planSunrise').innerHTML = sunrise;
+    document.getElementById('planSunset').innerHTML = sunset;
+    openPlan();
+}
+
+function calcStartTime(end, distance, speed) {
+    
+}
+function calcEndTime(start, distance, speed) {
+    const end = start + (distance/speed)
+}
+function calcDistance(start, end, speed) {
+    
+}
+function openPlan() {
+    
+}
+     
+
 function closePopToPlan() {
 // Initialize variables
 let zipInput = "";
@@ -462,7 +784,7 @@ dateInput = document.getElementById('dateInput');
         }
 }
 // actually closes the popup
-function closePopup() {
+function closePlanPopup() {
 const popcan = document.getElementById('popcan');
         popcan.classList.add('closePop');
         const advice = document.getElementById('advice');
@@ -486,116 +808,78 @@ const advice = document.getElementById('advice2');
 /*********************************
  * Planning section
  ********************************/
-function openPlan() {
-sunset();
-        document.getElementById('rideDate').innerHTML += localStorage.getItem('rideDate');
-        let response = JSON.parse(localStorage.getItem('location'));
-        let city = response.results[0].address_components[1].long_name;
-        let state = response.results[0].address_components[2].short_name;
-        document.getElementById('rideLocation').innerHTML += city + ", " + state;
-        const plan = document.getElementById('plan');
-        plan.classList.toggle('openPlan');
-        let header = document.getElementById('homeHeader');
-        header.classList.toggle('headerHide');
-}
 
-/* XMLHttpRequest */
-// get City and State from US zipcode.
-function getLocation(zip) {
-// get zipcode and format it in url
-
-const url = "https://maps.googleapis.com/maps/api/geocode/json?address="
-        + zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
-        // create new XMLHttpRequest object
-        let xhr = new XMLHttpRequest();
-        // prepare and send request
-        xhr.open("GET", url, false);
-        xhr.send();
-        // parse response
-        localStorage.setItem('location', xhr.responseText);
-        let response = JSON.parse(xhr.responseText);
-        let lat = response.results[0].geometry.location.lat;
-        let lng = response.results[0].geometry.location.lng;
-        const latLong = "lat=" + lat + "&lng=" + lng;
-        return latLong;
-}
 
 
 /* request sunset times for certain zip code. 
  * Calls getLatLong() function to get coordinates for zip.
  * Asynchronous load XMLHTTPRequest */
-function sunset() {
 
-// get user input and check to make sure it isn't undefined
-//let rideDate = localStorage.getItem('rideDate');
-let rideDate = document.getElementById('dateInput').value;
-        const zip = document.getElementById('zipcode').value;
-        //if (rideDate == undefined || zip == undefined) {
-        //openPopUp();
-        //} else {
+function sunset(date, lat, lng) {
 
-        // call function to get lat and long coordinates from zipcode.
-        const lonLat = getLocation(zip);
+        const lonLat = "lat=" + lat + "&lng=" + lng;
         // concat URL for request
-        const url = "https://api.sunrise-sunset.org/json?" + lonLat + "&date=" + rideDate;
+        const url = "https://api.sunrise-sunset.org/json?" + lonLat + "&date=" + date;
         // create new xmlhttpRequest object
         let xhr = new XMLHttpRequest();
         /* onreadystatechange function for asynchronous load will run when  
          *response is complete 
          */
 
-        /*xhr.onreadystatechange = function () {
-         if (this.readyState == 4 && this.status == 200) {
-         // parse response and get sunrise and sunset times from it
-         let response = JSON.parse(xhr.responseText);
-         
-         let sunrise = response.results.sunrise;
-         let sunset = response.results.sunset;
-         return response;
-         /* learned how to change from UTC to current user's browser time here: 
-         * https://stackoverflow.com/questions/6525538/convert-utc-date-time-to-local-date-time*/
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // parse response and get sunrise and sunset times from it
+                let response = xhr.responseText;
+                response = JSON.parse(response);
+                let sunrise = response.results.sunrise;
+                let sunset = response.results.sunset;
+                let milSunrise;
+                let milSunset;
+                /* learned how to change from UTC to current user's browser time here: 
+                 * https://stackoverflow.com/questions/6525538/convert-utc-date-time-to-local-date-time*/
+                
+                /* change utc time to local time. Use amPm function to convert
+                 * from military time.
+                 */
+                sunrise = date + " " + sunrise + " UTC";
+                sunrise = new Date(sunrise);
+                milSunrise = milTime(sunrise);
+                sunrise = amPm(sunrise);
+                sunset = date + " " + sunset + " UTC";
+                sunset = new Date(sunset);
+                milSunset = milTime(sunset);
+                sunset = amPm(sunset);
+                // create message with sunrise and sunset times
+                let sunInfo = [milSunrise, milSunset, sunrise, sunset];
+                localStorage.setItem('sunInfo', JSON.stringify(sunInfo));
+                document.getElementById('planSunrise').innerHTML = "Sunrise:" + sunrise;
+                document.getElementById('planSunset').innerHTML = "Sunset:" + sunset;
 
-        /* change utc time to local time. Use amPm function to convert
-         * from military time.
-         */
-        /*sunrise = rideDate + " " + sunrise + " UTC";
-         sunrise = new Date(sunrise);
-         sunrise = amPm(sunrise);
-         sunset = rideDate + " " + sunset + " UTC";
-         sunset = new Date(sunset);
-         sunset = amPm(sunset);
-         // create message with sunrise and sunset times
-         let message = "";
-         message += "Sunrise:" + sunrise + "<br>"
-         + "Sunset: " + sunset;
-         // display message in div
-         alert(message);
-         }
-         };*/
+            }
+        }
+        
+        
+        
         /* prepare and send xmlhttpRequest. Once response is loaded, 
          * onreadystatechange function above will run.
          */
-
-        xhr.open("GET", url, false);
+        xhr.open("GET", url, true);
         xhr.send();
-        let response = JSON.parse(xhr.responseText);
-        let sunrise = response.results.sunrise;
-        let sunset = response.results.sunset;
-        /* learned how to change from UTC to current user's browser time here: 
-         * https://stackoverflow.com/questions/6525538/convert-utc-date-time-to-local-date-time*/
+    }
 
-        /* change utc time to local time. Use amPm function to convert
-         * from military time.
-         */
-        sunrise = rideDate + " " + sunrise + " UTC";
-        sunrise = new Date(sunrise);
-        sunrise = amPm(sunrise);
-        sunset = rideDate + " " + sunset + " UTC";
-        sunset = new Date(sunset);
-        sunset = amPm(sunset);
-        const sunTimes = [sunrise, sunset];
-        return sunTimes;
-}
+function milTime(time) {
+            let hour = time.getHours();
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+            let minute = time.getMinutes();
+            if (minute < 10) {
+                minute = "0" + minute;
+            }
+            time = hour + ":" + minute;
+            return time;
+        }
+
 
 
 

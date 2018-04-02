@@ -31,11 +31,10 @@ User enters zipcode and average speed.
 }
 .popup {
     background-color: $accent-color;
-    margin-top: 100px;
     padding: 10px;
     position: absolute;
     text-align: left;
-    top: 30vh;
+    top: 40px;
     width: 250px;
     box-shadow: 2px 2px 4px $med-color;
     max-height: 85%;
@@ -57,6 +56,7 @@ User enters zipcode and average speed.
         margin-left: 5px;
         box-shadow: 3px 2px 2px $dark-accent-color;
         float: right;
+        border-radius: 5px;
 }
 .question2 {
     margin-top: 10px;
@@ -66,6 +66,21 @@ User enters zipcode and average speed.
     border-radius: 10px;
     width: 65%;
     margin-top: 15px;
+}
+.zipbutton3 {
+    padding: 3px 5px;
+    border-radius: 5px;
+    width: 65%;
+    margin-bottom: 15px;
+    background-color: $light-color;
+    border: none;
+    box-shadow: 3px 2px 2px $dark-accent-color;
+    text-align: left;
+
+    
+}
+.or {
+    margin: -5px 0 5px 30px;
 }
 .openPop .popup {
     animation: openPopup 1s both;
@@ -124,11 +139,13 @@ li {
     box-shadow: -3px 2px 2px $xdark-accent-color;
 }
 .advice {
-    top: 367px;
+    top: 170px;
+    right: 0;
 }
 .advice2 {
-    transform: translateX(250px);
-    top: 160px;
+    transform: translateX(360px);
+    top: 248px;
+    right: 0px;
     z-index: 100;
     width: 80%
 }
@@ -141,6 +158,56 @@ li {
 }
 .zipAlert {
     color: transparent;
+}
+.zipbox {
+    
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 2px;
+    background-color: #fdfde9;
+}
+.closeZipBox {
+    height: 20px;
+}
+
+.open {
+    background-color: $accent-color;
+    border-bottom: solid $dark-accent-color 1px; 
+
+}
+.open h2 {
+    padding: 5px;
+
+}
+.open .back {
+
+    font-size: 1em;
+    color: $dark-color;
+    padding: 5px;
+    background-color: $secondary-color;
+    border-radius: 5px;
+    margin-left: 70px;
+    box-shadow: 3px 2px 2px $dark-accent-color;
+
+}
+.hide {
+    visibility: hidden;
+}
+.open .arrow {
+    color: $primary-color;
+    transform:  rotate(90deg);
+}
+.expand .collapse {
+    height: 0;
+
+    
+}
+
+.rotateArrow {
+    transform: rotate(90deg);
+}
+.collapse {
+    
 }
 /*keyframes */
 @keyframes openUp {
@@ -155,13 +222,13 @@ li {
     100% {transform: scale(0, 0);}
 }
 @keyframes openPopup {
-    0% {opacity: 0; transform: translateY(-50%) scale(0);}
-    75% {opacity: 1; transform: translateY(-50%) scale(0);}
-    100% {opacity: 1; transform: translateY(-50%) scale(1);}
+    0% {opacity: 0; transform:  scale(0);}
+    75% {opacity: 1; transform:  scale(0);}
+    100% {opacity: 1; transform:  scale(1);}
 }
 @keyframes closePopup {
-    0% {opacity: 1; transform: translateY(-50%) scale(1);}
-    100% {opacity: 1; transform: translateY(-50%) scale(0);}
+    0% {opacity: 1; transform:  scale(1);}
+    100% {opacity: 1; transform:  scale(0);}
 
 
 }

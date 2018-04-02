@@ -134,7 +134,7 @@ footer {
 }
 .plan {
     @include grid(0,12);
-    transform: translateY(-100%);
+    transform: translateX(100%);
     background-color: $light-color;
     transition: .5s  ease-in-out;
     
@@ -195,6 +195,16 @@ footer {
     width: 20px;
 
 }
+
+.mi2 {
+    float: right;
+}
+.mi2 span {
+    background-color: $primary-color;
+}
+.mi2 span::before {
+    background-color: $primary-color;
+}
 .map {
    height: 60%; 
    width: 95%;
@@ -207,4 +217,17 @@ footer {
 
 .location {
     margin-left: 3%;
+}
+.popup3 {
+    background-color: $light-color;
+    padding: 10px;
+    top: 100px;
+    position: absolute;
+    text-align: left;
+    width: 250px;
+    box-shadow: 2px 2px 4px $med-color;
+    transition: transform .5s;
+}
+.shrink {
+    transform: rotateX(90deg);
 }
