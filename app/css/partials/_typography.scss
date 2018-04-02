@@ -9,18 +9,18 @@ and open the template in the editor.
 */
 
 h1 {
-    @include text($primary-font, $light-color, 1.5rem);
+    @include text($primary-font, $light-color, 18px);
     text-align: left;
     @include grid(1,9);
     line-height: 2.6rem;
 }
 
 h2 {
-    @include text($secondary-font, $dark-color, .8rem);
+    @include text($secondary-font, $dark-color, 16px);
     margin-top: 1vh;
 }
 h3 {
-    @include text($secondary-font, $dark-color, 1.2rem);
+    @include text($secondary-font, $dark-color, 16px);
     margin-top: 1vh;
     margin-bottom: .5vh;
 
@@ -29,10 +29,11 @@ h3 {
 p {
     display: block;
 
-    @include text($primary-font, $dark-color, .8rem); 
+    @include text($primary-font, $dark-color, 16px); 
 }
 .alert {
     color: $alert-color;
     font-weight: bold;
+    margin: 5px 0;
 }
 

@@ -29,8 +29,10 @@ function setup() {
 
 function openRoutePopUp() {
     // get list of zips from localStorage and create select list for zipPopUp
+    document.getElementById('newZip').value = "";
     const parent = document.getElementById('zipParent');
     createZipSelect(parent);
+    document.getElementById('zipAlert').innerHTML = "";
     // open zip popup
     const popcan2 = document.getElementById('popcan2');
     popcan2.classList.add('openPop');
@@ -85,36 +87,65 @@ function alertError2(alert, message) {
     return;
     
 }
+function addNewZip() {
+// get user entered zipcode info
+    const zip = document.getElementById('addZip').value;
+    const alert = document.getElementById('zipAlert3'); 
+    let zipInfo;
+    let message;
+    document.getElementById('zipAlert4').innerHTML = "";
+    document.getElementById('zipAlert5').innerHTML = "";
+    if (zip == "" || zip == undefined) {
+        message = "Enter valid zipcode";
+        alertError2(alert, message);
+    } else {
+        zipInfo = addZip(zip);
+        if (zipInfo == "" || zipInfo == "ZERO_RESULTS" || zipInfo == undefined) {
+            message = "Make sure zipcode is valid";
+            alertError2(alert, message);
+            return;
+        } else {
+            const parent = document.getElementById('zipParent2');
+            createZipSelect(parent);
+            document.getElementById('zipSelect').value = zipInfo.zip;
+            document.getElementById('popup3').classList.add('shrink');
+            alert.innerHTML = "";
+        
+        }
+    }
+}
 
 function closeRoutePopupToRoute() {
     // get inputs for zipcode from user
     const zipSelect = document.getElementById('zipSelect').value;
-    let addZip = document.getElementById('newZip').value;
+    let Zip = document.getElementById('newZip').value;
     const alert = document.getElementById('zipAlert');
+    let message;
     let zipInfo;
-    if (zipSelect == '' && addZip == '') {
-        alertError(alert);
+    if (zipSelect == '' && Zip == '') {
+        message = 'Enter valid ZIP Code';
+        alertError2(alert, message);
         return;
-    } else if (addZip != "") {
-        zipInfo = checkLocalStorage(addZip);
-        
+    } else if (Zip != "") {
+        zipInfo = addZip(Zip);
+        if (zipInfo == "ZERO_RESULTS" || zipInfo == '') {
+            message = 'Make sure ZIP Code is valid';
+            alertError2(alert, message);
+            return
+        }           
     } else {
-        zipInfo = newLocation(zipSelect);
+        zipInfo = checkLocalStorage(zipSelect);
     }
-    if (zipInfo == "ZERO_RESULTS" || zipInfo == '') {
-        alertError(alert);
-        return
-    } else {
-        let lat = zipInfo.lat
-        let lng = zipInfo.lng;
-        let city = zipInfo.city;
-        document.getElementById('location').innerHTML = city;
-        initMap(lat, lng);
-        // close zip popup
-        closeRoutePopUp();
-        // display route info
-        openRoute();
-    }
+    let lat = zipInfo.lat
+    let lng = zipInfo.lng;
+    let city = zipInfo.city;
+    document.getElementById('location').innerHTML = city;
+    initMap(lat, lng);
+    // close zip popup
+    closeRoutePopUp();
+    // display route info
+    openRoute();
+    
 }
 function checkLocalStorage(zipcode) {
     let zipList = JSON.parse(localStorage.getItem('zipList'));
@@ -199,22 +230,22 @@ function accordianNext() {
     const date = document.getElementById('dateInput').value;
     const zip = document.getElementById('zipSelect').value;
     const datealert = document.getElementById('zipAlert4');
+    let message;
     
     const zipalert = document.getElementById('zipAlert5');
     if (date == "" || date == undefined) {
-        alertError(datealert);
+        message = "Please enter a valid date";
+        alertError2(datealert, message);
         return;  
     }
     if (zip == '') {
-        alertError(zipalert);
+        message = "Please enter a valid zipcode";
+        alertError2(zipalert, message);
+        
         return;
     }
-    if (datealert.classList.contains('alert')) {
-        datealert.classList.remove('alert');
-    }
-    if (zipalert.classList.contains('alert')) {
-        zipalert.classList.remove('alert');
-    }
+    datealert.innerHTML = "";
+    zipalert.innerHTML = "";
     const zipInfo = checkLocalStorage(zip);
     const lat = zipInfo.lat;
     const lng = zipInfo.lng;
@@ -272,64 +303,11 @@ function closeRoutePopUp() {
 }
 function openRoute() {
     let plan = document.getElementById('route');
-        plan.classList.toggle('openPlan');
-}
-
-// get zipcode entered by user on zip popup
-/*function getZip() { 
-    // get inputs for zipcode from user
-    const zipSelect = document.getElementById('zipSelect').value;
-    let addZip = document.getElementById('newZip').value;
-    let zipInfo = "";
+        if (!plan.classList.contains('openPlan')) {
+           plan.classList.add('openPlan'); 
+        }    
     
-    if (zipSelect == '' && addZip == '') {//1. if inputs not filled in.
-        // if both inputs blank, add alert, return to zip popup.
-        document.getElementById('zipAlert').classList.toggle('alert');
-        return;
-    } else if (addZip != "") {// 2. if addZip filled in
-        
-        if (localStorage['zipList']) { // 2a. if local storage has zipList
-            const zipList = JSON.parse(localStorage.getItem('zipList'));
-            let i;
-            // check to see if zip is already in local storage
-            for (i in zipList) { // loop through local storage
-                let zip = zipList[i].zip;
-                
-                if (zip == addZip) {// 2a.1 If match in local storage
-                    zipInfo = zipList[i];
-                    return zipInfo;
-                }
-            }
-            // if no match found in forloop, get new zip info
-            zipInfo = newLocation(addZip);
-            if (zipInfo == "ZERO_RESULTS" || zipInfo == '') {//2a.2 if error with get zip ir if zip invalid 
-                document.getElementById('zipAlert').classList.toggle('alert');
-                return zipInfo;
-            } else {
-                // return new zip info when no error occured.
-                return zipInfo;
-            }
-        
-        
-        } else {// 2b. if localStorage doesn't have ziplist 
-        let zipInfo = newLocation(addZip);
-        return zipInfo;
-        }
-
-    // if zipcode chosen from dropdown list, get zipList from local storage and return
-    } else { //3.  zip from select list chosen
-        const zipList = JSON.parse(localStorage.getItem('zipList'));
-        let i;
-        let zipInfo;;
-        for (i in zipList) {
-            let zipcode = zipList[i].zip;
-            if (zipcode == zipSelect) {
-                zipInfo = {lat: zipList[i].lat, lng: zipList[i].lng, city: zipList[i].city, state: zipList[i].state, zip: zipList[i].zip};
-                return zipInfo;
-            }
-        }
-    }
-}*/
+}
 
 
 function newLocation(zip) {
@@ -376,133 +354,7 @@ let plan = document.getElementById('route');
 /*********************************
  * Pop up before plan
  ********************************/
-/* When app is opened, add event listener to popback click, closePopUp
- * When plan a ride is clicked, checkLocalStorage()
- * first check to see if data is in localStorage
- *     If yes, info from local storage into fields.
- *     If date is past, enter today's date
- *   If no, go to popup
- * Open popup, openPopUp() 
- *   Add event listener for button close.
- * Click sunrise or sunset button
- *   Check to see if valid date and zipcode are entered.
- *     If no, add error warning to zip and date.
- *     If yes, check local storage for zip information. 
- *       if there, bypass zip lookup.
- *       if not, lookup zip info
- *    calculate sunrise or sunset and add to start or end time field
- * Click button on popup closePopToPlan()
- *   Validate input
- *     if valid, open plan page
- *     if invalid highlight invalid value  
- *
- */
 
-
-
-// when plan a ride is clicked, checks local storage for valid data
-/*function checkLocalStorage() {
- /* check rideStats in localStorage 
- * if present, get rideStats from localStorage
- * insert rideStats into popup.
- * Check date. If dat is in past, use today as rideDate
- * 
- * 
- */
-// enter today's date into popup
-// 
-// check rideStats in localStorage
-/*const dateInput = document.getElementById('dateInput');
- const today = new Date();
- const thisDay = getDate(today);
- dateInput.value = thisDay;
- if (localStorage.getItem('rideStats')) {
- // get rideStats from localStorage and parse
- const rideStats = JSON.parse(localStorage.getItem('rideStats')); 
- // save rideStats to variables
- const zipcode = rideStats[zipcode];
- const rideDate = rideStats[rideDate];
- const startTime = rideStats[startTime];
- const endTime = rideStats[endTime];
- const distance = rideStats[distance];
- const speed = rideStats[speed];
- // get elements by id
- const zipInput = document.getElementById('zipcode');
- const startInput = document.getElementById('startTime');
- const endInput = document.getElementById('endTime');
- const distanceInput = document.getElementById('miles');
- const speedInput = document.getElementById('average');
- // enter zip value into popup
- zipInput.value = parseInt(zipcode);
- // enter date value into popup, check to see if past first
- const rideDay = new Date(rideDate).getTime();
- 
- let todayNum = today.getTime();
- if (rideDay >= today) {
- dateInput.value = rideDate;
- } else {
- dateInput.value = thisDay;
- }
- // enter start time into popup
- startInput.value = startTime;
- // enter end time into popup
- endInput.value = endTime;
- // enter distance into popup
- distanceInput.value = distance;
- speedInput.value = speed;        
- } else {
- 
- }
- // add event listener to button on popup
- const button = document.getElementById('zipbutton');
- button.addEventListener('click', closePopToPlan);
- // open the popup
- openPopup(); 
- }*/
-// check to see if items are stored in local storage
-// if local storage has zip stored, add value to input.
-/*let zipInput;
- let rideDayInput;
- let averageInput;
- if (localStorage.getItem('zipcode')) {
- const zip = localStorage.getItem('zipcode');
- var re = new RegExp("^([0-9]{5,})$");
- if (re.test(zip)) {
- zipInput = document.getElementById('zipcode');
- zipInput.value = parseInt(zip) ;
- }
- }
- // if localStorage has date stored, check if current date.
- // if yes, add value to input.
- rideDayInput = document.getElementById('dateInput');
- if (localStorage.getItem('rideDate')) {
- let rideDate = localStorage.getItem('rideDate');
- const rideDay = new Date(rideDate).getTime();
- let today = new Date();
- let todayNum = today.getTime();
- if (rideDay >= today) {
- 
- rideDayInput.value = rideDate;
- } else {
- today = getDate(today);
- rideDayInput.value = today;
- }
- }
- 
- // if localStorage has avg stored, add value to input.
- averageInput = document.getElementById('average');
- if (localStorage.getItem('average').value > 0) {
- const average = localStorage.getItem('average').value;
- 
- averageInput.value = average;
- } 
- // add event listener to button on popup
- const button = document.getElementById('zipbutton');
- button.addEventListener('click', closePopToPlan);
- // open the popup
- openPopup(); 
- }
- */
 
 // get today's date and change it to correct format for html5 date.
 function getDate() {
@@ -537,8 +389,10 @@ popcan.classList.remove('closePop');
 
 
 function openPlanZipPopup() {
+    document.getElementById('zipAlert3').innerHTML = "";
     const popup = document.getElementById('popup3');
     popup.classList.remove('shrink');
+    
 }
 function closePlanZipPopup() {
     const popup = document.getElementById('popup3');
@@ -573,35 +427,26 @@ function addNewZipToPlan() {
 function addNewZip() {
 // get user entered zipcode info
     const zip = document.getElementById('addZip').value;
-    const alert = document.getElementById('zipAlert3');
+    const alert = document.getElementById('zipAlert3'); 
     let zipInfo;
+    let message;
+    document.getElementById('zipAlert4').innerHTML = "";
+    document.getElementById('zipAlert5').innerHTML = "";
     if (zip == "" || zip == undefined) {
-        if (alert.classList.contains('alert')) {
-            alert.innnerHTML = 'Make sure zipcode is valid';
-            return;
-        } else {
-            alert.classList.add('alert');
-            return;
-        }
+        message = "Enter valid zipcode";
+        alertError2(alert, message);
     } else {
         zipInfo = addZip(zip);
         if (zipInfo == "" || zipInfo == "ZERO_RESULTS" || zipInfo == undefined) {
-            if (alert.classList.contains('alert')) {
-                alert.innnerHTML = 'Make sure zipcode is valid';
-                return;
-            } else {
-                alert.classList.add('alert');
-                return;
-            }
+            message = "Make sure zipcode is valid";
+            alertError2(alert, message);
+            return;
         } else {
             const parent = document.getElementById('zipParent2');
             createZipSelect(parent);
             document.getElementById('zipSelect').value = zipInfo.zip;
             document.getElementById('popup3').classList.add('shrink');
-            if (alert.classList.contains('alert')) {
-                alert.classList.remove('alert');
-                return;
-            }
+            alert.innerHTML = "";
         
         }
     }

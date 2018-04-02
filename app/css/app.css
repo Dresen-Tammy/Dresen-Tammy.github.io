@@ -91,22 +91,29 @@ User enters zipcode and average speed.
 .question2 {
   margin-top: 10px; }
 
-.zipbutton {
+.zipbutton, .zipbutton4 {
   padding: 5px;
   border-radius: 10px;
-  width: 100%;
+  width: 98%;
   margin-top: 15px;
-  background-color: lightsteelblue; }
+  background-color: lightsteelblue;
+  font-size: 16px; }
+
+.zipbutton4 {
+  margin-left: 8.33333%;
+  flex: 0 0 41.66667%;
+  width: 50%; }
 
 .zipbutton3 {
   padding: 3px 5px;
   border-radius: 5px;
-  width: 65%;
+  width: 98%;
   margin-bottom: 15px;
   background-color: #f1f1f1;
   border: none;
   box-shadow: 3px 2px 2px khaki;
-  text-align: left; }
+  text-align: left;
+  font-size: 16px; }
 
 .or {
   margin: -5px 0 5px 30px; }
@@ -123,21 +130,25 @@ User enters zipcode and average speed.
 .outView {
   animation: backSlide 1s; }
 
-.zipcode {
+.zipcode, .timeinput {
   box-shadow: 3px 2px 2px khaki;
   border: none;
-  font-size: .8rem;
-  width: 65%;
+  font-size: 16px;
+  width: 98%;
   color: #2a4e6c;
   margin-bottom: 10px; }
-  .zipcode:focus {
+  .zipcode:focus, .timeinput:focus {
     border: solid 2px khaki; }
+
+.timeinput {
+  width: 78%; }
 
 ul {
   margin-top: 3px; }
 
 li {
-  margin-bottom: 7px; }
+  margin-bottom: 7px;
+  font-size: 16px; }
 
 .sunbutton {
   width: 35px;
@@ -151,7 +162,7 @@ li {
   margin-top: -15px;
   margin-left: 5px; }
 
-.advice, .advice2 {
+.advice2 {
   position: absolute;
   background-color: white;
   transform: translateX(150px);
@@ -161,16 +172,15 @@ li {
   transition: 1s ease-in;
   box-shadow: -3px 2px 2px darkkhaki; }
 
-.advice {
-  top: 170px;
-  right: 0; }
-
 .advice2 {
   transform: translateX(360px);
-  top: 248px;
+  top: 190px;
   right: 0px;
   z-index: 100;
-  width: 80%; }
+  width: 90%; }
+
+.advice2 span {
+  float: right; }
 
 .show {
   transform: translateX(0);
@@ -180,7 +190,8 @@ li {
   border: solid 2px indianred; }
 
 .zipAlert {
-  color: transparent; }
+  color: indianred;
+  margin: 5px 0; }
 
 .zipbox {
   border-radius: 5px;
@@ -357,7 +368,7 @@ and open the template in the editor.
 h1 {
   font-family: sans-serif;
   color: #f1f1f1;
-  font-size: 1.5rem;
+  font-size: 18px;
   text-align: left;
   margin-left: 8.33333%;
   flex: 0 0 75%;
@@ -366,13 +377,13 @@ h1 {
 h2 {
   font-family: serif;
   color: #2a4e6c;
-  font-size: 0.8rem;
+  font-size: 16px;
   margin-top: 1vh; }
 
 h3 {
   font-family: serif;
   color: #2a4e6c;
-  font-size: 1.2rem;
+  font-size: 16px;
   margin-top: 1vh;
   margin-bottom: .5vh; }
 
@@ -380,11 +391,12 @@ p {
   display: block;
   font-family: sans-serif;
   color: #2a4e6c;
-  font-size: 0.8rem; }
+  font-size: 16px; }
 
 .alert {
   color: indianred;
-  font-weight: bold; }
+  font-weight: bold;
+  margin: 5px 0; }
 
 /* popup */
 /* plan section */

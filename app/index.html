@@ -46,13 +46,13 @@ X13. Animations
           <div class='collapse'>
 
             <div class='zipbox'>
-              <p id='zipAlert4' class='zipAlert'>Please enter a valid date.</p>
+              <p id='zipAlert4' class='zipAlert'></p>
               <p>Date of ride (required)</p>
               <input id="dateInput" class="zipcode" type="date" value='2018-03-23' required>
             </div>
             <div class='zipbox'>
               <h2>Zip Code of Ride Start (required)</h2>
-              <p id='zipAlert5' class='zipAlert'>Please enter a valid date.</p>
+              <p id='zipAlert5' class='zipAlert'></p>
               <p>Choose Zip Code</p>
 
               <div class='zipParent' id='zipParent2'></div>
@@ -76,7 +76,7 @@ X13. Animations
               <div class='zipbox '>
                 <span class="question2" id="question2" onclick="advice2()">?</span>
                 <div class="advice2" id="advice2">
-                  <h2>Enter 2 fields</h2>
+                  <h2>Enter 2 fields<span onclick="advice2()">close</span></h2>
                   <ul><li>Enter START TIME and END TIME to see how far you can go in the time available.</li>
                     <li>Enter START TIME and DISTANCE to see when you will end.</li>
                     <li>Enter DISTANCE and END TIME to see when you should start.</li>
@@ -85,14 +85,15 @@ X13. Animations
                 </div>
 
 
-                <p>Enter 2 of the 3 fields.<br>The 4th will be calculated.</p><span id="timeAlert" class="alert"></span><br>
+                <p>Enter 2 of the 3 fields.<br>The 3rd will be calculated.</p>
+                <p id="timeAlert" class="zipAlert"></p>
 
 
                 <p>START TIME</p> 
-                <input class="zipcode" id="start" type="time" placeholder="17:00" min="00:01" max="23:59">
+                <input class="timeinput" id="start" type="time" placeholder="17:00" min="00:01" max="23:59">
                 <div class="sunbutton" onclick="fillSunrise()"><img src="sunrise.png" alt="" class="sunIcon" ></div>
                 <br>
-                <p>END TIME</p> <input class="zipcode" id="end" type="time" min="00:01" max="23:59">
+                <p>END TIME</p> <input class="timeinput" id="end" type="time" min="00:01" max="23:59">
                 <div class="sunbutton" onclick="fillSunset()"><img src="sunset.png" alt="" class="sunIcon"></div>
                 <br>
                 <p>DISTANCE in miles</p> <input class="zipcode" id="miles" type="number" min="1"><br>
@@ -125,11 +126,11 @@ X13. Animations
             <span></span>
           </div>
 
-          <p id='zipAlert3' class='zipAlert'>Please enter a valid zipcode.</p>
+          <p id='zipAlert3' class='zipAlert'></p>
 
-          <h2>Enter New Zip Code</h2>
+          <h2>Enter New ZIP Code</h2>
           <input class='zipcode' id='addZip' type='number'>
-          <br><button type="button" class='zipbutton' onclick='addNewZip()'>Select</button>
+          <br><button type="button" class='zipbutton' onclick='addNewZip()'>Add ZIP Code</button>
         </div>
       </div>
 
@@ -140,7 +141,7 @@ X13. Animations
         <div class="popback" id="popback2"> 
         </div>
         <div class="popup" id="popup2">
-          <p id='zipAlert' class='zipAlert'>Choose or enter a valid zipcode.</p>
+          <p id='zipAlert' class='zipAlert'></p>
           <form><h2>Choose Zip Code</h2>
 
             <div class='zipParent' id='zipParent'>
@@ -243,7 +244,7 @@ X13. Animations
           </header>
           <h3 id='location' class='location'></h3>
           <div class='map' id='map'></div>
-          <button class='zipbutton' onclick='openRoutePopUp()'>New Location</button>
+          <button class='zipbutton4' onclick='openRoutePopUp()'>New Location</button>
 
         </section>
       </main>
