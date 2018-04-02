@@ -94,8 +94,9 @@ User enters zipcode and average speed.
 .zipbutton {
   padding: 5px;
   border-radius: 10px;
-  width: 65%;
-  margin-top: 15px; }
+  width: 100%;
+  margin-top: 15px;
+  background-color: lightsteelblue; }
 
 .zipbutton3 {
   padding: 3px 5px;
@@ -191,33 +192,54 @@ li {
   height: 20px; }
 
 .open {
-  background-color: lightgoldenrodyellow;
-  border-bottom: solid khaki 1px; }
+  background-color: lightgoldenrodyellow; }
 
-.open h2 {
-  padding: 5px; }
-
-.open .back {
-  font-size: 1em;
-  color: #2a4e6c;
-  padding: 5px;
+.open .planH2 {
+  height: 30px;
   background-color: lightsteelblue;
-  border-radius: 5px;
-  margin-left: 70px;
-  box-shadow: 3px 2px 2px khaki; }
+  border-radius: 10px;
+  padding: 0 5px; }
 
-.hide {
-  visibility: hidden; }
+.open .backButton {
+  font-size: 1em;
+  display: inline-block;
+  color: #f1f1f1;
+  font-weight: bold;
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+  font-family: serif; }
+
+.accordianHead {
+  display: inline-block;
+  padding: 0 5px; }
+
+.hide .backButton {
+  width: 0; }
 
 .open .arrow {
   color: steelblue;
   transform: rotate(90deg); }
 
+.open .collapse {
+  height: auto;
+  transition: all 2s ease-in; }
+
+.open .hide {
+  background-color: lightgoldenrodyellow; }
+
 .expand .collapse {
-  height: 0; }
+  height: 0;
+  transition: height 2s ease-in; }
+
+.hide .planH2 {
+  background-color: lightgoldenrodyellow; }
 
 .rotateArrow {
   transform: rotate(90deg); }
+
+hr {
+  margin: 10px 0; }
 
 /*keyframes */
 @keyframes openUp {

@@ -113,7 +113,7 @@ function closeRoutePopupToRoute() {
         // close zip popup
         closeRoutePopUp();
         // display route info
-        displayRoute();
+        openRoute();
     }
 }
 function checkLocalStorage(zipcode) {
@@ -199,6 +199,7 @@ function accordianNext() {
     const date = document.getElementById('dateInput').value;
     const zip = document.getElementById('zipSelect').value;
     const datealert = document.getElementById('zipAlert4');
+    
     const zipalert = document.getElementById('zipAlert5');
     if (date == "" || date == undefined) {
         alertError(datealert);
@@ -208,12 +209,22 @@ function accordianNext() {
         alertError(zipalert);
         return;
     }
+    if (datealert.classList.contains('alert')) {
+        datealert.classList.remove('alert');
+    }
+    if (zipalert.classList.contains('alert')) {
+        zipalert.classList.remove('alert');
+    }
     const zipInfo = checkLocalStorage(zip);
     const lat = zipInfo.lat;
     const lng = zipInfo.lng;
     sunset(date,lat,lng);
-    document.getElementById('back').classList.toggle('hide');
-    document.getElementById('next').classList.toggle('hide');
+    const back = document.getElementById('back');
+    back.classList.toggle('hide');
+    back.addEventListener('click', accordianBack);
+    const next = document.getElementById('next');
+    next.classList.toggle('hide');
+    next.removeEventListener('click', accordianNext);
     const sections = document.getElementsByClassName('open');
     
     
@@ -222,8 +233,12 @@ function accordianNext() {
     }
 }
 function accordianBack() {
-    document.getElementById('back').classList.toggle('hide');
-    document.getElementById('next').classList.toggle('hide');
+    const back = document.getElementById('back');
+    back.classList.toggle('hide');
+    back.removeEventListener('click', accordianBack);
+    const next = document.getElementById('next');
+    next.classList.toggle('hide');
+    next.addEventListener('click', accordianNext);
     const sections = document.getElementsByClassName('open');
     
     
@@ -510,6 +525,8 @@ function openPlanPopup() {
    // create select list
    const parent = document.getElementById('zipParent2');
     createZipSelect(parent);
+    const next = document.getElementById('next');
+    next.addEventListener('click', accordianNext);
 // display popup
 const popcan = document.getElementById('popcan');
         popcan.classList.add('openPop');
@@ -662,9 +679,11 @@ function planRide () {
             ||(end == "" && miles == "")) {
         message = "Fill in 2 text fields. Click question mark for help.";
             alertError2(alert, message);
+            return;
     } else if (miles === '0' || miles < 0) {
         message = 'Distance must be greater than 1.';
         alertError2(alert, message);
+        return;
     } else if (start == "") {
         choice = start;
         calcRide(choice)
@@ -674,21 +693,23 @@ function planRide () {
     } else if (start > end){
         message = "End time must be after Start time.";
         alertError2(alert, message);
+        return
     } else if (miles == "") {
         choice = "miles";
         calcRide(choice)
     } else { 
         message = "Leave 1 field blank. Click question mark for help.";
             alertError2(alert, message);
+            return;
     }
 }
 
 function calcRide(choice) {
     const date = document.getElementById('dateInput').value;
     const zip = document.getElementById('zipSelect').value;
-    const start = document.getElementById('start').value;
-    const end = document.getElementById('end').value;
-    const distance = document.getElementById('miles').value;
+    let start = document.getElementById('start').value;
+    let end = document.getElementById('end').value;
+    let distance = document.getElementById('miles').value;
     const speed = document.getElementById('average').value;
     // get city info from localStorage
     const zipInfo = checkLocalStorage(zip);
@@ -696,11 +717,13 @@ function calcRide(choice) {
     const sunInfo = JSON.parse(localStorage.getItem("sunInfo"));
     const sunrise = sunInfo[3];
     const sunset = sunInfo[4];
+    const back = document.getElementById('back');
+    const next = document.getElementById('next');
     // calculate based on choice
     if (choice == "start") {
-        start = end - (distance/speed)
+        start = calcStart(end, distance, speed);
     } else if (choice == "end") {
-        end = start + (distance/speed)
+        end = calcEnd(start, distance, speed);
     } else {
         distance = calcDistance(start, end, speed);
     }
@@ -713,20 +736,35 @@ function calcRide(choice) {
     document.getElementById('planSpeed').innerHTML = speed;
     document.getElementById('planSunrise').innerHTML = sunrise;
     document.getElementById('planSunset').innerHTML = sunset;
+    // reset planpopup to original settings, 
+    // close popup
+    closePlanPopup();
+    back.classList.remove('expand');
+    back.classList.add('hide');
+    back.removeEventListener('click', accordianBack);
+    next.classList.add('expand');
+    next.classList.remove('hide');
+    // open plan page
     openPlan();
 }
-
-function calcStartTime(end, distance, speed) {
-    
+function calcEnd(start, distance, speed) {
+    return "end";
 }
-function calcEndTime(start, distance, speed) {
-    const end = start + (distance/speed)
+function calcStart(end, distance, speed) {
+    return "start";
 }
 function calcDistance(start, end, speed) {
-    
+    return "distance";
 }
+
 function openPlan() {
-    
+    let plan = document.getElementById('plan');
+    if (!plan.classList.contains('openPlan'))
+    plan.classList.add('openPlan');
+}
+function closePlan() {
+    let plan = document.getElementById('plan');
+    plan.classList.toggle('openPlan');
 }
      
 
@@ -787,7 +825,7 @@ dateInput = document.getElementById('dateInput');
 function closePlanPopup() {
 const popcan = document.getElementById('popcan');
         popcan.classList.add('closePop');
-        const advice = document.getElementById('advice');
+        const advice = document.getElementById('advice2');
         if (advice.classList.contains('show')) {
 advice.classList.remove('show');
         }

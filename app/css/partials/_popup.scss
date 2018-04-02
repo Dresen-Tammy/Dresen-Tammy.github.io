@@ -64,8 +64,9 @@ User enters zipcode and average speed.
 .zipbutton {
     padding: 5px;
     border-radius: 10px;
-    width: 65%;
+    width: 100%;
     margin-top: 15px;
+    background-color: $secondary-color;
 }
 .zipbutton3 {
     padding: 3px 5px;
@@ -172,41 +173,63 @@ li {
 
 .open {
     background-color: $accent-color;
-    border-bottom: solid $dark-accent-color 1px; 
+     
+    
+}
+.open .planH2 {
+    
+    height: 30px;
+    background-color: $secondary-color;
+    border-radius: 10px;
+    padding: 0 5px;
+
 
 }
-.open h2 {
-    padding: 5px;
-
-}
-.open .back {
+.open .backButton {
 
     font-size: 1em;
-    color: $dark-color;
-    padding: 5px;
-    background-color: $secondary-color;
-    border-radius: 5px;
-    margin-left: 70px;
-    box-shadow: 3px 2px 2px $dark-accent-color;
+    display:inline-block;
+    color: $light-color;
+    font-weight: bold;
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px;
+    font-family: $secondary-font;
+}
+.accordianHead {
+    display: inline-block;
+    padding: 0 5px;
+}
+.hide .backButton {
+    width: 0;
+    
+}
 
-}
-.hide {
-    visibility: hidden;
-}
 .open .arrow {
     color: $primary-color;
     transform:  rotate(90deg);
 }
+.open .collapse {
+    height: auto;
+    transition: all 2s ease-in;
+}
+.open .hide {
+    background-color: $accent-color;
+
+}
 .expand .collapse {
     height: 0;
-
+    transition: height 2s ease-in;
     
 }
-
+.hide .planH2 {
+    background-color: $accent-color;
+}
 .rotateArrow {
     transform: rotate(90deg);
 }
-.collapse {
+hr {
+    margin: 10px 0;
     
 }
 /*keyframes */
