@@ -1,0 +1,317 @@
+// plan popup
+
+
+.popup {
+    //background-color: $accent-color;
+    display: none;
+    opacity: 0;
+    padding:5px;
+    position: absolute;
+    text-align: left;
+    top: 15%;
+    width: 95%;
+    left: 2.5%;
+    max-height: 85%;
+    overflow-y: scroll;
+    z-index: 20;
+    background-color: rgba(200,200,200,0.5);
+    & p {
+        margin-left: 0;
+        
+    }
+    & .explain {
+        margin-top: 30px;
+    }
+    
+    
+}
+.openPop {
+    display: block;
+    animation: openPopup 1.5s both;
+}
+@keyframes openPopup {
+    0% {opacity: 0; }
+    50% {opacity: 0; }
+    100% {opacity: 1; }
+}
+
+.open .planH2 {
+    
+    height: 30px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 15px;
+    padding: 0 5px;
+    width: 70px;
+    float: right;
+    margin-right: 0;
+    text-align: center;
+
+
+}
+.open .backButton {
+
+    font-size: 1em;
+    display:inline-block;
+    color: $light-color;
+    font-weight: bold;
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px;
+    font-family: $secondary-font;
+}
+.mip {
+    padding: 5px 5px 0px 5px;
+}
+.ihp {
+    margin-bottom: -5px;
+}
+
+
+.closePop {
+    animation: closeUp 1s both;
+}
+.open .collapse {
+    height: 240;
+    transition: all 2s ease-in;
+}
+.open .hide {
+    background-color: $accent-color;
+
+}
+.zipbox {
+    
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 2px;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.zipcode, .timeinput {
+    background-color: rgba(255,255,255,0.8);
+    border: none;
+    font-size: 16px;
+    width: 100%;
+    color: $dark-color;
+    margin: 5px 0;
+    border-radius: 5px;
+    padding: 5px;
+    height: 32px;
+    &:focus {
+        border: solid 2px $light-color;
+        
+    }
+
+    
+}
+.popup3 {
+    background-color: #4e4b45;
+    padding: 10px;
+    top: 30%;
+    left: 10%;
+    position: absolute;
+    text-align: left;
+    box-shadow: 2px 2px 4px rgba(100, 100, 100, 0.5);
+    transition: transform .5s;
+    z-index: 20;
+    transform: rotateX(0);
+    width: 80%;
+}
+.shrink {
+    transform: rotateX(90deg);
+}
+.mi2 {
+    float: right;
+}
+.mi2 span {
+    background-color: $light-color;
+}
+.mi2 span::before {
+    background-color: $light-color;
+}
+.timeinput {
+    width: 78%;
+        height: 36px;
+}
+.question, .question2 {
+        padding: 2px 8px;
+        background-color: $secondary-color;
+        color: $dark-color;
+        margin-left: 5px;
+        box-shadow: 3px 2px 2px $dark-accent-color;
+        float: right;
+        border-radius: 5px;
+}
+.accordianHead {
+    display: inline-block;
+    padding: 0 5px;
+}
+.question2 {
+    margin-top: 10px;
+}
+.zipbutton, .zipbutton4 {
+    padding: 5px;
+    border-radius: 15px;
+    border: none;
+    width: 100%;
+    margin-top: 15px;
+    background-color: rgba(0,0,0,0.6);
+    font-size: 16px;
+    color: $light-color;
+}
+.zipbutton4 {
+    @include grid(1, 5);
+    width: 50%;
+    
+    
+        
+}
+
+.zipbutton3 {
+    padding: 3px 5px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: rgba(255,255,255,0.7);
+    border: none;
+    color: $dark-color;
+    text-align: left;
+    font-size: 16px;
+    height: 32px;
+
+    
+}
+.or {
+    margin: 0 0 5px 45px;
+}
+
+.closePop .popup {
+    
+}
+
+.inView {
+    animation: lSlide 1s forwards;
+}
+.outView {
+    animation: backSlide 1s;
+}
+
+ul {
+    margin-top: 3px;
+}
+li {
+    margin-bottom: 7px;
+    font-size: 16px;
+}
+
+.sunbutton {
+    width: 35px;
+    height: 30px;
+    padding: 2px;
+    border-radius: 5px;
+    box-shadow: 3px 2px 2px $dark-accent-color;
+    background-color: $light-color;
+    display: inline-block;
+    transform: translateY(5px);
+    margin-top: -15px;
+    margin-left: 5px;
+}
+.advice2 {
+    position: absolute;
+    background-color: white;
+    transform: translateX(150px);
+    
+    right: 0;
+    padding: 0 10px 10px 10px;
+    font-size: .6rem;
+    transition: 1s ease-in;
+    box-shadow: -3px 2px 2px $xdark-accent-color;
+}
+
+.advice2 {
+    transform: translateX(360px);
+    top: 190px;
+    right: 0px;
+    z-index: 100;
+    width: 90%
+    
+}
+.advice2 span {
+    float: right;
+}
+.show {
+    transform: translateX(0);
+    transition: 1s ease-out;
+}
+.warning {
+    border: solid 2px $alert-color;
+}
+.zipAlert {
+    color: $alert-color;
+    margin: 5px 0;
+}
+
+.closeZipBox {
+    height: 20px;
+}
+
+
+
+.hide .backButton {
+    width: 0;
+    
+}
+/* open popup */
+
+.open .arrow {
+    color: $primary-color;
+    transform:  rotate(90deg);
+}
+.open .collapse {
+    height: auto;
+    transition: all 2s ease-in;
+}
+.open .hide {
+    display: none;
+
+}
+.expand .collapse {
+    height: 0;
+    transition: height 2s ease-in;
+    
+}
+.hide .planH2 {
+    background-color: $accent-color;
+}
+.rotateArrow {
+    transform: rotate(90deg);
+}
+hr {
+    margin: 10px 0;
+    
+}
+/*keyframes */
+@keyframes openUp {
+    0% {transform: scale(.03, 0);}
+    50% {transform: scale(.03, 1);}
+    100% {transform: scale(1, 1);}
+}
+@keyframes closeUp {
+    0% {transform: scale(1, 1);}
+    25% {transform: scale(1, 1);}
+    75% {transform: scale(.03, 1);}
+    100% {transform: scale(0, 0);}
+}
+
+@keyframes closePopup {
+    0% {opacity: 1; transform:  scale(1);}
+    100% {opacity: 1; transform:  scale(0);}
+
+
+}
+
+.popback {
+    background-color: lightsteelblue;
+    height: 100%;
+    opacity: .8;
+    width: 100vw;
+}

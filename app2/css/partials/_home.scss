@@ -1,0 +1,38 @@
+.b1Grow {
+    animation: b1grow 1s both;
+}
+.b2Shrink {
+    animation: b2shrink 1s both;
+}
+.b3Shrink {
+    animation: b3shrink 1s both;
+}
+.button .headingTop {
+    margin-top: 13%;
+    transition: margin .5s;
+    transition-delay: 1s;
+}
+
+@keyframes b1grow {
+    0% {height: 33.4%;}
+    50% {height: 66.7%;}
+    100% {height: 100%;}
+}
+
+@keyframes b2shrink {
+    0% {height: 33.4%;
+        top: 33.4%;}
+    50% {height: 0;
+         top: 66.7%;}
+    100% {height: 0;
+          top: 100%;}
+}
+
+@keyframes b3shrink {
+    0% {height: 33.4%;
+       top: 66.7%;}
+    50% {height: 33.4%;
+         top: 66.7%;}
+    100% {height: 0;
+          top: 100%;}
+}
