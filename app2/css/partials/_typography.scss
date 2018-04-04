@@ -10,8 +10,7 @@ and open the template in the editor.
 
 h1 {
     @include text($primary-font, $light-color, 18px);
-    text-align: left;
-    @include grid(1,9);
+    text-align: center;
     line-height: 2.6rem;
 }
 

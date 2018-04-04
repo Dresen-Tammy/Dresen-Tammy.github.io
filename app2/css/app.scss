@@ -37,7 +37,6 @@ body, main {
 
 /* flexbox grid. Sets background color and grid*/
 
-
 section {
     position: absolute;
     height: 100%;
@@ -45,18 +44,8 @@ section {
     width: 100%;
 }
 
-header, h1 {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    align-content: space-between;
-
-    
-}
 
 header {
-    background-color:  rgba(2, 3, 2, 0.5);
-    @include grid(0, 12);
     height: 40px;
     z-index: 100;
 }
@@ -80,26 +69,29 @@ header {
         color: $light-color;
         font-size: 40px;
         text-align: center;
-        margin-top: 25%;
+        margin-top: 16vh;
+        transition: margin .5s;
     }
 }
 .b1 {
     background-image: url(../Thinkstock509116418.jpg);
     background-size: cover;
-    background-position: top right;
+    background-position: top center;
     background-repeat: no-repeat;
     transform:translate(100%, 0);
+    
     top: 0;
     
     
     
 }
+
 .b2 {
     background-image: url(../Thinkstock539369426.jpg);
     background-size: cover;
     background-position: center center;
     transform:translate(-100%, 0);
-    top: 33.4%;
+    top: 33.3%;
     
     
 }
@@ -108,11 +100,11 @@ header {
     background-size: cover;
     background-position: bottom right;
     transform: translate(100%, 0);
-    top: 66.7%;
+    top: 66.6%;
 }
 .slide {
     transform: translate(0, 0);
-    transition: transform 1s 1s;
+    transition: transform .5s 1s;
 }
 .buttonBox {
     height: 100%;
@@ -214,7 +206,7 @@ header {
     
 }
 .menuIcon:hover {
-    background-color: $med-color;
+    background-color: rgba(100,100,100,0.5);
 }
 .menuIcon span {
     align-content: center;

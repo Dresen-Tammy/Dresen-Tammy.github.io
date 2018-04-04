@@ -18,12 +18,7 @@
       <div class="popup" id="popup">
 
         <div id='back' class='open hide' >
-          <div class="iconHolder ihp">
-              <div id='menuIconP' class="menuIcon mip" onclick="closePlan()">
-                <span></span>
-                
-              </div>
-            </div>
+          
             
              
           <div class='collapse'>
@@ -110,7 +105,7 @@
 
           <h2>Enter New ZIP Code</h2>
           <input class='zipcode' id='addZip' type='number'>
-          <br><button type="button" class='zipbutton' onclick='addNewZip()'>Add ZIP Code</button>
+          <br><span id="chevron" class="chevron" onclick="accordianBack()"><</span><button type="button" class='zipbutton zipPlan' onclick='addNewZip()'>Add ZIP Code</button>
         </div>
       </div>
 
@@ -138,18 +133,28 @@
       <main>
         <!-----------Header------------>
         <header class="homeHeader" id="homeHeader">
+            <div class="iconHolder">
+              <div id='menuIcon' class="menuIcon" >
+                <span></span>
+              </div>
+            </div>
+            <h1></h1>
 
-          <h1>Race the Sun</h1>
-
-          <div class="settings">
-            <div></div>
-          </div>
-        </header>
+            <div class="settings">
+              <div></div>
+            </div>
+          </header>
 
         <!------------Home Page------------>
         <section class="home" id="home">
 
-          <div class="sunrise"></div>
+          <div class="sunrise">
+            <div class="homeText">
+                <h1>Race The Sun</h1>
+            <h2>Cycling App</h2>
+            <p>Because there is always time for a bike ride!</p>
+            </div>
+          </div>
           <div class="buttonBox">
 
             <div class="button b1" id="b1" onclick="openPlanPopup()">

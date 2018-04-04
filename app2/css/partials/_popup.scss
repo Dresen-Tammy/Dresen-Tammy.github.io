@@ -27,12 +27,22 @@
 }
 .openPop {
     display: block;
-    animation: openPopup 1.5s both;
+    animation: openPopup 1s .5s both;
 }
 @keyframes openPopup {
     0% {opacity: 0; }
     50% {opacity: 0; }
     100% {opacity: 1; }
+}
+.closePop {
+    
+    animation: closePopup 1.5s  forward;
+}
+
+@keyframes closePopup {
+    0% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 0;}
 }
 
 .open .planH2 {
@@ -68,7 +78,7 @@
 
 
 .closePop {
-    animation: closeUp 1s both;
+    animation: closePopUp 1s both;
 }
 .open .collapse {
     height: 240;
@@ -149,14 +159,15 @@
     margin-top: 10px;
 }
 .zipbutton, .zipbutton4 {
-    padding: 5px;
+    padding:  5px 15px;
     border-radius: 15px;
     border: none;
-    width: 100%;
-    margin-top: 15px;
+
     background-color: rgba(0,0,0,0.6);
     font-size: 16px;
     color: $light-color;
+    float:right;
+    height: 32px;
 }
 .zipbutton4 {
     @include grid(1, 5);
@@ -256,10 +267,7 @@ li {
 
 
 
-.hide .backButton {
-    width: 0;
-    
-}
+
 /* open popup */
 
 .open .arrow {
@@ -270,17 +278,11 @@ li {
     height: auto;
     transition: all 2s ease-in;
 }
-.open .hide {
-    display: none;
 
-}
 .expand .collapse {
     height: 0;
     transition: height 2s ease-in;
     
-}
-.hide .planH2 {
-    background-color: $accent-color;
 }
 .rotateArrow {
     transform: rotate(90deg);
@@ -288,6 +290,13 @@ li {
 hr {
     margin: 10px 0;
     
+}
+.hide .backButton {
+    display: none;
+    
+}
+.hide .planH2 {
+    display: none;
 }
 /*keyframes */
 @keyframes openUp {

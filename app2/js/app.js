@@ -14,6 +14,7 @@ function setup() {
     //popback.addEventListener('click', closePlanPopup);
     //const popback2 = document.getElementById('popback2');
     //popback2.addEventListener('click', closeRoutePopUp);
+   
     document.getElementById('b1').classList.add('slide');
     document.getElementById('b2').classList.add('slide');
     document.getElementById('b3').classList.add('slide');
@@ -37,6 +38,8 @@ function openPlanPopup() {
    const b2 = document.getElementById('b2');
    const b3 = document.getElementById('b3');
    const b1H2 = document.getElementById('b1H2');
+   const icon = document.getElementById('menuIcon');
+   icon.addEventListener('click', closePlanPopup);
         createZipSelect(parent); // in model
         next.addEventListener('click', accordianNext);
         // insert today's date into dateInput
@@ -121,15 +124,48 @@ function closePlan() {
 
 // actually closes the popup
 function closePlanPopup() {
-const popcan = document.getElementById('popcan');
-        popcan.classList.add('closePop');
+    // get elements by id
+    const icon = document.getElementById('menuIcon');
+    const b1 = document.getElementById('b1');
+    const b2 = document.getElementById('b2');
+    const b3 = document.getElementById('b3');
+    const b1H2 = document.getElementById('b1H2');
+    const popup = document.getElementById('popup');
+    // remove event listener
+        icon.removeEventListener('click', closePlanPopup);
+        // add classes to close elements of plan popup
+        popup.classList.add('closePop');
+        b1.classList.add("b1Ungrow");
+        b2.classList.add("b2Unshrink");
+        b3.classList.add("b3Unshrink");
+        b1H2.classList.add("HeadingTopUnmove");
+        // when animation is finished, remove classes that close popup
+        b3.addEventListener('animationend', function() 
+           { b2.classList.remove('b2Unshrink');
+             b1.classList.remove('b1Ungrow'); 
+             b3.classList.remove('b3Unshrink');
+             b1H2.classList.remove("HeadingTopUnmove");
+             popup.classList.remove('closePop');}); 
+         // remove classes that opened the popup if present
         const advice = document.getElementById('advice2');
         if (advice.classList.contains('show')) {
-advice.classList.remove('show');
+            advice.classList.remove('show');
         }
-if (popcan.classList.contains('openPop')) {
-popcan.classList.remove('openPop');
+        if (popup.classList.contains('openPop')) {
+        popup.classList.remove('openPop');
         }
+        if (b1.classList.contains('b1Grow')) {
+            b1.classList.remove("b1Grow");
+        }
+        if (b2.classList.contains('b2Shrink')) {
+            b2.classList.remove("b2Shrink");
+        }
+        if (b3.classList.contains('b3Shrink')) {
+            b3.classList.remove('b3Shrink');
+        }
+        if (b1H2.classList.contains('headingTop')) {
+            b1H2.classList.remove('headingTop');
+        }    
 }
 
 // toggle average speed advice
@@ -144,11 +180,12 @@ const advice = document.getElementById('advice2');
 }
 
 function accordianNext() {
+    // get elements by id
     const date = document.getElementById('dateInput').value;
     const zip = document.getElementById('zipSelect').value;
     const datealert = document.getElementById('zipAlert4');
     let message;
-    
+    // validate zip and date info
     const zipalert = document.getElementById('zipAlert5');
     if (date == "" || date == undefined) {
         message = "Please enter a valid date";
@@ -161,21 +198,30 @@ function accordianNext() {
         
         return;
     }
+    // reset alerts
     datealert.innerHTML = "";
     zipalert.innerHTML = "";
+    // get zip info
     const zipInfo = checkLocalStorage(zip);
+    // get lat and long coordinates for sunset
     const lat = zipInfo.lat;
     const lng = zipInfo.lng;
-    sunset(date,lat,lng);
+    // get elements for closing accordian section
     const back = document.getElementById('back');
+    const next = document.getElementById('next');
+    const icon = document.getElementById('menuIcon');
+    const sections = document.getElementsByClassName('open');
+    // get sunrise and sunset times
+    sunset(date,lat,lng);
+    // close accordian first section
     back.classList.toggle('hide');
     back.addEventListener('click', accordianBack);
-    const next = document.getElementById('next');
+    
     next.classList.toggle('hide');
     next.removeEventListener('click', accordianNext);
-    const icon = document.getElementById('menuIconP');
+    
     icon.classList.toggle('hide');
-    const sections = document.getElementsByClassName('open');
+    
     
     
     for (let i = 0; i < sections.length; i++) {
