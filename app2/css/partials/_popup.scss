@@ -139,12 +139,12 @@
     background-color: $light-color;
 }
 .timeinput {
-    width: 78%;
+    width: 82%;
         height: 36px;
 }
 .question, .question2 {
         padding: 2px 8px;
-        background-color: $secondary-color;
+        background-color: $light-color;
         color: $dark-color;
         margin-left: 5px;
         box-shadow: 3px 2px 2px $dark-accent-color;
@@ -215,39 +215,45 @@ li {
 }
 
 .sunbutton {
-    width: 35px;
-    height: 30px;
+    width: 14%;
     padding: 2px;
     border-radius: 5px;
     box-shadow: 3px 2px 2px $dark-accent-color;
     background-color: $light-color;
     display: inline-block;
-    transform: translateY(5px);
+    transform: translateY(10px);
     margin-top: -15px;
     margin-left: 5px;
+    
 }
+.sunbutton img {
+        width: 31px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+
 .advice2 {
     position: absolute;
     background-color: white;
-    transform: translateX(150px);
-    
+    transform: translateX(102%);
+    top: 190px;
     right: 0;
     padding: 0 10px 10px 10px;
     font-size: .6rem;
     transition: 1s ease-in;
     box-shadow: -3px 2px 2px $xdark-accent-color;
-}
-
-.advice2 {
-    transform: translateX(360px);
-    top: 190px;
-    right: 0px;
     z-index: 100;
     width: 90%
-    
+
 }
+.advice2 h2 {
+    color: $dark-color;
+}
+
 .advice2 span {
     float: right;
+    color: $dark-color;
 }
 .show {
     transform: translateX(0);
@@ -323,4 +329,7 @@ hr {
     height: 100%;
     opacity: .8;
     width: 100vw;
+}
+.chevron {
+    
 }

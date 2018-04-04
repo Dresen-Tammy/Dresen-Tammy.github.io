@@ -165,9 +165,12 @@ header {
     transition: z-index .3s 1.5s;
 }
 .plan {
-    @include grid(0,12);
+    width: 100%;
+    top: 0;
     transform: translateX(100%);
-    background-color: $light-color;
+    background-image: url(../Thinkstock664927598.jpg);
+    background-size: cover;
+    background-position: top center;
     transition: .5s  ease-in-out;
     
 }
@@ -217,6 +220,7 @@ header {
     transform: rotate(45deg) translate(4px, 8px);
     width: 20px;
     overflow: visible;
+    z-index: 1000;
 }
 .menuIcon span::before {
     background-color: $light-color;

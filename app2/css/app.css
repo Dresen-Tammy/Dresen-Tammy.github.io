@@ -156,15 +156,15 @@ body, main {
   background-color: #f1f1f1; }
 
 .timeinput {
-  width: 78%;
+  width: 82%;
   height: 36px; }
 
 .question, .question2 {
   padding: 2px 8px;
-  background-color: lightsteelblue;
+  background-color: #f1f1f1;
   color: #2a4e6c;
   margin-left: 5px;
-  box-shadow: 3px 2px 2px khaki;
+  box-shadow: 3px 2px 2px rgba(200, 200, 200, 0.5);
   float: right;
   border-radius: 5px; }
 
@@ -219,36 +219,40 @@ li {
   font-size: 16px; }
 
 .sunbutton {
-  width: 35px;
-  height: 30px;
+  width: 14%;
   padding: 2px;
   border-radius: 5px;
-  box-shadow: 3px 2px 2px khaki;
+  box-shadow: 3px 2px 2px rgba(200, 200, 200, 0.5);
   background-color: #f1f1f1;
   display: inline-block;
-  transform: translateY(5px);
+  transform: translateY(10px);
   margin-top: -15px;
   margin-left: 5px; }
+
+.sunbutton img {
+  width: 31px;
+  margin: 0 auto;
+  display: block; }
 
 .advice2 {
   position: absolute;
   background-color: white;
-  transform: translateX(150px);
+  transform: translateX(102%);
+  top: 190px;
   right: 0;
   padding: 0 10px 10px 10px;
   font-size: .6rem;
   transition: 1s ease-in;
-  box-shadow: -3px 2px 2px darkkhaki; }
-
-.advice2 {
-  transform: translateX(360px);
-  top: 190px;
-  right: 0px;
+  box-shadow: -3px 2px 2px rgba(200, 200, 200, 0.7);
   z-index: 100;
   width: 90%; }
 
+.advice2 h2 {
+  color: #2a4e6c; }
+
 .advice2 span {
-  float: right; }
+  float: right;
+  color: #2a4e6c; }
 
 .show {
   transform: translateX(0);
@@ -469,10 +473,12 @@ p {
   transition: z-index .3s 1.5s; }
 
 .plan {
-  margin-left: 0%;
-  flex: 0 0 100%;
+  width: 100%;
+  top: 0;
   transform: translateX(100%);
-  background-color: #f1f1f1;
+  background-image: url(../Thinkstock664927598.jpg);
+  background-size: cover;
+  background-position: top center;
   transition: .5s  ease-in-out; }
 
 .route {
@@ -520,7 +526,8 @@ p {
   position: relative;
   transform: rotate(45deg) translate(4px, 8px);
   width: 20px;
-  overflow: visible; }
+  overflow: visible;
+  z-index: 1000; }
 
 .menuIcon span::before {
   background-color: #f1f1f1;
