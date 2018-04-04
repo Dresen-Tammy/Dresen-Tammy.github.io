@@ -1,0 +1,97 @@
+.b1Grow {
+    animation: b1grow .75s forwards linear;
+}
+.b2Shrink {
+    animation: b2shrink .75s forwards linear;
+}
+.b3Shrink {
+    animation: b3shrink .75s forwards linear;
+}
+.button .headingTop {
+    margin-top: 13%;
+    transition: margin .5s;
+    transition-delay: .5s;
+}
+.b1Ungrow {
+    height: 100%;
+
+    animation: b1ungrow .5s   forwards linear;
+}
+.b2Unshrink {
+    animation: b2unshrink .5s  forwards linear;
+    height: 0;
+    top: 0;
+    //transition: all 1s;
+}
+.b3Unshrink {
+    height: 0;
+    top: 0;
+    animation: b3unshrink .5s  forwards linear;
+    //transition: all 1s;
+}
+@keyframes b1grow {
+    0% {height: 33.4%;}
+
+    100% {height: 100%;}
+}
+
+@keyframes b2shrink {
+    0% {height: 33.4%;
+        top: 33.4%;}
+
+    100% {height: 0;
+          top: 100%;}
+}
+
+@keyframes b3shrink {
+    0% {height: 33.4%;
+       top: 66.7%;}
+
+    100% {height: 0;
+          top: 100%;}
+}
+@keyframes b1ungrow {
+    0% {height: 100%;}
+    50% {height: 66.7%;}
+    100% {height: 33.4%;}
+}
+
+@keyframes b2unshrink {
+    0% {height: 0;
+          top: 100%;}
+    50% {height: 0;
+         top: 66.7%;}
+    100% {height: 33.4%;
+        top: 33.4%;}
+}
+
+@keyframes b3unshrink {
+    0% {height: 0;
+          top: 100%;}
+    50% {height: 33.4%;
+         top: 66.7%;}
+    100% {height: 33.4%;
+       top: 66.7%;}
+}
+.sunrise h1  {
+    font-size: 30px;
+    color: $light-color;  
+}
+.sunrise h2 {
+    font-size: 25px;
+    color: $light-color;
+}
+.sunrise p {
+    font-size: 16px;
+    color: $light-color;
+    margin-top: 20px;
+}
+.homeText {
+    background-color: rgba(0,0,0,0.6);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    margin: 30vh auto;
+    border-radius: 5px;
+    color: #2a4e6c;
+}

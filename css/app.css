@@ -1,0 +1,642 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 21, 2018, 12:58:59 PM
+    Author     : Dresen_HP
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 21, 2018, 2:40:51 PM
+    Author     : Dresen_HP
+*/
+/* reset */
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden; }
+
+html {
+  overflow: hidden;
+  position: relative;
+  height: 100%; }
+
+body, main {
+  position: relative;
+  height: 100%; }
+
+.main {
+  display: flex;
+  flex-direction: column; }
+
+.popup {
+  display: none;
+  opacity: 0;
+  padding: 5px;
+  position: absolute;
+  text-align: left;
+  top: 15%;
+  width: 95%;
+  left: 2.5%;
+  max-height: 85%;
+  overflow-y: scroll;
+  z-index: 20;
+  background-color: rgba(200, 200, 200, 0.5); }
+  .popup p {
+    margin-left: 0; }
+  .popup .explain {
+    margin-top: 30px; }
+
+.openPop {
+  display: block;
+  animation: openPopup 1s .5s both; }
+
+@keyframes openPopup {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+.closePop {
+  animation: closePopup 1.5s  forward; }
+
+@keyframes closePopup {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 0; } }
+.open .planH2 {
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 0 5px;
+  width: 70px;
+  float: right;
+  margin-right: 0;
+  text-align: center; }
+
+.open .backButton {
+  font-size: 1em;
+  display: inline-block;
+  color: #f1f1f1;
+  font-weight: bold;
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+  font-family: serif; }
+
+.mip {
+  padding: 5px 5px 0px 5px; }
+
+.ihp {
+  margin-bottom: -5px; }
+
+.closePop {
+  animation: closePopUp 1s both; }
+
+.open .collapse {
+  height: 240;
+  transition: all 2s ease-in; }
+
+.open .hide {
+  background-color: lightgoldenrodyellow; }
+
+.zipbox {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 2px;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.zipcode, .timeinput {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  color: #2a4e6c;
+  margin: 5px 0;
+  border-radius: 5px;
+  padding: 5px;
+  height: 32px; }
+  .zipcode:focus, .timeinput:focus {
+    border: solid 2px #f1f1f1; }
+
+.popup3 {
+  background-color: #4e4b45;
+  padding: 10px;
+  top: 30%;
+  left: 10%;
+  position: absolute;
+  text-align: left;
+  box-shadow: 2px 2px 4px rgba(100, 100, 100, 0.5);
+  transition: transform .5s;
+  z-index: 20;
+  transform: rotateX(0);
+  width: 80%; }
+
+.shrink {
+  transform: rotateX(90deg); }
+
+.mi2 {
+  float: right; }
+
+.mi2 span {
+  background-color: #f1f1f1; }
+
+.mi2 span::before {
+  background-color: #f1f1f1; }
+
+.timeinput {
+  width: 78%;
+  height: 36px; }
+
+.question, .question2 {
+  padding: 2px 8px;
+  background-color: lightsteelblue;
+  color: #2a4e6c;
+  margin-left: 5px;
+  box-shadow: 3px 2px 2px khaki;
+  float: right;
+  border-radius: 5px; }
+
+.accordianHead {
+  display: inline-block;
+  padding: 0 5px; }
+
+.question2 {
+  margin-top: 10px; }
+
+.zipbutton, .zipbutton4 {
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+  color: #f1f1f1;
+  float: right;
+  height: 32px; }
+
+.zipbutton4 {
+  margin-left: 8.33333%;
+  flex: 0 0 41.66667%;
+  width: 50%; }
+
+.zipbutton3 {
+  padding: 3px 5px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  color: #2a4e6c;
+  text-align: left;
+  font-size: 16px;
+  height: 32px; }
+
+.or {
+  margin: 0 0 5px 45px; }
+
+.inView {
+  animation: lSlide 1s forwards; }
+
+.outView {
+  animation: backSlide 1s; }
+
+ul {
+  margin-top: 3px; }
+
+li {
+  margin-bottom: 7px;
+  font-size: 16px; }
+
+.sunbutton {
+  width: 35px;
+  height: 30px;
+  padding: 2px;
+  border-radius: 5px;
+  box-shadow: 3px 2px 2px khaki;
+  background-color: #f1f1f1;
+  display: inline-block;
+  transform: translateY(5px);
+  margin-top: -15px;
+  margin-left: 5px; }
+
+.advice2 {
+  position: absolute;
+  background-color: white;
+  transform: translateX(150px);
+  right: 0;
+  padding: 0 10px 10px 10px;
+  font-size: .6rem;
+  transition: 1s ease-in;
+  box-shadow: -3px 2px 2px darkkhaki; }
+
+.advice2 {
+  transform: translateX(360px);
+  top: 190px;
+  right: 0px;
+  z-index: 100;
+  width: 90%; }
+
+.advice2 span {
+  float: right; }
+
+.show {
+  transform: translateX(0);
+  transition: 1s ease-out; }
+
+.warning {
+  border: solid 2px yellow; }
+
+.zipAlert {
+  color: yellow;
+  margin: 5px 0; }
+
+.closeZipBox {
+  height: 20px; }
+
+/* open popup */
+.open .arrow {
+  color: steelblue;
+  transform: rotate(90deg); }
+
+.open .collapse {
+  height: auto;
+  transition: all 2s ease-in; }
+
+.expand .collapse {
+  height: 0;
+  transition: height 2s ease-in; }
+
+.rotateArrow {
+  transform: rotate(90deg); }
+
+hr {
+  margin: 10px 0; }
+
+.hide .backButton {
+  display: none; }
+
+.hide .planH2 {
+  display: none; }
+
+/*keyframes */
+@keyframes openUp {
+  0% {
+    transform: scale(0.03, 0); }
+  50% {
+    transform: scale(0.03, 1); }
+  100% {
+    transform: scale(1, 1); } }
+@keyframes closeUp {
+  0% {
+    transform: scale(1, 1); }
+  25% {
+    transform: scale(1, 1); }
+  75% {
+    transform: scale(0.03, 1); }
+  100% {
+    transform: scale(0, 0); } }
+@keyframes closePopup {
+  0% {
+    opacity: 1;
+    transform: scale(1); }
+  100% {
+    opacity: 1;
+    transform: scale(0); } }
+.popback {
+  background-color: lightsteelblue;
+  height: 100%;
+  opacity: .8;
+  width: 100vw; }
+
+/* flexbox grid. Sets background color and grid*/
+section {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  width: 100%; }
+
+header {
+  height: 40px;
+  z-index: 100; }
+
+.home {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh; }
+
+/* main section */
+.button {
+  height: 33.4%;
+  width: 100%;
+  position: absolute;
+  align-items: center; }
+  .button h2 {
+    color: #f1f1f1;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 16vh;
+    transition: margin .5s; }
+
+.b1 {
+  background-image: url(../Thinkstock509116418.jpg);
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  transform: translate(100%, 0);
+  top: 0; }
+
+.b2 {
+  background-image: url(../Thinkstock539369426.jpg);
+  background-size: cover;
+  background-position: center center;
+  transform: translate(-100%, 0);
+  top: 33.3%; }
+
+.b3 {
+  background-image: url(../Thinkstock97731003.jpg);
+  background-size: cover;
+  background-position: bottom right;
+  transform: translate(100%, 0);
+  top: 66.6%; }
+
+.slide {
+  transform: translate(0, 0);
+  transition: transform .5s 1s; }
+
+.buttonBox {
+  height: 100%; }
+
+/*.settings {
+    @include grid(.5,1);
+    & div {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: $secondary-color;
+      position: relative; 
+      &::after {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: $primary-color;
+        content: '';
+        position: absolute;
+        z-index: 20;
+        left: 2px;
+        top: 2px;  
+      }
+    }
+    
+    
+}*/
+.sunrise {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0px;
+  z-index: -1;
+  background-image: url(../Thinkstock662977456.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center; }
+
+/* Typography */
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 21, 2018, 2:38:39 PM
+    Author     : Dresen_HP
+*/
+h1 {
+  font-family: sans-serif;
+  color: #f1f1f1;
+  font-size: 18px;
+  text-align: center;
+  line-height: 2.6rem; }
+
+h2 {
+  font-family: sans-serif;
+  color: #f1f1f1;
+  font-size: 16px;
+  margin-top: 1vh;
+  font-weight: lighter; }
+
+h3 {
+  font-family: sans-serif;
+  color: #2a4e6c;
+  font-size: 16px;
+  margin-top: 1vh;
+  margin-bottom: .5vh; }
+
+p {
+  display: block;
+  font-family: sans-serif;
+  color: #f1f1f1;
+  font-size: 16px; }
+
+.alert {
+  color: yellow;
+  font-weight: bold;
+  margin: 5px 0; }
+
+/* popup */
+/* plan section */
+.homeHeader {
+  /*z-index: 1000;*/
+  position: absolute;
+  width: 100%;
+  transition: z-index .3s; }
+
+.headerHide {
+  z-index: 0;
+  transition: z-index .3s 1.5s; }
+
+.plan {
+  margin-left: 0%;
+  flex: 0 0 100%;
+  transform: translateX(100%);
+  background-color: #f1f1f1;
+  transition: .5s  ease-in-out; }
+
+.route {
+  margin-left: 0%;
+  flex: 0 0 100%;
+  background-color: #2a4e6c;
+  transform: translateX(-100%);
+  transition: .5s  ease-in-out; }
+
+.openPlan {
+  transform: translate(0);
+  transition: .5s 1s ease-in-out; }
+
+.textBox {
+  margin-left: 8.33333%;
+  flex: 0 0 75%;
+  margin-top: 5vh; }
+
+.plan h1, .route h1 {
+  margin-left: 0%;
+  flex: 0 0 75%;
+  padding-left: 3px; }
+
+.iconHolder {
+  margin-left: 0%;
+  flex: 0 0 8.33333%;
+  align-content: center; }
+
+.menuIcon {
+  height: 40px;
+  position: relative;
+  padding: 10px;
+  transition: background-color .2s ease-in;
+  width: 40px;
+  z-index: 200; }
+
+.menuIcon:hover {
+  background-color: rgba(100, 100, 100, 0.5); }
+
+.menuIcon span {
+  align-content: center;
+  background-color: #f1f1f1;
+  display: block;
+  height: 1.5px;
+  position: relative;
+  transform: rotate(45deg) translate(4px, 8px);
+  width: 20px;
+  overflow: visible; }
+
+.menuIcon span::before {
+  background-color: #f1f1f1;
+  content: "";
+  height: 1.5px;
+  position: absolute;
+  transform: rotate(-90deg);
+  width: 20px; }
+
+.map {
+  height: 80%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: grey; }
+
+.location {
+  margin-left: 10px;
+  color: #f1f1f1;
+  font-size: 20px;
+  margin-bottom: 5px; }
+
+.b1Grow {
+  animation: b1grow .75s forwards linear; }
+
+.b2Shrink {
+  animation: b2shrink .75s forwards linear; }
+
+.b3Shrink {
+  animation: b3shrink .75s forwards linear; }
+
+.button .headingTop {
+  margin-top: 13%;
+  transition: margin .5s;
+  transition-delay: .5s; }
+
+.b1Ungrow {
+  height: 100%;
+  animation: b1ungrow .5s   forwards linear; }
+
+.b2Unshrink {
+  animation: b2unshrink .5s  forwards linear;
+  height: 0;
+  top: 0; }
+
+.b3Unshrink {
+  height: 0;
+  top: 0;
+  animation: b3unshrink .5s  forwards linear; }
+
+@keyframes b1grow {
+  0% {
+    height: 33.4%; }
+  100% {
+    height: 100%; } }
+@keyframes b2shrink {
+  0% {
+    height: 33.4%;
+    top: 33.4%; }
+  100% {
+    height: 0;
+    top: 100%; } }
+@keyframes b3shrink {
+  0% {
+    height: 33.4%;
+    top: 66.7%; }
+  100% {
+    height: 0;
+    top: 100%; } }
+@keyframes b1ungrow {
+  0% {
+    height: 100%; }
+  50% {
+    height: 66.7%; }
+  100% {
+    height: 33.4%; } }
+@keyframes b2unshrink {
+  0% {
+    height: 0;
+    top: 100%; }
+  50% {
+    height: 0;
+    top: 66.7%; }
+  100% {
+    height: 33.4%;
+    top: 33.4%; } }
+@keyframes b3unshrink {
+  0% {
+    height: 0;
+    top: 100%; }
+  50% {
+    height: 33.4%;
+    top: 66.7%; }
+  100% {
+    height: 33.4%;
+    top: 66.7%; } }
+.sunrise h1 {
+  font-size: 30px;
+  color: #f1f1f1; }
+
+.sunrise h2 {
+  font-size: 25px;
+  color: #f1f1f1; }
+
+.sunrise p {
+  font-size: 16px;
+  color: #f1f1f1;
+  margin-top: 20px; }
+
+.homeText {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 250px;
+  padding: 20px;
+  text-align: center;
+  margin: 30vh auto;
+  border-radius: 5px;
+  color: #2a4e6c; }
+
+/*# sourceMappingURL=app.css.map */

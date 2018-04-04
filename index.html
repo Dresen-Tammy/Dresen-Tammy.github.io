@@ -1,61 +1,243 @@
 <!DOCTYPE html>
-<!--
-CIT 261 Homepage for showing proficiency in 13 topics.
--->
-<html>
+
+<html lang="en-us">
   <head>
-    <title>CIT261 Home Page</title>
+    <title>Race the Sun Cycling App</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/main.css" type="text/css" rel="stylesheet">
-         
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+
   </head>
+
+
+
+
   <body>
-    <header>
-      <p class="logo">Tammy Dresen CIT261</p>
+    <!-------Popup for planning ride------------>
+    <div>
+      <div class="popup" id="popup">
+
+        <div id='back' class='open hide' >
+          
+            
+             
+          <div class='collapse'>
+
+            <div class='zipbox'>
+              <p id='zipAlert4' class='zipAlert'></p>
+              <p>Date of ride (required)</p>
+              <input id="dateInput" class="zipcode" type="date" value='2018-03-23' required>
+            </div>
+            <div class='zipbox'>
+              <h2>Zip Code of Ride Start (required)</h2>
+              <p id='zipAlert5' class='zipAlert'></p>
+              <div class='zipParent' id='zipParent2'></div>
+              <h2 class='or'>OR</h2>
+              <button type="button" class='zipbutton3' onclick='openPlanZipPopup()'>Add New Zip Code</button>
+            </div> 
+          </div>
+        </div>
+
+
+          <div id="next" class=' open expand'>
+            <div class="planH2" >
+              <span id='nextButton' class='backButton' >next</span>
+            </div>
+            <div class='collapse'>
+              <div class='zipbox'>
+                <p id='planSunrise'> </p>
+                <p id='planSunset'> </p>
+              </div>
+              <div class='zipbox '>
+                <span class="question2" id="question2" onclick="advice2()">?</span>
+                <div class="advice2" id="advice2">
+                  <h2>Enter 2 fields<span onclick="advice2()">close</span></h2>
+                  <ul><li>Enter START TIME and END TIME to see how far you can go in the time available.</li>
+                    <li>Enter START TIME and DISTANCE to see when you will end.</li>
+                    <li>Enter DISTANCE and END TIME to see when you should start.</li>
+                    <li>To start at sunrise, or end at sunset, click the SUNRISE or SUNSET icons.</li>
+                  </ul>
+                </div>
+
+
+                <p>Enter 2 of the 3 fields.<br>The 3rd will be calculated.</p>
+                <p id="timeAlert" class="zipAlert"></p>
+
+
+                <p>START TIME</p> 
+                <input class="timeinput" id="start" type="time" placeholder="17:00" min="00:01" max="23:59">
+                <div class="sunbutton" onclick="fillSunrise()"><img src="sunrise.png" alt="" class="sunIcon" ></div>
+                <br>
+                <p>END TIME</p> <input class="timeinput" id="end" type="time" min="00:01" max="23:59">
+                <div class="sunbutton" onclick="fillSunset()"><img src="sunset.png" alt="" class="sunIcon"></div>
+                <br>
+                <p>DISTANCE in miles</p> <input class="zipcode" id="miles" type="number" min="1"><br>
+              </div>
+              <div class='zipbox '>
+                <p>Average SPEED in MPH.</p>
+                <select class="zipcode" id="average">
+                  <option value="10">10 - Casual</option>
+                  <option value="12">12 - Brisk</option>
+                  <option value="14">14 - Intermediate</option>
+                  <option value="16">16 - Quick</option>
+                  <option value="18">18 - Fast</option>
+                  <option value="20">20 - XFast</option>
+                  <option value="22">22 - Expert</option>
+                  <option value="24">24 - Racing</option>
+                  <option value="24">26 - Pro</option>
+
+                </select>
+              </div>
+              <button class="zipbutton" id="zipbutton" onclick='planRide()'>Plan a ride</button>
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="popup3 shrink" id="popup3">
+
+          <div id='menuIconPlanZip' class="menuIcon mi2" onclick="closePlanZipPopup()">
+            <span></span>
+          </div>
+
+          <p id='zipAlert3' class='zipAlert'></p>
+
+          <h2>Enter New ZIP Code</h2>
+          <input class='zipcode' id='addZip' type='number'>
+          <br><span id="chevron" class="chevron" onclick="accordianBack()"><</span><button type="button" class='zipbutton zipPlan' onclick='addNewZip()'>Add ZIP Code</button>
+        </div>
+      </div>
+
+
+
+      <!-------Popup for getting routes------------>
+        <div class="popup" id="popup2">
+          <p id='zipAlert' class='zipAlert'></p>
+          <form><h2>Choose Zip Code</h2>
+
+            <div class='zipParent' id='zipParent'>
+
+            </div>
+            <h2>OR</h2>
+            <h2>Enter New Zip Code</h2>
+            <input class='zipcode' id='newZip' type='number'>
+            <br><button type="button" class='zipbutton' onclick='closeRoutePopupToRoute()'>Find Routes</button>
+          </form>
+        </div>
       
-      <nav>
-        <ul id="menu" class="top">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">Topics</a>
-            <ul class="sub">
-              <li><a href="topic1.html">Topic 1</a></li>
-              <li><a href="topic2.html">Topic 2</a></li>
-              <li><a href="topic3.html">Topic 3</a></li>
-              <li><a href="topic4.html">Topic 4</a></li>
-              <li><a href="topic5.html">Topic 5</a></li>
-              <li><a href="topic6.html.html">Topic 6-7</a></li>
-              <li><a href="topic8.html">Topic 8</a></li>
-              <li><a href="topic9.html">Topic 9</a></li>
-              <li><a href="topic10.html">Topic 10</a></li>
-              <li><a href="topi11.html">Topic 11</a></li>
-              <li><a href="topi12.html">Topic 12</a></li>
-              <li><a href="topic13.html">Topic 13</a></li>
-              <li><a href="app/index.html">App</a> </li>
-            </ul></li>
-        </ul></nav>
-    </header>
-    <main>
-      <h1>Fluency Topics</h1>
-       <ol>
-         <li><a href="topic1.html">Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</a></li>
-         <li><a href="topic2.html">Object Creation Functions, Inheritance, Properties, Methods, Instantiation</a></li>
-         <li><a href="topic3.html">JSON Parse, Stringify</a></li>
-         <li><a href="topic4.html">Using XMLHTTPRequest to Consume a JSON Web Service</a></li>
-        <li><a href="topic5.html">Local Storage API, Storing and Retrieving Simple Data, Arrays, Associative Arrays, and Objects</a></li>
-        <li><a href="topic6.html">DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</a></li>
-        <li><a href="topic6.html">Manipulating CSS Class Properties Using JavaScript</a></li>
-        <li><a href="topic8.html">Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript</a></li>
-        <li><a href="topic9.html">Standard JavaScript Events Including those for Mobile Devices</a></li>
-        <li><a href="topic10.html">HTML5 Tags - Video, Audio, and Canvas</a></li>
-        <li><a href="topic11.html">Designing, Defining, and Triggering CSS3 Transitions without Custom Libraries (Thought Library)</a></li>
-        <li><a href="topic12.html">Designing, Defining, and Triggering CSS3 Transforms without Custom Libraries (Thought Library)</a></li>
-        <li><a href="topic13.html">Designing, Defining, and Triggering CSS3 Animations without Custom Libraries (Thought Library)</a></li>
-         <li><a href="app/index.html">Race The Sun Cycling App</a> </li>
-      </ol>
-    </main>
-    <footer>
-      <p>Copyright &copy; 2018 Tammy Dresen</p>
-    </footer>
+
+
+
+
+      <main>
+        <!-----------Header------------>
+        <header class="homeHeader" id="homeHeader">
+            <div class="iconHolder">
+              <div id='menuIcon' class="menuIcon" >
+                <span></span>
+              </div>
+            </div>
+            <h1></h1>
+
+            <div class="settings">
+              <div></div>
+            </div>
+          </header>
+
+        <!------------Home Page------------>
+        <section class="home" id="home">
+
+          <div class="sunrise">
+            <div class="homeText">
+                <h1>Race The Sun</h1>
+            <h2>Cycling App</h2>
+            <p>Because there is always time for a bike ride!</p>
+            </div>
+          </div>
+          <div class="buttonBox">
+
+            <div class="button b1" id="b1" onclick="openPlanPopup()">
+
+              <h2 id="b1H2">Plan Your Ride</h2>
+            </div>
+
+            <div class="button b2" id="b2" onclick='openRoutePopUp()'> 
+              
+              <h2 id="b2H2">Find A Route</h2>
+            </div>
+
+            <div class="button b3" id="b3" onclick='openBikePopUp()'>
+         
+              <h2 id="b3H2">Save Your Bike</h2>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!------------Plan Page------------>
+        <section class="plan " id="plan">
+          <header>
+            <div class="iconHolder">
+              <div id='menuIcon' class="menuIcon" onclick="closePlan()">
+                <span></span>
+              </div>
+            </div>
+            <h1>Plan a Ride</h1>
+
+            <div class="settings">
+              <div></div>
+            </div>
+          </header>
+
+
+          <div class="textBox">
+            <div class="tile" id="tile">
+              <div class="data" id="planDate"></div>
+              <div class="data" id="planCity"></div>
+              <div class="data" id="planStart"></div>
+              <div class="data" id="planEnd"></div>
+              <div class="data" id="planDistance"></div>
+              <div class="data" id="planSpeed"></div>
+              <div class="data" id="planSunrise"></div>
+              <div class="data" id="planSunset"></div>
+
+            </div>
+
+            <button class="button" onclick="openPlanPopup()">Plan New Ride</button>
+          </div>
+        </section>
+
+
+        <!------------Route Page------------>
+        <section class="route" id="route">
+          <header>
+            <div class="iconHolder">
+              <div id='menuIcon2' class="menuIcon" onclick="closeRoute()">
+                <span></span>
+              </div>
+            </div>
+            <h1>Find a Route</h1>
+
+            <div class="settings">
+              <div></div>
+            </div>
+          </header>
+          <h3 id='location' class='location'></h3>
+          <iframe class="map" id="map" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyC1_5qoxKTYV0kfCSCm6q-UV8dGp4aCK7w&center=33.3826505,-117.2440957&zoom=13&maptype=roadmap"></iframe>
+          <button class='zipbutton4' onclick='openRoutePopUp()'>New Location</button>
+
+        </section>
+      </main>
+      <footer id="footer">
+
+      </footer>
+      
+      <script src="js/app.js"></script>
+
+
   </body>
+
+
 </html>
