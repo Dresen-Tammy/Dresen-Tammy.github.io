@@ -807,7 +807,7 @@ function sunset(date, lat, lng) {
                 // parse response and get sunrise and sunset times from it
                 let response = xhr.responseText;
                 response = JSON.parse(response);
-                let sunrise = response.results.sunrise;
+                let sunrise = formatTime(response.results.sunrise);
                 let sunset = response.results.sunset;
                 let milSunrise;
                 let milSunset;
@@ -842,7 +842,12 @@ function sunset(date, lat, lng) {
         xhr.open("GET", url, true);
         xhr.send();
     }
-
+function formatTime(time) {
+    hours.time.getHours();
+    if (hours < 10) {
+        time = "0" + time;
+    }
+}
 function milTime(time) {
             let hour = time.getHours();
             if (hour < 10) {
