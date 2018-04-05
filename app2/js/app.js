@@ -807,8 +807,10 @@ function sunset(date, lat, lng) {
                 // parse response and get sunrise and sunset times from it
                 let response = xhr.responseText;
                 response = JSON.parse(response);
-                let sunrise = formatTime(response.results.sunrise);
-                let sunset = formatTime(response.results.sunset);
+                let sunrise = response.results.sunrise;
+                sunrise = formatTime(sunrise);
+                let sunset = response.results.sunset;
+                sunset = formatTime(sunset);
                 let milSunrise;
                 let milSunset;
                 /* learned how to change from UTC to current user's browser time here: 
