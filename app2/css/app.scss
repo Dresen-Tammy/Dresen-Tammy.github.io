@@ -61,7 +61,7 @@ header {
 /* main section */
 
 .button {
-    height: 33.4%;
+    height: 33.4vh;
     width: 100%;
     position: absolute;
     align-items: center;
@@ -157,6 +157,7 @@ header {
     /*z-index: 1000;*/
     position: absolute;
     width: 100%;
+    text-align: center;
     transition: z-index .3s;
       
 }
@@ -171,27 +172,48 @@ header {
     background-image: url(../Thinkstock664927598.jpg);
     background-size: cover;
     background-position: top center;
+    z-index: 100;
     transition: .5s  ease-in-out;
     
 }
 .route {
-    @include grid(0,12);
-    background-color: $dark-color;
+
+    position: absolute;
+    top: 0;
+    height: 100%;
     transform: translateX(-100%);
     transition: .5s  ease-in-out;
+    background-image: url(../Thinkstock483582660.jpg);
+    background-size: cover;
+}
+.routeBackground {
+    background-color: rgba(200,200,200,0.5);
+    height: 80vh;
+    width: 95%;
+    margin-left: 2.5%;
+    margin-top: 10px;
+    padding-top: 5px;
+    
 }
 .openPlan {
     transform: translate(0);
     transition: .5s 1s ease-in-out;
 }
 .textBox {
-    @include grid(1,9);
-    margin-top: 5vh;
+    background-color: rgba(200,200,200,0.5);
+    padding: 5px;
+    position: absolute;
+    top: 18vh;
+    width: 95%;
+    left: 2.5%;
+    max-height: 85%;
+    overflow-y: scroll;
+    & h3 {
+        line-height: 1.5;
+        font-size: 22px;
+    }
 }
-.plan h1, .route h1 {
-    @include grid(0,9);
-    padding-left: 3px;
-}
+
 .iconHolder {
     @include grid(0,1);
     align-content: center;
@@ -199,15 +221,17 @@ header {
 
 .menuIcon {
     height: 40px;
-    position: relative;
+    position: absolute;
     padding: 10px; 
     transition: background-color .2s ease-in;
     width: 40px;
     z-index: 200;
+    right: 0;
 
     
     
 }
+
 .menuIcon:hover {
     background-color: rgba(100,100,100,0.5);
 }
@@ -234,20 +258,26 @@ header {
 
 
 .map {
-   height: 80%; 
-   width: 100%;
-   margin: 0;
-   padding: 0;
-   background-color: grey;
+   height: 64vh; 
+   width: 98%;
+   margin-left: 1%;
+
+
 }
 
 
 .location {
-    margin-left: 10px;
+    margin: 5px;
     color: $light-color;
     font-size: 20px;
     margin-bottom: 5px;
+    background-color: rgba(100, 100, 100, 0.5);
+    padding: 5px;
+    border-radius: 5px;
 }
 
-
+.planHeader {
+    margin-top: 13%;
+    text-align: center;
+}
 @import 'partials/home.scss';

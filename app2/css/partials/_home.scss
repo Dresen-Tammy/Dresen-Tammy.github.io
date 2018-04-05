@@ -29,10 +29,25 @@
     animation: b3unshrink .5s  forwards linear;
     //transition: all 1s;
 }
+.b1Shrink {
+    height: 0;
+    animation:b1shrink .5s forwards linear;
+}
+.b2Grow {
+    height: 33.4%;
+    top: 33.4%;
+    animation: b2grow .5s forwards linear;
+        
+}
+
 @keyframes b1grow {
     0% {height: 33.4%;}
 
     100% {height: 100%;}
+}
+@keyframes b1shrink {
+    0% {height: 33.4%;}
+    100% {height: 0;}
 }
 
 @keyframes b2shrink {
@@ -41,6 +56,12 @@
 
     100% {height: 0;
           top: 100%;}
+}
+@keyframes b2grow {
+    0% {height: 33.4%;
+        top: 33.4%; }
+    100% {height: 100%;
+          top: 0;}
 }
 
 @keyframes b3shrink {

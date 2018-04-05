@@ -76,24 +76,20 @@ body, main {
   100% {
     opacity: 0; } }
 .open .planH2 {
-  height: 30px;
+  height: 32px;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 15px;
-  padding: 0 5px;
-  width: 70px;
+  padding: 0 15px;
   float: right;
-  margin-right: 0;
-  text-align: center; }
+  text-align: center;
+  font-family: sans-serif; }
 
 .open .backButton {
   font-size: 1em;
   display: inline-block;
   color: #f1f1f1;
-  font-weight: bold;
   float: right;
-  margin-right: 10px;
-  margin-top: 5px;
-  font-family: serif; }
+  margin-top: 5px; }
 
 .mip {
   padding: 5px 5px 0px 5px; }
@@ -101,16 +97,9 @@ body, main {
 .ihp {
   margin-bottom: -5px; }
 
-.closePop {
-  animation: closePopUp 1s both; }
-
-.open .collapse {
-  height: 240;
-  transition: all 2s ease-in; }
-
-.open .hide {
-  background-color: lightgoldenrodyellow; }
-
+/*.closePop {
+    animation: closePopUp 1s both;
+}*/
 .zipbox {
   border-radius: 5px;
   padding: 10px;
@@ -129,6 +118,8 @@ body, main {
   height: 32px; }
   .zipcode:focus, .timeinput:focus {
     border: solid 2px #f1f1f1; }
+  .zipcode::placeholder, .timeinput::placeholder {
+    color: #2a4e6c; }
 
 .popup3 {
   background-color: #4e4b45;
@@ -147,7 +138,8 @@ body, main {
   transform: rotateX(90deg); }
 
 .mi2 {
-  float: right; }
+  top: 0;
+  right: 0; }
 
 .mi2 span {
   background-color: #f1f1f1; }
@@ -186,9 +178,7 @@ body, main {
   height: 32px; }
 
 .zipbutton4 {
-  margin-left: 8.33333%;
-  flex: 0 0 41.66667%;
-  width: 50%; }
+  margin-right: 5px; }
 
 .zipbutton3 {
   padding: 3px 5px;
@@ -247,7 +237,7 @@ li {
   z-index: 100;
   width: 90%; }
 
-.advice2 h2 {
+.advice2 h3 {
   color: #2a4e6c; }
 
 .advice2 span {
@@ -268,61 +258,75 @@ li {
 .closeZipBox {
   height: 20px; }
 
-/* open popup */
-.open .arrow {
-  color: steelblue;
-  transform: rotate(90deg); }
+.iconHolderP {
+  position: absolute;
+  right: 5px;
+  top: 8px;
+  width: 40px;
+  height: 40px; }
 
-.open .collapse {
-  height: auto;
-  transition: all 2s ease-in; }
+.back {
+  height: 320px;
+  transition: height 1s; }
 
-.expand .collapse {
+.next {
+  height: 460px;
+  transition: height 1s; }
+
+.expand {
   height: 0;
-  transition: height 2s ease-in; }
+  transition: height 1s; }
 
+/* open popup */
+@keyframes nextExpand {
+  0% {
+    height: 0; }
+  50% {
+    height: 0; }
+  100% {
+    height: 460px; } }
 .rotateArrow {
   transform: rotate(90deg); }
 
 hr {
   margin: 10px 0; }
 
-.hide .backButton {
+.expand .menuIcon {
   display: none; }
 
-.hide .planH2 {
+form {
+  margin-top: 25px; }
+
+.mir {
+  top: 0; }
+
+.noShow {
   display: none; }
 
 /*keyframes */
-@keyframes openUp {
-  0% {
-    transform: scale(0.03, 0); }
-  50% {
-    transform: scale(0.03, 1); }
-  100% {
-    transform: scale(1, 1); } }
+/*@keyframes openUp {
+    0% {transform: scale(.03, 0);}
+    50% {transform: scale(.03, 1);}
+    100% {transform: scale(1, 1);}
+}
 @keyframes closeUp {
-  0% {
-    transform: scale(1, 1); }
-  25% {
-    transform: scale(1, 1); }
-  75% {
-    transform: scale(0.03, 1); }
-  100% {
-    transform: scale(0, 0); } }
-@keyframes closePopup {
-  0% {
-    opacity: 1;
-    transform: scale(1); }
-  100% {
-    opacity: 1;
-    transform: scale(0); } }
-.popback {
-  background-color: lightsteelblue;
-  height: 100%;
-  opacity: .8;
-  width: 100vw; }
-
+    0% {transform: scale(1, 1);}
+    25% {transform: scale(1, 1);}
+    75% {transform: scale(.03, 1);}
+    100% {transform: scale(0, 0);}
+}*/
+/*@keyframes closePopup {
+    0% {opacity: 1; transform:  scale(1);}
+    100% {opacity: 1; transform:  scale(0);}*/
+/*.popback {
+    background-color: lightsteelblue;
+    height: 100%;
+    opacity: .8;
+    width: 100vw;
+}
+.chevron {
+    
+}*/
 /* flexbox grid. Sets background color and grid*/
 section {
   position: absolute;
@@ -343,7 +347,7 @@ header {
 
 /* main section */
 .button {
-  height: 33.4%;
+  height: 33.4vh;
   width: 100%;
   position: absolute;
   align-items: center; }
@@ -431,23 +435,22 @@ and open the template in the editor.
 h1 {
   font-family: sans-serif;
   color: #f1f1f1;
-  font-size: 18px;
+  font-size: 35px;
   text-align: center;
   line-height: 2.6rem; }
 
 h2 {
   font-family: sans-serif;
   color: #f1f1f1;
-  font-size: 16px;
+  font-size: 40px;
   margin-top: 1vh;
   font-weight: lighter; }
 
 h3 {
   font-family: sans-serif;
-  color: #2a4e6c;
+  color: #f1f1f1;
   font-size: 16px;
-  margin-top: 1vh;
-  margin-bottom: .5vh; }
+  font-weight: lighter; }
 
 p {
   display: block;
@@ -466,6 +469,7 @@ p {
   /*z-index: 1000;*/
   position: absolute;
   width: 100%;
+  text-align: center;
   transition: z-index .3s; }
 
 .headerHide {
@@ -479,28 +483,42 @@ p {
   background-image: url(../Thinkstock664927598.jpg);
   background-size: cover;
   background-position: top center;
+  z-index: 100;
   transition: .5s  ease-in-out; }
 
 .route {
-  margin-left: 0%;
-  flex: 0 0 100%;
-  background-color: #2a4e6c;
+  position: absolute;
+  top: 0;
+  height: 100%;
   transform: translateX(-100%);
-  transition: .5s  ease-in-out; }
+  transition: .5s  ease-in-out;
+  background-image: url(../Thinkstock483582660.jpg);
+  background-size: cover; }
+
+.routeBackground {
+  background-color: rgba(200, 200, 200, 0.5);
+  height: 80vh;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-top: 10px;
+  padding-top: 5px; }
 
 .openPlan {
   transform: translate(0);
   transition: .5s 1s ease-in-out; }
 
 .textBox {
-  margin-left: 8.33333%;
-  flex: 0 0 75%;
-  margin-top: 5vh; }
-
-.plan h1, .route h1 {
-  margin-left: 0%;
-  flex: 0 0 75%;
-  padding-left: 3px; }
+  background-color: rgba(200, 200, 200, 0.5);
+  padding: 5px;
+  position: absolute;
+  top: 18vh;
+  width: 95%;
+  left: 2.5%;
+  max-height: 85%;
+  overflow-y: scroll; }
+  .textBox h3 {
+    line-height: 1.5;
+    font-size: 22px; }
 
 .iconHolder {
   margin-left: 0%;
@@ -509,11 +527,12 @@ p {
 
 .menuIcon {
   height: 40px;
-  position: relative;
+  position: absolute;
   padding: 10px;
   transition: background-color .2s ease-in;
   width: 40px;
-  z-index: 200; }
+  z-index: 200;
+  right: 0; }
 
 .menuIcon:hover {
   background-color: rgba(100, 100, 100, 0.5); }
@@ -538,17 +557,22 @@ p {
   width: 20px; }
 
 .map {
-  height: 80%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: grey; }
+  height: 64vh;
+  width: 98%;
+  margin-left: 1%; }
 
 .location {
-  margin-left: 10px;
+  margin: 5px;
   color: #f1f1f1;
   font-size: 20px;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  background-color: rgba(100, 100, 100, 0.5);
+  padding: 5px;
+  border-radius: 5px; }
+
+.planHeader {
+  margin-top: 13%;
+  text-align: center; }
 
 .b1Grow {
   animation: b1grow .75s forwards linear; }
@@ -578,11 +602,25 @@ p {
   top: 0;
   animation: b3unshrink .5s  forwards linear; }
 
+.b1Shrink {
+  height: 0;
+  animation: b1shrink .5s forwards linear; }
+
+.b2Grow {
+  height: 33.4%;
+  top: 33.4%;
+  animation: b2grow .5s forwards linear; }
+
 @keyframes b1grow {
   0% {
     height: 33.4%; }
   100% {
     height: 100%; } }
+@keyframes b1shrink {
+  0% {
+    height: 33.4%; }
+  100% {
+    height: 0; } }
 @keyframes b2shrink {
   0% {
     height: 33.4%;
@@ -590,6 +628,13 @@ p {
   100% {
     height: 0;
     top: 100%; } }
+@keyframes b2grow {
+  0% {
+    height: 33.4%;
+    top: 33.4%; }
+  100% {
+    height: 100%;
+    top: 0; } }
 @keyframes b3shrink {
   0% {
     height: 33.4%;

@@ -9,71 +9,91 @@
 addEventListener('load', setup);
 
 function setup() {
-    //add event listener to close popup for zipcode.
-    //const popback = document.getElementById('popback');
-    //popback.addEventListener('click', closePlanPopup);
-    //const popback2 = document.getElementById('popback2');
-    //popback2.addEventListener('click', closeRoutePopUp);
+    //When the app loads, it shows splash screen, then buttons slide in.
    
     document.getElementById('b1').classList.add('slide');
     document.getElementById('b2').classList.add('slide');
     document.getElementById('b3').classList.add('slide');
 
 }
+/* When app loads, these are the important classes -- alert     -- accordianNext   --openPlanPage
+ * Home Page           --openPlanPopUp
+ * b1 button b1 slide  -- b1Grow
+ *   b1H2              -- headingTop
+ * b2 button b2 slide  -- b2Shrink
+ *   b2H2
+ * b3 button b3 slide  -- b3Shrink
+ *   b3H3
+ * 
+ * Plan Popup          -- openPop
+ * popup popup
+ *   back back open hide                                           hide
+ *   next next open expand                                         expand
+ * popup3 popup3 shrink
+ * 
+ * timeAlert                                       addedInnerHTML  
+ * advice2                                                            show
+ *
+ * plan                                                                            openPlan
+ *
+ **/
 
 /*********************************
  * plan
  ********************************/
 
-// actually opens the popup
+
+// When Plan Your Ride button is clicked, slides 2 buttons down and opens popup
 function openPlanPopup() {
-   // create select list
+   // get elements for select list
    const parent = document.getElementById('zipParent2');
-   //const popcan = document.getElementById('popcan');
+   // get elements for opening popup
    const popup = document.getElementById('popup');
    const next = document.getElementById('next');
-   const today = getDate(); // in model
-   const rideDate = document.getElementById('dateInput');
+   // get elements for moving home buttons and title
    const b1 = document.getElementById('b1');
    const b2 = document.getElementById('b2');
    const b3 = document.getElementById('b3');
    const b1H2 = document.getElementById('b1H2');
-   const icon = document.getElementById('menuIcon');
-   icon.addEventListener('click', closePlanPopup);
-        createZipSelect(parent); // in model
-        next.addEventListener('click', accordianNext);
+   // get elements for autofill today's date
+   const rideDate = document.getElementById('dateInput');
+   const today = getDate(); // function in model
+        // creates select list for plan popup
+        createZipSelect(parent); // function in model
         // insert today's date into dateInput
         if (rideDate.value == "" || rideDate < today) {
             rideDate.value = today;
         }
-    b1.classList.add("b1Grow");
-    b2.classList.add("b2Shrink");
-    b3.classList.add('b3Shrink');
-    b1H2.classList.add('headingTop');
-        // display popup
+        // move home buttons and title
+        b1.classList.add("b1Grow");
+        b2.classList.add("b2Shrink");
+        b3.classList.add('b3Shrink');
+        b1H2.classList.add('headingTop');
         
+        // display popup
         popup.classList.add('openPop');
         if (popup.classList.contains('closePop')) {
             popup.classList.remove('closePop');
         }
 }
 
-
+// when plan popup is open and Add New Zip is clicked
 function openPlanZipPopup() {
     document.getElementById('zipAlert3').innerHTML = "";
     const popup = document.getElementById('popup3');
     popup.classList.remove('shrink');
     
 }
-
+// closes add new zip popup back to plan popup
 function closePlanZipPopup() {
     const popup = document.getElementById('popup3');
     popup.classList.add('shrink');
 }
 
-// when Plan a Ride button is clicked, 
+// when Plan a Ride button is clicked, from plan popup
 // validates values and decides which function to perform
 function planRide () {
+    // get inputs from user
     const start = document.getElementById('start').value;
     const end = document.getElementById('end').value;
     const miles = document.getElementById('miles').value;
@@ -81,10 +101,11 @@ function planRide () {
     alert.innerHTML = "";
     let choice;
     let message;
+    // validate inputs. If invalid, return to plan popup. If valid, calls calcRide function
     if ((start == "" && end == "" && miles == "") 
             || (start == "" && end == "") || (start == "" && miles == "")
             ||(end == "" && miles == "")) {
-        message = "Fill in 2 text fields. Click question mark for help.";
+        message = "Fill in 2 text fields. Click ? for help.";
             alertError2(alert, message);
             return;
     } else if (miles === '0' || miles < 0) {
@@ -93,46 +114,172 @@ function planRide () {
         return;
     } else if (start == "") {
         choice = start;
-        calcRide(choice)
+        calcRide(choice)  // function in model section
     } else if (end == "") {
         choice = end;
-        calcRide(choice)
+        calcRide(choice)  // function in model section
     } else if (start > end){
         message = "End time must be after Start time.";
-        alertError2(alert, message);
+        alertError2(alert, message);  // function in model section
         return
     } else if (miles == "") {
         choice = "miles";
-        calcRide(choice)
+        calcRide(choice)  // function in model section
     } else { 
         message = "Leave 1 field blank. Click question mark for help.";
-            alertError2(alert, message);
+            alertError2(alert, message);  // function in model section
             return;
     }
 }
 
-function openPlan() {
-    let plan = document.getElementById('plan');
-    if (!plan.classList.contains('openPlan'))
-    plan.classList.add('openPlan');
+// shows advice slider on plan popup
+function advice2() {
+const advice = document.getElementById('advice2');
+        advice.classList.toggle('show');
+}
+// advances to next page of popup on plan popup
+function accordianNext() {
+    // get elements by id
+    const date = document.getElementById('dateInput').value;
+    const zip = document.getElementById('zipSelect').value;
+    const datealert = document.getElementById('zipAlert4');
+    let message;
+    // validate zip and date info
+    const zipalert = document.getElementById('zipAlert5');
+    if (date == "" || date == undefined) {
+        message = "Please enter a valid date";
+        alertError2(datealert, message);  // function in model section
+        return;  
+    }
+    if (zip == '') {
+        message = "Please enter a valid zipcode";
+        alertError2(zipalert, message);  // function in model section
+        
+        return;
+    }
+    // reset alerts before closing
+    datealert.innerHTML = "";
+    zipalert.innerHTML = "";
+    // get zip info
+    const zipInfo = checkLocalStorage(zip);
+    // get lat and long coordinates for sunset
+    const lat = zipInfo.lat;
+    const lng = zipInfo.lng;
+    // get elements for closing accordian section
+    const back = document.getElementById('back');
+    const next = document.getElementById('next');
+    const icon = document.getElementById('menuIconP');
+    const icon2 = document.getElementById('menuIconP2');
+    const sections = document.getElementsByClassName('open');
+    // get sunrise and sunset times
+    sunset(date,lat,lng);  // function in model section
+    // close accordian first section and open next section
+    if (back.classList.contains('hide')) {
+        back.classList.remove('hide');
+    }
+    back.classList.add('expand');
+    next.classList.add('hide');
+    if (next.classList.contains('expand')) {
+        next.classList.remove('expand');
+    }
 }
 
-function closePlan() {
+// closes second accordian section and opens first one of plan popup
+function accordianBack() {
+    // get elements for opening accordian sections
+    const back = document.getElementById('back');
+    const next = document.getElementById('next');
+    // get elements to remove alerts
+    const datealert = document.getElementById('zipAlert4');
+    const zipalert = document.getElementById('zipAlert5');
+    // open and close accordian sections
+    back.classList.add('hide');
+    if (back.classList.contains('expand')) {
+        back.classList.toggle('expand');
+    }
+    next.classList.add('expand');
+    if (next.classList.contains('hide')) {
+        next.classList.toggle('hide');
+    }
+    // remove alert info if backing up to previous screen.
+    datealert.innerHTML = "";
+    zipalert.innerHTML = "";
+}
+// opens plan page.  toggled from open2ndPlanPopup and calcRide
+function openPlanPage() {
+    // gets plan page element
     let plan = document.getElementById('plan');
-    plan.classList.toggle('openPlan');
+    // opens the plan page
+    if (!plan.classList.contains('openPlan'))
+    plan.classList.add('openPlan');
+
+}
+
+// opens the plan popup from the plan page 
+function open2ndPlanPopup() {
+    // get elements to reset accordian to first page
+    const back = document.getElementById('back');
+    const next = document.getElementById('next');
+    // resets accordian
+        if (!back.classList.contains('hide')) {
+            back.classList.add('hide');
+        }
+        if (back.classList.contains('expand')) {
+            back.classList.remove('expand');
+        }
+        if (next.classList.contains('hide')) {
+            next.classList.remove('hide');
+        }
+        if (!next.classList.contains('expand')) {
+            next.classList.add('expand');
+        }
+        // once accordian has been reset close plan page
+        next.addEventListener('transitionend', function() {
+            document.getElementById('plan').classList.remove('openPlan');  
+        });
+}
+// resets everything back to the original settings and closes plan page to home screen
+function closePlan() {
+    // reverts popup and home page buttons back to original
+    closePlanPopup();
+    // gets elements for resetting accordian
+    const back = document.getElementById('back');
+    const next = document.getElementById('next');
+    const plan = document.getElementById('plan');
+        // resets accordian if not already reset
+        if (!back.classList.contains('hide')) {
+            back.classList.add('hide');
+        }
+        if (back.classList.contains('expand')) {
+            back.classList.remove('expand');
+        }
+        if (next.classList.contains('hide')) {
+            next.classList.remove('hide');
+        }
+        if (!next.classList.contains('expand')) {
+            next.classList.add('expand');
+        }
+        // once accordian resets, plan page is closed
+        next.addEventListener('transitionend', function() {
+            document.getElementById('plan').classList.remove('openPlan');  
+        });
+        // in case accordian is already reset, close plan page
+        if (plan.classList.contains('openPlan')) {
+            plan.classList.remove('openPlan');
+        }
 }
 
 // actually closes the popup
 function closePlanPopup() {
     // get elements by id
-    const icon = document.getElementById('menuIcon');
+    
     const b1 = document.getElementById('b1');
     const b2 = document.getElementById('b2');
     const b3 = document.getElementById('b3');
     const b1H2 = document.getElementById('b1H2');
     const popup = document.getElementById('popup');
-    // remove event listener
-        icon.removeEventListener('click', closePlanPopup);
+    
+    
         // add classes to close elements of plan popup
         popup.classList.add('closePop');
         b1.classList.add("b1Ungrow");
@@ -168,82 +315,6 @@ function closePlanPopup() {
         }    
 }
 
-// toggle average speed advice
-function advice() {
-const advice = document.getElementById('advice');
-        advice.classList.toggle('show');
-}
-
-function advice2() {
-const advice = document.getElementById('advice2');
-        advice.classList.toggle('show');
-}
-
-function accordianNext() {
-    // get elements by id
-    const date = document.getElementById('dateInput').value;
-    const zip = document.getElementById('zipSelect').value;
-    const datealert = document.getElementById('zipAlert4');
-    let message;
-    // validate zip and date info
-    const zipalert = document.getElementById('zipAlert5');
-    if (date == "" || date == undefined) {
-        message = "Please enter a valid date";
-        alertError2(datealert, message);
-        return;  
-    }
-    if (zip == '') {
-        message = "Please enter a valid zipcode";
-        alertError2(zipalert, message);
-        
-        return;
-    }
-    // reset alerts
-    datealert.innerHTML = "";
-    zipalert.innerHTML = "";
-    // get zip info
-    const zipInfo = checkLocalStorage(zip);
-    // get lat and long coordinates for sunset
-    const lat = zipInfo.lat;
-    const lng = zipInfo.lng;
-    // get elements for closing accordian section
-    const back = document.getElementById('back');
-    const next = document.getElementById('next');
-    const icon = document.getElementById('menuIcon');
-    const sections = document.getElementsByClassName('open');
-    // get sunrise and sunset times
-    sunset(date,lat,lng);
-    // close accordian first section
-    back.classList.toggle('hide');
-    back.addEventListener('click', accordianBack);
-    
-    next.classList.toggle('hide');
-    next.removeEventListener('click', accordianNext);
-    
-    icon.classList.toggle('hide');
-    
-    
-    
-    for (let i = 0; i < sections.length; i++) {
-        sections[i].classList.toggle('expand');
-    }
-}
-
-function accordianBack() {
-    const back = document.getElementById('back');
-    back.classList.toggle('hide');
-    back.removeEventListener('click', accordianBack);
-    const next = document.getElementById('next');
-    next.classList.toggle('hide');
-    next.addEventListener('click', accordianNext);
-    const sections = document.getElementsByClassName('open');
-    
-    
-    for (let i = 0; i < sections.length; i++) {
-        sections[i].classList.toggle('expand');
-    }
-}
-
 /*********************************
  * routes
  ********************************/
@@ -253,29 +324,53 @@ function accordianBack() {
  * If add zipcode, call get function to get lat/long.
  * Store lat/long/city/state/zip in local storage. */
 
+// When Plan Your Ride button is clicked, slides 2 buttons down and opens popup
 function openRoutePopUp() {
-    // get list of zips from localStorage and create select list for zipPopUp
     document.getElementById('newZip').value = "";
-    const parent = document.getElementById('zipParent');
-    createZipSelect(parent);
     document.getElementById('zipAlert').innerHTML = "";
-    // open zip popup
-    const popcan2 = document.getElementById('popcan2');
-    popcan2.classList.add('openPop');
-    if (popcan2.classList.contains('closePop')) {
-        popcan2.classList.remove('closePop');
-    }
-
+   // get elements for select list
+   const parent = document.getElementById('zipParent');
+   // get elements for opening popup
+   const popup = document.getElementById('popup2');
+   
+   // get elements for moving home buttons and title
+   const b1 = document.getElementById('b1');
+   const b2 = document.getElementById('b2');
+   const b3 = document.getElementById('b3');
+   const b2H2 = document.getElementById('b2H2');
+        // creates select list for plan popup
+        createZipSelect(parent); // function in model
+        
+       
+        // move home buttons and title
+        b1.classList.add("b1Shrink");
+        b2.classList.add("b2Grow");
+        b3.classList.add('b3Shrink');
+        b2H2.classList.add('headingTop');
+        
+        // display popup
+        popup.classList.add('openPop');
+        if (popup.classList.contains('closePop')) {
+            popup.classList.remove('closePop');
+        }
 }
-
+function openRoutePopUp2() {
+    document.getElementById('route').classList.remove('openPlan');
+   const popup = document.getElementById('popup2');
+    popup.classList.add('openPop');
+    if (popup.classList.contains('closePop')) {
+        popup.classList.remove('closePop');
+    }
+}
 function closeRoutePopUp() {
     // close zip popup
-    const popcan = document.getElementById('popcan2');
-    popcan.classList.add('closePop');
-    if (popcan2.classList.contains('openPop')) {
-        popcan2.classList.remove('openPop');
+    const popup = document.getElementById('popup2');
+    popup.classList.add('closePop');
+    if (popup.classList.contains('openPop')) {
+        popup.classList.remove('openPop');
     }
 }
+
 
 function closeRoutePopupToRoute() {
     // get inputs for zipcode from user
@@ -314,9 +409,6 @@ function closeRoutePopupToRoute() {
 // closes zip popup open.
 
 function openRoute() {
-    if (!document.getElementById('footer').classList.contains('footerZ')) {
-        document.getElementById('footer').classList.add('footerZ');
-    }
     let plan = document.getElementById('route');
         if (!plan.classList.contains('openPlan')) {
            plan.classList.add('openPlan'); 
@@ -326,13 +418,38 @@ function openRoute() {
 
 function closeRoute() {
 
-let plan = document.getElementById('route');
-    if (document.getElementById('footer').classList.contains('footerZ')) {
-        document.getElementById('footer').classList.remove('footerZ');
-    }    
-        plan.classList.toggle('openPlan');
-        let header = document.getElementById('homeHeader');
-        header.classList.toggle('headerHide');
+    let plan = document.getElementById('route');
+   // get elements for moving home buttons and title
+   const b1 = document.getElementById('b1');
+   const b2 = document.getElementById('b2');
+   const b3 = document.getElementById('b3');
+   const b2H2 = document.getElementById('b2H2');
+   const popup = document.getElementById('popup2');
+   if (popup.classList.contains('openPop')) {
+       popup.classList.remove('openPop');
+   }
+     if (!popup.classList.contains('closePop')) {
+         popup.classList.add('closePop');
+     }
+     if (b2H2.classList.contains('headingTop')) {
+       b2H2.classList.remove("headingTop");
+   };
+
+   if (b1.classList.contains('b1Shrink')) {
+       b1.classList.remove("b1Shrink");
+   };
+   if (b2.classList.contains('b2Grow')) {
+       b2.classList.remove("b2Grow");
+   };
+   if (b3.classList.contains('b3Shrink')) {
+       b3.classList.remove("b3Shrink");
+   };
+   
+
+   if (plan.classList.contains('openPlan')) {
+       plan.classList.remove('openPlan');
+   };
+
 }
 /*********************************
  * bike
@@ -622,6 +739,7 @@ return true;
 }
 
 function calcRide(choice) {
+    // get inputs
     const date = document.getElementById('dateInput').value;
     const zip = document.getElementById('zipSelect').value;
     let start = document.getElementById('start').value;
@@ -632,8 +750,8 @@ function calcRide(choice) {
     const zipInfo = checkLocalStorage(zip);
     const city = zipInfo.city;
     const sunInfo = JSON.parse(localStorage.getItem("sunInfo"));
-    const sunrise = sunInfo[3];
-    const sunset = sunInfo[4];
+    const sunrise = sunInfo[2];
+    const sunset = sunInfo[3];
     const back = document.getElementById('back');
     const next = document.getElementById('next');
     // calculate based on choice
@@ -651,18 +769,14 @@ function calcRide(choice) {
     document.getElementById('planEnd').innerHTML = end;
     document.getElementById('planDistance').innerHTML = distance;
     document.getElementById('planSpeed').innerHTML = speed;
-    document.getElementById('planSunrise').innerHTML = sunrise;
-    document.getElementById('planSunset').innerHTML = sunset;
+    document.getElementById('plannedSunrise').innerHTML = sunrise;
+    document.getElementById('plannedSunset').innerHTML = sunset;
     // reset planpopup to original settings, 
     // close popup
-    closePlanPopup();
-    back.classList.remove('expand');
-    back.classList.add('hide');
-    back.removeEventListener('click', accordianBack);
-    next.classList.add('expand');
-    next.classList.remove('hide');
+    
     // open plan page
-    openPlan();
+    openPlanPage();
+    
 }
 
 function calcEnd(start, distance, speed) {
@@ -860,7 +974,7 @@ dateInput = document.getElementById('dateInput');
          
          const button = document.getElementById('zipbutton');
          button.removeEventListener('click', closePopToPlan); 
-         openPlan();
+         openPlanPage();
 
         }
 }*/

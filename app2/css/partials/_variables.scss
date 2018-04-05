@@ -23,7 +23,7 @@ $one-column: 100% / $num-columns;
 
 // fonts
 $primary-font: sans-serif;
-$secondary-font: serif;
+$secondary-font: sans-serif;
 // mixins
 // adds font, color and type for typography section
 @mixin text($font-family, $color, $font-size: 16px) {

@@ -9,20 +9,19 @@ and open the template in the editor.
 */
 
 h1 {
-    @include text($primary-font, $light-color, 18px);
+    @include text($primary-font, $light-color, 35px);
     text-align: center;
     line-height: 2.6rem;
 }
 
 h2 {
-    @include text($primary-font, $light-color, 16px);
+    @include text($primary-font, $light-color, 40px);
     margin-top: 1vh;
     font-weight:lighter;
 }
 h3 {
-    @include text($primary-font, $dark-color, 16px);
-    margin-top: 1vh;
-    margin-bottom: .5vh;
+    @include text($primary-font, $light-color, 16px);
+    font-weight: lighter;
 
 }
 
