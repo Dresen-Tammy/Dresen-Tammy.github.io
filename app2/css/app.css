@@ -3,7 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : Mar 21, 2018, 12:58:59 PM
     Author     : Dresen_HP
 */
@@ -25,6 +25,7 @@ and open the template in the editor.
 
 html {
   overflow: hidden;
+  cursor: grab;
   position: relative;
   height: 100%; }
 
@@ -394,7 +395,7 @@ header {
       height: 20px;
       border-radius: 50%;
       background-color: $secondary-color;
-      position: relative; 
+      position: relative;
       &::after {
         width: 16px;
         height: 16px;
@@ -404,11 +405,11 @@ header {
         position: absolute;
         z-index: 20;
         left: 2px;
-        top: 2px;  
+        top: 2px;
       }
     }
-    
-    
+
+
 }*/
 .sunrise {
   position: absolute;
