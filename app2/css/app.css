@@ -67,15 +67,18 @@ body, main {
     font-size: 22px; }
 
 .textBox2 {
-  top: 15vh;
-  z-index: -10;
+  top: 120vh;
   display: none;
   opacity: 0; }
 
+.openPop2 {
+  display: block;
+  top: 15vh;
+  animation: openPopup 1s .25s both; }
+
 .openPop {
   display: block;
-  animation: openPopup 1s .5s both; 
-  z-index: 10;}
+  animation: openPopup 1s .5s both; }
 
 @keyframes openPopup {
   0% {
