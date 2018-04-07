@@ -14,6 +14,7 @@ function setup() {
     document.getElementById('b1').classList.add('slide');
     document.getElementById('b2').classList.add('slide');
     document.getElementById('b3').classList.add('slide');
+    document.removeEventListener('load', setup);
 
 }
 /* When app loads, these are the important classes -- alert     -- accordianNext   --openPlanPage
@@ -113,18 +114,18 @@ function planRide() {
         alertError2(alert, message);
         return;
     } else if (start == "") {
-        choice = start;
-        calcRide(choice) // function in model section
+        choice = "start";
+        calcRide(choice); // function in model section
     } else if (end == "") {
-        choice = end;
-        calcRide(choice) // function in model section
+        choice = "end";
+        calcRide(choice); // function in model section
     } else if (start > end) {
         message = "End time must be after Start time.";
         alertError2(alert, message); // function in model section
         return
     } else if (miles == "") {
         choice = "miles";
-        calcRide(choice) // function in model section
+        calcRide(choice); // function in model section
     } else {
         message = "Leave 1 field blank. Click question mark for help.";
         alertError2(alert, message); // function in model section
@@ -346,7 +347,7 @@ function openRoutePopUp() {
     // move home buttons and title
     b1.classList.add("b1Shrink");
     b2.classList.add("b2Grow");
-    b3.classList.add('b3Shrink');
+    b3.classList.add('b3Shrink2');
     b2H2.classList.add('headingTop');
 
     // display popup
@@ -428,6 +429,20 @@ function closeRoute() {
     const b3 = document.getElementById('b3');
     const b2H2 = document.getElementById('b2H2');
     const popup = document.getElementById('popup2');
+    b1.classList.add("b1Unshrink");
+    b2.classList.add("b2Ungrow");
+    b3.classList.add("b3Unshrink2");
+    b2H2.classList.add("HeadingTopUnmove");
+    // when animation is finished, remove classes that close popup
+    b3.addEventListener('animationend', function () {
+        b2.classList.remove('b2Ungrow');
+        b1.classList.remove('b1Unshrink');
+        b3.classList.remove('b3Unshrink2');
+        b1H2.classList.remove("HeadingTopUnmove");
+        popup.classList.remove('closePop');
+    });
+    // remove classes that opened the popup if present
+
     if (popup.classList.contains('openPop')) {
         popup.classList.remove('openPop');
     }
@@ -444,8 +459,8 @@ function closeRoute() {
     if (b2.classList.contains('b2Grow')) {
         b2.classList.remove("b2Grow");
     };
-    if (b3.classList.contains('b3Shrink')) {
-        b3.classList.remove("b3Shrink");
+    if (b3.classList.contains('b3Shrink2')) {
+        b3.classList.remove("b3Shrink2");
     };
 
 
@@ -457,12 +472,155 @@ function closeRoute() {
 /*********************************
  * bike
  ********************************/
+ function openBike() {
+     // get elements for moving home buttons and title
+     const b1 = document.getElementById('b1');
+     const b2 = document.getElementById('b2');
+     const b3 = document.getElementById('b3');
+     const b3H2 = document.getElementById('b3H2');
+     const bikeBox = document.getElementById('bikeBox');
+     fillBikePage();
+     // move home buttons and title
+     b1.classList.add("b1Shrink2");
+     b2.classList.add("b2Shrink2");
+     b3.classList.add('b3Grow');
+     b3H2.classList.add('headingTop');
+     bikeBox.classList.add('openPop')
+     if (bikeBox.classList.contains('closePop')) {
+       bikeBox.classList.remove('closePop');
+     }
+ }
 
+ function closeBike() {
 
+   const b1 = document.getElementById('b1');
+   const b2 = document.getElementById('b2');
+   const b3 = document.getElementById('b3');
+   const b2H2 = document.getElementById('b3H2');
+   const popup = document.getElementById('bikeBox');
+   popup.classList.add('closePop');
+
+   b3.classList.add("b3Ungrow");
+   b2.classList.add("b2Unshrink2");
+   b1.classList.add("b1Unshrink2");
+   b2H2.classList.add("headingTopDown");
+
+   // when animation is finished, remove classes that close popup
+   b1.addEventListener('animationend', removeClass);
+   // remove classes that opened the popup if present
+
+   if (b2H2.classList.contains('headingTop')) {
+       b2H2.classList.remove("headingTop");
+   };
+
+   if (b1.classList.contains('b1Shrink2')) {
+       b1.classList.remove("b1Shrink2");
+   };
+   if (b2.classList.contains('b2Shrink2')) {
+       b2.classList.remove("b2Shrink2");
+   };
+   if (b3.classList.contains('b3Grow')) {
+       b3.classList.remove("b3Grow");
+   };
+
+   if (popup.classList.contains('openPop')) {
+     popup.classList.remove('openPop');
+   }
+   if (popup.classList.contains('closePop')) {
+      popup.classList.remove('closePop');
+    }
+    if (b2H2.classList.contains('headingTopDown')) {
+      b2H2.classList.remove('headingTopDown');
+    }
+  }
+function removeClass() {
+      b2.classList.remove('b2Unshrink2');
+      b1.classList.remove('b1Unshrink2');
+      b3.classList.remove('b3Ungrow');
+      popup.classList.remove('openPop');
+      popup.classList.remove('closePop');
+      b2H2.classList.remove('headingTopDown');
+      b1.removeEventListener('animationend', removeClass);
+  };
+
+  function openBikePopUp() {
+    fillBikePop();
+    const bikePop = document.getElementById('popup4');
+    const bikeBox = document.getElementById('bikeBox')
+    bikeBox.classList.remove('openPop');
+    bikePop.classList.add('openPop');
+    if (bikePop.classList.contains('closePop')) {
+      bikePop.classList.remove('closePop');
+    }
+  }
+
+  function closeBikePopupToBike() {
+
+    const bikeName = document.getElementById('bikeName').value;
+    const bikeBrand = document.getElementById('bikeBrand').value;
+    const bikeModel = document.getElementById('bikeModel').value;
+    const bikeColor = document.getElementById('bikeColor').value;
+    const bikeColor2 = document.getElementById('bikeColor2').value;
+    const bikeYear = document.getElementById('bikeYear').value;
+    const bikeSerial = document.getElementById('bikeSerial').value;
+    const bikeSize = document.getElementById('bikeSize').value;
+    const bikeTire = document.getElementById('bikeTire').value;
+    // save input to assoc timeArray
+    let bike = {name: bikeName, brand: bikeBrand, model: bikeModel, color: bikeColor,
+      color2: bikeColor2, year: bikeYear, serial: bikeSerial, size: bikeSize, tire: bikeTire};
+    bike = JSON.stringify(bike);
+    localStorage.setItem('bike', bike);
+    openBikeFromBikePop();
+}
+
+function openBikeFromBikePop() {
+    fillBikePage();
+    const bikePop = document.getElementById('popup4');
+    const bikeBox = document.getElementById('bikeBox');
+    bikeBox.classList.add('openPop');
+    bikeBox.classList.remove('closePop');
+    if (bikePop.classList.contains('openPop')) {
+        bikePop.classList.remove('openPop');
+    }
+  }
 /*********************************
  * model
  ********************************/
+// fills info in on bike Page
+function fillBikePop() {
+  if (localStorage['bike']) {
 
+    const bikeInfo = JSON.parse(localStorage.getItem('bike'));
+    document.getElementById('bikeName').value = bikeInfo.name;
+    document.getElementById('bikeBrand').value = bikeInfo.brand;
+    document.getElementById('bikeModel').value = bikeInfo.model;
+    document.getElementById('bikeColor').value = bikeInfo.color;
+    document.getElementById('bikeColor2').value = bikeInfo.color2;
+    document.getElementById('bikeYear').value = bikeInfo.year;
+    document.getElementById('bikeSerial').value = bikeInfo.serial;
+    document.getElementById('bikeSize').value = bikeInfo.size;
+    document.getElementById('bikeTire').value = bikeInfo.tire;
+  } else {
+    return;
+  }
+}
+function fillBikePage() {
+  if (localStorage['bike']) {
+
+    const bikeInfo = JSON.parse(localStorage.getItem('bike'));
+    document.getElementById('yourBike').innerHTML = bikeInfo.name;
+    document.getElementById('yourBrand').innerHTML = bikeInfo.brand;
+    document.getElementById('yourModel').innerHTML = bikeInfo.model;
+    document.getElementById('yourColor').innerHTML = bikeInfo.color;
+    document.getElementById('yourColor2').innerHTML = bikeInfo.color2;
+    document.getElementById('yourYear').innerHTML = bikeInfo.year;
+    document.getElementById('yourSerial').innerHTML = bikeInfo.serial;
+    document.getElementById('yourSize').innerHTML = bikeInfo.size;
+    document.getElementById('yourTire').innerHTML = bikeInfo.tire;
+  } else {
+    return;
+  }
+}
 // adds zipcode select list to either popup
 function createZipSelect(parent) {
     if (document.getElementById('zipSelect')) {
@@ -778,11 +936,16 @@ function calcRide(choice) {
     // calculate based on choice
     if (choice == "start") {
         start = calcStart(end, distance, speed);
+        end = amPm(end);
     } else if (choice == "end") {
         end = calcEnd(start, distance, speed);
+        start = amPm(start);
     } else {
         distance = calcDistance(start, end, speed);
+        start = amPm(start);
+        end = amPm(end);
     }
+
     // put all info into plan page
     document.getElementById('planDate').innerHTML = date;
     document.getElementById('planCity').innerHTML = city;
@@ -866,16 +1029,20 @@ function formatTime(time, date) {
     let ampm = 0;
     let hour = "";
     let min = "";
-
+    hour = parseInt(time.substr(0,2));
     // get hours and change to military time
-    if (time.charAt(9) == "P") {
+    if ((time.charAt(9) == "P" && hour != 12) || (time.charAt(9) == "A" && hour == 12)) {
       ampm = 12;
     }
-    hour = parseInt(time.substr(0,2));
+
     hour += ampm;
+    if (hour == 24) {
+      hour = 0;
+    }
     if (hour < 10) {
       hour = "0" + hour;
     }
+
     // get the minutes
     min = time.substr(3,2);
     // format as yyyy-mm-ddThh:mm to create to date object
@@ -883,9 +1050,9 @@ function formatTime(time, date) {
     const utcDate = new Date(formatted);
     const offset = utcDate.getTimezoneOffset()/60;
     hour -= offset;
-    if (hour < 1) {
+    if (hour < 0) {
       hour += 24;
-    } else if (hour > 24){
+    } else if (hour > 23){
       hour -= 24;
     } else {
       hour = hour;
