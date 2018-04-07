@@ -61,7 +61,6 @@ body, main {
   top: 3vh;
   width: 95%;
   left: 2.5%;
-  max-height: 85%;
   overflow-y: auto; }
   .textBox h3, .textBox2 h3 {
     line-height: 1.5;
