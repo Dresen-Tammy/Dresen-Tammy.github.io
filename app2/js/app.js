@@ -485,7 +485,7 @@ function closeRoute() {
      b2.classList.add("b2Shrink2");
      b3.classList.add('b3Grow');
      b3H2.classList.add('headingTop');
-     bikeBox.classList.add('openPop')
+     bikeBox.classList.add('openPop2')
      if (bikeBox.classList.contains('closePop')) {
        bikeBox.classList.remove('closePop');
      }
@@ -523,8 +523,8 @@ function closeRoute() {
        b3.classList.remove("b3Grow");
    };
 
-   if (popup.classList.contains('openPop')) {
-     popup.classList.remove('openPop');
+   if (popup.classList.contains('openPop2')) {
+     popup.classList.remove('openPop2');
    }
    if (popup.classList.contains('closePop')) {
       popup.classList.remove('closePop');
@@ -547,8 +547,8 @@ function removeClass() {
     fillBikePop();
     const bikePop = document.getElementById('popup4');
     const bikeBox = document.getElementById('bikeBox')
-    bikeBox.classList.remove('openPop');
-    bikePop.classList.add('openPop');
+    bikeBox.classList.remove('openPop2');
+    bikePop.classList.add('openPop2');
     if (bikePop.classList.contains('closePop')) {
       bikePop.classList.remove('closePop');
     }
@@ -577,10 +577,10 @@ function openBikeFromBikePop() {
     fillBikePage();
     const bikePop = document.getElementById('popup4');
     const bikeBox = document.getElementById('bikeBox');
-    bikeBox.classList.add('openPop');
+    bikeBox.classList.add('openPop2');
     bikeBox.classList.remove('closePop');
-    if (bikePop.classList.contains('openPop')) {
-        bikePop.classList.remove('openPop');
+    if (bikePop.classList.contains('openPop2')) {
+        bikePop.classList.remove('openPop2');
     }
   }
 /*********************************
