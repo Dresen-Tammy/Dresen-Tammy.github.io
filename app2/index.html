@@ -166,7 +166,7 @@
 
 
               <!--    Bike Button   -->
-           <div>
+
             <div class="button b3" id="b3" onclick='openBike()'>
 
               <h2 id="b3H2">Your Bike</h2>
@@ -178,39 +178,40 @@
                 </div>
               <div class="tile" id="tile">
                 <div class="zipbox">
-                  <h3>Bike Name: <span class="data" id="yourBike">Crush (example)</span></h3>
+                  <h3>Bike Name: <span class="data" id="yourBike">--</span></h3>
                 </div>
                 <div class="zipbox">
-                  <h3>Brand: <span class="data" id="yourBrand">Specialized</span></h3>
-                  <h3>Model: <span class="data" id="yourModel">Ruby</span></h3>
-                  <h3>Color: <span class="data" id="yourColor">Teal</span></h3>
+                  <h3>Brand: <span class="data" id="yourBrand">--</span></h3>
+                  <h3>Model: <span class="data" id="yourModel">--</span></h3>
+                  <h3>Color: <span class="data" id="yourColor">--</span></h3>
                   <h3>Secondary Color: <span class="data" id="yourColor2">Black</span></h3>
                 </div>
                 <div class="zipbox">
-                  <h3>Purchased: <span class="data" id="yourYear">05/25/2016</span></h3>
-                  <h3>Serial #: <span class="data" id="yourSerial">012345678</span></h3>
-                  <h3>Frame Size: <span class="data" id="yourSize">52cm</span></h3>
-                  <h3>Tube Size: <span class="data" id="yourTire">700c x 23</span></h3>
+                  <h3>Purchased: <span class="data" id="yourYear">--</span></h3>
+                  <h3>Serial #: <span class="data" id="yourSerial">--</span></h3>
+                  <h3>Frame Size: <span class="data" id="yourSize">--</span></h3>
+                  <h3>Tube Size: <span class="data" id="yourTire">--</span></h3>
                 </div>
-                <button class="zipbutton" onclick="openBikePopUp()">Enter Bike Info</button>
+                <div>
+                  <button class="zipbutton" onclick="openBikePopUp()">Enter Bike Info</button>
+                </div>
+              </div>
             </div>
-          </div>
-
             <!-- Popup for storing bike info -->
               <div class="popup popup4" id="popup4">
 
                 <div id='menuIconPlan' class="menuIcon mir" onclick="openBikeFromBikePop()">
                       <span></span>
                     </div class='bikePopup'>
-                    <form>
+                    <div class="box">
                       <div class="bikePopBox">
                         <p id='bikeAlert' class='zipAlert'></p>
                          <label for="bikeName">Bike Name</label>
-                         <input class="bikeInput" id="bikeName" type="text" placeholder="(required)" required>
+                         <input class="bikeInput" id="bikeName" type="text">
                       </div>
                       <div class="bikePopBox">
                          <label for="bikeBrand">Brand</label>
-                         <input class="bikeInput" id="bikeBrand" type="text" required><br>
+                         <input class="bikeInput" id="bikeBrand" type="text"><br>
                          <label for="bikeModel">Model</label>
                          <input class="bikeInput" id="bikeModel" ><br>
                          <label for="bikeColor">Main Color</label>
@@ -228,13 +229,15 @@
                         <label for="bikeTire">Tube Size</label>
                         <input class="bikeInput" id="bikeTire" >
                       </div>
+                      <div>
+                        <button class="zipbutton" onclick="closeBikePopupToBike()">Save</button>
+                      </div>
 
 
-                    </form>
-                    <button class="zipbutton" onclick="closeBikePopupToBike()">Save</button>
+                   </div>
               </div>
           </div>
-        </div>
+
         </section>
 
 

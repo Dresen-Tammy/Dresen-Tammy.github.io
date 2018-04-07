@@ -8,22 +8,48 @@
     padding:5px;
     position: absolute;
     text-align: left;
-    top: 15%;
+    top: 16vh;
     width: 95%;
     left: 2.5%;
     max-height: 85%;
-    overflow-y: scroll;
+    overflow-x: hidden;
     z-index: 20;
     background-color: rgba(200,200,200,0.5);
     & p {
         margin-left: 0;
-        
+
     }
     & .explain {
         margin-top: 30px;
     }
-    
-    
+
+
+}
+.textBox, .textBox2 {
+    background-color: rgba(200,200,200,0.5);
+    padding: 5px;
+    position: relative;
+    top: 3vh;
+    width: 95%;
+    left: 2.5%;
+
+    overflow-y: auto;
+    & h3 {
+        line-height: 1.5;
+        font-size: 22px;
+    }
+}
+
+.textBox2 {
+  top: 120vh;
+  display: none;
+  opacity: 0;
+}
+.openPop2 {
+  display: block;
+  top: 15vh;
+  animation: openPopup 1s .25s both;
+
 }
 .openPop {
     display: block;
@@ -35,8 +61,11 @@
     100% {opacity: 1; }
 }
 .closePop {
-    
-    animation: closePopup 1.5s  forward;
+
+    animation: closePopup 1.5s  forwards;
+}
+.closePop2 {
+    animation: closePopUp .2s forwards;
 }
 
 @keyframes closePopup {
@@ -46,7 +75,7 @@
 }
 
 .open .planH2 {
-    
+
     height: 32px;
     background-color: rgba(0,0,0,0.6);
     border-radius: 15px;
@@ -80,15 +109,20 @@
 }*/
 
 
-.zipbox {
-    
+.zipbox, .bikePopBox {
+
     border-radius: 5px;
     padding: 10px;
     margin: 5px 2px;
     background-color: rgba(0,0,0,0.5);
 }
+.bikePopBox {
+    display: flex;
+    flex-flow: row wrap;
 
-.zipcode, .timeinput {
+}
+
+.zipcode, .timeinput, .bikeInput {
     background-color: rgba(255,255,255,0.8);
     border: none;
     font-size: 16px;
@@ -100,13 +134,14 @@
     height: 32px;
     &:focus {
         border: solid 2px $light-color;
-        
+
     }
     &::placeholder {
         color: $dark-color;
     }
-
-    
+}
+.bikeInput {
+  width: 70%;
 }
 .popup3 {
     background-color: #4e4b45;
@@ -120,6 +155,9 @@
     z-index: 20;
     transform: rotateX(0);
     width: 80%;
+}
+.popup4 {
+    background-color: rgba(150, 150, 150, 0.8);
 }
 .shrink {
     transform: rotateX(90deg);
@@ -167,9 +205,9 @@
 }
 .zipbutton4 {
     margin-right: 5px;
-    
-    
-        
+
+
+
 }
 
 .zipbutton3 {
@@ -184,7 +222,7 @@
     font-size: 16px;
     height: 32px;
 
-    
+
 }
 .or {
     margin: 0 0 5px 45px;
@@ -217,14 +255,14 @@ li {
     transform: translateY(10px);
     margin-top: -15px;
     margin-left: 5px;
-    
+
 }
 .sunbutton img {
         width: 31px;
         margin: 0 auto;
         display: block;
     }
-    
+
 
 .advice2 {
     position: absolute;
@@ -299,16 +337,16 @@ li {
 }
 hr {
     margin: 10px 0;
-    
+
 }
 .expand .backButton {
     //display: none;
-    
+
 }
 .expand .menuIcon {
    display: none;
 }
-form {
+.box {
     margin-top: 25px;
 }
 .mir {
@@ -345,5 +383,5 @@ form {
     width: 100vw;
 }
 .chevron {
-    
+
 }*/

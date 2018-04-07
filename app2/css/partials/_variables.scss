@@ -3,7 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : Mar 21, 2018, 2:40:51 PM
     Author     : Dresen_HP
 */
@@ -37,5 +37,8 @@ $secondary-font: sans-serif;
     $percent: $columns * $one-column;
     $margin-left: $offset * $one-column;
     margin-left: $margin-left;
-    flex: $grow $shrink $percent; 
+    flex: $grow $shrink $percent;
+}
+@mixin animate($animation, $length: .5s, $delay: 0s, $direction: forwards, $timing: linear,  $iteration: 1) {
+  animation: $animation $length $timing $delay $iteration $direction ;
 }
