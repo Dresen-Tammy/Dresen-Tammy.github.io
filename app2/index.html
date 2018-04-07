@@ -13,138 +13,9 @@
 
 
   <body>
-    <!-------Popup for planning ride------------>
-    <div>
-      <div class="popup" id="popup">
-
-        <div id='back' class='back open hide' >
-          <div class="iconHolderP" onclick="closePlanPopup()">
-              <div id='menuIconP' class="menuIcon" >
-                <span></span>
-              </div>
-            </div>
-            
-             
-          <div class='collapse'>
-
-            <div class='zipbox'>
-              <p id='zipAlert4' class='zipAlert'></p>
-              <p>Date of ride (required)</p>
-              <input id="dateInput" class="zipcode" type="date" value='2018-03-23' required>
-            </div>
-            <div class='zipbox'>
-              <h3>Zip Code of Ride Start (required)</h3>
-              <p id='zipAlert5' class='zipAlert'></p>
-              <div class='zipParent' id='zipParent2'></div>
-              <h3 class='or'>OR</h3>
-              <button type="button" class='zipbutton3' onclick='openPlanZipPopup()'>Add New Zip Code</button>
-            </div>
-            <div class="planH2" >
-            <span id='nextButton' class='backButton' onclick="accordianNext()">next</span></div>
-          </div>
-        </div>
-
-
-          <div id="next" class='next open expand'>
-            
-            <div class='collapse'>
-              <div class="iconHolderP" onclick="accordianBack()">
-              <div id='menuIconP2' class="menuIcon mi1" >
-                <span></span>
-              </div>
-            </div>
-              <div class='zipbox'>
-                <p id='planSunrise'> </p>
-                <p id='planSunset'> </p>
-              </div>
-              <div class='zipbox '>
-                <span class="question2" id="question2" onclick="advice2()">?</span>
-                <div class="advice2" id="advice2">
-                  <h3>Enter 2 fields<span onclick="advice2()">close</span></h3>
-                  <ul><li>Enter START TIME and END TIME to see how far you can go in the time available.</li>
-                    <li>Enter START TIME and DISTANCE to see when you will end.</li>
-                    <li>Enter DISTANCE and END TIME to see when you should start.</li>
-                    <li>To start at sunrise, or end at sunset, click the SUNRISE or SUNSET icons.</li>
-                  </ul>
-                </div>
-
-
-                <p>Enter 2 of the 3 fields.<br>The 3rd will be calculated.</p>
-                <p id="timeAlert" class="zipAlert"></p>
-
-
-                <p>START TIME</p> 
-                <input class="timeinput" id="start" type="time" placeholder="17:00" min="00:01" max="23:59">
-                <div class="sunbutton" onclick="fillSunrise()"><img src="sunrise.png" alt="" class="sunIcon" ></div>
-                <br>
-                <p>END TIME</p> <input class="timeinput" id="end" type="time" min="00:01" max="23:59">
-                <div class="sunbutton" onclick="fillSunset()"><img src="sunset.png" alt="" class="sunIcon"></div>
-                <br>
-                <p>DISTANCE in miles</p> <input class="zipcode" id="miles" type="number" min="1"><br>
-              </div>
-              <div class='zipbox '>
-                <p>Average SPEED in MPH.</p>
-                <select class="zipcode" id="average">
-                  <option value="10">10 - Casual</option>
-                  <option value="12">12 - Brisk</option>
-                  <option value="14">14 - Intermediate</option>
-                  <option value="16">16 - Quick</option>
-                  <option value="18">18 - Fast</option>
-                  <option value="20">20 - XFast</option>
-                  <option value="22">22 - Expert</option>
-                  <option value="24">24 - Racing</option>
-                  <option value="24">26 - Pro</option>
-
-                </select>
-              </div>
-              <button class="zipbutton" id="zipbutton" onclick='planRide()'>Plan a ride</button>
-
-            </div>
-          </div>
-
-
-        </div>
-        <div class="popup3 shrink" id="popup3">
-
-          <div id='menuIconPlanZip' class="menuIcon mi2" onclick="closePlanZipPopup()">
-            <span></span>
-          </div>
-
-          <p id='zipAlert3' class='zipAlert'></p>
-
-          <h3>Enter New ZIP Code</h3>
-          <input class='zipcode' id='addZip' type='number'>
-          <br><span id="chevron" class="chevron" onclick="accordianBack()">&#10094;</span><button type="button" class='zipbutton zipPlan' onclick='addNewZip()'>Add ZIP Code</button>
-        </div>
-      </div>
-
-
-
-      <!-------Popup for getting routes------------>
-        <div class="popup" id="popup2">
-          <p id='zipAlert' class='zipAlert'></p>
-          <div id='menuIconPlan' class="menuIcon mir" onclick="closeRoute()">
-                <span></span>
-              </div>
-          <form>
-
-            <div class='zipParent' id='zipParent'>
-
-            </div>
-            <h3>OR</h3>
-            
-            <input class='zipcode' id='newZip' placeholder="Enter New Zip Code" type='number'>
-            <br><button type="button" class='zipbutton' onclick='closeRoutePopupToRoute()'>Find Routes</button>
-          </form>
-        </div>
-      
-
-
-
-
       <main>
 
-        <!------------Home Page------------>
+        <!-- Home Page -->
         <section class="home" id="home">
 
           <div class="sunrise">
@@ -160,24 +31,216 @@
 
               <h2 id="b1H2">Plan Your Ride</h2>
             </div>
+            <div>
+              <!--Popup for planning ride -->
+              <div class="popup" id="popup">
 
-            <div class="button b2" id="b2" onclick='openRoutePopUp()'> 
-              
+                <div id='back' class='back open hide' >
+                  <div class="iconHolderP" onclick="closePlanPopup()">
+                      <div id='menuIconP' class="menuIcon" >
+                        <span></span>
+                      </div>
+                    </div>
+
+
+                  <div class='collapse'>
+
+                    <div class='zipbox'>
+                      <p id='zipAlert4' class='zipAlert'></p>
+                      <p>Date of ride (required)</p>
+                      <input id="dateInput" class="bikeInput" type="date" value='2018-03-23' required>
+                    </div>
+                    <div class='zipbox'>
+                      <h3>Zip Code of Ride Start (required)</h3>
+                      <p id='zipAlert5' class='zipAlert'></p>
+                      <div class='zipParent' id='zipParent2'></div>
+                      <h3 class='or'>OR</h3>
+                      <button type="button" class='zipbutton3' onclick='openPlanZipPopup()'>Add New Zip Code</button>
+                    </div>
+                    <div class="planH2" >
+                    <span id='nextButton' class='backButton' onclick="accordianNext()">next</span></div>
+                  </div>
+                </div>
+
+
+                  <div id="next" class='next open expand'>
+
+                    <div class='collapse'>
+                      <div class="iconHolderP" onclick="accordianBack()">
+                      <div id='menuIconP2' class="menuIcon mi1" >
+                        <span></span>
+                      </div>
+                    </div>
+                      <div class='zipbox'>
+                        <p id='planSunrise'> </p>
+                        <p id='planSunset'> </p>
+                      </div>
+                      <div class='zipbox '>
+                        <span class="question2" id="question2" onclick="advice2()">?</span>
+                        <div class="advice2" id="advice2">
+                          <h3>Enter 2 fields<span onclick="advice2()">close</span></h3>
+                          <ul><li>Enter START TIME and END TIME to see how far you can go in the time available.</li>
+                            <li>Enter START TIME and DISTANCE to see when you will end.</li>
+                            <li>Enter DISTANCE and END TIME to see when you should start.</li>
+                            <li>To start at sunrise, or end at sunset, click the SUNRISE or SUNSET icons.</li>
+                          </ul>
+                        </div>
+
+
+                        <p>Enter 2 of the 3 fields.<br>The 3rd will be calculated.</p>
+                        <p id="timeAlert" class="zipAlert"></p>
+
+
+                        <p>START TIME</p>
+                        <input class="timeinput" id="start" type="time" placeholder="17:00" min="00:01" max="23:59">
+                        <div class="sunbutton" onclick="fillSunrise()"><img src="sunrise.png" alt="" class="sunIcon" ></div>
+                        <br>
+                        <p>END TIME</p> <input class="timeinput" id="end" type="time" min="00:01" max="23:59">
+                        <div class="sunbutton" onclick="fillSunset()"><img src="sunset.png" alt="" class="sunIcon"></div>
+                        <br>
+                        <p>DISTANCE in miles</p> <input class="bikeInput" id="miles" type="number" min="1"><br>
+                      </div>
+                      <div class='zipbox '>
+                        <p>Average SPEED in MPH.</p>
+                        <select class="bikeInput" id="average">
+                          <option value="10">10 - Casual</option>
+                          <option value="12">12 - Brisk</option>
+                          <option value="14">14 - Intermediate</option>
+                          <option value="16">16 - Quick</option>
+                          <option value="18">18 - Fast</option>
+                          <option value="20">20 - XFast</option>
+                          <option value="22">22 - Expert</option>
+                          <option value="24">24 - Racing</option>
+                          <option value="24">26 - Pro</option>
+
+                        </select>
+                      </div>
+                      <button class="zipbutton" id="zipbutton" onclick='planRide()'>Plan a ride</button>
+
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="popup3 shrink" id="popup3">
+
+                  <div id='menuIconPlanZip' class="menuIcon mi2" onclick="closePlanZipPopup()">
+                    <span></span>
+                  </div>
+
+                  <p id='zipAlert3' class='zipAlert'></p>
+
+                  <h3>Enter New ZIP Code</h3>
+                  <input class='bikeInput' id='addZip' type='number'>
+                  <br><button type="button" class='zipbutton zipPlan' onclick='addNewZip()'>Add ZIP Code</button>
+                </div>
+              </div>
+
+
+
+            <!--    Route Button   -->
+
+            <div class="button b2" id="b2" onclick='openRoutePopUp()'>
+
               <h2 id="b2H2">Find A Route</h2>
             </div>
+            <!--Popup for getting routes-->
+              <div class="popup" id="popup2">
+                <p id='zipAlert' class='zipAlert'></p>
+                <div id='menuIconPlan' class="menuIcon mir" onclick="closeRoute()">
+                      <span></span>
+                    </div>
+                <form>
 
-            <div class="button b3" id="b3" onclick='openBikePopUp()'>
-         
+                  <div class='zipParent' id='zipParent'>
+
+                  </div>
+                  <h3>OR</h3>
+
+                  <input class='zipcode' id='newZip' placeholder="Enter New Zip Code" type='number'>
+                  <br><button type="button" class='zipbutton' onclick='closeRoutePopupToRoute()'>Find Routes</button>
+                </form>
+              </div>
+
+
+
+
+              <!--    Bike Button   -->
+           <div>
+            <div class="button b3" id="b3" onclick='openBike()'>
+
               <h2 id="b3H2">Your Bike</h2>
             </div>
-
+            <!-- See Stored Bike Info -->
+            <div id='bikeBox' class="textBox2">
+              <div id='menuIconPlan' class="menuIcon" onclick="closeBike()">
+                  <span></span>
+                </div>
+              <div class="tile" id="tile">
+                <div class="zipbox">
+                  <h3>Bike Name: <span class="data" id="yourBike">Crush (example)</span></h3>
+                </div>
+                <div class="zipbox">
+                  <h3>Brand: <span class="data" id="yourBrand">Specialized</span></h3>
+                  <h3>Model: <span class="data" id="yourModel">Ruby</span></h3>
+                  <h3>Color: <span class="data" id="yourColor">Teal</span></h3>
+                  <h3>Secondary Color: <span class="data" id="yourColor2">Black</span></h3>
+                </div>
+                <div class="zipbox">
+                  <h3>Purchased: <span class="data" id="yourYear">05/25/2016</span></h3>
+                  <h3>Serial #: <span class="data" id="yourSerial">012345678</span></h3>
+                  <h3>Frame Size: <span class="data" id="yourSize">52cm</span></h3>
+                  <h3>Tube Size: <span class="data" id="yourTire">700c x 23</span></h3>
+                </div>
+                <button class="zipbutton" onclick="openBikePopUp()">Enter Bike Info</button>
+            </div>
           </div>
+
+            <!-- Popup for storing bike info -->
+              <div class="popup popup4" id="popup4">
+
+                <div id='menuIconPlan' class="menuIcon mir" onclick="openBikeFromBikePop()">
+                      <span></span>
+                    </div class='bikePopup'>
+                    <form>
+                      <div class="bikePopBox">
+                        <p id='bikeAlert' class='zipAlert'></p>
+                         <label for="bikeName">Bike Name</label>
+                         <input class="bikeInput" id="bikeName" type="text" placeholder="(required)" required>
+                      </div>
+                      <div class="bikePopBox">
+                         <label for="bikeBrand">Brand</label>
+                         <input class="bikeInput" id="bikeBrand" type="text" required><br>
+                         <label for="bikeModel">Model</label>
+                         <input class="bikeInput" id="bikeModel" ><br>
+                         <label for="bikeColor">Main Color</label>
+                         <input class="bikeInput" id="bikeColor" type="text" ><br>
+                         <label for="bikeColor2">Accent Color</label>
+                         <input class="bikeInput" id="bikeColor2" type="text" ><br>
+                      </div>
+                      <div class="bikePopBox">
+                        <label for="bikeYear">Purchased</label>
+                        <input class="bikeInput" id="bikeYear" type="date" ><br>
+                        <label for="bikeSize">Serial #</label>
+                        <input class="bikeInput" id="bikeSerial"><br>
+                        <label for="bikeSize">Frame Size</label>
+                        <input class="bikeInput" id="bikeSize" type="number"><br>
+                        <label for="bikeTire">Tube Size</label>
+                        <input class="bikeInput" id="bikeTire" >
+                      </div>
+
+
+                    </form>
+                    <button class="zipbutton" onclick="closeBikePopupToBike()">Save</button>
+              </div>
+          </div>
+        </div>
         </section>
 
 
-        <!------------Plan Page------------>
+        <!-- Plan Page -->
         <section class="plan" id="plan">
-          
+
 
 <h2 class="planHeader">Ride Plan</h2>
           <div class="textBox">
@@ -192,7 +255,7 @@
               <div class="zipbox">
                 <h3>Start time: <span class="data" id="planStart"></span></h3>
               <h3>End time: <span class="data" id="planEnd"></span></h3>
-              
+
               <h3>Distance: <span class="data" id="planDistance"></span></h3>
               <h3>Average speed: <span class="data" id="planSpeed"></span> MPH</h3>
               </div>
@@ -207,7 +270,7 @@
         </section>
 
 
-        <!------------Route Page------------>
+        <!-- Route Page -->
         <section class="route" id="route">
 
             <div class="iconHolder">
@@ -215,8 +278,8 @@
                 <span></span>
               </div>
             </div>
-  
-          <h2 class="planHeader">Find a Route</h2>
+
+          <h2 class="planHeader">Area Map</h2>
           <div class="routeBackground">
           <h3 id='location' class='location'></h3>
           <iframe class="map" id="map" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyC1_5qoxKTYV0kfCSCm6q-UV8dGp4aCK7w&center=33.3826505,-117.2440957&zoom=13&maptype=roadmap"></iframe>
@@ -227,7 +290,7 @@
       <footer id="footer">
 
       </footer>
-      
+
       <script src="js/app.js"></script>
 
 
