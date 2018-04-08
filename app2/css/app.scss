@@ -1,11 +1,6 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
     Created on : Mar 21, 2018, 12:58:59 PM
-    Author     : Dresen_HP
+    Author     : Tammy Dresen
 */
 
 @import 'partials/variables';
@@ -20,12 +15,15 @@ and open the template in the editor.
 
 html {
     overflow-x: hidden;
-
-    position: relative;
     height: 100%;
+    position: relative;
+    top:0;
+    bottom: 0;
 }
 body, main {
     position: relative;
+    top: 0;
+    bottom: 0;
     height: 100%;
 }
 .main {
@@ -39,8 +37,8 @@ body, main {
 
 section {
     position: absolute;
-    height: 100%;
     top: 0;
+    bottom: 0;
     width: 100%;
 }
 
@@ -54,7 +52,7 @@ header {
     top: 0;
     bottom: 0;
     width: 100%;
-    height: 100vh;
+
 
 }
 
@@ -79,7 +77,6 @@ header {
     background-position: top center;
     background-repeat: no-repeat;
     transform:translate(100%, 0);
-
     top: 0;
 
 
@@ -145,6 +142,7 @@ header {
 .plan {
     width: 100%;
     top: 0;
+    bottom: 0;
     transform: translateX(100%);
     background-image: url(../Thinkstock664927598.jpg);
     background-size: cover;
@@ -157,7 +155,7 @@ header {
 
     position: absolute;
     top: 0;
-    height: 100%;
+    bottom: 0;
     transform: translateX(-100%);
     transition: .5s  ease-in-out;
     background-image: url(../Thinkstock483582660.jpg);
@@ -165,7 +163,7 @@ header {
 }
 .routeBackground {
     background-color: rgba(200,200,200,0.5);
-    height: 80vh;
+
     width: 95%;
     margin-left: 2.5%;
     margin-top: 10px;
@@ -244,7 +242,7 @@ header {
 }
 
 .planHeader {
-    margin-top: 13%;
+    margin-top: 20px;
     text-align: center;
 }
 @import 'partials/home.scss';

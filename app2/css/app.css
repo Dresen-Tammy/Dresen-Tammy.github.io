@@ -14,11 +14,15 @@
 
 html {
   overflow-x: hidden;
+  height: 100%;
   position: relative;
-  height: 100%; }
+  top: 0;
+  bottom: 0; }
 
 body, main {
   position: relative;
+  top: 0;
+  bottom: 0;
   height: 100%; }
 
 .main {
@@ -34,7 +38,7 @@ body, main {
   padding: 5px;
   position: absolute;
   text-align: left;
-  top: 16vh;
+  top: 70px;
   width: 95%;
   left: 2.5%;
   max-height: 85%;
@@ -50,7 +54,6 @@ body, main {
   background-color: rgba(200, 200, 200, 0.5);
   padding: 5px;
   position: relative;
-  top: 3vh;
   width: 95%;
   left: 2.5%;
   overflow-y: auto; }
@@ -65,7 +68,7 @@ body, main {
 
 .openPop2 {
   display: block;
-  top: 15vh;
+  top: 70px;
   animation: openPopup 1s .25s both; }
 
 .openPop {
@@ -330,8 +333,8 @@ hr {
 /* flexbox grid. Sets background color and grid*/
 section {
   position: absolute;
-  height: 100%;
   top: 0;
+  bottom: 0;
   width: 100%; }
 
 header {
@@ -342,8 +345,7 @@ header {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 100%;
-  height: 100vh; }
+  width: 100%; }
 
 /* main section */
 .button {
@@ -457,6 +459,7 @@ label {
 .plan {
   width: 100%;
   top: 0;
+  bottom: 0;
   transform: translateX(100%);
   background-image: url(../Thinkstock664927598.jpg);
   background-size: cover;
@@ -467,7 +470,7 @@ label {
 .route {
   position: absolute;
   top: 0;
-  height: 100%;
+  bottom: 0;
   transform: translateX(-100%);
   transition: .5s  ease-in-out;
   background-image: url(../Thinkstock483582660.jpg);
@@ -475,7 +478,6 @@ label {
 
 .routeBackground {
   background-color: rgba(200, 200, 200, 0.5);
-  height: 80vh;
   width: 95%;
   margin-left: 2.5%;
   margin-top: 10px;
@@ -537,14 +539,14 @@ label {
   border-radius: 5px; }
 
 .planHeader {
-  margin-top: 13%;
+  margin-top: 20px;
   text-align: center; }
 
 /*
 * Home partial
 */
 .button .headingTop {
-  margin-top: 8vh;
+  margin-top: 20px;
   transition: margin .5s; }
 
 .button .headingTopDown {
