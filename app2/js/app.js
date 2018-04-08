@@ -586,6 +586,13 @@ function openBikeFromBikePop() {
 /*********************************
  * model
  ********************************/
+
+
+
+ /*********************************
+  * Bike functions
+  ********************************/
+
 // fills info in on bike Page
 function fillBikePop() {
   if (localStorage['bike']) {
@@ -621,6 +628,10 @@ function fillBikePage() {
     return;
   }
 }
+
+/*********************************
+ * Zipcode functions
+ ********************************/
 // adds zipcode select list to either popup
 function createZipSelect(parent) {
     if (document.getElementById('zipSelect')) {
@@ -649,22 +660,6 @@ function createZipSelect(parent) {
     parent.appendChild(select);
 }
 
-// if validated info is invalid
-function alertError(alert) {
-    if (alert.classList.contains('alert')) {
-        alert.innnerHTML = 'Make sure zipcode is valid';
-        return;
-    } else {
-        alert.classList.add('alert');
-        return;
-    }
-}
-
-function alertError2(alert, message) {
-    alert.innerHTML = message;
-    return;
-
-}
 
 function addNewZip() {
     // get user entered zipcode info
@@ -712,118 +707,7 @@ function checkLocalStorage(zipcode) {
 
 }
 
-function newLocation(zip) {
-    // get zipcode and format it in url
-    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=&components=postal_code:" +
-        zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
-    // create new XMLHttpRequest object
-    let xhr = new XMLHttpRequest();
-    // prepare and send request
-    xhr.open("GET", url, false);
-    xhr.send();
-    let response = JSON.parse(xhr.responseText);
-    if (response.status == "ZERO_RESULTS") {
-        return response.status;
-    }
-    const lat = response.results[0].geometry.location.lat;
-    const lng = response.results[0].geometry.location.lng;
-    const city = response.results[0].address_components[1].long_name;
-    const state = response.results[0].address_components[2].short_name;
-    const zipInfo = {
-        'lat': lat,
-        'lng': lng,
-        'city': city,
-        'state': state,
-        'zip': zip
-    };
-    let zipList;
-    if (localStorage['zipList']) {
-        zipList = JSON.parse(localStorage.getItem('zipList'));
-        zipList.push(zipInfo);
-    } else {
-        zipList = [zipInfo];
-    }
-    localStorage.setItem('zipList', JSON.stringify(zipList));
-    return zipInfo;
-}
 
-function closeZipToMap() {
-    // get user entered zipcode info
-    let zipInfo = getZip();
-    if (zipInfo == "" || zipInfo == "ZERO_RESULTS" || zipInfo == undefined) {
-        return;
-    }
-    // get map
-    let lat = zipInfo.lat;
-    let lng = zipInfo.lng;
-    let city = zipInfo.city;
-    document.getElementById('location').innerHTML = city;
-    initMap(lat, lng);
-    // close zip popup
-    closeRoutePopUp();
-    // display route info
-    displayRoute();
-}
-
-function addMap(lat = 43.8231, lng = -111.29) {
-    let url = "https://www.google.com/maps/embed/v1/view?key=AIzaSyC1_5qoxKTYV0kfCSCm6q-UV8dGp4aCK7w&center=" +
-        lat + "," + lng + "&zoom=14&maptype=roadmap";
-    document.getElementById('map').src = url;
-}
-
-
-// get today's date and change it to correct format for html5 date.
-function getDate() {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth();
-    const yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = '0' + dd;
-    }
-    if (mm < 10) {
-        mm = '0' + mm;
-    }
-    today = yyyy + '-' + mm + '-' + dd;
-    return today;
-}
-
-
-function newLocation(zip) {
-    // get zipcode and format it in url
-
-    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=&components=postal_code:" +
-        zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
-    // create new XMLHttpRequest object
-    let xhr = new XMLHttpRequest();
-    // prepare and send request
-    xhr.open("GET", url, false);
-    xhr.send();
-    let response = JSON.parse(xhr.responseText);
-    if (response.status == "ZERO_RESULTS") {
-        return response.status;
-    }
-    const lat = response.results[0].geometry.location.lat;
-    const lng = response.results[0].geometry.location.lng;
-    const city = response.results[0].address_components[1].long_name;
-    const state = response.results[0].address_components[2].short_name;
-    const zipInfo = {
-        'lat': lat,
-        'lng': lng,
-        'city': city,
-        'state': state,
-        'zip': zip
-    };
-    let zipList;
-    if (localStorage['zipList']) {
-        zipList = JSON.parse(localStorage.getItem('zipList'));
-        zipList.push(zipInfo);
-    } else {
-        zipList = [zipInfo];
-    }
-    localStorage.setItem('zipList', JSON.stringify(zipList));
-    return zipInfo;
-}
 
 function addNewZip() {
     // get user entered zipcode info
@@ -892,6 +776,71 @@ function addZip(addZip) {
         return zipInfo;
     }
 }
+/*********************************
+ * Error display
+ ********************************/
+
+
+function alertError2(alert, message) {
+    alert.innerHTML = message;
+    return;
+
+}
+
+/*********************************
+ * Map Functions
+ ********************************/
+
+
+function closeZipToMap() {
+    // get user entered zipcode info
+    let zipInfo = getZip();
+    if (zipInfo == "" || zipInfo == "ZERO_RESULTS" || zipInfo == undefined) {
+        return;
+    }
+    // get map
+    let lat = zipInfo.lat;
+    let lng = zipInfo.lng;
+    let city = zipInfo.city;
+    document.getElementById('location').innerHTML = city;
+    initMap(lat, lng);
+    // close zip popup
+    closeRoutePopUp();
+    // display route info
+    displayRoute();
+}
+
+function addMap(lat = 43.8231, lng = -111.29) {
+    let url = "https://www.google.com/maps/embed/v1/view?key=AIzaSyC1_5qoxKTYV0kfCSCm6q-UV8dGp4aCK7w&center=" +
+        lat + "," + lng + "&zoom=14&maptype=roadmap";
+    document.getElementById('map').src = url;
+}
+
+/*********************************
+ * Date functions
+ ********************************/
+
+
+// get today's date and change it to correct format for html5 date.
+function getDate() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth();
+    const yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+    return today;
+}
+
+/*********************************
+ * Plan page functions
+ ********************************/
+
 
 function checkZipDate() {
     const zip = document.getElementById('zipcode').value;
@@ -951,7 +900,7 @@ function calcRide(choice) {
     document.getElementById('planCity').innerHTML = city;
     document.getElementById('planStart').innerHTML = start;
     document.getElementById('planEnd').innerHTML = end;
-    document.getElementById('planDistance').innerHTML = distance;
+    document.getElementById('planDistance').innerHTML = distance + " Miles";
     document.getElementById('planSpeed').innerHTML = speed;
     document.getElementById('plannedSunrise').innerHTML = sunrise;
     document.getElementById('plannedSunset').innerHTML = sunset;
@@ -963,16 +912,127 @@ function calcRide(choice) {
 
 }
 
+// end = start + (distance/speed)
 function calcEnd(start, distance, speed) {
-    return "end";
-}
+  start = timeInMinutes(start);
+  speed = speed/60;
+  const duration = distance/speed;
+  let end = start + duration;
+  end = timeInAmPm(end);
 
+    return end;
+}
+// start = end - (distance/speed)
 function calcStart(end, distance, speed) {
-    return "start";
+  end = timeInMinutes(end);
+  speed = speed/60;
+  const duration = distance/speed;
+  let start = end - duration;
+  start = timeInAmPm(start);
+  return start;
+}
+// distance = speed * duration
+function calcDistance(start, end, speed) {
+  //Distance = (speed/60) /(( endHour * 60 + endMinute) - (startHour * 60 + startMinute))
+  speed = speed/60;
+  start = timeInMinutes(start);
+  end = timeInMinutes(end);
+  const distance = speed * (end - start);
+  return distance;
+}
+function timeInMinutes(time) {
+  time = time.split(':');
+  const hour = parseInt(time[0]) * 60;
+  const minute = parseInt(time[1]);
+  const timeInMin = hour + minute;
+  return timeInMin;
 }
 
-function calcDistance(start, end, speed) {
-    return "distance";
+function timeInAmPm(time) {
+  const hour = Math.floor(time/60);
+  let minute = time % 60;
+  if (minute < 10) {
+    minute = "0" + minute;
+  }
+  time = hour + ":" + minute;
+  time = amPm(time);
+  return time;
+
+}
+function newLocation(zip) {
+    // get zipcode and format it in url
+    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=&components=postal_code:" +
+        zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
+    // create new XMLHttpRequest object
+    let xhr = new XMLHttpRequest();
+    // prepare and send request
+    xhr.open("GET", url, false);
+    xhr.send();
+    let response = JSON.parse(xhr.responseText);
+    if (response.status == "ZERO_RESULTS") {
+        return response.status;
+    }
+    const lat = response.results[0].geometry.location.lat;
+    const lng = response.results[0].geometry.location.lng;
+    const city = response.results[0].address_components[1].long_name;
+    const state = response.results[0].address_components[2].short_name;
+    const zipInfo = {
+        'lat': lat,
+        'lng': lng,
+        'city': city,
+        'state': state,
+        'zip': zip
+    };
+    let zipList;
+    if (localStorage['zipList']) {
+        zipList = JSON.parse(localStorage.getItem('zipList'));
+        zipList.push(zipInfo);
+    } else {
+        zipList = [zipInfo];
+    }
+    localStorage.setItem('zipList', JSON.stringify(zipList));
+    return zipInfo;
+}
+
+
+/*********************************
+ * XMLHttpRequest functions
+ ********************************/
+
+function newLocation(zip) {
+    // get zipcode and format it in url
+
+    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=&components=postal_code:" +
+        zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
+    // create new XMLHttpRequest object
+    let xhr = new XMLHttpRequest();
+    // prepare and send request
+    xhr.open("GET", url, false);
+    xhr.send();
+    let response = JSON.parse(xhr.responseText);
+    if (response.status == "ZERO_RESULTS") {
+        return response.status;
+    }
+    const lat = response.results[0].geometry.location.lat;
+    const lng = response.results[0].geometry.location.lng;
+    const city = response.results[0].address_components[1].long_name;
+    const state = response.results[0].address_components[2].short_name;
+    const zipInfo = {
+        'lat': lat,
+        'lng': lng,
+        'city': city,
+        'state': state,
+        'zip': zip
+    };
+    let zipList;
+    if (localStorage['zipList']) {
+        zipList = JSON.parse(localStorage.getItem('zipList'));
+        zipList.push(zipInfo);
+    } else {
+        zipList = [zipInfo];
+    }
+    localStorage.setItem('zipList', JSON.stringify(zipList));
+    return zipInfo;
 }
 
 function sunset(date, lat, lng) {
@@ -1121,98 +1181,3 @@ function fillSunset() {
         document.getElementById('end').value = sunset;
     }
 }
-
-/*********************************
- * unused
- *********************************/
-/*function addNewZipToPlan() {
-    //// validate entry, check localStorage, getNewZip, Save to localStorage,
-    ////closePopup, Select in plan popup
-
-// get user entered zipcode info
-    const zip = document.getElementById('addZip').value;
-    const alert = document.getElementById('zipAlert3');
-    let zipInfo;
-    if (zip == "" || zip == undefined) {
-        alert(alert);
-        return
-    } else {
-        zipInfo = addZip(zip);
-        if (zipInfo == "" || zipInfo == "ZERO_RESULTS" || zipInfo == undefined) {
-            alert(alert);
-            return
-        } else {
-            const parent = document.getElementById('zipParent2');
-            createZipSelect(parent);
-            closePlanZipPopup();
-            return;
-        }
-
-    }
-}
-
-function closePopToPlan() {
-// Initialize variables
-let zipInput = "";
-        let dateInput = "";
-        let startInput = "";
-        let endInput = "";
-        let distanceInput = "";
-        let speedInput = "";
-        // get values by id from popup and validate
-        //validate zipcode
-        zip = document.getElementById('zipcode');
-        if (!/(^\d{5}$)/.test(zip.value)) {
-zip.classList.add('warning');
-        } else {
-// remove warning border around zipcode
-if (zip.classList.contains('warning')) {
-zip.classList.remove('warning');
-        zipInput = zip;
-        }
-// since only valid date is possible,
-dateInput = document.getElementById('dateInput');
-        // sinc
-        startInput = document.getElementById('start');
-        endInput = document.getElementById('end');
-        distanceInput = document.getElementById('miles');
-        speedInput = document.getElementById('average');
-        // store values in assoc array
-        let rideStats = {zipcode: zipInput, rideDate: dateInput, startTime: startInput, endTime: endInput, distance: distanceInput, speed: speedInput};
-        /*const zip = document.getElementById('zipcode');
-         const average = document.getElementById('average');
-         const date = document.getElementById('date');
-         // if zipcode has a value
-         if (!/(^\d{5}$)/.test(zip.value)) {
-         zip.classList.add('warning');
-         } else {
-
-         // remove warning border around zipcode
-         if(zip.classList.contains('warning')) {
-         zip.classList.remove('warning');
-         }
-         // save zipcode and speed to local storage
-         localStorage.setItem('zipcode', zip.value);
-         localStorage.setItem('speed', average.value);
-         localStorage.setItem('rideDate', dateInput.value);
-         // close the popup
-         closePopup();
-
-         const button = document.getElementById('zipbutton');
-         button.removeEventListener('click', closePopToPlan);
-         openPlanPage();
-
-        }
-}*/
-
-/*var map;
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-
-        center: {lat: 43.8231, lng: 43.8231},
-        zoom: 14
-
-    });
-    //var bikeLayer = new google.maps.BicyclingLayer();
-    //bikeLayer.setMap(map);
-}*/
