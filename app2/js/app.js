@@ -817,7 +817,7 @@ function addMap(lat = 43.8231, lng = -111.29) {
 }
 
 /*********************************
- * Date functions
+ * Date/ time functions
  ********************************/
 
 
@@ -835,6 +835,94 @@ function getDate() {
     }
     today = yyyy + '-' + mm + '-' + dd;
     return today;
+}
+// changes military time to time in minutes
+function timeInMinutes(time) {
+  time = time.split(':');
+  const hour = parseInt(time[0]) * 60;
+  const minute = parseInt(time[1]);
+  const timeInMin = hour + minute;
+  return timeInMin;
+}
+
+// changes time in minutes to regular clock time
+function timeInAmPm(time) {
+  const hour = Math.floor(time/60);
+  let minute = time % 60;
+  if (minute < 10) {
+    minute = "0" + minute;
+  }
+  time = hour + ":" + minute;
+  time = amPm(time);
+  return time;
+
+}
+// takes time given in XMLHttpRequest response, corrects for timezone, and formats in military time.
+function formatTime(time, date) {
+   // add a zero if hour is less than 12
+    const ch2 = time.charAt(1);
+    if (ch2 == ":") {
+        time = "0" + time;
+    }
+    // variables
+    let ampm = 0;
+    let hour = "";
+    let min = "";
+    hour = parseInt(time.substr(0,2));
+    // get hours and change to military time
+    if ((time.charAt(9) == "P" && hour != 12) || (time.charAt(9) == "A" && hour == 12)) {
+      ampm = 12;
+    }
+    hour += ampm;
+    if (hour == 24) {
+      hour = 0;
+    }
+    if (hour < 10) {
+      hour = "0" + hour;
+    }
+
+    // get the minutes
+    min = time.substr(3,2);
+    // format as yyyy-mm-ddThh:mm to create to date object
+    const formatted = date + "T" + hour + ":" + min;
+    const utcDate = new Date(formatted);
+    const offset = utcDate.getTimezoneOffset()/60;
+    hour -= offset;
+    if (hour < 0) {
+      hour += 24;
+    } else if (hour > 23){
+      hour -= 24;
+    } else {
+      hour = hour;
+    }
+    if (hour < 10) {
+      hour = "0" + hour;
+    }
+    const newTime = hour + ":" + min;
+    return newTime;
+}
+
+
+// change military time to normal time with AM or PM.
+function amPm(milTime) {
+    timeArray = milTime.split(":");
+    let hour = parseInt(timeArray[0]);
+    let newTime;
+    let amPm;
+    if (hour < 12) {
+        amPm = "AM";
+    } else if (hour == 12) {
+        amPm = "PM";
+    } else if (hour < 24) {
+        amPm = "PM";
+        hour -= 12;
+    } else {
+        amPm = "AM";
+        hour -= 12;
+    }
+    let minutes = timeArray[1];
+    newTime = hour + ":" + minutes + " " + amPm;
+    return newTime;
 }
 
 /*********************************
@@ -938,60 +1026,7 @@ function calcDistance(start, end, speed) {
   start = timeInMinutes(start);
   end = timeInMinutes(end);
   const distance = speed * (end - start);
-  return distance;
-}
-function timeInMinutes(time) {
-  time = time.split(':');
-  const hour = parseInt(time[0]) * 60;
-  const minute = parseInt(time[1]);
-  const timeInMin = hour + minute;
-  return timeInMin;
-}
-
-function timeInAmPm(time) {
-  const hour = Math.floor(time/60);
-  let minute = time % 60;
-  if (minute < 10) {
-    minute = "0" + minute;
-  }
-  time = hour + ":" + minute;
-  time = amPm(time);
-  return time;
-
-}
-function newLocation(zip) {
-    // get zipcode and format it in url
-    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=&components=postal_code:" +
-        zip + "&key=AIzaSyCClyBxAN4UiXaciq3REHpDt1uBNKO7qa8";
-    // create new XMLHttpRequest object
-    let xhr = new XMLHttpRequest();
-    // prepare and send request
-    xhr.open("GET", url, false);
-    xhr.send();
-    let response = JSON.parse(xhr.responseText);
-    if (response.status == "ZERO_RESULTS") {
-        return response.status;
-    }
-    const lat = response.results[0].geometry.location.lat;
-    const lng = response.results[0].geometry.location.lng;
-    const city = response.results[0].address_components[1].long_name;
-    const state = response.results[0].address_components[2].short_name;
-    const zipInfo = {
-        'lat': lat,
-        'lng': lng,
-        'city': city,
-        'state': state,
-        'zip': zip
-    };
-    let zipList;
-    if (localStorage['zipList']) {
-        zipList = JSON.parse(localStorage.getItem('zipList'));
-        zipList.push(zipInfo);
-    } else {
-        zipList = [zipInfo];
-    }
-    localStorage.setItem('zipList', JSON.stringify(zipList));
-    return zipInfo;
+  return Math.round(distance);
 }
 
 
@@ -1059,9 +1094,7 @@ function sunset(date, lat, lng) {
             //Use amPm function to convert from military time.
             sunrise = amPm(milSunrise);
             sunset = amPm(milSunset);
-            //milSunset = milTime(sunset);
-            //milsunset = amPm(sunset);
-            // create message with sunrise and sunset times
+            // create array with sunrise and sunset times
             let sunInfo = [milSunrise, milSunset, sunrise, sunset];
             localStorage.setItem('sunInfo', JSON.stringify(sunInfo));
             document.getElementById('planSunrise').innerHTML = "Sunrise:" + sunrise;
@@ -1069,9 +1102,6 @@ function sunset(date, lat, lng) {
 
         }
     }
-
-
-
     /* prepare and send xmlhttpRequest. Once response is loaded,
      * onreadystatechange function above will run.
      */
@@ -1079,92 +1109,7 @@ function sunset(date, lat, lng) {
     xhr.send();
 }
 
-function formatTime(time, date) {
-   // add a zero if hour is less than 12
-    const ch2 = time.charAt(1);
-    if (ch2 == ":") {
-        time = "0" + time;
-    }
-    // variables
-    let ampm = 0;
-    let hour = "";
-    let min = "";
-    hour = parseInt(time.substr(0,2));
-    // get hours and change to military time
-    if ((time.charAt(9) == "P" && hour != 12) || (time.charAt(9) == "A" && hour == 12)) {
-      ampm = 12;
-    }
 
-    hour += ampm;
-    if (hour == 24) {
-      hour = 0;
-    }
-    if (hour < 10) {
-      hour = "0" + hour;
-    }
-
-    // get the minutes
-    min = time.substr(3,2);
-    // format as yyyy-mm-ddThh:mm to create to date object
-    const formatted = date + "T" + hour + ":" + min;
-    const utcDate = new Date(formatted);
-    const offset = utcDate.getTimezoneOffset()/60;
-    hour -= offset;
-    if (hour < 0) {
-      hour += 24;
-    } else if (hour > 23){
-      hour -= 24;
-    } else {
-      hour = hour;
-    }
-    if (hour < 10) {
-      hour = "0" + hour;
-    }
-    const newTime = hour + ":" + min;
-    return newTime;
-
-
-
-
-}
-
-function milTime(time) {
-
-    let hour = time.getHours();
-    if (hour < 10) {
-        hour = "0" + hour;
-    }
-    let minute = time.getMinutes();
-    if (minute < 10) {
-        minute = "0" + minute;
-    }
-    time = hour + ":" + minute;
-    return time;
-}
-
-// change military time to normal time with AM or PM.
-function amPm(milTime) {
-    timeArray = milTime.split(":");
-    let hour = parseInt(timeArray[0]);
-    let newTime;
-    let amPm;
-    if (hour < 12) {
-        amPm = "AM";
-    } else if (hour == 12) {
-        amPm = "PM";
-    } else if (hour < 24) {
-        amPm = "PM";
-        hour -= 12;
-    } else {
-        amPm = "AM";
-        hour -= 12;
-    }
-
-    let minutes = timeArray[1];
-
-    newTime = hour + ":" + minutes + " " + amPm;
-    return newTime;
-}
 
 function fillSunrise() {
     if (localStorage['sunInfo']) {

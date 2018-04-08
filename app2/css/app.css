@@ -125,7 +125,7 @@ body, main {
 /*.closePop {
     animation: closePopUp 1s both;
 }*/
-.zipbox, .bikePopBox {
+.zipbox, .bikePopBox, .routeBox {
   border-radius: 5px;
   padding: 10px;
   margin: 5px 2px;
@@ -134,6 +134,9 @@ body, main {
 .bikePopBox {
   display: flex;
   flex-flow: row wrap; }
+
+.routeBox .zipParent {
+  margin-top: 15px; }
 
 .zipcode, .timeinput, .bikeInput {
   background-color: rgba(255, 255, 255, 0.8);
@@ -149,9 +152,6 @@ body, main {
     border: solid 2px #f1f1f1; }
   .zipcode::placeholder, .timeinput::placeholder, .bikeInput::placeholder {
     color: #2a4e6c; }
-
-.bikeInput {
-  width: 70%; }
 
 .popup3 {
   background-color: #4e4b45;
@@ -422,29 +422,6 @@ header {
 .buttonBox {
   height: 100%; }
 
-/*.settings {
-    @include grid(.5,1);
-    & div {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: $secondary-color;
-      position: relative;
-      &::after {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background-color: $primary-color;
-        content: '';
-        position: absolute;
-        z-index: 20;
-        left: 2px;
-        top: 2px;
-      }
-    }
-
-
-}*/
 .sunrise {
   position: absolute;
   width: 100%;
@@ -561,7 +538,8 @@ label {
   transition: background-color .2s ease-in;
   width: 40px;
   z-index: 200;
-  right: 0; }
+  right: 0;
+  top: 5px; }
 
 .menuIcon:hover {
   background-color: rgba(100, 100, 100, 0.5); }

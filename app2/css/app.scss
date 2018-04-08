@@ -111,29 +111,6 @@ header {
 
 }
 
-/*.settings {
-    @include grid(.5,1);
-    & div {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: $secondary-color;
-      position: relative;
-      &::after {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background-color: $primary-color;
-        content: '';
-        position: absolute;
-        z-index: 20;
-        left: 2px;
-        top: 2px;
-      }
-    }
-
-
-}*/
 .sunrise {
    position: absolute;
    width: 100%;
@@ -216,6 +193,7 @@ header {
     width: 40px;
     z-index: 200;
     right: 0;
+    top:5px;
 
 
 

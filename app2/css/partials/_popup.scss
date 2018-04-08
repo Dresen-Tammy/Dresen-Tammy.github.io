@@ -109,7 +109,7 @@
 }*/
 
 
-.zipbox, .bikePopBox {
+.zipbox, .bikePopBox, .routeBox {
 
     border-radius: 5px;
     padding: 10px;
@@ -120,6 +120,9 @@
     display: flex;
     flex-flow: row wrap;
 
+}
+.routeBox .zipParent {
+  margin-top: 15px;
 }
 
 .zipcode, .timeinput, .bikeInput {
@@ -140,9 +143,7 @@
         color: $dark-color;
     }
 }
-.bikeInput {
-  width: 70%;
-}
+
 .popup3 {
     background-color: #4e4b45;
     padding: 10px;
